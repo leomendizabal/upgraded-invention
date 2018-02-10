@@ -35,4 +35,6 @@ public class Asignatura {
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
+	
+	
 }

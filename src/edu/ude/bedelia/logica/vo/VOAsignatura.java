@@ -1,15 +1,21 @@
 package edu.ude.bedelia.logica.vo;
 
 public class VOAsignatura {
-	private Integer codigo;
+	
+	private String codigo;
 	private String nombre;
 	private String descripcion;
 	
-	VOAsignatura() {
-		
+	
+
+	public VOAsignatura(String codigo, String nombre, String descripcion) {
+		super();
+		this.codigo = codigo;
+		this.nombre = nombre;
+		this.descripcion = descripcion;
 	}
 
-	public Integer getCodigo() {
+	public String getCodigo() {
 		return codigo;
 	}
 

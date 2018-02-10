@@ -1,8 +1,10 @@
 package edu.ude.bedelia.logica.colecciones;
 
+import java.util.Collection;
+import java.util.Set;
 import java.util.TreeMap;
 
-public class DiccionarioTreeMap<K,T> implements IDiccionario<K,T> {
+public  class DiccionarioTreeMap<K,T> implements IDiccionario<K,T> {
 	
 	private TreeMap<K, T> diccio;
 	
@@ -30,4 +32,12 @@ public class DiccionarioTreeMap<K,T> implements IDiccionario<K,T> {
 		this.diccio.put(clave, objeto);
 	}
 
+	public Set<K> keys() {
+		return diccio.keySet();
+	}
+
+	public Collection<T> values() {
+		return diccio.values();
+	}
+		
 }
