@@ -1,7 +1,7 @@
 package edu.ude.bedelia.logica.vo;
 
 public class VOAsignatura {
-	private Integer codigo;
+	private String codigo;
 	private String nombre;
 	private String descripcion;
 	
@@ -9,7 +9,7 @@ public class VOAsignatura {
 		
 	}
 
-	public Integer getCodigo() {
+	public String getCodigo() {
 		return codigo;
 	}
 
