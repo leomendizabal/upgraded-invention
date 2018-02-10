@@ -1,5 +1,10 @@
 package edu.ude.bedelia.logica.entidades;
 
+import java.util.Iterator;
+
+import edu.ude.bedelia.logica.constantes.Constantes;
+import edu.ude.bedelia.logica.colecciones.Inscripciones;
+
 public class Alumno {
 	private String cedula;
 	private String nombre;
@@ -7,7 +12,8 @@ public class Alumno {
 	private String domicilio;
 	private String telefono;
 	private String email;
-
+	private Inscripciones inscripciones;
+	
 	public Alumno(String cedula, String nombre, String apellido, String domicilio, String telefono, String email) {
 		this.cedula = cedula;
 		this.nombre = nombre;
@@ -15,6 +21,7 @@ public class Alumno {
 		this.domicilio = domicilio;
 		this.telefono = telefono;
 		this.email = email;
+		
 	}
 
 	public String getCedula() {
@@ -65,4 +72,51 @@ public class Alumno {
 		this.email = email;
 	}
 	
+	public boolean esMateriaAprobada(String codigo) {
+		Iterator iterador = this.inscripciones.getIterator();		
+		boolean estaAprobada = false;
+		Inscripcion inscripcion;
+		
+		while(iterador.hasNext() && !estaAprobada) {
+			inscripcion = (Inscripcion)iterador.next();
+			if(inscripcion.getAsignatura().getCodigo() == codigo) {				
+				estaAprobada = inscripcion.getCalificacion() >= Constantes.NOTA_MINIMA_APROBACION;
+			}
+		}
+		
+		return estaAprobada;
+	}
+	
+	public boolean esInscripto(String codigo, int anio) {
+		Iterator iterador = this.inscripciones.getIterator();
+		Inscripcion inscripcion;
+		boolean estaInscripto = false;
+		boolean esMateria = false;
+		
+		while(iterador.hasNext() && !esMateria) {
+			inscripcion = (Inscripcion)iterador.next();
+			if(inscripcion.getAsignatura().getCodigo() == codigo) {				
+				estaInscripto = inscripcion.getAnio() == anio;
+			}
+		}
+		
+		return estaInscripto;
+	}
+	
+	public void registrarInscripcion(Inscripcion inscripcion) {
+		this.inscripciones.insert(inscripcion.getNumero(), inscripcion);
+	}
+	
+	public void registrarCalificacion(String codigo, int calificacion) {
+		Iterator iterador = this.inscripciones.getIterator();
+		Inscripcion inscripcion;
+		boolean esMateria = false;
+		
+		while(iterador.hasNext() && !esMateria) {
+			inscripcion = (Inscripcion)iterador.next();
+			if(inscripcion.getAsignatura().getCodigo() == codigo) {				
+				inscripcion.setCalificacion(calificacion);
+			}
+		}		
+	}
 }

@@ -6,7 +6,7 @@ public class Inscripcion {
 	private float montoBase;
 	private int calificacion;
 	private Asignatura asignatura;
-	
+
 	public Inscripcion(Integer numero, int anio, float montoBase, int calificacion, Asignatura asignatura) {
 		this.numero = numero;
 		this.anio = anio;
@@ -54,7 +54,7 @@ public class Inscripcion {
 	public void setAsignatura(Asignatura asignatura) {
 		this.asignatura = asignatura;
 	}
-	
+
 	boolean esAprobada() {
 		return this.calificacion >= 6;
 	}
