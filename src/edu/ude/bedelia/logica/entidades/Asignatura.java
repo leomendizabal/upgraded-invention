@@ -35,4 +35,11 @@ public class Asignatura {
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
+	
+    public String toString() {
+		
+		return ("\n Codigo:" + this.codigo + "\n Nombre:" + this.nombre + "\n Descripcion:" + this.descripcion);
+		
+	}
+	
 }

@@ -119,4 +119,11 @@ public class Alumno {
 			}
 		}		
 	}
+	
+	public String toString() {
+		
+		return ("\n Cedula:" + this.cedula + "\n Nombre:" + this.nombre + "\n Apellido:" + this.apellido + "\n Domicilio:" + this.domicilio + "\n Telefono:" + this.telefono + "\n Email:" + this.email);
+		
+	}
+	
 }
