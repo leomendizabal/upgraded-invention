@@ -1,3 +1,4 @@
+
 package edu.ude.bedelia.logica.entidades;
 
 public class Asignatura {
