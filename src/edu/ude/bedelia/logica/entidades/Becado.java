@@ -28,4 +28,10 @@ public class Becado extends Alumno {
 		this.descripcion = descripcion;
 	}
 	
+    public String toString() {
+		
+		return (super.toString() + "\n Porcentaje:" + this.porcentaje + "\n Razón de beca:" + this.descripcion);
+		
+	}
+	
 }

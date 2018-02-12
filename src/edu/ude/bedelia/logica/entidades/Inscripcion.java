@@ -58,4 +58,11 @@ public class Inscripcion {
 	boolean esAprobada() {
 		return this.calificacion >= 6;
 	}
+	
+    public String toString() {
+		
+		return ("\n Numero:" + this.numero + "\n Año:" + this.anio + "\n Monto base:" + this.montoBase + "\n Calificacion:" + this.calificacion);
+		
+	}
+	
 }
