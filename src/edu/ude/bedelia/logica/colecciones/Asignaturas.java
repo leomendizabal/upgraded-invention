@@ -1,25 +1,38 @@
 package edu.ude.bedelia.logica.colecciones;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import java.util.Iterator;
 import edu.ude.bedelia.logica.entidades.Asignatura;
+import edu.ude.bedelia.logica.utiles.Constantes;
+import edu.ude.bedelia.logica.utiles.Mensajes;
 import edu.ude.bedelia.logica.vo.VOAsignatura;
 
-public class Asignaturas extends DiccionarioTreeMap<String, Asignatura> {
+public class Asignaturas extends SecuenciaArrayList<Asignatura>{
 	
 		
 	
 	public Asignaturas() {
-		super();
+		super(Constantes.CANTIDAD_MATERIAS);
+	}
+	
+	
+
+	@Override
+	public void insert(Asignatura element) throws ArrayIndexOutOfBoundsException {
+		if(this.size() == Constantes.CANTIDAD_MATERIAS) {
+			throw new ArrayIndexOutOfBoundsException(String.format(Mensajes.MSG_MAXIMO_MATERIAS_SUPERADO, Constantes.CANTIDAD_MATERIAS));
+		} else {
+			super.insert(element);
+		}
 	}
 
+
+
 	public VOAsignatura[] listarAsignaturas() {
-		final List<Asignatura> asignaturas = new ArrayList<Asignatura>(this.values());
-		VOAsignatura[] result = new VOAsignatura[asignaturas.size()];
+		final Iterator<Asignatura> it = this.iterator();
+		VOAsignatura[] result = new VOAsignatura[this.size()];
 		int indice = 0;
-		for (Asignatura a: asignaturas) {
-			result[indice] = new VOAsignatura(a.getCodigo(), a.getNombre(), a.getDescripcion());
+		while (it.hasNext()) {
+			result[indice] = it.next().toVOAsignatura();
 			indice++;
 		}
 		return result;

@@ -7,7 +7,7 @@ import java.util.Optional;
 
 public class SecuenciaArrayList<T> implements ISecuencia<T> {
 
-	private final static int FIRST_INDEX = 1;
+	private final static int FIRST_INDEX = 0;
 	
 	private ArrayList<T> secuencia;
 	
@@ -25,7 +25,7 @@ public class SecuenciaArrayList<T> implements ISecuencia<T> {
 	@Override
 	public void insertFront(T element) throws ArrayIndexOutOfBoundsException {
 		if(secuencia.isEmpty()) {
-			throw new ArrayIndexOutOfBoundsException();
+			throw new ArrayIndexOutOfBoundsException(FIRST_INDEX);
 		} else {
 			secuencia.add(FIRST_INDEX,element);
 		}
@@ -36,7 +36,7 @@ public class SecuenciaArrayList<T> implements ISecuencia<T> {
 	public void insert(T element, int index) throws ArrayIndexOutOfBoundsException {
 		
 		if(secuencia.isEmpty() || index >= secuencia.size()) {
-			throw new ArrayIndexOutOfBoundsException();
+			throw new ArrayIndexOutOfBoundsException(index);
 		} else {
 			secuencia.add(index, element);
 		}
@@ -45,7 +45,7 @@ public class SecuenciaArrayList<T> implements ISecuencia<T> {
 	}
 
 	@Override
-	public void insert(T element) {
+	public void insert(T element) throws ArrayIndexOutOfBoundsException {
 		secuencia.add(element);
 		
 	}
@@ -58,7 +58,7 @@ public class SecuenciaArrayList<T> implements ISecuencia<T> {
 	@Override
 	public T first() {
 		if(secuencia.isEmpty()) {
-			throw new ArrayIndexOutOfBoundsException();
+			throw new ArrayIndexOutOfBoundsException(FIRST_INDEX);
 		} else {
 			return secuencia.get(FIRST_INDEX);
 		}
@@ -70,7 +70,7 @@ public class SecuenciaArrayList<T> implements ISecuencia<T> {
 		if(object.isPresent()) {
 			return secuencia;
 		} else {
-			throw new ArrayIndexOutOfBoundsException();
+			throw new ArrayIndexOutOfBoundsException(FIRST_INDEX);
 		}
 	}
 
@@ -82,7 +82,7 @@ public class SecuenciaArrayList<T> implements ISecuencia<T> {
 	@Override
 	public T get(int index) throws ArrayIndexOutOfBoundsException{
 		if(secuencia.isEmpty() || index >= secuencia.size()) {
-			throw new ArrayIndexOutOfBoundsException();
+			throw new ArrayIndexOutOfBoundsException(index);
 		} else {
 			return secuencia.get(index);
 		}

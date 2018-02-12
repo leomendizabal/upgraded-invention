@@ -11,17 +11,17 @@ public class Main {
 		Alumno a = new Alumno("1234", "asdf", "asdf", "asdfasd", "asdfasd", "asdfasd@gmail.com");
 		DiccionarioAlumnos diccionario = new DiccionarioAlumnos();
 		diccionario.insert(a.getCedula(), a);
-		Asignaturas  as = new Asignaturas();
-		
-		for(int i = 0; i < Constantes.CANTIDAD_MATERIAS;i++) {
-			 String key =  String.format("MAT%s", String.valueOf(i));
-			as.insert(key, new Asignatura(key, "Materia", "Descripcion"));
+		Asignaturas as = new Asignaturas();
+
+		for (int i = 0; i < Constantes.CANTIDAD_MATERIAS; i++) {
+			String key = String.format("MAT%s", String.valueOf(i));
+			as.insert(new Asignatura(key, "Materia", "Descripcion"));
 		}
-		
-		for(VOAsignatura asig: as.listarAsignaturas()) {
+
+		for (VOAsignatura asig : as.listarAsignaturas()) {
 			System.out.println(String.format(" clave %s", asig.getCodigo()));
 		}
-		System.out.println("existe alumno? "+diccionario.member(a.getCedula()));
+		System.out.println("existe alumno? " + diccionario.member(a.getCedula()));
 	}
 
 }
