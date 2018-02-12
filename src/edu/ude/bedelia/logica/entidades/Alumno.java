@@ -2,8 +2,8 @@ package edu.ude.bedelia.logica.entidades;
 
 import java.util.Iterator;
 
-import edu.ude.bedelia.logica.constantes.Constantes;
 import edu.ude.bedelia.logica.colecciones.Inscripciones;
+import edu.ude.bedelia.logica.utiles.Constantes;
 
 public class Alumno {
 	private String cedula;

@@ -1,5 +1,7 @@
 package edu.ude.bedelia.logica.entidades;
 
+import edu.ude.bedelia.logica.vo.VOAsignatura;
+
 public class Asignatura {
 	
 	private String codigo;
@@ -36,11 +38,17 @@ public class Asignatura {
 		this.descripcion = descripcion;
 	}
 	
+	public VOAsignatura toVOAsignatura() {
+		return new VOAsignatura(codigo, nombre, descripcion);	
+	}	
+	
     public String toString() {
 		
 		return ("\n Codigo:" + this.codigo + "\n Nombre:" + this.nombre + "\n Descripcion:" + this.descripcion);
 		
 	}
+    
+    
 	
 }
->>>>>>> 3263e147046ce7fc22a70684bcee3395b6d87f6c
+
