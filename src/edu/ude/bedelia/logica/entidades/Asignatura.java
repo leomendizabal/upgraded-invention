@@ -38,17 +38,15 @@ public class Asignatura {
 		this.descripcion = descripcion;
 	}
 	
-	public VOAsignatura toVOAsignatura() {
-		return new VOAsignatura(codigo, nombre, descripcion);	
-	}	
-	
     public String toString() {
 		
 		return ("\n Codigo:" + this.codigo + "\n Nombre:" + this.nombre + "\n Descripcion:" + this.descripcion);
 		
 	}
     
-    
+    public VOAsignatura toVO() {
+		return new VOAsignatura(this);	
+	}	
 	
 }
 

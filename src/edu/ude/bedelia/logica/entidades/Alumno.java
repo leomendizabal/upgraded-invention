@@ -4,8 +4,10 @@ import java.util.Iterator;
 
 import edu.ude.bedelia.logica.colecciones.Inscripciones;
 import edu.ude.bedelia.logica.utiles.Constantes;
+import edu.ude.bedelia.logica.vo.VOAlumno;
+import edu.ude.bedelia.logica.vo.VOAlumnoCompleto;
 
-public class Alumno {
+public class Alumno implements Comparable {
 	private String cedula;
 	private String nombre;
 	private String apellido;
@@ -126,4 +128,19 @@ public class Alumno {
 		
 	}
 	
+	public VOAlumno toVO(boolean esCompleto) {
+		if(esCompleto) {
+			return new VOAlumnoCompleto(this);
+		} else {
+			return new VOAlumno(this);
+		}
+	}
+
+	@Override
+	public int compareTo(Object o) {
+		Alumno a = (Alumno) o;
+		int ci = Integer.parseInt(a.getCedula());
+		return Integer.parseInt(this.cedula) - ci;
+	}
+
 }

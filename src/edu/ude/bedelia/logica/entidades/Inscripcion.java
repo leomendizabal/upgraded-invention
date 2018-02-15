@@ -1,5 +1,8 @@
 package edu.ude.bedelia.logica.entidades;
 
+import edu.ude.bedelia.logica.vo.VOInscripcion;
+import edu.ude.bedelia.logica.vo.VOInscripcionCompleta;
+
 public class Inscripcion {
 	private Integer numero;
 	private int anio;
@@ -64,5 +67,13 @@ public class Inscripcion {
 		return ("\n Numero:" + this.numero + "\n Año:" + this.anio + "\n Monto base:" + this.montoBase + "\n Calificacion:" + this.calificacion);
 		
 	}
+    
+    public VOInscripcion toVO(boolean esCompleto) {
+    	if(esCompleto) {
+    		return new VOInscripcion(this);
+    	}else {
+    		return new VOInscripcionCompleta(this);
+    	}
+    }
 	
 }

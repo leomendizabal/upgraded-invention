@@ -8,14 +8,10 @@ import edu.ude.bedelia.logica.vo.VOAsignatura;
 
 public class Asignaturas extends SecuenciaArrayList<Asignatura>{
 	
-		
-	
 	public Asignaturas() {
 		super(Constantes.CANTIDAD_MATERIAS);
 	}
 	
-	
-
 	@Override
 	public void insert(Asignatura element) throws ArrayIndexOutOfBoundsException {
 		if(this.size() == Constantes.CANTIDAD_MATERIAS) {
@@ -25,14 +21,12 @@ public class Asignaturas extends SecuenciaArrayList<Asignatura>{
 		}
 	}
 
-
-
 	public VOAsignatura[] listarAsignaturas() {
 		final Iterator<Asignatura> it = this.iterator();
 		VOAsignatura[] result = new VOAsignatura[this.size()];
 		int indice = 0;
 		while (it.hasNext()) {
-			result[indice] = it.next().toVOAsignatura();
+			result[indice] = it.next().toVO();
 			indice++;
 		}
 		return result;

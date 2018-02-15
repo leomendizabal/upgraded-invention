@@ -1,8 +1,12 @@
+import java.util.ArrayList;
+
 import edu.ude.bedelia.logica.colecciones.Asignaturas;
 import edu.ude.bedelia.logica.colecciones.DiccionarioAlumnos;
 import edu.ude.bedelia.logica.entidades.Alumno;
 import edu.ude.bedelia.logica.entidades.Asignatura;
+import edu.ude.bedelia.logica.excepciones.AlumnosException;
 import edu.ude.bedelia.logica.utiles.Constantes;
+import edu.ude.bedelia.logica.vo.VOAlumno;
 import edu.ude.bedelia.logica.vo.VOAsignatura;
 
 public class Main {
@@ -21,7 +25,15 @@ public class Main {
 		for (VOAsignatura asig : as.listarAsignaturas()) {
 			System.out.println(String.format(" clave %s", asig.getCodigo()));
 		}
-		System.out.println("existe alumno? " + diccionario.member(a.getCedula()));
+		
+		try {
+			ArrayList<VOAlumno> alumnosApellidos = diccionario.listarAlumnosApellido("asdf");
+			System.out.println(String.format("cantidad de alumnos: %s", alumnosApellidos.size()));
+		} catch(AlumnosException e) {
+			System.out.println("Error: " + e.getMensaje());
+		}
+		
+		
 	}
 
 }

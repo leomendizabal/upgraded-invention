@@ -1,19 +1,22 @@
 package edu.ude.bedelia.logica.vo;
 
+import edu.ude.bedelia.logica.entidades.Inscripcion;
+
 public class VOInscripcionCompleta extends VOInscripcion {
 	
 	private float montoBase;
 
-    VOInscripcionCompleta(Integer numero, String nombre, int anio, int calificacion, float montoBase) {
-		super(numero, nombre, anio, calificacion);
+    public VOInscripcionCompleta(Integer numero, int anio, float montoBase, int calificacion) {
+		super(numero, anio, montoBase, calificacion);
 		this.montoBase = montoBase;
 	}
 
+    public VOInscripcionCompleta(Inscripcion i) {
+    	super(i);
+    	this.montoBase = i.getMontoBase();
+    }
+    
 	public float getMontoBase() {
 		return montoBase;
 	}
-
-	
-	
-
 }
