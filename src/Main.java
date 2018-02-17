@@ -1,7 +1,11 @@
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import edu.ude.bedelia.logica.colecciones.Asignaturas;
-import edu.ude.bedelia.logica.colecciones.Alumnos;
+import edu.ude.bedelia.logica.colecciones.DiccionarioAlumnos;
 import edu.ude.bedelia.logica.entidades.Alumno;
 import edu.ude.bedelia.logica.entidades.Asignatura;
 import edu.ude.bedelia.logica.excepciones.AlumnosException;
@@ -12,9 +16,18 @@ import edu.ude.bedelia.logica.vo.VOAsignatura;
 public class Main {
 
 	public static void main(String[] args) {
-		Alumno a = new Alumno("1234", "asdf", "asdf", "asdfasd", "asdfasd", "asdfasd@gmail.com");
-		Alumnos diccionario = new Alumnos();
-		diccionario.insert(a.getCedula(), a);
+
+		Alumno elviejo = new Alumno("90000", "Rodri", "Gordano", "asdfasd", "asdfasd", "asdfasd@gmail.com");
+		Alumno rodri = new Alumno("42587357", "Rodri", "Gordano", "asdfasd", "asdfasd", "asdfasd@gmail.com");
+		Alumno leo = new Alumno("4387792", "Leo", "Mendizabal", "asdfasd", "asdfasd", "asdfasd@gmail.com");
+		Alumno santi = new Alumno("52813398", "Santiago", "Mattiauda", "asdfasd", "asdfasd", "asdfasd@gmail.com");
+		
+		DiccionarioAlumnos diccionario = new DiccionarioAlumnos();
+		diccionario.insert(leo.getCedula(),leo);
+		diccionario.insert(santi.getCedula(), santi);
+		diccionario.insert(rodri.getCedula(), rodri);
+		diccionario.insert(elviejo.getCedula(), elviejo);
+
 		Asignaturas as = new Asignaturas();
 
 		for (int i = 0; i < Constantes.CANTIDAD_MATERIAS; i++) {
@@ -26,8 +39,32 @@ public class Main {
 			System.out.println(String.format(" clave %s", asig.getCodigo()));
 		}
 		
-		ArrayList<VOAlumno> alumnosApellidos = diccionario.listarAlumnosApellido("asdf");
-		System.out.println(String.format("cantidad de alumnos: %s", alumnosApellidos.size()));
+		ArrayList<VOAlumno> alumnosApellidos;
+		try {
+			alumnosApellidos = diccionario.listarAlumnosApellido("asdf");
+			System.out.println(String.format("cantidad de alumnos: %s", alumnosApellidos.size()));
+		} catch (AlumnosException e) {
+			// TODO Auto-generated catch block
+			System.out.println(e.getMensaje());
+		}
+		
+		
+		Iterator<Alumno> iter = diccionario.values().iterator();
+		while (iter.hasNext()) {
+			final Alumno a = iter.next();
+			System.out.println(a.toString());
+			
+		}
+	
+		List<Alumno> list = diccionario.values().stream().collect(Collectors.toList());
+		//Collections.sort(list);
+		Collections.reverse(list);
+		System.out.println("Ordenado");
+		for(Alumno alu: list) {
+			System.out.println(alu.toString());
+			
+		}
+		
 		
 		
 	}

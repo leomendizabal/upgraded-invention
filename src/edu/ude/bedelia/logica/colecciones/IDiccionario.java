@@ -14,6 +14,6 @@ public interface IDiccionario<K,T> {
 	public Set<K> keys();
 	public Collection<T> values();
 	
-	public Iterator getIterator();
+	public Iterator<T> getIterator();
 
 }

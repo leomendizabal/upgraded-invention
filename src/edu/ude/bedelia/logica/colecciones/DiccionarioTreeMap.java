@@ -41,7 +41,7 @@ public  class DiccionarioTreeMap<K,T> implements IDiccionario<K,T> {
 		return diccio.values();
 	}
 		
-	public Iterator getIterator() {
+	public Iterator<T> getIterator() {
 		return this.diccio.values().iterator();
 	}
 
