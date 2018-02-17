@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 import edu.ude.bedelia.logica.colecciones.Asignaturas;
-import edu.ude.bedelia.logica.colecciones.DiccionarioAlumnos;
+import edu.ude.bedelia.logica.colecciones.Alumnos;
 import edu.ude.bedelia.logica.entidades.Alumno;
 import edu.ude.bedelia.logica.entidades.Asignatura;
 import edu.ude.bedelia.logica.excepciones.AlumnosException;
@@ -13,7 +13,7 @@ public class Main {
 
 	public static void main(String[] args) {
 		Alumno a = new Alumno("1234", "asdf", "asdf", "asdfasd", "asdfasd", "asdfasd@gmail.com");
-		DiccionarioAlumnos diccionario = new DiccionarioAlumnos();
+		Alumnos diccionario = new Alumnos();
 		diccionario.insert(a.getCedula(), a);
 		Asignaturas as = new Asignaturas();
 
@@ -26,12 +26,8 @@ public class Main {
 			System.out.println(String.format(" clave %s", asig.getCodigo()));
 		}
 		
-		try {
-			ArrayList<VOAlumno> alumnosApellidos = diccionario.listarAlumnosApellido("asdf");
-			System.out.println(String.format("cantidad de alumnos: %s", alumnosApellidos.size()));
-		} catch(AlumnosException e) {
-			System.out.println("Error: " + e.getMensaje());
-		}
+		ArrayList<VOAlumno> alumnosApellidos = diccionario.listarAlumnosApellido("asdf");
+		System.out.println(String.format("cantidad de alumnos: %s", alumnosApellidos.size()));
 		
 		
 	}
