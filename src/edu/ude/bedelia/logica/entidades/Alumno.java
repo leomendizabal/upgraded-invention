@@ -75,12 +75,12 @@ public class Alumno implements Comparable {
 	}
 	
 	public boolean esMateriaAprobada(String codigo) {
-		Iterator iterador = this.inscripciones.getIterator();		
+		Iterator<Inscripcion> iterador = this.inscripciones.iterator();		
 		boolean estaAprobada = false;
 		Inscripcion inscripcion;
 		
 		while(iterador.hasNext() && !estaAprobada) {
-			inscripcion = (Inscripcion)iterador.next();
+			inscripcion = iterador.next();
 			if(inscripcion.getAsignatura().getCodigo() == codigo) {				
 				estaAprobada = inscripcion.getCalificacion() >= Constantes.NOTA_MINIMA_APROBACION;
 			}
@@ -90,13 +90,13 @@ public class Alumno implements Comparable {
 	}
 	
 	public boolean esInscripto(String codigo, int anio) {
-		Iterator iterador = this.inscripciones.getIterator();
+		Iterator<Inscripcion> iterador = this.inscripciones.iterator();
 		Inscripcion inscripcion;
 		boolean estaInscripto = false;
 		boolean esMateria = false;
 		
 		while(iterador.hasNext() && !esMateria) {
-			inscripcion = (Inscripcion)iterador.next();
+			inscripcion = iterador.next();
 			if(inscripcion.getAsignatura().getCodigo() == codigo) {				
 				estaInscripto = inscripcion.getAnio() == anio;
 			}
@@ -106,11 +106,11 @@ public class Alumno implements Comparable {
 	}
 	
 	public void registrarInscripcion(Inscripcion inscripcion) {
-		this.inscripciones.insert(inscripcion.getNumero(), inscripcion);
+		this.inscripciones.insert(inscripcion);
 	}
 	
 	public void registrarCalificacion(String codigo, int calificacion) {
-		Iterator iterador = this.inscripciones.getIterator();
+		Iterator<Inscripcion> iterador = this.inscripciones.iterator();
 		Inscripcion inscripcion;
 		boolean esMateria = false;
 		

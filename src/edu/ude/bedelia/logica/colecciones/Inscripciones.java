@@ -2,7 +2,7 @@ package edu.ude.bedelia.logica.colecciones;
 
 import edu.ude.bedelia.logica.entidades.Inscripcion;
 
-public class Inscripciones extends DiccionarioTreeMap<Integer, Inscripcion> {
+public class Inscripciones extends SecuenciaArrayList<Inscripcion> {
 
 	public Inscripciones() {
 
