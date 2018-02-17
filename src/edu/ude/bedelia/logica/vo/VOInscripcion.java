@@ -1,6 +1,5 @@
 package edu.ude.bedelia.logica.vo;
 
-import edu.ude.bedelia.logica.entidades.Asignatura;
 import edu.ude.bedelia.logica.entidades.Inscripcion;
 
 public class VOInscripcion {
@@ -41,4 +40,10 @@ public class VOInscripcion {
 	public int getCalificacion() {
 		return calificacion;
 	}
+
+	public VOAsignatura getAsignatura() {
+		return asignatura;
+	}
+	
+	
 }

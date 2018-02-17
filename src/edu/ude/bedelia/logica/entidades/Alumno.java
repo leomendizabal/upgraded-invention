@@ -7,7 +7,7 @@ import edu.ude.bedelia.logica.utiles.Constantes;
 import edu.ude.bedelia.logica.vo.VOAlumno;
 import edu.ude.bedelia.logica.vo.VOAlumnoCompleto;
 
-public class Alumno implements Comparable {
+public class Alumno implements Comparable<Alumno> {
 	private String cedula;
 	private String nombre;
 	private String apellido;
@@ -137,10 +137,8 @@ public class Alumno implements Comparable {
 	}
 
 	@Override
-	public int compareTo(Object o) {
-		Alumno a = (Alumno) o;
-		int ci = Integer.parseInt(a.getCedula());
-		return Integer.parseInt(this.cedula) - ci;
+	public int compareTo(Alumno o) {
+		return this.getCedula().compareTo(o.getCedula());
 	}
 
 }
