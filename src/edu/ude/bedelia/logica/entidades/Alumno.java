@@ -14,7 +14,7 @@ public class Alumno implements Comparable<Alumno> {
 	private String domicilio;
 	private String telefono;
 	private String email;
-	private Inscripciones inscripciones;
+	protected Inscripciones inscripciones;
 	
 	public Alumno(String cedula, String nombre, String apellido, String domicilio, String telefono, String email) {
 		this.cedula = cedula;
@@ -120,6 +120,18 @@ public class Alumno implements Comparable<Alumno> {
 				inscripcion.setCalificacion(calificacion);
 			}
 		}		
+	}
+	
+	public float calcularMontoCobrado(int anio) {
+		float total = 0;
+		
+		for(Inscripcion elem: this.inscripciones) {
+			if(elem.getAnio() == anio) {
+				total += 10 * elem.getMontoBase();
+			}
+		}
+		
+		return total;
 	}
 	
 	public String toString() {

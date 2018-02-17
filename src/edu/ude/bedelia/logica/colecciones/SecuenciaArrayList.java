@@ -5,7 +5,7 @@ import java.util.Iterator;
 import java.util.Optional;
 
 
-public class SecuenciaArrayList<T> implements ISecuencia<T> {
+public class SecuenciaArrayList<T> implements ISecuencia<T>, Iterable<T> {
 
 	private final static int FIRST_INDEX = 0;
 	

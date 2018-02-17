@@ -16,6 +16,7 @@ import edu.ude.bedelia.logica.vo.VOAsignatura;
 public class Main {
 
 	public static void main(String[] args) {
+
 		Alumno elviejo = new Alumno("90000", "Rodri", "Gordano", "asdfasd", "asdfasd", "asdfasd@gmail.com");
 		Alumno rodri = new Alumno("42587357", "Rodri", "Gordano", "asdfasd", "asdfasd", "asdfasd@gmail.com");
 		Alumno leo = new Alumno("4387792", "Leo", "Mendizabal", "asdfasd", "asdfasd", "asdfasd@gmail.com");
@@ -26,6 +27,7 @@ public class Main {
 		diccionario.insert(santi.getCedula(), santi);
 		diccionario.insert(rodri.getCedula(), rodri);
 		diccionario.insert(elviejo.getCedula(), elviejo);
+
 		Asignaturas as = new Asignaturas();
 
 		for (int i = 0; i < Constantes.CANTIDAD_MATERIAS; i++) {
@@ -37,12 +39,15 @@ public class Main {
 			System.out.println(String.format(" clave %s", asig.getCodigo()));
 		}
 		
+		ArrayList<VOAlumno> alumnosApellidos;
 		try {
-			ArrayList<VOAlumno> alumnosApellidos = diccionario.listarAlumnosApellido("asdf");
+			alumnosApellidos = diccionario.listarAlumnosApellido("asdf");
 			System.out.println(String.format("cantidad de alumnos: %s", alumnosApellidos.size()));
-		} catch(AlumnosException e) {
-			System.out.println("Error: " + e.getMensaje());
+		} catch (AlumnosException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+		
 		
 		Iterator<Alumno> iter = diccionario.values().iterator();
 		while (iter.hasNext()) {

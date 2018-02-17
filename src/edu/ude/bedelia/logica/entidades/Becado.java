@@ -1,5 +1,8 @@
 package edu.ude.bedelia.logica.entidades;
 
+
+import edu.ude.bedelia.logica.vo.VOBecadoCompleto;
+
 public class Becado extends Alumno {
 	
 	private float porcentaje;
@@ -28,7 +31,28 @@ public class Becado extends Alumno {
 		this.descripcion = descripcion;
 	}
 	
+	public float calcularMontoCobrado(int anio) {
+		float total = 0;
+		
+		for(Inscripcion elem: this.inscripciones) {
+			if(elem.getAnio() == anio) {
+				total += 10 * elem.getMontoBase();
+			}
+		}
+		
+		return total - (total * this.porcentaje) / 100;
+	}
+	
     public String toString() {
 		return (super.toString() + "\n Porcentaje:" + this.porcentaje + "\n Raz�n de beca:" + this.descripcion);	
 	}
+    
+    public VOBecadoCompleto toVO() {
+	
+			return new VOBecadoCompleto(this);
+	
+	}
+
+    
+    
 }
