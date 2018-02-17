@@ -45,7 +45,7 @@ public class Main {
 			System.out.println(String.format("cantidad de alumnos: %s", alumnosApellidos.size()));
 		} catch (AlumnosException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println(e.getMensaje());
 		}
 		
 		

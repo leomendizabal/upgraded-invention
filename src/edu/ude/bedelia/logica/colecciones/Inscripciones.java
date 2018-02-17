@@ -17,8 +17,7 @@ public class Inscripciones extends SecuenciaArrayList<Inscripcion> {
 		Iterator<Inscripcion> iterator = this.iterator();
 		final List<VOInscripcion> listaVOInscripciones = new ArrayList<>(this.size());
 		while(iterator.hasNext()) {
-			VOInscripcion itemVOIncripcion = iterator.next().toVO(esCompleto);
-			listaVOInscripciones.add(itemVOIncripcion);
+			listaVOInscripciones.add(iterator.next().toVO(esCompleto));
 		}
 		return listaVOInscripciones;
 	}
