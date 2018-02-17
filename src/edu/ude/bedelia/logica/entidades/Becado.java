@@ -1,6 +1,8 @@
 package edu.ude.bedelia.logica.entidades;
 
 import edu.ude.bedelia.logica.vo.VOAlumno;
+import edu.ude.bedelia.logica.vo.VOAlumnoCompleto;
+import edu.ude.bedelia.logica.vo.VOBecadoCompleto;
 
 public class Becado extends Alumno {
 	
@@ -45,4 +47,13 @@ public class Becado extends Alumno {
     public String toString() {
 		return (super.toString() + "\n Porcentaje:" + this.porcentaje + "\n Razón de beca:" + this.descripcion);	
 	}
+    
+    public VOBecadoCompleto toVO() {
+	
+			return new VOBecadoCompleto(this);
+	
+	}
+
+    
+    
 }
