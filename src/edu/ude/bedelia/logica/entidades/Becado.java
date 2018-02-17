@@ -30,6 +30,18 @@ public class Becado extends Alumno {
 		this.descripcion = descripcion;
 	}
 	
+	public float calcularMontoCobrado(int anio) {
+		float total = 0;
+		
+		for(Inscripcion elem: this.inscripciones) {
+			if(elem.getAnio() == anio) {
+				total += 10 * elem.getMontoBase();
+			}
+		}
+		
+		return total - (total * this.porcentaje) / 100;
+	}
+	
     public String toString() {
 		return (super.toString() + "\n Porcentaje:" + this.porcentaje + "\n Razón de beca:" + this.descripcion);	
 	}
