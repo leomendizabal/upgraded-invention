@@ -58,7 +58,7 @@ public class Inscripcion {
 		this.asignatura = asignatura;
 	}
 
-	boolean esAprobada() {
+	public boolean esAprobada() {
 		return this.calificacion >= 6;
 	}
 	

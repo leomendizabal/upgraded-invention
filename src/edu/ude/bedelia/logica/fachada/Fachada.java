@@ -4,6 +4,13 @@ import java.util.ArrayList;
 
 import edu.ude.bedelia.logica.colecciones.Alumnos;
 import edu.ude.bedelia.logica.colecciones.Asignaturas;
+import edu.ude.bedelia.logica.colecciones.Inscripciones;
+import edu.ude.bedelia.logica.entidades.Alumno;
+import edu.ude.bedelia.logica.entidades.Asignatura;
+import edu.ude.bedelia.logica.entidades.Inscripcion;
+import edu.ude.bedelia.logica.excepciones.AlumnosException;
+import edu.ude.bedelia.logica.excepciones.AsignaturasException;
+import edu.ude.bedelia.logica.excepciones.InscripcionesException;
 import edu.ude.bedelia.logica.vo.VOAlumno;
 import edu.ude.bedelia.logica.vo.VOAlumnoCompleto;
 import edu.ude.bedelia.logica.vo.VOAsignatura;
@@ -37,7 +44,18 @@ public class Fachada implements IFachada{
 		
 	}
 
-	public void modificarAlumno(VOAlumno a) {
+	public void modificarAlumno(VOAlumno a) throws AlumnosException {
+		
+		String ced=a.getCedula();
+		if (alumnos.member(ced))
+		{
+			Alumno alu=alumnos.find(ced);
+			alumnos.modify(ced, alu);
+		}
+		else
+		{
+			throw new AlumnosException("El alumno no existe en el sistema");
+		}
 		
 	}
 
@@ -53,7 +71,50 @@ public class Fachada implements IFachada{
 		return null;
 	}
 
-	public void inscribirAlumno(String ci, Integer codigo) {
+	public void inscribirAlumno(String ci, String codigo,int anio,float montoBase) throws AlumnosException,AsignaturasException, InscripcionesException {
+		
+		if (alumnos.member(ci))
+		{
+		    
+			if (asignaturas.pertenece(codigo))
+			{
+				
+			 	if(alumnos.find(ci).getInscripciones().asignaturaAprobada(codigo)) 
+				{
+			 		throw new InscripcionesException("El alumno ya aprobó la asignatura");
+				}
+				else
+				{
+					if (alumnos.find(ci).getInscripciones().inscriptoEnAnioLectivo(codigo))
+					{
+						throw new InscripcionesException("El alumno ya está inscripto a esta asignatura");
+					}
+					else
+					{
+						if (alumnos.find(ci).getInscripciones().anioLectivoMayorIgualUltimaInscripcion())
+						{
+							Asignatura asig=asignaturas.devolverAsignatura(codigo);
+							Alumno alu=alumnos.find(ci);
+							Integer num=alumnos.find(ci).getInscripciones().numeroUltimaInscripcionMasUno();
+							Inscripcion ins= new Inscripcion(num,anio,montoBase,0,asig);
+							alumnos.find(ci).registrarInscripcion(ins);
+						}
+						else
+						{
+							throw new InscripcionesException("El año lectivo no coincide con el actual");
+						}	
+					}	
+				}	
+			}
+			else
+			{
+				throw new AsignaturasException("La asignatura con dicho código no existe");
+			}	
+		}
+		else
+		{
+			throw new AlumnosException("El alumno con dicha cédula no existe");
+		}
 		
 	}
 
@@ -61,8 +122,20 @@ public class Fachada implements IFachada{
 		
 	}
 
-	public float montoRecaudadoPorAlumno(int anio, String ci) {
-		return 0;
+	public float montoRecaudadoPorAlumno(int anio, String ci) throws AlumnosException {
+		
+		float monto=0;
+		if (alumnos.member(ci))
+		{
+			Alumno alu=alumnos.find(ci);
+			monto=alu.calcularMontoCobrado(anio);
+			
+		}
+		else
+		{
+			throw new AlumnosException("No existe un alumno con esa cédula");
+		}
+		return monto;
 	}
 
 	public void respaldarDatos() {

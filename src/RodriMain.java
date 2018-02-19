@@ -1,3 +1,5 @@
+
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
@@ -11,12 +13,19 @@ import edu.ude.bedelia.logica.entidades.Asignatura;
 import edu.ude.bedelia.logica.excepciones.AlumnosException;
 import edu.ude.bedelia.logica.utiles.Constantes;
 import edu.ude.bedelia.logica.vo.VOAlumno;
+import edu.ude.bedelia.logica.vo.VOAlumnoCompleto;
 import edu.ude.bedelia.logica.vo.VOAsignatura;
+import edu.ude.bedelia.logica.vo.TipoAlumno;
 
-public class Main {
+
+public class RodriMain {
 
 	public static void main(String[] args) {
-
+		// TODO Auto-generated method stub
+		System.out.println("hola");
+		
+		
+		
 		Alumno elviejo = new Alumno("90000", "Rodri", "Gordano", "asdfasd", "asdfasd", "asdfasd@gmail.com");
 		Alumno rodri = new Alumno("42587357", "Rodri", "Gordano", "asdfasd", "asdfasd", "asdfasd@gmail.com");
 		Alumno leo = new Alumno("4387792", "Leo", "Mendizabal", "asdfasd", "asdfasd", "asdfasd@gmail.com");
@@ -51,17 +60,19 @@ public class Main {
 			
 		}
 	
-		List<Alumno> list = diccionario.values().stream().collect(Collectors.toList());
-		//Collections.sort(list);
-		Collections.reverse(list);
-		System.out.println("Ordenado");
-		for(Alumno alu: list) {
-			System.out.println(alu.toString());
+		
+		TipoAlumno tipo= TipoAlumno.COMUN;
+		VOAlumnoCompleto alu = new VOAlumnoCompleto("90000", "Rodri", "Gordano",tipo ,"Las Piedras","026090","rgordano@gmail.com",5000); 
+		
+		
+		
+		Iterator<Alumno> iter2 = diccionario.values().iterator();
+		while (iter.hasNext()) {
+			final Alumno a = iter.next();
+			System.out.println(a.toString());
 			
 		}
-		
-		
-		
+
 	}
 
 }

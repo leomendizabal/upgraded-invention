@@ -9,7 +9,7 @@ public class SecuenciaArrayList<T> implements ISecuencia<T>, Iterable<T> {
 
 	private final static int FIRST_INDEX = 0;
 	
-	private ArrayList<T> secuencia;
+	protected ArrayList<T> secuencia;
 	
 	
 	public SecuenciaArrayList() {

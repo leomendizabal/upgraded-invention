@@ -32,5 +32,35 @@ public class Asignaturas extends SecuenciaArrayList<Asignatura>{
 		return result;
 		
 	}
+	
+	public boolean pertenece(String cod) {
+		boolean esta=false;
+		int indice = 0;
+		while ( (indice<secuencia.size()) &&  (!esta) ) {
+		   Asignatura as=secuencia.get(indice);
+		   if (cod.equals(as.getCodigo()))
+			  esta=true;
+		   else
+			   indice++;
+		}
+		
+		return esta;
+	}
+	
+	
+	public Asignatura devolverAsignatura (String cod) {
+		
+		int indice = 0;
+		Asignatura as=secuencia.get(indice);
+		while ( !(cod.equals(as.getCodigo())) ) {
+			indice++;
+			as=secuencia.get(indice);
+		   
+		}
+		
+		return as;
+	}
+	
+	
 
 }

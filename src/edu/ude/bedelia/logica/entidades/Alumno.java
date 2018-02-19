@@ -74,6 +74,14 @@ public class Alumno implements Comparable<Alumno> {
 		this.email = email;
 	}
 	
+	
+	
+	public Inscripciones getInscripciones() {
+		return inscripciones;
+	}
+
+	
+
 	public boolean esMateriaAprobada(String codigo) {
 		Iterator<Inscripcion> iterador = this.inscripciones.iterator();		
 		boolean estaAprobada = false;
