@@ -1,13 +1,20 @@
 package edu.ude.bedelia.logica.entidades;
 
+import java.io.Serializable;
+
 import edu.ude.bedelia.logica.vo.VOAsignatura;
 
-public class Asignatura {
-	
+public class Asignatura implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private String codigo;
 	private String nombre;
 	private String descripcion;
-	
+
 	public Asignatura(String codigo, String nombre, String descripcion) {
 		this.codigo = codigo;
 		this.nombre = nombre;
@@ -37,16 +44,15 @@ public class Asignatura {
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
-	
-    public String toString() {
-		
-		return ("\n Codigo:" + this.codigo + "\n Nombre:" + this.nombre + "\n Descripcion:" + this.descripcion);
-		
-	}
-    
-    public VOAsignatura toVO() {
-		return new VOAsignatura(this);	
-	}	
-	
-}
 
+	public String toString() {
+
+		return ("\n Codigo:" + this.codigo + "\n Nombre:" + this.nombre + "\n Descripcion:" + this.descripcion);
+
+	}
+
+	public VOAsignatura toVO() {
+		return new VOAsignatura(this);
+	}
+
+}

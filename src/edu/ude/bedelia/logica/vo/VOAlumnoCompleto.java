@@ -2,13 +2,13 @@ package edu.ude.bedelia.logica.vo;
 
 import edu.ude.bedelia.logica.entidades.Alumno;
 
-public class VOAlumnoCompleto extends VOAlumno{
-	
+public class VOAlumnoCompleto extends VOAlumno {
+
 	private String domicilio;
 	private String telefono;
 	private String email;
 	private float monto;
-	
+
 	public VOAlumnoCompleto(String cedula, String nombre, String apellido, TipoAlumno tipo, String domicilio,
 			String telefono, String email, float monto) {
 		super(cedula, nombre, apellido, tipo);
@@ -23,21 +23,21 @@ public class VOAlumnoCompleto extends VOAlumno{
 		this.domicilio = a.getDomicilio();
 		this.telefono = a.getTelefono();
 		this.email = a.getEmail();
-		this.monto = 0; //TODO: corregir el monto
+		this.monto = 0; // TODO: corregir el monto
 	}
-	
+
 	public String getDomicilio() {
 		return domicilio;
 	}
-	
+
 	public String getTelefono() {
 		return telefono;
 	}
-	
+
 	public String getEmail() {
 		return email;
 	}
-	
+
 	public float getMonto() {
 		return monto;
 	}

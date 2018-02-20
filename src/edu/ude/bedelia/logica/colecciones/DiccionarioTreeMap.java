@@ -1,18 +1,23 @@
 package edu.ude.bedelia.logica.colecciones;
 
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.Set;
 import java.util.Iterator;
 import java.util.TreeMap;
 
-public  class DiccionarioTreeMap<K,T> implements IDiccionario<K,T> {
-	
+public class DiccionarioTreeMap<K, T> implements IDiccionario<K, T>, Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private TreeMap<K, T> diccio;
-	
+
 	public DiccionarioTreeMap() {
-		this.diccio = new TreeMap<K,T>();
+		this.diccio = new TreeMap<K, T>();
 	}
-		
+
 	public boolean member(K clave) {
 		return this.diccio.containsKey(clave);
 	}
@@ -40,7 +45,7 @@ public  class DiccionarioTreeMap<K,T> implements IDiccionario<K,T> {
 	public Collection<T> values() {
 		return diccio.values();
 	}
-		
+
 	public Iterator<T> getIterator() {
 		return this.diccio.values().iterator();
 	}

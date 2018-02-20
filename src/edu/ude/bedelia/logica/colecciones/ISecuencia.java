@@ -28,7 +28,7 @@ public interface ISecuencia<T> {
 	 * @param elemento
 	 * @return void
 	 */
-	public void insert(T element) throws ArrayIndexOutOfBoundsException ;
+	public void insert(T element) throws ArrayIndexOutOfBoundsException;
 
 	/**
 	 * Determina si una secuencia es vacia o no
