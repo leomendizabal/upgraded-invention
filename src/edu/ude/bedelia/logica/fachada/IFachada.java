@@ -11,9 +11,9 @@ import edu.ude.bedelia.logica.vo.*;
 
 public interface IFachada {
 	
-	public void registrarAsignatura(VOAsignatura a);
+	public void registrarAsignatura(VOAsignatura a) throws AsignaturasException;
 	public void registrarAlumno(VOAlumno a);
-	public void modificarAlumno(VOAlumno a) throws AlumnosException;
+	public void modificarAlumno(VOAlumnoCompleto a) throws AlumnosException;
 	public ArrayList<VOAsignatura> listarAsignaturas();
 	public ArrayList<VOAlumno> listarAlumnosApellido(String apellido);
 	public VOAlumnoCompleto listarDatosAlumno(String ci);
