@@ -24,19 +24,23 @@ public final class DataClass {
 			insert(elviejo.getCedula(), elviejo);
 		}
 	};
-	
-	
-	public final static Asignatura cocina1 =  new Asignatura("C1", "Cocina 1", "Descripcion");
-	public final static Asignatura panaderia1 =  new Asignatura("PYP1", "Panadería y Pastelería I (gastronomía)", "Descripcion");
-	public final static Asignatura frances =  new Asignatura("FR", "Francés", "Descripcion");
-	public final static Asignatura seguridadHigiene =  new Asignatura("SH", "Seguridad e Higiene", "Descripcion");
-	public final static Asignatura admMarkGast1 =  new Asignatura("AMG1", "Administración y Marketing Gastronómico I", "Descripcion");
-	public final static Asignatura enologia =  new Asignatura("EN", "Enología", "Descripcion");
-	public final static Asignatura cocteleria =  new Asignatura("CC", "Coctelería", "Descripcion");
-	public final static Asignatura organizacionEvento =  new Asignatura("OECP", "Organización de Eventos, Ceremonial y Protocolo", "Descripcion");
-	public final static Asignatura alimentosBebidas =  new Asignatura("AAB", "Administración de Alimentos y Bebidas", "Descripcion");
-	public final static Asignatura pasteleria2 =  new Asignatura("PP2", "Panadería y Pastelería II (gastronomía)", "Descripcion");
-	
+
+	public final static Asignatura cocina1 = new Asignatura("C1", "Cocina 1", "Descripcion");
+	public final static Asignatura panaderia1 = new Asignatura("PYP1", "Panadería y Pastelería I (gastronomía)",
+			"Descripcion");
+	public final static Asignatura frances = new Asignatura("FR", "Francés", "Descripcion");
+	public final static Asignatura seguridadHigiene = new Asignatura("SH", "Seguridad e Higiene", "Descripcion");
+	public final static Asignatura admMarkGast1 = new Asignatura("AMG1", "Administración y Marketing Gastronómico I",
+			"Descripcion");
+	public final static Asignatura enologia = new Asignatura("EN", "Enología", "Descripcion");
+	public final static Asignatura cocteleria = new Asignatura("CC", "Coctelería", "Descripcion");
+	public final static Asignatura organizacionEvento = new Asignatura("OECP",
+			"Organización de Eventos, Ceremonial y Protocolo", "Descripcion");
+	public final static Asignatura alimentosBebidas = new Asignatura("AAB", "Administración de Alimentos y Bebidas",
+			"Descripcion");
+	public final static Asignatura pasteleria2 = new Asignatura("PP2", "Panadería y Pastelería II (gastronomía)",
+			"Descripcion");
+
 	public final static Asignaturas ASIGNATURA = new Asignaturas() {
 		{
 			insert(cocina1);
@@ -51,5 +55,5 @@ public final class DataClass {
 			insert(pasteleria2);
 		}
 	};
-	
+
 }

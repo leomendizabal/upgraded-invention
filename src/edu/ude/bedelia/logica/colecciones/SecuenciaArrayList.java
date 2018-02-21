@@ -7,7 +7,6 @@ import java.util.Optional;
 
 public class SecuenciaArrayList<T> implements ISecuencia<T>, Iterable<T>, Serializable {
 
-	
 	private static final long serialVersionUID = 1L;
 
 	private final static int FIRST_INDEX = 0;

@@ -10,24 +10,23 @@ public class Cliente {
 
 	public static void main(String[] args) {
 		try {
-			
-			final ClienteConfig config = ClienteConfig.getInstance(); 
-			
+
+			final ClienteConfig config = ClienteConfig.getInstance();
+
 			final String puerto = config.getPuerto();
 			final String ip = config.getIp();
 			final String objeto = config.getObjeto();
 
-            String url = UrlBuilder.buildUrl(ip, Integer.parseInt(puerto), objeto);
-            System.out.println("URL ==> "+url);
-            IFachada cuenta = (IFachada) Naming.lookup(url);
-            
-           
-          //TODO: no catch Exception  
-            cuenta.respaldarDatos();
-            System.out.println("fin " + String.valueOf(cuenta.suma(2, 2)));
-         }catch(Exception e){ 
-            e.printStackTrace();
-        }
+			String url = UrlBuilder.buildUrl(ip, Integer.parseInt(puerto), objeto);
+			System.out.println("URL ==> " + url);
+			IFachada cuenta = (IFachada) Naming.lookup(url);
+
+			// TODO: no catch Exception
+			cuenta.respaldarDatos();
+			System.out.println("fin " + String.valueOf(cuenta.suma(2, 2)));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 }

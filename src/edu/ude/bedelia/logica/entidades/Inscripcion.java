@@ -6,12 +6,12 @@ import edu.ude.bedelia.logica.vo.VOInscripcion;
 import edu.ude.bedelia.logica.vo.VOInscripcionCompleta;
 
 public class Inscripcion implements Serializable {
-	
+
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	private Integer numero;
 	private int anio;
 	private float montoBase;

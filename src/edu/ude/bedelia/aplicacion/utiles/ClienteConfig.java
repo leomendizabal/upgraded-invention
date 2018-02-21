@@ -18,7 +18,7 @@ public class ClienteConfig extends Configuracion {
 			ip = properties.getProperty(Constantes.Cliente.CLAVE_IP, Constantes.Cliente.IP_POR_DEFECTO);
 			puerto = properties.getProperty(Constantes.Cliente.CLAVE_PUERTO, Constantes.Cliente.PUERTO_POR_DEFECTO);
 			objeto = properties.getProperty(Constantes.Cliente.CLAVE_OBJETO);
-			
+
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			System.err.println(e.getMessage());

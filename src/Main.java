@@ -4,11 +4,10 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import edu.ude.bedelia.logica.colecciones.Asignaturas;
 import edu.ude.bedelia.logica.colecciones.Alumnos;
+import edu.ude.bedelia.logica.colecciones.Asignaturas;
 import edu.ude.bedelia.logica.entidades.Alumno;
 import edu.ude.bedelia.logica.entidades.Asignatura;
-import edu.ude.bedelia.logica.excepciones.AlumnosException;
 import edu.ude.bedelia.logica.utiles.Constantes;
 import edu.ude.bedelia.logica.vo.VOAlumno;
 import edu.ude.bedelia.logica.vo.VOAsignatura;

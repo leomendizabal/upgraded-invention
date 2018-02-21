@@ -12,7 +12,7 @@ import edu.ude.bedelia.persistencia.excepciones.PersistenciaException;
 import edu.ude.bedelia.persistencia.utiles.Constantes;
 import edu.ude.bedelia.persistencia.vo.VOGenerico;
 
-public class Respaldo<T1,T2> implements IRespaldo<VOGenerico<T1,T2>> {
+public class Respaldo<T1, T2> implements IRespaldo<VOGenerico<T1, T2>> {
 
 	public final String ruta;
 	private final Properties p = new Properties();
@@ -38,7 +38,7 @@ public class Respaldo<T1,T2> implements IRespaldo<VOGenerico<T1,T2>> {
 			System.out.println("Respaldo OK");
 		} catch (IOException e) {
 			e.printStackTrace();
-			//TODO: Determinar el error
+			// TODO: Determinar el error
 			throw new PersistenciaException("");
 		}
 
@@ -49,20 +49,18 @@ public class Respaldo<T1,T2> implements IRespaldo<VOGenerico<T1,T2>> {
 		try {
 			FileInputStream fileInputStream = new FileInputStream(nombreArchivo);
 			ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
-			VOGenerico<T1,T2> datos = null;
-	
+			VOGenerico<T1, T2> datos = null;
+
 			datos = (VOGenerico<T1, T2>) objectInputStream.readObject();
-		
-			
+
 			objectInputStream.close();
 			fileInputStream.close();
 			return datos;
 		} catch (ClassNotFoundException | IOException e) {
 			e.printStackTrace();
-			//TODO: Determinar el error
+			// TODO: Determinar el error
 			throw new PersistenciaException("");
 		}
 	}
-
 
 }

@@ -2,8 +2,8 @@ package edu.ude.bedelia.logica.colecciones;
 
 import java.io.Serializable;
 import java.util.Collection;
-import java.util.Set;
 import java.util.Iterator;
+import java.util.Set;
 import java.util.TreeMap;
 
 public class DiccionarioTreeMap<K, T> implements IDiccionario<K, T>, Serializable {

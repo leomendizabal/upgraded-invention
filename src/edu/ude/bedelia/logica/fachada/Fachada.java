@@ -1,6 +1,5 @@
 package edu.ude.bedelia.logica.fachada;
 
-import java.io.IOException;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
@@ -22,8 +21,6 @@ import edu.ude.bedelia.logica.vo.VOEgresado;
 import edu.ude.bedelia.logica.vo.VOInscripcion;
 import edu.ude.bedelia.persistencia.excepciones.PersistenciaException;
 import edu.ude.bedelia.persistencia.fachada.FachadaPersistencia;
-import edu.ude.bedelia.persistencia.fachada.Respaldo;
-import edu.ude.bedelia.persistencia.vo.VODato;
 import edu.ude.bedelia.test.DataClass;
 
 public class Fachada extends UnicastRemoteObject implements IFachada {
@@ -38,15 +35,15 @@ public class Fachada extends UnicastRemoteObject implements IFachada {
 	private Monitor monitor;
 
 	private Fachada() throws RemoteException {
-		
+
 		this.fachadaPersistencia = FachadaPersistencia.getInstance();
 		this.alumnos = DataClass.ALUMNOS;// new Alumnos();
 		this.asignaturas = DataClass.ASIGNATURA;// new Asignaturas();
-		//TODO: Esto funciona si en la primera ves se reinicia el server
+		// TODO: Esto funciona si en la primera ves se reinicia el server
 		if (fachadaPersistencia.existeRespaldo()) {
 			fachadaPersistencia.recuperarDatos();
 		}
-		
+
 		monitor = new Monitor();
 	}
 

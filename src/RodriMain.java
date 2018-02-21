@@ -1,20 +1,16 @@
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Iterator;
-import java.util.List;
-import java.util.stream.Collectors;
 
-import edu.ude.bedelia.logica.colecciones.Asignaturas;
 import edu.ude.bedelia.logica.colecciones.Alumnos;
+import edu.ude.bedelia.logica.colecciones.Asignaturas;
 import edu.ude.bedelia.logica.entidades.Alumno;
 import edu.ude.bedelia.logica.entidades.Asignatura;
-import edu.ude.bedelia.logica.excepciones.AlumnosException;
 import edu.ude.bedelia.logica.utiles.Constantes;
+import edu.ude.bedelia.logica.vo.TipoAlumno;
 import edu.ude.bedelia.logica.vo.VOAlumno;
 import edu.ude.bedelia.logica.vo.VOAlumnoCompleto;
 import edu.ude.bedelia.logica.vo.VOAsignatura;
-import edu.ude.bedelia.logica.vo.TipoAlumno;
 
 public class RodriMain {
 

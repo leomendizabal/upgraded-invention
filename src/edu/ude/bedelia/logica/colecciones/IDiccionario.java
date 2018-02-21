@@ -1,8 +1,8 @@
 package edu.ude.bedelia.logica.colecciones;
 
 import java.util.Collection;
-import java.util.Set;
 import java.util.Iterator;
+import java.util.Set;
 
 public interface IDiccionario<K, T> {
 	public boolean member(K clave);

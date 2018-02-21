@@ -1,9 +1,7 @@
 package edu.ude.bedelia.aplicacion.utiles;
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.Properties;
 
 import edu.ude.bedelia.persistencia.utiles.Constantes;
 
