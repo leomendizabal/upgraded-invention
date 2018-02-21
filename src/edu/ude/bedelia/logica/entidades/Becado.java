@@ -4,6 +4,11 @@ import edu.ude.bedelia.logica.vo.VOBecadoCompleto;
 
 public class Becado extends Alumno {
 
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private float porcentaje;
 	private String descripcion;
 

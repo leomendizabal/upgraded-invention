@@ -47,7 +47,7 @@ public class FachadaPersistencia {
 		try {
 			Respaldo<Alumnos, Asignaturas> respaldo = new Respaldo<Alumnos, Asignaturas>();
 			VOGenerico<Alumnos, Asignaturas> vo = (VOGenerico<Alumnos, Asignaturas>) respaldo.recuperar(respaldo.ruta);
-			Optional<VOGenerico> op = Optional.of(vo);
+			Optional<VOGenerico<Alumnos, Asignaturas>> op = Optional.of(vo);
 			if (op.isPresent()) {
 				Alumnos diccio = vo.getDiccionario();
 				Iterator<Alumno> iter = diccio.values().iterator();
