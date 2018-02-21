@@ -10,6 +10,9 @@ import edu.ude.bedelia.logica.vo.VOInscripcion;
 
 public class Inscripciones extends SecuenciaArrayList<Inscripcion> {
 
+	
+	private static final long serialVersionUID = 1L;
+
 	public Inscripciones() {
 		super();
 	}

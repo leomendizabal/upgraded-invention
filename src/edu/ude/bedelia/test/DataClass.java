@@ -7,7 +7,7 @@ import edu.ude.bedelia.logica.entidades.Asignatura;
 
 public final class DataClass {
 
-	private final static Alumno elviejo = new Alumno("90000", "Rodri", "Gordano", "asdfasd", "asdfasd",
+	private final static Alumno elviejo = new Alumno("90000", "Viejo", "Pancho", "asdfasd", "asdfasd",
 			"asdfasd@gmail.com");
 	private final static Alumno rodri = new Alumno("42587357", "Rodri", "Gordano", "asdfasd", "asdfasd",
 			"asdfasd@gmail.com");

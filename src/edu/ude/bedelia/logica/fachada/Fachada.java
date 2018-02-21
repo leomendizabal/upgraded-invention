@@ -1,34 +1,56 @@
 package edu.ude.bedelia.logica.fachada;
 
+import java.io.IOException;
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
 import edu.ude.bedelia.logica.colecciones.Alumnos;
 import edu.ude.bedelia.logica.colecciones.Asignaturas;
-import edu.ude.bedelia.logica.colecciones.Inscripciones;
 import edu.ude.bedelia.logica.entidades.Alumno;
 import edu.ude.bedelia.logica.entidades.Asignatura;
 import edu.ude.bedelia.logica.entidades.Inscripcion;
 import edu.ude.bedelia.logica.excepciones.AlumnosException;
 import edu.ude.bedelia.logica.excepciones.AsignaturasException;
 import edu.ude.bedelia.logica.excepciones.InscripcionesException;
+import edu.ude.bedelia.logica.excepciones.SistemaException;
+import edu.ude.bedelia.logica.utiles.Monitor;
 import edu.ude.bedelia.logica.vo.VOAlumno;
 import edu.ude.bedelia.logica.vo.VOAlumnoCompleto;
 import edu.ude.bedelia.logica.vo.VOAsignatura;
 import edu.ude.bedelia.logica.vo.VOEgresado;
 import edu.ude.bedelia.logica.vo.VOInscripcion;
+import edu.ude.bedelia.persistencia.excepciones.PersistenciaException;
+import edu.ude.bedelia.persistencia.fachada.FachadaPersistencia;
+import edu.ude.bedelia.persistencia.fachada.Respaldo;
+import edu.ude.bedelia.persistencia.vo.VODato;
+import edu.ude.bedelia.test.DataClass;
 
-public class Fachada implements IFachada {
+public class Fachada extends UnicastRemoteObject implements IFachada {
+
+	private static final long serialVersionUID = 1L;
 
 	private Alumnos alumnos;
 	private Asignaturas asignaturas;
 	private static Fachada instancia;
+	private final FachadaPersistencia fachadaPersistencia;
 
-	private Fachada() {
-		this.alumnos = new Alumnos();
-		this.asignaturas = new Asignaturas();
+	private Monitor monitor;
+
+	private Fachada() throws RemoteException {
+		
+		this.fachadaPersistencia = FachadaPersistencia.getInstance();
+		this.alumnos = DataClass.ALUMNOS;// new Alumnos();
+		this.asignaturas = DataClass.ASIGNATURA;// new Asignaturas();
+		//TODO: Esto funciona si en la primera ves se reinicia el server
+		if (fachadaPersistencia.existeRespaldo()) {
+			fachadaPersistencia.recuperarDatos();
+		}
+		
+		monitor = new Monitor();
 	}
 
-	public static Fachada getInstancia() {
+	public static Fachada getInstancia() throws RemoteException {
 		if (instancia == null) {
 			instancia = new Fachada();
 		}
@@ -118,8 +140,18 @@ public class Fachada implements IFachada {
 		return monto;
 	}
 
-	public void respaldarDatos() {
+	@Override
+	public void respaldarDatos() throws RemoteException, SistemaException, PersistenciaException {
 
+		System.out.println("paso 2");
+		monitor.comienzoEscritura();
+		try {
+			System.out.println("paso 3");
+			fachadaPersistencia.respaldarDatos(alumnos, asignaturas);
+		} catch (PersistenciaException e) {
+			throw new PersistenciaException("Ver el mensaje");
+		}
+		monitor.terminoEscritura();
 	}
 
 	public ArrayList<VOInscripcion> listarEscolaridad(String ci, boolean esCompleta) {
@@ -128,6 +160,12 @@ public class Fachada implements IFachada {
 
 	public ArrayList<VOEgresado> listarEgresados(boolean completo) {
 		return null;
+	}
+
+	@Override
+	public int suma(int a, int b) throws RemoteException {
+		// TODO Auto-generated method stub
+		return a + b;
 	}
 
 }
