@@ -1,9 +1,17 @@
 package edu.ude.bedelia.logica.entidades;
 
+import java.io.Serializable;
+
 import edu.ude.bedelia.logica.vo.VOInscripcion;
 import edu.ude.bedelia.logica.vo.VOInscripcionCompleta;
 
-public class Inscripcion {
+public class Inscripcion implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private Integer numero;
 	private int anio;
 	private float montoBase;
@@ -61,19 +69,20 @@ public class Inscripcion {
 	public boolean esAprobada() {
 		return this.calificacion >= 6;
 	}
-	
-    public String toString() {
-		
-		return ("\n Numero:" + this.numero + "\n Año:" + this.anio + "\n Monto base:" + this.montoBase + "\n Calificacion:" + this.calificacion);
-		
+
+	public String toString() {
+
+		return ("\n Numero:" + this.numero + "\n Aï¿½o:" + this.anio + "\n Monto base:" + this.montoBase
+				+ "\n Calificacion:" + this.calificacion);
+
 	}
-    
-    public VOInscripcion toVO(boolean esCompleto) {
-    	if(esCompleto) {
-    		return new VOInscripcion(this);
-    	}else {
-    		return new VOInscripcionCompleta(this);
-    	}
-    }
-	
+
+	public VOInscripcion toVO(boolean esCompleto) {
+		if (esCompleto) {
+			return new VOInscripcion(this);
+		} else {
+			return new VOInscripcionCompleta(this);
+		}
+	}
+
 }

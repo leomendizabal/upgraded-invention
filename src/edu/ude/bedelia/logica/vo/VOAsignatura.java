@@ -3,11 +3,11 @@ package edu.ude.bedelia.logica.vo;
 import edu.ude.bedelia.logica.entidades.Asignatura;
 
 public class VOAsignatura {
-	
+
 	private String codigo;
 	private String nombre;
 	private String descripcion;
-	
+
 	public VOAsignatura(String codigo, String nombre, String descripcion) {
 		super();
 		this.codigo = codigo;
@@ -20,7 +20,7 @@ public class VOAsignatura {
 		this.nombre = a.getNombre();
 		this.descripcion = a.getDescripcion();
 	}
-	
+
 	public String getCodigo() {
 		return codigo;
 	}
@@ -32,7 +32,5 @@ public class VOAsignatura {
 	public String getDescripcion() {
 		return descripcion;
 	}
-	
-	
-}
 
+}

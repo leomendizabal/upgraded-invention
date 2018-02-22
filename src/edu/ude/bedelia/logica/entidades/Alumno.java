@@ -1,5 +1,6 @@
 package edu.ude.bedelia.logica.entidades;
 
+import java.io.Serializable;
 import java.util.Iterator;
 
 import edu.ude.bedelia.logica.colecciones.Inscripciones;
@@ -9,7 +10,11 @@ import edu.ude.bedelia.logica.vo.VOAlumnoCompleto;
 import edu.ude.bedelia.logica.vo.VOEgresado;
 import edu.ude.bedelia.logica.vo.VOEgresadoCompleto;
 
-public class Alumno implements Comparable<Alumno> {
+public class Alumno implements Comparable<Alumno>, Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String cedula;
 	private String nombre;
 	private String apellido;
@@ -17,7 +22,7 @@ public class Alumno implements Comparable<Alumno> {
 	private String telefono;
 	private String email;
 	protected Inscripciones inscripciones;
-	
+
 	public Alumno(String cedula, String nombre, String apellido, String domicilio, String telefono, String email) {
 		this.cedula = cedula;
 		this.nombre = nombre;
@@ -25,7 +30,7 @@ public class Alumno implements Comparable<Alumno> {
 		this.domicilio = domicilio;
 		this.telefono = telefono;
 		this.email = email;
-		
+
 	}
 	
 	public Alumno(VOAlumnoCompleto vo) {
@@ -79,83 +84,80 @@ public class Alumno implements Comparable<Alumno> {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
-	
-	
+
 	public Inscripciones getInscripciones() {
 		return inscripciones;
 	}
 
-	
-
 	public boolean esMateriaAprobada(String codigo) {
-		Iterator<Inscripcion> iterador = this.inscripciones.iterator();		
+		Iterator<Inscripcion> iterador = this.inscripciones.iterator();
 		boolean estaAprobada = false;
 		Inscripcion inscripcion;
-		
-		while(iterador.hasNext() && !estaAprobada) {
+
+		while (iterador.hasNext() && !estaAprobada) {
 			inscripcion = iterador.next();
-			if(inscripcion.getAsignatura().getCodigo() == codigo) {				
+			if (inscripcion.getAsignatura().getCodigo() == codigo) {
 				estaAprobada = inscripcion.getCalificacion() >= Constantes.NOTA_MINIMA_APROBACION;
 			}
 		}
-		
+
 		return estaAprobada;
 	}
-	
+
 	public boolean esInscripto(String codigo, int anio) {
 		Iterator<Inscripcion> iterador = this.inscripciones.iterator();
 		Inscripcion inscripcion;
 		boolean estaInscripto = false;
 		boolean esMateria = false;
-		
-		while(iterador.hasNext() && !esMateria) {
+
+		while (iterador.hasNext() && !esMateria) {
 			inscripcion = iterador.next();
-			if(inscripcion.getAsignatura().getCodigo() == codigo) {				
+			if (inscripcion.getAsignatura().getCodigo() == codigo) {
 				estaInscripto = inscripcion.getAnio() == anio;
 			}
 		}
-		
+
 		return estaInscripto;
 	}
-	
+
 	public void registrarInscripcion(Inscripcion inscripcion) {
 		this.inscripciones.insert(inscripcion);
 	}
-	
+
 	public void registrarCalificacion(String codigo, int calificacion) {
 		Iterator<Inscripcion> iterador = this.inscripciones.iterator();
 		Inscripcion inscripcion;
 		boolean esMateria = false;
-		
-		while(iterador.hasNext() && !esMateria) {
-			inscripcion = (Inscripcion)iterador.next();
-			if(inscripcion.getAsignatura().getCodigo() == codigo) {				
+
+		while (iterador.hasNext() && !esMateria) {
+			inscripcion = (Inscripcion) iterador.next();
+			if (inscripcion.getAsignatura().getCodigo() == codigo) {
 				inscripcion.setCalificacion(calificacion);
 			}
-		}		
+		}
 	}
-	
+
 	public float calcularMontoCobrado(int anio) {
 		float total = 0;
-		
-		for(Inscripcion elem: this.inscripciones) {
-			if(elem.getAnio() == anio) {
+
+		for (Inscripcion elem : this.inscripciones) {
+			if (elem.getAnio() == anio) {
 				total += 10 * elem.getMontoBase();
 			}
 		}
-		
+
 		return total;
 	}
-	
+
 	public String toString() {
-		
-		return ("\n Cedula:" + this.cedula + "\n Nombre:" + this.nombre + "\n Apellido:" + this.apellido + "\n Domicilio:" + this.domicilio + "\n Telefono:" + this.telefono + "\n Email:" + this.email);
-		
+
+		return ("\n Cedula:" + this.cedula + "\n Nombre:" + this.nombre + "\n Apellido:" + this.apellido
+				+ "\n Domicilio:" + this.domicilio + "\n Telefono:" + this.telefono + "\n Email:" + this.email);
+
 	}
-	
+
 	public VOAlumno toVO(boolean esCompleto) {
-		if(esCompleto) {
+		if (esCompleto) {
 			return new VOAlumnoCompleto(this);
 		} else {
 			return new VOAlumno(this);
