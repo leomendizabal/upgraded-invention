@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 import edu.ude.bedelia.logica.entidades.Alumno;
-import edu.ude.bedelia.logica.entidades.Inscripcion;
 import edu.ude.bedelia.logica.excepciones.AlumnosException;
 import edu.ude.bedelia.logica.utiles.Mensajes;
 import edu.ude.bedelia.logica.vo.VOAlumno;
@@ -19,6 +18,7 @@ public class Alumnos extends DiccionarioTreeMap<String, Alumno> {
 	}
 
 	//metodos especificos del diccionario alumnos
+	//TODO: Ver si aplica lanzar excepcion o retornar lista vacia.
 	public ArrayList<VOAlumno> listarAlumnosApellido(String apellido) throws AlumnosException {
 		Iterator<Alumno> it = this.getIterator();
 		ArrayList<VOAlumno> resultado = new ArrayList<VOAlumno>();
@@ -41,7 +41,7 @@ public class Alumnos extends DiccionarioTreeMap<String, Alumno> {
 	public VOAlumno listarDatosAlumno(String ci) {
 		return this.find(ci).toVO(true);
 	}
-	
+	//TODO: Ver si aplica lanzar excepcion o retornar lista vacia.
 	public ArrayList<VOEgresado> listarEgresados(boolean esCompleto) throws AlumnosException {
 		Iterator<Alumno> it = this.getIterator();
 		ArrayList<VOEgresado> resultado = new ArrayList<VOEgresado>();

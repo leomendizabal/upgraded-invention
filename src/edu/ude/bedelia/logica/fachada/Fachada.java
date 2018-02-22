@@ -60,11 +60,13 @@ public class Fachada extends UnicastRemoteObject implements IFachada {
 		return instancia;
 	}
 
+	// Requerimiento 1
 	public void registrarAsignatura(VOAsignatura a) throws AsignaturasException, RemoteException {
 
 		    if (asignaturas.pertenece(a.getCodigo())) {
 		    	throw new AsignaturasException(Mensajes.MSG_YA_EXISTE_ASIGNATURA);
 		    }else {
+		    	//TODO: ver si se puede crear un contructor en Asignatura que reciba un VO, para evitar declarciones de variables
 		    	String cod=a.getCodigo();
 		    	String nom=a.getNombre();
 		    	String desc=a.getDescripcion();
@@ -72,8 +74,8 @@ public class Fachada extends UnicastRemoteObject implements IFachada {
 		    	asignaturas.insert(asi);
 		    }
 	}
-
-	//TODO: falta confirmacion
+	
+	//TODO: falta confirmacion, ver como confirmar.
 	@Override
 	public void registrarAlumno(VOAlumnoCompleto vo) throws RemoteException, AlumnosException {
 
@@ -94,6 +96,7 @@ public class Fachada extends UnicastRemoteObject implements IFachada {
 
 		String ced = a.getCedula();
 		if (alumnos.member(ced)) {
+			//TODO: ver si se puede crear un contructor en Alumno que reciba un VO, para evitar declarciones de variables
 			String nom = a.getNombre();
 			String ape = a.getApellido();
 			String dom = a.getDomicilio();
@@ -106,7 +109,7 @@ public class Fachada extends UnicastRemoteObject implements IFachada {
 		}
 
 	}
-
+	// TODO:Tener en cuenta la lista vacia, ver si vale la excepcion
 	public ArrayList<VOAsignatura> listarAsignaturas() throws AsignaturasException {
 		try {
 			return this.asignaturas.listarAsignaturas();
@@ -114,7 +117,8 @@ public class Fachada extends UnicastRemoteObject implements IFachada {
 			throw e;
 		}
 	}
-
+	
+	// TODO:Tener en cuenta la lista vacia, ver si vale la excepcion
 	public ArrayList<VOAlumno> listarAlumnosApellido(String apellido) throws AlumnosException {
 		
 		try {
@@ -147,7 +151,7 @@ public class Fachada extends UnicastRemoteObject implements IFachada {
 		if (alumnos.member(ci)) {
 
 			if (asignaturas.pertenece(codigo)) {
-
+				//TODO: ver de eliminar alumnos.find(ci), y asignarlo a una variable. Usar la variable.
 				if (alumnos.find(ci).getInscripciones().asignaturaAprobada(codigo)) {
 					throw new InscripcionesException(Mensajes.MSG_ALUMNO_YA_APROBO_ASIGNATURA);
 				} else {
@@ -156,6 +160,7 @@ public class Fachada extends UnicastRemoteObject implements IFachada {
 					} else {
 						if (alumnos.find(ci).getInscripciones().anioLectivoMayorIgualUltimaInscripcion()) {
 							Asignatura asig = asignaturas.devolverAsignatura(codigo);
+							//TODO: No se usa la variable
 							Alumno alu = alumnos.find(ci);
 							Integer num = alumnos.find(ci).getInscripciones().numeroUltimaInscripcionMasUno();
 							Inscripcion ins = new Inscripcion(num, anio, montoBase, 0, asig);
@@ -186,7 +191,7 @@ public class Fachada extends UnicastRemoteObject implements IFachada {
 		}
 		return monto;
 	}
-
+	//TODO: ver mensaje para la persistencia
 	@Override
 	public void respaldarDatos() throws RemoteException, SistemaException, PersistenciaException {
 
@@ -201,10 +206,11 @@ public class Fachada extends UnicastRemoteObject implements IFachada {
 		monitor.terminoEscritura();
 	}
 
+	//TODO: falta implementar
 	public ArrayList<VOInscripcion> listarEscolaridad(String ci, boolean esCompleta) {
 		return null;
 	}
-
+	// TODO:Tener en cuenta la lista vacia, ver si vale la excepcion
 	public ArrayList<VOEgresado> listarEgresados(boolean esCompleto) throws AlumnosException {
 		try {
 			return this.alumnos.listarEgresados(esCompleto);
@@ -212,7 +218,7 @@ public class Fachada extends UnicastRemoteObject implements IFachada {
 			throw e;
 		}
 	}
-
+	// TODO:Creado para prueba BORRAR
 	@Override
 	public int suma(int a, int b) throws RemoteException {
 		// TODO Auto-generated method stub

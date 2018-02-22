@@ -29,7 +29,7 @@ public class Asignaturas extends SecuenciaArrayList<Asignatura> {
 			super.insert(element);
 		}
 	}
-
+	//TODO: ver si se retorna lista vacia o una excepcion.
 	public ArrayList<VOAsignatura> listarAsignaturas() throws AsignaturasException {
 		Iterator<Asignatura> it = this.iterator();
 		ArrayList<VOAsignatura> resultado = new ArrayList<VOAsignatura>();
@@ -52,10 +52,11 @@ public class Asignaturas extends SecuenciaArrayList<Asignatura> {
 		int indice = 0;
 		while ((indice < secuencia.size()) && (!esta)) {
 			Asignatura as = secuencia.get(indice);
-			if (cod.equals(as.getCodigo()))
+			if (cod.equals(as.getCodigo())) {
 				esta = true;
-			else
+			}else {
 				indice++;
+			}
 		}
 
 		return esta;
