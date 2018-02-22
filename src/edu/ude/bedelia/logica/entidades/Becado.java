@@ -14,6 +14,12 @@ public class Becado extends Alumno {
 		this.porcentaje = porcentaje;
 		this.descripcion = descripcion;
 	}
+	
+	public Becado(VOBecadoCompleto vo) {
+		super(vo);
+		this.porcentaje = vo.getPorcentaje();
+		this.descripcion = vo.getDescripcion();
+	}
 
 	public float getPorcentaje() {
 		return porcentaje;

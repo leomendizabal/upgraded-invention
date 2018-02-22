@@ -27,6 +27,10 @@ public class Alumno implements Comparable<Alumno> {
 		this.email = email;
 		
 	}
+	
+	public Alumno(VOAlumnoCompleto vo) {
+		this(vo.getCedula(),vo.getNombre(),vo.getApellido(),vo.getDomicilio(),vo.getTelefono(),vo.getEmail());
+	}
 
 	public String getCedula() {
 		return cedula;

@@ -7,14 +7,17 @@ import edu.ude.bedelia.logica.colecciones.Asignaturas;
 import edu.ude.bedelia.logica.colecciones.Inscripciones;
 import edu.ude.bedelia.logica.entidades.Alumno;
 import edu.ude.bedelia.logica.entidades.Asignatura;
+import edu.ude.bedelia.logica.entidades.Becado;
 import edu.ude.bedelia.logica.entidades.Inscripcion;
 import edu.ude.bedelia.logica.excepciones.AlumnosException;
 import edu.ude.bedelia.logica.excepciones.AsignaturasException;
 import edu.ude.bedelia.logica.excepciones.InscripcionesException;
 import edu.ude.bedelia.logica.utiles.Mensajes;
+import edu.ude.bedelia.logica.vo.TipoAlumno;
 import edu.ude.bedelia.logica.vo.VOAlumno;
 import edu.ude.bedelia.logica.vo.VOAlumnoCompleto;
 import edu.ude.bedelia.logica.vo.VOAsignatura;
+import edu.ude.bedelia.logica.vo.VOBecadoCompleto;
 import edu.ude.bedelia.logica.vo.VOEgresado;
 import edu.ude.bedelia.logica.vo.VOInscripcion;
 
@@ -50,10 +53,24 @@ public class Fachada implements IFachada {
 		    }
 	}
 
-	public void registrarAlumno(VOAlumno a) {
+	//TODO: falta confirmacion
+	@Override
+	public void registrarAlumno(VOAlumnoCompleto vo) throws AlumnosException {
 
+		final String cedula = vo.getCedula();
+		if (alumnos.member(cedula)) {
+			throw new AlumnosException(String.format(Mensajes.MSG_EXISTE_ALUMNO, cedula));
+		} else {
+			Alumno alumno = new Alumno(vo);
+			if (vo instanceof VOBecadoCompleto) {
+				VOBecadoCompleto becadoCompleto = (VOBecadoCompleto) vo;
+				alumno = new Becado(becadoCompleto);
+			}
+			alumnos.insert(cedula, alumno);
+		}
 	}
 
+	@Override
 	public void modificarAlumno(VOAlumnoCompleto a) throws AlumnosException {
 
 		String ced = a.getCedula();
@@ -89,8 +106,20 @@ public class Fachada implements IFachada {
 		}
 	}
 
-	public VOAlumnoCompleto listarDatosAlumno(String ci) {
-		return null;
+	public VOAlumno listarDatosAlumno(String cedula) throws AlumnosException {
+		
+		if(alumnos.member(cedula)) {
+			Alumno alumno = alumnos.find(cedula);
+			VOAlumno vo = alumno.toVO(true);
+			if(alumno instanceof Becado) {
+				Becado alumnoBecado = (Becado)alumno;
+				vo = alumnoBecado.toVO();
+			}
+			return vo;
+			
+		} else {
+			throw new AlumnosException(String.format(Mensajes.MSG_NO_EXISTE_ALUMNO, cedula));
+		}
 	}
 
 	public void inscribirAlumno(String ci, String codigo, int anio, float montoBase)
