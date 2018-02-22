@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 package edu.ude.bedelia.logica.utiles;
 
 public final class Mensajes {
@@ -13,12 +12,4 @@ public final class Mensajes {
 	public final static String MSG_ASIGNATURA_NO_EXISTE  = "La asignatura con dicho código no existe";
 	
 }
-=======
-package edu.ude.bedelia.logica.utiles;
 
-public final class Mensajes {
-
-	public final static String MSG_MAXIMO_MATERIAS_SUPERADO = "La cantidad maxima de materias es %d";
-	public final static String MSG_NO_EXISTEN_ALUMNOS_APELLIDO = "No existen alumnos con ese apellido";
-}
->>>>>>> 0d8272eb5aefc92e12c6a4f7fd3ba48924c4f8d7
