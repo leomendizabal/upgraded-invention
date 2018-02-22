@@ -2,21 +2,24 @@ package edu.ude.bedelia.logica.fachada;
 
 import java.util.ArrayList;
 
-import edu.ude.bedelia.logica.colecciones.Alumnos;
-import edu.ude.bedelia.logica.colecciones.Asignaturas;
 import edu.ude.bedelia.logica.excepciones.AlumnosException;
 import edu.ude.bedelia.logica.excepciones.AsignaturasException;
 import edu.ude.bedelia.logica.excepciones.InscripcionesException;
-import edu.ude.bedelia.logica.vo.*;
+import edu.ude.bedelia.logica.vo.VOAlumno;
+import edu.ude.bedelia.logica.vo.VOAlumnoCompleto;
+import edu.ude.bedelia.logica.vo.VOAsignatura;
+import edu.ude.bedelia.logica.vo.VOEgresado;
+import edu.ude.bedelia.logica.vo.VOInscripcion;
 
 public interface IFachada {
 	
-	public void registrarAsignatura(VOAsignatura a);
 	
 	public void registrarAlumno(VOAlumnoCompleto vo)throws AlumnosException;
 	
-	public void modificarAlumno(VOAlumno a) throws AlumnosException;
+	public void registrarAsignatura(VOAsignatura a) throws AsignaturasException;
 	
+	public void modificarAlumno(VOAlumnoCompleto a) throws AlumnosException;
+
 	public ArrayList<VOAsignatura> listarAsignaturas();
 	
 	public ArrayList<VOAlumno> listarAlumnosApellido(String apellido);

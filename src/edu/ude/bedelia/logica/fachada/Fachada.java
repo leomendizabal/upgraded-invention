@@ -40,8 +40,17 @@ public class Fachada implements IFachada {
 		return instancia;
 	}
 
-	public void registrarAsignatura(VOAsignatura a) {
-
+	public void registrarAsignatura(VOAsignatura a) throws AsignaturasException {
+		    
+		    if (asignaturas.pertenece(a.getCodigo())) {
+		    	throw new AsignaturasException(Mensajes.MSG_YA_EXISTE_ASIGNATURA);
+		    }else {
+		    	String cod=a.getCodigo();
+		    	String nom=a.getNombre();
+		    	String desc=a.getDescripcion();
+		    	Asignatura asi =new Asignatura(cod,nom,desc);
+		    	asignaturas.insert(asi);
+		    }
 	}
 
 	//TODO: falta confirmacion
@@ -61,16 +70,20 @@ public class Fachada implements IFachada {
 			
 		}
 
-	}
-
-	public void modificarAlumno(VOAlumno a) throws AlumnosException {
+	@Override
+	public void modificarAlumno(VOAlumnoCompleto a) throws AlumnosException {
 
 		String ced = a.getCedula();
 		if (alumnos.member(ced)) {
-			Alumno alu = alumnos.find(ced);
+			String nom = a.getNombre();
+			String ape = a.getApellido();
+			String dom = a.getDomicilio();
+			String tel = a.getTelefono();
+			String mail = a.getEmail();
+			Alumno alu = new Alumno(ced, nom, ape, dom, tel, mail);
 			alumnos.modify(ced, alu);
 		} else {
-			throw new AlumnosException("El alumno no existe en el sistema");
+			throw new AlumnosException(Mensajes.MSG_ALUMNO_NO_EXISTE);
 		}
 
 	}
@@ -107,10 +120,10 @@ public class Fachada implements IFachada {
 			if (asignaturas.pertenece(codigo)) {
 
 				if (alumnos.find(ci).getInscripciones().asignaturaAprobada(codigo)) {
-					throw new InscripcionesException("El alumno ya aprob� la asignatura");
+					throw new InscripcionesException(Mensajes.MSG_ALUMNO_YA_APROBO_ASIGNATURA);
 				} else {
 					if (alumnos.find(ci).getInscripciones().inscriptoEnAnioLectivo(codigo)) {
-						throw new InscripcionesException("El alumno ya est� inscripto a esta asignatura");
+						throw new InscripcionesException(Mensajes.MSG_ALUMNO_YA_ESTA_INSCRIPTO_ASIGANTURA);
 					} else {
 						if (alumnos.find(ci).getInscripciones().anioLectivoMayorIgualUltimaInscripcion()) {
 							Asignatura asig = asignaturas.devolverAsignatura(codigo);
@@ -119,15 +132,15 @@ public class Fachada implements IFachada {
 							Inscripcion ins = new Inscripcion(num, anio, montoBase, 0, asig);
 							alumnos.find(ci).registrarInscripcion(ins);
 						} else {
-							throw new InscripcionesException("El a�o lectivo no coincide con el actual");
+							throw new InscripcionesException(Mensajes.MSG_ANO_NO_COINCIDE_CON_ACTUAL);
 						}
 					}
 				}
 			} else {
-				throw new AsignaturasException("La asignatura con dicho c�digo no existe");
+				throw new AsignaturasException(Mensajes.MSG_ASIGNATURA_NO_EXISTE);t
 			}
 		} else {
-			throw new AlumnosException("El alumno con dicha c�dula no existe");
+			throw new AlumnosException(Mensajes.MSG_ALUMNO_NO_EXISTE);
 		}
 
 	}
@@ -144,7 +157,7 @@ public class Fachada implements IFachada {
 			monto = alu.calcularMontoCobrado(anio);
 
 		} else {
-			throw new AlumnosException("No existe un alumno con esa c�dula");
+			throw new AlumnosException(Mensajes.MSG_ALUMNO_NO_EXISTE);
 		}
 		return monto;
 	}
