@@ -14,14 +14,14 @@ public interface IFachada {
 	public void registrarAsignatura(VOAsignatura a) throws AsignaturasException;
 	public void registrarAlumno(VOAlumno a);
 	public void modificarAlumno(VOAlumnoCompleto a) throws AlumnosException;
-	public ArrayList<VOAsignatura> listarAsignaturas();
-	public ArrayList<VOAlumno> listarAlumnosApellido(String apellido);
+	public ArrayList<VOAsignatura> listarAsignaturas() throws AsignaturasException;
+	public ArrayList<VOAlumno> listarAlumnosApellido(String apellido) throws AlumnosException;
 	public VOAlumnoCompleto listarDatosAlumno(String ci);
 	public void inscribirAlumno(String ci, String codigo,int anio,float montoBase) throws AlumnosException, AsignaturasException, InscripcionesException;
-	public void registrarResultado(String ci, int nota, Integer codigo);
+	public void registrarResultado(String ci, int nota, String codigo, int anio) throws AlumnosException;
 	public float montoRecaudadoPorAlumno(int anio, String ci) throws AlumnosException;
 	public void respaldarDatos();
 	public ArrayList<VOInscripcion> listarEscolaridad(String ci, boolean esCompleta);
-	public ArrayList<VOEgresado> listarEgresados(boolean completo);
+	public ArrayList<VOEgresado> listarEgresados(boolean esCompleto) throws AlumnosException;
 	
 }

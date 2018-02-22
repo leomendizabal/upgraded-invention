@@ -71,12 +71,22 @@ public class Fachada implements IFachada {
 
 	}
 
-	public ArrayList<VOAsignatura> listarAsignaturas() {
-		return null;
+	public ArrayList<VOAsignatura> listarAsignaturas() throws AsignaturasException {
+		try {
+			return this.asignaturas.listarAsignaturas();
+		} catch(AsignaturasException e) {
+			throw e;
+		}
 	}
 
-	public ArrayList<VOAlumno> listarAlumnosApellido(String apellido) {
-		return null;
+	public ArrayList<VOAlumno> listarAlumnosApellido(String apellido) throws AlumnosException {
+		
+		try {
+			ArrayList<VOAlumno> resultado = this.alumnos.listarAlumnosApellido(apellido);
+			return resultado;
+		} catch(AlumnosException e) {
+			throw e;
+		}
 	}
 
 	public VOAlumnoCompleto listarDatosAlumno(String ci) {
@@ -116,8 +126,18 @@ public class Fachada implements IFachada {
 
 	}
 
-	public void registrarResultado(String ci, int nota, Integer codigo) {
+	public void registrarResultado(String ci, int nota, String codigo, int anio) throws AlumnosException {
 
+		if (alumnos.member(ci)) {
+			Alumno a = alumnos.find(ci);
+			if(a.esInscripto(codigo, anio)) {
+				a.registrarCalificacion(codigo, nota);
+			} else {
+				throw new AlumnosException(Mensajes.ALUMNO_NO_INSCRIPTO);
+			}
+		} else {
+			throw new AlumnosException(Mensajes.MSG_ALUMNO_NO_EXISTE);
+		}
 	}
 
 	public float montoRecaudadoPorAlumno(int anio, String ci) throws AlumnosException {
@@ -141,8 +161,12 @@ public class Fachada implements IFachada {
 		return null;
 	}
 
-	public ArrayList<VOEgresado> listarEgresados(boolean completo) {
-		return null;
+	public ArrayList<VOEgresado> listarEgresados(boolean esCompleto) throws AlumnosException {
+		try {
+			return this.alumnos.listarEgresados(esCompleto);
+		} catch(AlumnosException e) {
+			throw e;
+		}
 	}
 
 }

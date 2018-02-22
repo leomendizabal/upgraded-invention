@@ -6,6 +6,8 @@ import edu.ude.bedelia.logica.colecciones.Inscripciones;
 import edu.ude.bedelia.logica.utiles.Constantes;
 import edu.ude.bedelia.logica.vo.VOAlumno;
 import edu.ude.bedelia.logica.vo.VOAlumnoCompleto;
+import edu.ude.bedelia.logica.vo.VOEgresado;
+import edu.ude.bedelia.logica.vo.VOEgresadoCompleto;
 
 public class Alumno implements Comparable<Alumno> {
 	private String cedula;
@@ -159,6 +161,45 @@ public class Alumno implements Comparable<Alumno> {
 	@Override
 	public int compareTo(Alumno o) {
 		return this.getCedula().compareTo(o.getCedula());
+	}
+
+	public boolean esEgresado() {
+		Iterator iter = this.inscripciones.iterator();
+		Inscripcion current;
+		int totalAprobadas = 0;
+		
+		while(iter.hasNext()) {
+			current = (Inscripcion) iter.next();
+			if(current.esAprobada()) {
+				totalAprobadas += 1; 
+			}
+		}
+		
+		return Constantes.CANTIDAD_MATERIAS == totalAprobadas;
+	}
+
+	public VOEgresado toVOEgresado(boolean esCompleto) {
+		Iterator iter = this.inscripciones.iterator();
+		float totalNotas = 0;
+		float notaPromedio = 0;
+		int totalCursadas = 0;
+		int promedioAprobaciones = 0;
+		Inscripcion current;
+		
+		while(iter.hasNext()) {
+			current = (Inscripcion) iter.next();
+			totalNotas += current.getCalificacion();
+			totalCursadas += 1;
+		}
+		
+		notaPromedio = totalNotas / Constantes.CANTIDAD_MATERIAS * 100;
+		promedioAprobaciones = totalCursadas / Constantes.CANTIDAD_MATERIAS * 100; 
+		
+		if(esCompleto) {
+			return new VOEgresadoCompleto(this, notaPromedio, promedioAprobaciones);
+		}else {
+			return new VOEgresado(this);
+		}
 	}
 
 }

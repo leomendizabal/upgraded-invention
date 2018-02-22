@@ -1,5 +1,7 @@
 package edu.ude.bedelia.logica.vo;
 
+import edu.ude.bedelia.logica.entidades.Alumno;
+
 public class VOEgresadoCompleto extends VOEgresado {
 	
 	private float promedioTotal;
@@ -13,7 +15,12 @@ public class VOEgresadoCompleto extends VOEgresado {
 		this.promedioAprobaciones = promedioAprobaciones;
 	}
 
-
+	public VOEgresadoCompleto(Alumno a, float promedio, int promedioAprobaciones) {
+		super(a);
+		this.promedioTotal = promedio;
+		this.promedioAprobaciones = promedioAprobaciones;
+	}
+	
 	public float getPromedioTotal() {
 		return promedioTotal;
 	}
