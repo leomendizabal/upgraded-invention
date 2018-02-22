@@ -6,6 +6,8 @@ import edu.ude.bedelia.logica.colecciones.Alumnos;
 import edu.ude.bedelia.logica.colecciones.Asignaturas;
 import edu.ude.bedelia.logica.entidades.Alumno;
 import edu.ude.bedelia.logica.entidades.Asignatura;
+import edu.ude.bedelia.logica.excepciones.AlumnosException;
+import edu.ude.bedelia.logica.excepciones.AsignaturasException;
 import edu.ude.bedelia.logica.utiles.Constantes;
 import edu.ude.bedelia.logica.vo.TipoAlumno;
 import edu.ude.bedelia.logica.vo.VOAlumno;
@@ -36,14 +38,23 @@ public class RodriMain {
 			as.insert(new Asignatura(key, "Materia", "Descripcion"));
 		}
 
-		for (VOAsignatura asig : as.listarAsignaturas()) {
-			System.out.println(String.format(" clave %s", asig.getCodigo()));
+		try {
+			for (VOAsignatura asig : as.listarAsignaturas()) {
+				System.out.println(String.format(" clave %s", asig.getCodigo()));
+			}
+		} catch (AsignaturasException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 
-		ArrayList<VOAlumno> alumnosApellidos;
-		alumnosApellidos = diccionario.listarAlumnosApellido("asdf");
-		System.out.println(String.format("cantidad de alumnos: %s", alumnosApellidos.size()));
-
+		ArrayList<VOAlumno> alumnosApellidos = null;
+		try {
+			alumnosApellidos = diccionario.listarAlumnosApellido("asdf");
+		} catch (AlumnosException e) {
+			// TODO Auto-generated catch block
+			System.out.println(e.getMensaje());
+		}
+		
 		Iterator<Alumno> iter = diccionario.values().iterator();
 		while (iter.hasNext()) {
 			final Alumno a = iter.next();
