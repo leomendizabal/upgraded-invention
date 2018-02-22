@@ -1,9 +1,11 @@
 package edu.ude.bedelia.logica.vo;
 
+import java.io.Serializable;
+
 import edu.ude.bedelia.logica.entidades.Alumno;
 import edu.ude.bedelia.logica.entidades.Becado;
 
-public class VOAlumno {
+public class VOAlumno implements Serializable {
 
 	private String cedula;
 	private String nombre;
@@ -38,5 +40,9 @@ public class VOAlumno {
 
 	public TipoAlumno getTipo() {
 		return tipo;
+	}
+	
+	public String toString() {
+		return "Ci: " + this.cedula + " nombre: " + this.nombre;
 	}
 }
