@@ -12,16 +12,27 @@ import edu.ude.bedelia.logica.vo.*;
 public interface IFachada {
 	
 	public void registrarAsignatura(VOAsignatura a);
-	public void registrarAlumno(VOAlumno a);
+	
+	public void registrarAlumno(VOAlumnoCompleto vo)throws AlumnosException;
+	
 	public void modificarAlumno(VOAlumno a) throws AlumnosException;
+	
 	public ArrayList<VOAsignatura> listarAsignaturas();
+	
 	public ArrayList<VOAlumno> listarAlumnosApellido(String apellido);
-	public VOAlumnoCompleto listarDatosAlumno(String ci);
+	
+	public VOAlumno listarDatosAlumno(String ci) throws AlumnosException;
+	
 	public void inscribirAlumno(String ci, String codigo,int anio,float montoBase) throws AlumnosException, AsignaturasException, InscripcionesException;
+	
 	public void registrarResultado(String ci, int nota, Integer codigo);
+	
 	public float montoRecaudadoPorAlumno(int anio, String ci) throws AlumnosException;
+	
 	public void respaldarDatos();
+	
 	public ArrayList<VOInscripcion> listarEscolaridad(String ci, boolean esCompleta);
+	
 	public ArrayList<VOEgresado> listarEgresados(boolean completo);
 	
 }
