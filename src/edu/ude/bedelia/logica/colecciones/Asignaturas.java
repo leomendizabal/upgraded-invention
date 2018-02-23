@@ -19,6 +19,10 @@ public class Asignaturas extends SecuenciaArrayList<Asignatura> {
 	public Asignaturas() {
 		super(Constantes.CANTIDAD_MATERIAS);
 	}
+	
+	public Asignaturas(int count) {
+		super(count);
+	}
 
 	@Override
 	public void insert(Asignatura element) throws ArrayIndexOutOfBoundsException {
@@ -29,8 +33,8 @@ public class Asignaturas extends SecuenciaArrayList<Asignatura> {
 			super.insert(element);
 		}
 	}
-	//TODO: ver si se retorna lista vacia o una excepcion.
-	public ArrayList<VOAsignatura> listarAsignaturas() throws AsignaturasException {
+
+	public ArrayList<VOAsignatura> listarAsignaturas() {
 		Iterator<Asignatura> it = this.iterator();
 		ArrayList<VOAsignatura> resultado = new ArrayList<VOAsignatura>();
 		Asignatura current;
@@ -38,12 +42,7 @@ public class Asignaturas extends SecuenciaArrayList<Asignatura> {
 		while(it.hasNext()) {
 			current = (Asignatura) it.next();
 			resultado.add(current.toVO());
-		}
-		
-		if(resultado.size() == 0) {
-			throw new AsignaturasException(Mensajes.MSG_NO_EXISTEN_ASIGNATURAS);
-		}
-		
+		}		
 		return resultado;
 	}
 

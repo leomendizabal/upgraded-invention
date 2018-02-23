@@ -2,6 +2,7 @@ package edu.ude.bedelia.logica.entidades;
 
 import java.io.Serializable;
 import java.util.Iterator;
+import java.util.Optional;
 
 import edu.ude.bedelia.logica.colecciones.Inscripciones;
 import edu.ude.bedelia.logica.utiles.Constantes;
@@ -30,11 +31,12 @@ public class Alumno implements Comparable<Alumno>, Serializable {
 		this.domicilio = domicilio;
 		this.telefono = telefono;
 		this.email = email;
+		this.inscripciones = new Inscripciones(0);
 
 	}
-	
+
 	public Alumno(VOAlumnoCompleto vo) {
-		this(vo.getCedula(),vo.getNombre(),vo.getApellido(),vo.getDomicilio(),vo.getTelefono(),vo.getEmail());
+		this(vo.getCedula(), vo.getNombre(), vo.getApellido(), vo.getDomicilio(), vo.getTelefono(), vo.getEmail());
 	}
 
 	public String getCedula() {
@@ -85,8 +87,17 @@ public class Alumno implements Comparable<Alumno>, Serializable {
 		this.email = email;
 	}
 
+	
+	public void setInscripciones(Inscripciones inscripciones) {
+		this.inscripciones = inscripciones;
+	}
+
 	public Inscripciones getInscripciones() {
 		return inscripciones;
+	}
+
+	public boolean tieneIncripciones() {
+		return inscripciones != null && !inscripciones.isEmpty();
 	}
 
 	public boolean esMateriaAprobada(String codigo) {
@@ -109,7 +120,7 @@ public class Alumno implements Comparable<Alumno>, Serializable {
 		Inscripcion inscripcion;
 		boolean estaInscripto = false;
 		boolean esMateria = false;
-		
+
 		while (iterador.hasNext() && !estaInscripto) {
 			inscripcion = iterador.next();
 			if (inscripcion.getAsignatura().getCodigo() == codigo) {
@@ -175,14 +186,14 @@ public class Alumno implements Comparable<Alumno>, Serializable {
 		Iterator iter = this.inscripciones.iterator();
 		Inscripcion current;
 		int totalAprobadas = 0;
-		
-		while(iter.hasNext()) {
+
+		while (iter.hasNext()) {
 			current = (Inscripcion) iter.next();
-			if(current.esAprobada()) {
-				totalAprobadas += 1; 
+			if (current.esAprobada()) {
+				totalAprobadas += 1;
 			}
 		}
-		
+
 		return Constantes.CANTIDAD_MATERIAS == totalAprobadas;
 	}
 
@@ -193,19 +204,19 @@ public class Alumno implements Comparable<Alumno>, Serializable {
 		int totalCursadas = 0;
 		int promedioAprobaciones = 0;
 		Inscripcion current;
-		
-		while(iter.hasNext()) {
+
+		while (iter.hasNext()) {
 			current = (Inscripcion) iter.next();
 			totalNotas += current.getCalificacion();
 			totalCursadas += 1;
 		}
-		
+
 		notaPromedio = totalNotas / Constantes.CANTIDAD_MATERIAS * 100;
-		promedioAprobaciones = totalCursadas / Constantes.CANTIDAD_MATERIAS * 100; 
-		
-		if(esCompleto) {
+		promedioAprobaciones = totalCursadas / Constantes.CANTIDAD_MATERIAS * 100;
+
+		if (esCompleto) {
 			return new VOEgresadoCompleto(this, notaPromedio, promedioAprobaciones);
-		}else {
+		} else {
 			return new VOEgresado(this);
 		}
 	}

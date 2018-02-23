@@ -16,6 +16,10 @@ public class Inscripciones extends SecuenciaArrayList<Inscripcion> {
 		super();
 	}
 
+	public Inscripciones(int count) {
+		super(count);
+	}
+	
 	public List<VOInscripcion> listarInscripciones(final boolean esCompleto) {
 		Iterator<Inscripcion> iterator = this.iterator();
 		final List<VOInscripcion> listaVOInscripciones = new ArrayList<>(this.size());
@@ -48,7 +52,7 @@ public class Inscripciones extends SecuenciaArrayList<Inscripcion> {
 		while ((indice < secuencia.size()) && (!esta)) {
 			Inscripcion ins = secuencia.get(indice);
 			Asignatura asi = ins.getAsignatura();
-			//TODO: NO harcodear el año tomar el del sistema, (new Date().getYear() retorna un int)
+			//TODO: NO harcodear el aï¿½o tomar el del sistema, (new Date().getYear() retorna un int)
 			if (cod.equals(asi.getCodigo()) && (ins.getAnio() == 2018)) {
 				esta = true;
 			}else {
@@ -80,5 +84,7 @@ public class Inscripciones extends SecuenciaArrayList<Inscripcion> {
 		}
 		return num;
 	}
+	
+	
 
 }

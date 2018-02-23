@@ -9,6 +9,7 @@ import edu.ude.bedelia.logica.colecciones.Alumnos;
 import edu.ude.bedelia.logica.colecciones.Asignaturas;
 import edu.ude.bedelia.logica.entidades.Alumno;
 import edu.ude.bedelia.persistencia.excepciones.PersistenciaException;
+import edu.ude.bedelia.persistencia.utiles.Constantes;
 import edu.ude.bedelia.persistencia.vo.VODato;
 import edu.ude.bedelia.persistencia.vo.VOGenerico;
 
@@ -29,39 +30,36 @@ public class FachadaPersistencia {
 		return instance;
 
 	}
-	//TODO: ver mensaje de persistencia.
+
+	// TODO: ver mensaje de persistencia.
 	public void respaldarDatos(Alumnos alumnos, Asignaturas asignaturas) throws PersistenciaException {
 
 		try {
+			
 			Respaldo<Alumnos, Asignaturas> respaldo = new Respaldo<Alumnos, Asignaturas>();
-			respaldo.respaldar(respaldo.ruta, new VODato(alumnos, asignaturas));
+			final String ruta = respaldo.getRuta();
+			if(existeRespaldo()) {
+				new File(ruta).delete();
+			}
+			respaldo.respaldar(ruta, new VODato(alumnos, asignaturas));
 		} catch (IOException | PersistenciaException e) {
 			throw new PersistenciaException("Ver el mensaje");
 		}
 
 	}
 
-	// TODO: esto no esta terminado, ver de mover lo a la capa logica
-	public void recuperarDatos() {
-
+	public VODato recuperarDatos() throws PersistenciaException{
+		VODato resultado = new VODato(new Alumnos(), new Asignaturas(0));
 		try {
 			Respaldo<Alumnos, Asignaturas> respaldo = new Respaldo<Alumnos, Asignaturas>();
 			VOGenerico<Alumnos, Asignaturas> vo = (VOGenerico<Alumnos, Asignaturas>) respaldo.recuperar(respaldo.ruta);
 			Optional<VOGenerico<Alumnos, Asignaturas>> op = Optional.of(vo);
 			if (op.isPresent()) {
-				Alumnos diccio = vo.getDiccionario();
-				Iterator<Alumno> iter = diccio.values().iterator();
-				while (iter.hasNext()) {
-					final Alumno a = iter.next();
-					System.out.println(a.toString());
-
-				}
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (PersistenciaException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+				resultado = new VODato(vo.getDiccionario(),vo.getSecuencia());
+			} 
+			return resultado;
+		} catch (IOException | PersistenciaException e) {
+			throw new PersistenciaException(Constantes.Mensajes.MSG_ERROR_RECUPERAR);
 		}
 	}
 
@@ -69,9 +67,8 @@ public class FachadaPersistencia {
 		try {
 			Respaldo<Alumnos, Asignaturas> respaldo = new Respaldo<Alumnos, Asignaturas>();
 			return new File(respaldo.ruta).exists();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		} catch (NullPointerException | IOException e) {
+			System.err.println(e.getMessage());
 			return false;
 		}
 
