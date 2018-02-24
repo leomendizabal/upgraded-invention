@@ -109,10 +109,11 @@ public class Alumno implements Comparable<Alumno>, Serializable {
 		Inscripcion inscripcion;
 		boolean estaInscripto = false;
 		boolean esMateria = false;
-
-		while (iterador.hasNext() && !esMateria) {
+		
+		while (iterador.hasNext() && !estaInscripto) {
 			inscripcion = iterador.next();
 			if (inscripcion.getAsignatura().getCodigo() == codigo) {
+				esMateria = true;
 				estaInscripto = inscripcion.getAnio() == anio;
 			}
 		}
@@ -132,6 +133,7 @@ public class Alumno implements Comparable<Alumno>, Serializable {
 		while (iterador.hasNext() && !esMateria) {
 			inscripcion = (Inscripcion) iterador.next();
 			if (inscripcion.getAsignatura().getCodigo() == codigo) {
+				esMateria = true;
 				inscripcion.setCalificacion(calificacion);
 			}
 		}

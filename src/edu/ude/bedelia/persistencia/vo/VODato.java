@@ -11,7 +11,6 @@ public class VODato extends VOGenerico<Alumnos, Asignaturas> implements Serializ
 
 	public VODato(Alumnos alumnos, Asignaturas asignaturas) {
 		super(alumnos, asignaturas);
-		// TODO Auto-generated constructor stub
 	}
 
 }

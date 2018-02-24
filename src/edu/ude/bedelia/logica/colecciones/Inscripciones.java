@@ -32,10 +32,11 @@ public class Inscripciones extends SecuenciaArrayList<Inscripcion> {
 		while ((indice < secuencia.size()) && (!aprobada)) {
 			Inscripcion ins = secuencia.get(indice);
 			Asignatura asi = ins.getAsignatura();
-			if (cod.equals(asi.getCodigo()) && (ins.esAprobada()))
+			if (cod.equals(asi.getCodigo()) && (ins.esAprobada())) {
 				aprobada = true;
-			else
+			}else {
 				indice++;
+			}
 		}
 		return aprobada;
 	}
@@ -47,17 +48,19 @@ public class Inscripciones extends SecuenciaArrayList<Inscripcion> {
 		while ((indice < secuencia.size()) && (!esta)) {
 			Inscripcion ins = secuencia.get(indice);
 			Asignatura asi = ins.getAsignatura();
-			if (cod.equals(asi.getCodigo()) && (ins.getAnio() == 2018))
+			//TODO: NO harcodear el año tomar el del sistema, (new Date().getYear() retorna un int)
+			if (cod.equals(asi.getCodigo()) && (ins.getAnio() == 2018)) {
 				esta = true;
-			else
+			}else {
 				indice++;
+			}	
 		}
 		return esta;
 	}
 
 	public boolean anioLectivoMayorIgualUltimaInscripcion() {
 		boolean MayorIgual = false;
-
+		//TODO: ver esto int tam = secuencia.size(); y preguntar tam > 0
 		if (!secuencia.isEmpty()) {
 
 			Inscripcion ins = secuencia.get(secuencia.size() - 1);
@@ -67,7 +70,7 @@ public class Inscripciones extends SecuenciaArrayList<Inscripcion> {
 
 		return MayorIgual;
 	}
-
+	//TODO: metodos que se usan localmente declararlo como privado, si es posible hace javadoc para entender que hace
 	public Integer numeroUltimaInscripcionMasUno() {
 		Integer num = 1;
 		if (!secuencia.isEmpty()) {

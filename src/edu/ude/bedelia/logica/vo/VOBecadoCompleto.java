@@ -15,8 +15,8 @@ public class VOBecadoCompleto extends VOAlumnoCompleto {
 	}
 
 	public VOBecadoCompleto(Alumno a) {
-
 		super(a);
+		//TODO: ???
 		this.porcentaje = porcentaje;
 		this.descripcion = descripcion;
 	}

@@ -42,5 +42,6 @@ public interface IFachada extends Remote {
 
 	public ArrayList<VOEgresado> listarEgresados(boolean esCompleto) throws AlumnosException, RemoteException;
 
+	//TODO: Borrar
 	public int suma(int a, int b) throws RemoteException;
 }

@@ -1,7 +1,7 @@
 package edu.ude.bedelia.logica.utiles;
 
 public final class Mensajes {
-	
+	//TODO: Ver si se puede agrupar mensajes, para que quede mas claro.
 	public final static String MSG_MAXIMO_MATERIAS_SUPERADO = "La cantidad maxima de materias es %d";
 	public final static String MSG_NO_EXISTEN_ALUMNOS_APELLIDO = "No existen alumnos con ese apellido";
 	public final static String MSG_NO_EXISTEN_ALUMNOS_EGRESADOS = "No existen alumnos egresados";

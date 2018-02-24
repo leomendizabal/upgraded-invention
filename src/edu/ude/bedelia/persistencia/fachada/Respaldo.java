@@ -20,6 +20,7 @@ public class Respaldo<T1, T2> implements IRespaldo<VOGenerico<T1, T2>> {
 	public Respaldo() throws FileNotFoundException, IOException {
 		super();
 		p.load(new FileInputStream(Constantes.Respaldo.RUTA_CONFIG));
+		//TODO:incluir valores por defecto
 		this.ruta = p.getProperty(Constantes.Respaldo.CLAVE_RUTA_RESPALDO);
 	}
 
