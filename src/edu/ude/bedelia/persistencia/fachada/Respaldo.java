@@ -54,6 +54,7 @@ public class Respaldo<T1, T2> implements IRespaldo<VOGenerico<T1, T2>> {
 
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public VOGenerico<T1, T2> recuperar(String nombreArchivo) throws PersistenciaException {
 		try {

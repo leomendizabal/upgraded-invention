@@ -1,6 +1,5 @@
 package edu.ude.bedelia.aplicacion.utiles;
 
-import java.io.File;
 import java.util.Properties;
 
 import edu.ude.bedelia.persistencia.utiles.Constantes;
