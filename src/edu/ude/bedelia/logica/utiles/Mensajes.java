@@ -15,5 +15,6 @@ public final class Mensajes {
 	public final static String MSG_ASIGNATURA_NO_EXISTE  = "La asignatura con dicho c�digo no existe";
 	public final static String MSG_EXISTE_ALUMNO = "Ya existe un alumno con cedula %s";
 	public final static String MSG_NO_EXISTE_ALUMNO = "El alumno con cedula %s no existe";
+	public final static String MSG_CALIF_INVALIDA = "La calificacion es invalida";
 	
 }

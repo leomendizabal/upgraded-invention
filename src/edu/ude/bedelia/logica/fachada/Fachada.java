@@ -16,6 +16,7 @@ import edu.ude.bedelia.logica.entidades.Inscripcion;
 import edu.ude.bedelia.logica.excepciones.AlumnosException;
 import edu.ude.bedelia.logica.excepciones.AsignaturasException;
 import edu.ude.bedelia.logica.excepciones.InscripcionesException;
+import edu.ude.bedelia.logica.utiles.Helper;
 import edu.ude.bedelia.logica.utiles.Mensajes;
 import edu.ude.bedelia.logica.vo.TipoAlumno;
 import edu.ude.bedelia.logica.utiles.Mensajes;
@@ -259,7 +260,13 @@ public class Fachada extends UnicastRemoteObject implements IFachada {
 		if (alumnos.member(ci)) {
 			Alumno a = alumnos.find(ci);
 			if (a.esInscripto(codigo, anio)) {
-				a.registrarCalificacion(codigo, nota);
+				if (Helper.calificacionEsValida(nota)) {
+					    //throw new AlumnosException(Mensajes.MSG_CALIF_INVALIDA);
+					    a.registrarCalificacion(codigo, nota);
+				}else {
+					    throw new AlumnosException(Mensajes.MSG_CALIF_INVALIDA);
+				        //a.registrarCalificacion(codigo, nota);
+				}
 			} else {
 				monitor.terminoEscritura();
 				throw new AlumnosException(Mensajes.ALUMNO_NO_INSCRIPTO);

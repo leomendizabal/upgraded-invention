@@ -100,7 +100,7 @@ public class TestFachadaMain {
 			
 			//Requerimiento 8
 			System.out.println("******* Requerimiento 8 ********");
-			bedelia.registrarResultado(alumno1.getCedula(), 10, cocina.getCodigo(), anio);
+			bedelia.registrarResultado(alumno1.getCedula(), 12, cocina.getCodigo(), anio);
 			
 //			Inscripciones inscripciones = bedelia.getAlumnoCI(alumno1.getCedula()).getInscripciones();
 //			for(Inscripcion i: inscripciones) {
