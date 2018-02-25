@@ -19,7 +19,7 @@ public class Inscripciones extends SecuenciaArrayList<Inscripcion> {
 	public Inscripciones(int count) {
 		super(count);
 	}
-	
+
 	public List<VOInscripcion> listarInscripciones(final boolean esCompleto) {
 		Iterator<Inscripcion> iterator = this.iterator();
 		final List<VOInscripcion> listaVOInscripciones = new ArrayList<>(this.size());
@@ -38,7 +38,7 @@ public class Inscripciones extends SecuenciaArrayList<Inscripcion> {
 			Asignatura asi = ins.getAsignatura();
 			if (cod.equals(asi.getCodigo()) && (ins.esAprobada())) {
 				aprobada = true;
-			}else {
+			} else {
 				indice++;
 			}
 		}
@@ -46,35 +46,38 @@ public class Inscripciones extends SecuenciaArrayList<Inscripcion> {
 	}
 
 	public boolean inscriptoEnAnioLectivo(String cod) {
+		Inscripcion ins;
+		Asignatura asi;
 		boolean esta = false;
-
-		int indice = 0;
-		while ((indice < secuencia.size()) && (!esta)) {
-			Inscripcion ins = secuencia.get(indice);
-			Asignatura asi = ins.getAsignatura();
-			//TODO: NO harcodear el a�o tomar el del sistema, (new Date().getYear() retorna un int)
-			if (cod.equals(asi.getCodigo()) && (ins.getAnio() == 2018)) {
+		int indice = 0, cantidad = secuencia.size();
+		while ((indice < cantidad) && (!esta)) {
+			ins = secuencia.get(indice);
+			asi = ins.getAsignatura();
+			if (cod.equals(asi.getCodigo()) && ins.esActual()) {
 				esta = true;
-			}else {
+			} else {
 				indice++;
-			}	
+			}
 		}
 		return esta;
 	}
 
 	public boolean anioLectivoMayorIgualUltimaInscripcion() {
-		boolean MayorIgual = false;
-		//TODO: ver esto int tam = secuencia.size(); y preguntar tam > 0
-		if (!secuencia.isEmpty()) {
+		boolean mayorIgual = false;
+		int cantidad = secuencia.size();
+		if (!(cantidad > 0)) {
+			Inscripcion ins = secuencia.get(cantidad - 1);
+			if (ins.esAnioMayorIgualActual()) {
+				mayorIgual = true;
+			}
 
-			Inscripcion ins = secuencia.get(secuencia.size() - 1);
-			if (2018 >= ins.getAnio())
-				MayorIgual = true;
 		}
 
-		return MayorIgual;
+		return mayorIgual;
 	}
-	//TODO: metodos que se usan localmente declararlo como privado, si es posible hace javadoc para entender que hace
+
+	// TODO: metodos que se usan localmente declararlo como privado, si es posible
+	// hace javadoc para entender que hace
 	public Integer numeroUltimaInscripcionMasUno() {
 		Integer num = 1;
 		if (!secuencia.isEmpty()) {
@@ -84,7 +87,5 @@ public class Inscripciones extends SecuenciaArrayList<Inscripcion> {
 		}
 		return num;
 	}
-	
-	
 
 }

@@ -119,12 +119,10 @@ public class Alumno implements Comparable<Alumno>, Serializable {
 		Iterator<Inscripcion> iterador = this.inscripciones.iterator();
 		Inscripcion inscripcion;
 		boolean estaInscripto = false;
-		boolean esMateria = false;
 
 		while (iterador.hasNext() && !estaInscripto) {
 			inscripcion = iterador.next();
 			if (inscripcion.getAsignatura().getCodigo() == codigo) {
-				esMateria = true;
 				estaInscripto = inscripcion.getAnio() == anio;
 			}
 		}
@@ -142,7 +140,7 @@ public class Alumno implements Comparable<Alumno>, Serializable {
 		boolean esMateria = false;
 
 		while (iterador.hasNext() && !esMateria) {
-			inscripcion = (Inscripcion) iterador.next();
+			inscripcion = iterador.next();
 			if (inscripcion.getAsignatura().getCodigo() == codigo) {
 				esMateria = true;
 				inscripcion.setCalificacion(calificacion);
@@ -155,7 +153,7 @@ public class Alumno implements Comparable<Alumno>, Serializable {
 
 		for (Inscripcion elem : this.inscripciones) {
 			if (elem.getAnio() == anio) {
-				total += 10 * elem.getMontoBase();
+				total += Constantes.CANTIDAD_CUOTAS * elem.getMontoBase();
 			}
 		}
 
@@ -183,12 +181,12 @@ public class Alumno implements Comparable<Alumno>, Serializable {
 	}
 
 	public boolean esEgresado() {
-		Iterator iter = this.inscripciones.iterator();
+		Iterator<Inscripcion> iter = this.inscripciones.iterator();
 		Inscripcion current;
 		int totalAprobadas = 0;
 
 		while (iter.hasNext()) {
-			current = (Inscripcion) iter.next();
+			current = iter.next();
 			if (current.esAprobada()) {
 				totalAprobadas += 1;
 			}
@@ -198,7 +196,7 @@ public class Alumno implements Comparable<Alumno>, Serializable {
 	}
 
 	public VOEgresado toVOEgresado(boolean esCompleto) {
-		Iterator iter = this.inscripciones.iterator();
+		Iterator<Inscripcion> iter = this.inscripciones.iterator();
 		float totalNotas = 0;
 		float notaPromedio = 0;
 		int totalCursadas = 0;
@@ -206,19 +204,23 @@ public class Alumno implements Comparable<Alumno>, Serializable {
 		Inscripcion current;
 
 		while (iter.hasNext()) {
-			current = (Inscripcion) iter.next();
+			current = iter.next();
 			totalNotas += current.getCalificacion();
 			totalCursadas += 1;
 		}
 
-		notaPromedio = totalNotas / Constantes.CANTIDAD_MATERIAS * 100;
-		promedioAprobaciones = totalCursadas / Constantes.CANTIDAD_MATERIAS * 100;
+		notaPromedio = promedioMateria(totalNotas);
+		promedioAprobaciones = promedioMateria(totalCursadas).intValue();
 
 		if (esCompleto) {
 			return new VOEgresadoCompleto(this, notaPromedio, promedioAprobaciones);
 		} else {
 			return new VOEgresado(this);
 		}
+	}
+	
+	private Float promedioMateria(float valor) {
+		return valor / Constantes.CANTIDAD_MATERIAS * 100;
 	}
 
 }

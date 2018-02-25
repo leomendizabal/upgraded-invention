@@ -40,12 +40,16 @@ public class Becado extends Alumno {
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
-	//TODO: siempre que se hace override llamar al super, para no repetir logica.
+
 	public float calcularMontoCobrado(int anio) {
 		float total = super.calcularMontoCobrado(anio);
-		return total - (total * this.porcentaje) / 100;
+		return aplicarPocentaje(total);
 	}
 
+	private float aplicarPocentaje(float monto) {
+		return (monto * this.porcentaje) / 100;
+	}
+	
 	public String toString() {
 		return (super.toString() + "\n Porcentaje:" + this.porcentaje + "\n Raz�n de beca:" + this.descripcion);
 	}

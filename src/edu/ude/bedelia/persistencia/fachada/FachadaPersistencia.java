@@ -31,7 +31,6 @@ public class FachadaPersistencia {
 
 	}
 
-	// TODO: ver mensaje de persistencia.
 	public void respaldarDatos(Alumnos alumnos, Asignaturas asignaturas) throws PersistenciaException {
 
 		try {
@@ -40,10 +39,10 @@ public class FachadaPersistencia {
 			final String ruta = respaldo.getRuta();
 			if(existeRespaldo()) {
 				new File(ruta).delete();
-			}
+			} 
 			respaldo.respaldar(ruta, new VODato(alumnos, asignaturas));
 		} catch (IOException | PersistenciaException e) {
-			throw new PersistenciaException("Ver el mensaje");
+			throw new PersistenciaException(Constantes.Mensajes.MSG_ERROR_PERSISTENCIA);
 		}
 
 	}

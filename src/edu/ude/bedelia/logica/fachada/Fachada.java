@@ -164,15 +164,16 @@ public class Fachada extends UnicastRemoteObject implements IFachada {
 			if (asignaturas.pertenece(codigo)) {
 				final Asignatura asig = asignaturas.devolverAsignatura(codigo);
 				if (alumno.tieneIncripciones()) {
-					if (alumno.getInscripciones().asignaturaAprobada(codigo)) {
+					Inscripciones inscripciones = alumno.getInscripciones();
+					if (inscripciones.asignaturaAprobada(codigo)) {
 						monitor.terminoEscritura();
 						throw new InscripcionesException(Mensajes.MSG_ALUMNO_YA_APROBO_ASIGNATURA);
 					} else {
-						if (alumno.getInscripciones().inscriptoEnAnioLectivo(codigo)) {
+						if (inscripciones.inscriptoEnAnioLectivo(codigo)) {
 							monitor.terminoEscritura();
 							throw new InscripcionesException(Mensajes.MSG_ALUMNO_YA_ESTA_INSCRIPTO_ASIGANTURA);
 						} else {
-							if (alumno.getInscripciones().anioLectivoMayorIgualUltimaInscripcion()) {
+							if (inscripciones.anioLectivoMayorIgualUltimaInscripcion()) {
 
 								Integer num = alumno.getInscripciones().numeroUltimaInscripcionMasUno();
 								Inscripcion ins = new Inscripcion(num, anio, montoBase, 0, asig);
@@ -192,7 +193,7 @@ public class Fachada extends UnicastRemoteObject implements IFachada {
 				}
 			} else {
 				monitor.terminoEscritura();
-				throw new AsignaturasException(Mensajes.MSG_ASIGNATURA_NO_EXISTE);
+				throw new AsignaturasException(Mensajes.mensaje(Mensajes.MSG_ASIGNATURA_NO_EXISTE, codigo));
 			}
 		} else {
 			monitor.terminoEscritura();

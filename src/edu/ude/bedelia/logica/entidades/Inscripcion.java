@@ -1,9 +1,12 @@
 package edu.ude.bedelia.logica.entidades;
 
 import java.io.Serializable;
+import java.util.Calendar;
 
+import edu.ude.bedelia.logica.utiles.Constantes;
 import edu.ude.bedelia.logica.vo.VOInscripcion;
 import edu.ude.bedelia.logica.vo.VOInscripcionCompleta;
+
 
 public class Inscripcion implements Serializable {
 
@@ -72,9 +75,21 @@ public class Inscripcion implements Serializable {
 	}
 
 	public boolean esAprobada() {
-		return this.calificacion >= 6;
+		return this.calificacion >= Constantes.MIN_NOTA_APROBACION;
 	}
 
+	public boolean esAnioMayorIgualActual() {
+		final Calendar calendar = Calendar.getInstance();
+		return this.anio >= calendar.get(Calendar.YEAR);
+		
+	}
+	
+	public boolean esActual() {
+		final Calendar calendar = Calendar.getInstance();
+		return this.anio == calendar.get(Calendar.YEAR);
+		
+	}
+	
 	public String toString() {
 
 		return ("\n Numero:" + this.numero + "\n A�o:" + this.anio + "\n Monto base:" + this.montoBase
