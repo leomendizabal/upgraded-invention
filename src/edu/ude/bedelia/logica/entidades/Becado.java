@@ -55,9 +55,7 @@ public class Becado extends Alumno {
 	}
 
 	public VOBecadoCompleto toVO() {
-
-		return new VOBecadoCompleto(this);
-
+		return new VOBecadoCompleto(this, this.porcentaje, this.descripcion);
 	}
 
 }

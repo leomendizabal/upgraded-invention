@@ -14,9 +14,8 @@ public class VOBecadoCompleto extends VOAlumnoCompleto {
 		this.descripcion = descripcion;
 	}
 
-	public VOBecadoCompleto(Alumno a) {
+	public VOBecadoCompleto(Alumno a, float porcentaje, String descripcion) {
 		super(a);
-		//TODO: ???
 		this.porcentaje = porcentaje;
 		this.descripcion = descripcion;
 	}

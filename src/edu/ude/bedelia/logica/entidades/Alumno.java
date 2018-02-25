@@ -130,8 +130,10 @@ public class Alumno implements Comparable<Alumno>, Serializable {
 		return estaInscripto;
 	}
 
-	public void registrarInscripcion(Inscripcion inscripcion) {
-		this.inscripciones.insert(inscripcion);
+	public void registrarInscripcion(int anio, float montoBase, Asignatura a) {
+		int cantidadInscripciones = this.inscripciones.size();
+		Inscripcion i = new Inscripcion(cantidadInscripciones + 1, anio, montoBase, a);
+		this.inscripciones.insert(i);
 	}
 
 	public void registrarCalificacion(String codigo, int calificacion) {

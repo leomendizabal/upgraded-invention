@@ -21,17 +21,12 @@ public class Inscripcion implements Serializable {
 	private int calificacion;
 	private Asignatura asignatura;
 
-	public Inscripcion(Integer numero, int anio, float montoBase, int calificacion, Asignatura asignatura) {
+	public Inscripcion(Integer numero, int anio, float montoBase, Asignatura asignatura) {
 		this.numero = numero;
 		this.anio = anio;
 		this.montoBase = montoBase;
-		this.calificacion = calificacion;
+		this.calificacion = 0;
 		this.asignatura = asignatura;
-	}
-	
-	//Primera inscripcion
-	public Inscripcion(int anio,float montoBase, Asignatura asignatura) {
-		this(1,anio,montoBase,0,asignatura);
 	}
 
 	public Integer getNumero() {
@@ -75,7 +70,7 @@ public class Inscripcion implements Serializable {
 	}
 
 	public boolean esAprobada() {
-		return this.calificacion >= Constantes.MIN_NOTA_APROBACION;
+		return this.calificacion >= Constantes.NOTA_MINIMA_APROBACION;
 	}
 
 	public boolean esAnioMayorIgualActual() {
@@ -99,9 +94,9 @@ public class Inscripcion implements Serializable {
 
 	public VOInscripcion toVO(boolean esCompleto) {
 		if (esCompleto) {
-			return new VOInscripcion(this);
+			return new VOInscripcionCompleta(this);			
 		} else {
-			return new VOInscripcionCompleta(this);
+			return new VOInscripcion(this);
 		}
 	}
 
