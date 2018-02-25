@@ -25,6 +25,11 @@ public class Inscripcion implements Serializable {
 		this.calificacion = calificacion;
 		this.asignatura = asignatura;
 	}
+	
+	//Primera inscripcion
+	public Inscripcion(int anio,float montoBase, Asignatura asignatura) {
+		this(1,anio,montoBase,0,asignatura);
+	}
 
 	public Integer getNumero() {
 		return numero;

@@ -20,7 +20,6 @@ public class ServidorConfig extends Configuracion {
 			objeto = properties.getProperty(Constantes.Servidor.CLAVE_OBJETO);
 			properties.clear();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			System.err.println(e.getMessage());
 		}
 

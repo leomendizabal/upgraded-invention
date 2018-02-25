@@ -6,6 +6,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.Optional;
 import java.util.Properties;
 
 import edu.ude.bedelia.persistencia.excepciones.PersistenciaException;
@@ -20,8 +21,7 @@ public class Respaldo<T1, T2> implements IRespaldo<VOGenerico<T1, T2>> {
 	public Respaldo() throws FileNotFoundException, IOException {
 		super();
 		p.load(new FileInputStream(Constantes.Respaldo.RUTA_CONFIG));
-		//TODO:incluir valores por defecto
-		this.ruta = p.getProperty(Constantes.Respaldo.CLAVE_RUTA_RESPALDO);
+		this.ruta = p.getProperty(Constantes.Respaldo.CLAVE_RUTA_RESPALDO,Constantes.Respaldo.RUTA_POR_DEFECTO);
 	}
 
 	public String getRuta() {
@@ -30,17 +30,26 @@ public class Respaldo<T1, T2> implements IRespaldo<VOGenerico<T1, T2>> {
 
 	@Override
 	public void respaldar(String nombreArchivo, VOGenerico<T1, T2> objeto) throws PersistenciaException {
+		FileOutputStream archivoLocal = null; 
+		ObjectOutputStream buffer = null; 
 		try {
-			FileOutputStream archivoLocal = new FileOutputStream(nombreArchivo);
-			ObjectOutputStream buffer = new ObjectOutputStream(archivoLocal);
+			archivoLocal = new FileOutputStream(nombreArchivo);
+			buffer = new ObjectOutputStream(archivoLocal);
 			buffer.writeObject(objeto);
 			buffer.close();
-			buffer.close();
-			System.out.println("Respaldo OK");
+			archivoLocal.close();
 		} catch (IOException e) {
-			e.printStackTrace();
-			// TODO: Determinar el error
-			throw new PersistenciaException("");
+			System.err.println(e.getMessage());
+			throw new PersistenciaException(Constantes.Mensajes.MSG_ERROR_PERSISTENCIA);
+		} finally {
+			Optional<FileOutputStream> chequeoFile = Optional.of(archivoLocal);
+			if(chequeoFile.isPresent()) {
+				archivoLocal = null;
+			}
+			Optional<ObjectOutputStream> chequeoBuffer = Optional.of(buffer);
+			if(chequeoBuffer.isPresent()) {
+				buffer = null;
+			}
 		}
 
 	}
@@ -50,17 +59,13 @@ public class Respaldo<T1, T2> implements IRespaldo<VOGenerico<T1, T2>> {
 		try {
 			FileInputStream fileInputStream = new FileInputStream(nombreArchivo);
 			ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
-			VOGenerico<T1, T2> datos = null;
-
-			datos = (VOGenerico<T1, T2>) objectInputStream.readObject();
-
+			VOGenerico<T1, T2> datos = (VOGenerico<T1, T2>) objectInputStream.readObject();
 			objectInputStream.close();
 			fileInputStream.close();
 			return datos;
 		} catch (ClassNotFoundException | IOException e) {
-			e.printStackTrace();
-			// TODO: Determinar el error
-			throw new PersistenciaException("");
+			System.err.println(e.getMessage());
+			throw new PersistenciaException(Constantes.Mensajes.MSG_ERROR_RECUPERAR);
 		}
 	}
 

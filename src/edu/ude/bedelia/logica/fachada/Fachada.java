@@ -4,8 +4,11 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
+import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;
+
 import edu.ude.bedelia.logica.colecciones.Alumnos;
 import edu.ude.bedelia.logica.colecciones.Asignaturas;
+import edu.ude.bedelia.logica.colecciones.Inscripciones;
 import edu.ude.bedelia.logica.entidades.Alumno;
 import edu.ude.bedelia.logica.entidades.Asignatura;
 import edu.ude.bedelia.logica.entidades.Becado;
@@ -26,6 +29,7 @@ import edu.ude.bedelia.logica.vo.VOEgresado;
 import edu.ude.bedelia.logica.vo.VOInscripcion;
 import edu.ude.bedelia.persistencia.excepciones.PersistenciaException;
 import edu.ude.bedelia.persistencia.fachada.FachadaPersistencia;
+import edu.ude.bedelia.persistencia.vo.VODato;
 import edu.ude.bedelia.test.DataClass;
 
 public class Fachada extends UnicastRemoteObject implements IFachada {
@@ -40,16 +44,24 @@ public class Fachada extends UnicastRemoteObject implements IFachada {
 	private Monitor monitor;
 
 	private Fachada() throws RemoteException {
-
 		this.fachadaPersistencia = FachadaPersistencia.getInstance();
-		this.alumnos = DataClass.ALUMNOS;// new Alumnos();
-		this.asignaturas = DataClass.ASIGNATURA;// new Asignaturas();
-		// TODO: Esto funciona si en la primera ves se reinicia el server
+		monitor = new Monitor();
+
 		if (fachadaPersistencia.existeRespaldo()) {
-			fachadaPersistencia.recuperarDatos();
+			try {
+				VODato respaldos = fachadaPersistencia.recuperarDatos();
+				this.alumnos = respaldos.getDiccionario();
+				this.asignaturas = respaldos.getSecuencia();
+			} catch (PersistenciaException e) {
+				this.alumnos = new Alumnos();
+				this.asignaturas = new Asignaturas(0);
+			}
+		} else {
+			// TODO: Ver de cambiar esto
+			this.alumnos = DataClass.ALUMNOS;
+			this.asignaturas = DataClass.ASIGNATURA;
 		}
 
-		monitor = new Monitor();
 	}
 
 	public static Fachada getInstancia() throws RemoteException {
@@ -60,27 +72,26 @@ public class Fachada extends UnicastRemoteObject implements IFachada {
 		return instancia;
 	}
 
-	// Requerimiento 1
-	public void registrarAsignatura(VOAsignatura a) throws AsignaturasException, RemoteException {
-
-		    if (asignaturas.pertenece(a.getCodigo())) {
-		    	throw new AsignaturasException(Mensajes.MSG_YA_EXISTE_ASIGNATURA);
-		    }else {
-		    	//TODO: ver si se puede crear un contructor en Asignatura que reciba un VO, para evitar declarciones de variables
-		    	String cod=a.getCodigo();
-		    	String nom=a.getNombre();
-		    	String desc=a.getDescripcion();
-		    	Asignatura asi =new Asignatura(cod,nom,desc);
-		    	asignaturas.insert(asi);
-		    }
+	@Override
+	public void registrarAsignatura(VOAsignatura a) throws RemoteException, AsignaturasException {
+		monitor.comienzoEscritura();
+		if (asignaturas.pertenece(a.getCodigo())) {
+			monitor.terminoEscritura();
+			throw new AsignaturasException(Mensajes.MSG_YA_EXISTE_ASIGNATURA);
+		} else {
+			Asignatura asi = new Asignatura(a);
+			asignaturas.insert(asi);
+		}
+		monitor.terminoEscritura();
 	}
-	
-	//TODO: falta confirmacion, ver como confirmar.
+
 	@Override
 	public void registrarAlumno(VOAlumnoCompleto vo) throws RemoteException, AlumnosException {
 
 		final String cedula = vo.getCedula();
+		monitor.comienzoEscritura();
 		if (alumnos.member(cedula)) {
+			monitor.terminoEscritura();
 			throw new AlumnosException(String.format(Mensajes.MSG_EXISTE_ALUMNO, cedula));
 		} else {
 			Alumno alumno = new Alumno(vo);
@@ -90,152 +101,169 @@ public class Fachada extends UnicastRemoteObject implements IFachada {
 			}
 			alumnos.insert(cedula, alumno);
 		}
+		monitor.terminoEscritura();
 	}
 
+	@Override
 	public void modificarAlumno(VOAlumnoCompleto a) throws RemoteException, AlumnosException {
 
 		String ced = a.getCedula();
+		monitor.comienzoEscritura();
 		if (alumnos.member(ced)) {
-			//TODO: ver si se puede crear un contructor en Alumno que reciba un VO, para evitar declarciones de variables
-			String nom = a.getNombre();
-			String ape = a.getApellido();
-			String dom = a.getDomicilio();
-			String tel = a.getTelefono();
-			String mail = a.getEmail();
-			Alumno alu = new Alumno(ced, nom, ape, dom, tel, mail);
+			Alumno alu = new Alumno(a);
 			alumnos.modify(ced, alu);
 		} else {
+			monitor.terminoEscritura();
 			throw new AlumnosException(Mensajes.MSG_ALUMNO_NO_EXISTE);
 		}
+		monitor.terminoEscritura();
 
 	}
-	// TODO:Tener en cuenta la lista vacia, ver si vale la excepcion
-	public ArrayList<VOAsignatura> listarAsignaturas() throws AsignaturasException {
-		try {
-			return this.asignaturas.listarAsignaturas();
-		} catch(AsignaturasException e) {
-			throw e;
-		}
-	}
-	
-	// TODO:Tener en cuenta la lista vacia, ver si vale la excepcion
-	public ArrayList<VOAlumno> listarAlumnosApellido(String apellido) throws AlumnosException {
-		
-		try {
-			ArrayList<VOAlumno> resultado = this.alumnos.listarAlumnosApellido(apellido);
-			return resultado;
-		} catch(AlumnosException e) {
-			throw e;
-		}
+
+	@Override
+	public ArrayList<VOAsignatura> listarAsignaturas() throws RemoteException {
+
+		monitor.comienzoLectura();
+		ArrayList<VOAsignatura> listado = asignaturas.listarAsignaturas();
+		monitor.terminoLectura();
+
+		return listado;
 	}
 
-	public VOAlumno listarDatosAlumno(String cedula) throws AlumnosException {
-		
-		if(alumnos.member(cedula)) {
+	@Override
+	public ArrayList<VOAlumno> listarAlumnosApellido(String apellido) throws RemoteException {
+		monitor.comienzoLectura();
+		ArrayList<VOAlumno> listado = alumnos.listarAlumnosApellido(apellido);
+		monitor.terminoLectura();
+		return listado;
+	}
+
+	public VOAlumno listarDatosAlumno(String cedula) throws RemoteException, AlumnosException {
+		monitor.comienzoLectura();
+		if (alumnos.member(cedula)) {
 			Alumno alumno = alumnos.find(cedula);
 			VOAlumno vo = alumno.toVO(true);
-			if(alumno instanceof Becado) {
-				Becado alumnoBecado = (Becado)alumno;
+			if (alumno instanceof Becado) {
+				Becado alumnoBecado = (Becado) alumno;
 				vo = alumnoBecado.toVO();
 			}
+			monitor.terminoLectura();
 			return vo;
-			
 		} else {
+			monitor.terminoLectura();
 			throw new AlumnosException(String.format(Mensajes.MSG_NO_EXISTE_ALUMNO, cedula));
 		}
 	}
 
+	@Override
 	public void inscribirAlumno(String ci, String codigo, int anio, float montoBase)
-			throws AlumnosException, AsignaturasException, InscripcionesException {
-
+			throws RemoteException, AlumnosException, AsignaturasException, InscripcionesException {
+		monitor.comienzoEscritura();
 		if (alumnos.member(ci)) {
-
+			final Alumno alumno = alumnos.find(ci);
 			if (asignaturas.pertenece(codigo)) {
-				//TODO: ver de eliminar alumnos.find(ci), y asignarlo a una variable. Usar la variable.
-				if (alumnos.find(ci).getInscripciones().asignaturaAprobada(codigo)) {
-					throw new InscripcionesException(Mensajes.MSG_ALUMNO_YA_APROBO_ASIGNATURA);
-				} else {
-					if (alumnos.find(ci).getInscripciones().inscriptoEnAnioLectivo(codigo)) {
-						throw new InscripcionesException(Mensajes.MSG_ALUMNO_YA_ESTA_INSCRIPTO_ASIGANTURA);
+				final Asignatura asig = asignaturas.devolverAsignatura(codigo);
+				if (alumno.tieneIncripciones()) {
+					if (alumno.getInscripciones().asignaturaAprobada(codigo)) {
+						monitor.terminoEscritura();
+						throw new InscripcionesException(Mensajes.MSG_ALUMNO_YA_APROBO_ASIGNATURA);
 					} else {
-						if (alumnos.find(ci).getInscripciones().anioLectivoMayorIgualUltimaInscripcion()) {
-							Asignatura asig = asignaturas.devolverAsignatura(codigo);
-							//TODO: No se usa la variable
-							Alumno alu = alumnos.find(ci);
-							Integer num = alumnos.find(ci).getInscripciones().numeroUltimaInscripcionMasUno();
-							Inscripcion ins = new Inscripcion(num, anio, montoBase, 0, asig);
-							alumnos.find(ci).registrarInscripcion(ins);
+						if (alumno.getInscripciones().inscriptoEnAnioLectivo(codigo)) {
+							monitor.terminoEscritura();
+							throw new InscripcionesException(Mensajes.MSG_ALUMNO_YA_ESTA_INSCRIPTO_ASIGANTURA);
 						} else {
-							throw new InscripcionesException(Mensajes.MSG_ANO_NO_COINCIDE_CON_ACTUAL);
+							if (alumno.getInscripciones().anioLectivoMayorIgualUltimaInscripcion()) {
+
+								Integer num = alumno.getInscripciones().numeroUltimaInscripcionMasUno();
+								Inscripcion ins = new Inscripcion(num, anio, montoBase, 0, asig);
+								alumno.registrarInscripcion(ins);
+							} else {
+								monitor.terminoEscritura();
+								throw new InscripcionesException(Mensajes.MSG_ANO_NO_COINCIDE_CON_ACTUAL);
+							}
 						}
 					}
+				} else {
+					System.out.println("pso");
+					Inscripciones ins = new Inscripciones();
+					Inscripcion nuevaInscripcion = new Inscripcion(anio, montoBase, asig);
+					ins.insert(nuevaInscripcion);
+					alumno.setInscripciones(ins);
 				}
 			} else {
+				monitor.terminoEscritura();
 				throw new AsignaturasException(Mensajes.MSG_ASIGNATURA_NO_EXISTE);
 			}
 		} else {
+			monitor.terminoEscritura();
 			throw new AlumnosException(Mensajes.MSG_ALUMNO_NO_EXISTE);
 		}
+		monitor.terminoEscritura();
+		System.out.println("fin");
 
 	}
 
-	public float montoRecaudadoPorAlumno(int anio, String ci) throws AlumnosException {
+	@Override
+	public float montoRecaudadoPorAlumno(int anio, String ci) throws RemoteException, AlumnosException {
 
 		float monto = 0;
+		monitor.comienzoLectura();
 		if (alumnos.member(ci)) {
 			Alumno alu = alumnos.find(ci);
 			monto = alu.calcularMontoCobrado(anio);
-
 		} else {
+			monitor.terminoLectura();
 			throw new AlumnosException(Mensajes.MSG_ALUMNO_NO_EXISTE);
 		}
+		monitor.terminoLectura();
 		return monto;
 	}
-	//TODO: ver mensaje para la persistencia
+
 	@Override
 	public void respaldarDatos() throws RemoteException, SistemaException, PersistenciaException {
 
-		System.out.println("paso 2");
-		monitor.comienzoEscritura();
 		try {
-			System.out.println("paso 3");
+			monitor.comienzoEscritura();
 			fachadaPersistencia.respaldarDatos(alumnos, asignaturas);
-		} catch (PersistenciaException e) {
-			throw new PersistenciaException("Ver el mensaje");
+		} catch (PersistenciaException exception) {
+			// TODO: Ver si se pone el monitor
+			throw exception;
+		} finally {
+			monitor.terminoEscritura();
 		}
-		monitor.terminoEscritura();
+
 	}
 
-	//TODO: falta implementar
-	public ArrayList<VOInscripcion> listarEscolaridad(String ci, boolean esCompleta) {
+	// TODO:Falta implemetar
+	@Override
+	public ArrayList<VOInscripcion> listarEscolaridad(String ci, boolean esCompleta) throws RemoteException {
 		return null;
 	}
+
 	// TODO:Tener en cuenta la lista vacia, ver si vale la excepcion
-	public ArrayList<VOEgresado> listarEgresados(boolean esCompleto) throws AlumnosException {
-		try {
-			return this.alumnos.listarEgresados(esCompleto);
-		} catch(AlumnosException e) {
-			throw e;
-		}
-	}
-	// TODO:Creado para prueba BORRAR
-	@Override
-	public int suma(int a, int b) throws RemoteException {
-		// TODO Auto-generated method stub
-		return a + b;
+	public ArrayList<VOEgresado> listarEgresados(boolean esCompleto) {
+		monitor.comienzoLectura();
+		ArrayList<VOEgresado> listado = alumnos.listarEgresados(esCompleto);
+		monitor.terminoLectura();
+		return listado;
 	}
 
 	@Override
-	public void registrarResultado(String ci, int nota, String codigo, int anio) throws AlumnosException, RemoteException {
+	public void registrarResultado(String ci, int nota, String codigo, int anio)
+			throws RemoteException, AlumnosException {
+		monitor.comienzoEscritura();
 		if (alumnos.member(ci)) {
 			Alumno a = alumnos.find(ci);
-			if(a.esInscripto(codigo, anio)) {
+			if (a.esInscripto(codigo, anio)) {
 				a.registrarCalificacion(codigo, nota);
 			} else {
+				monitor.terminoEscritura();
 				throw new AlumnosException(Mensajes.ALUMNO_NO_INSCRIPTO);
 			}
 		} else {
+			monitor.terminoEscritura();
 			throw new AlumnosException(Mensajes.MSG_ALUMNO_NO_EXISTE);
 		}
+		monitor.terminoEscritura();
 	}
 }

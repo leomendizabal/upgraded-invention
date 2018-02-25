@@ -20,6 +20,10 @@ public class Asignatura implements Serializable {
 		this.nombre = nombre;
 		this.descripcion = descripcion;
 	}
+	
+	public Asignatura(VOAsignatura vo) {
+		this(vo.getCodigo(),vo.getNombre(),vo.getDescripcion());
+	}
 
 	public String getCodigo() {
 		return codigo;

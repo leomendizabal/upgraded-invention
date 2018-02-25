@@ -36,21 +36,13 @@ public class Main {
 			as.insert(new Asignatura(key, "Materia", "Descripcion"));
 		}
 
-		try {
 			for (VOAsignatura asig : as.listarAsignaturas()) {
 				System.out.println(String.format(" clave %s", asig.getCodigo()));
 			}
-		}catch (AsignaturasException e) {
-			e.printStackTrace();
-		}
-		
-		ArrayList<VOAlumno> alumnosApellidos;
-		try {
-			alumnosApellidos = diccionario.listarAlumnosApellido("Mendi");
+			
+		ArrayList<VOAlumno> alumnosApellidos = diccionario.listarAlumnosApellido("Mendi");
 			System.out.println(String.format("cantidad de alumnos: %s", alumnosApellidos.size()));
-		}catch(AlumnosException e) {
-			System.out.println(e.getMensaje());
-		}
+	
 
 		Iterator<Alumno> iter = diccionario.values().iterator();
 		while (iter.hasNext()) {

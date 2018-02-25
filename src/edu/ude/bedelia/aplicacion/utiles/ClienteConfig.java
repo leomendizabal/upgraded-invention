@@ -20,7 +20,6 @@ public class ClienteConfig extends Configuracion {
 			objeto = properties.getProperty(Constantes.Cliente.CLAVE_OBJETO);
 
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			System.err.println(e.getMessage());
 		}
 

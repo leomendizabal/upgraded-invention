@@ -24,11 +24,11 @@ public class Cliente {
 			System.out.println("URL ==> " + url);
 			IFachada cuenta = (IFachada) Naming.lookup(url);
 
-			// TODO: no catch Exception
+			
 			ArrayList<VOAlumno> resultado = cuenta.listarAlumnosApellido("Gordan");
 			System.out.println("Alumno: " + resultado.get(0).toString());
 		} catch (Exception e) {
-			e.printStackTrace();
+			System.err.println(e.getMessage());
 		}
 	}
 

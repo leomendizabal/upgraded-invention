@@ -17,17 +17,17 @@ import edu.ude.bedelia.persistencia.excepciones.PersistenciaException;
 
 public interface IFachada extends Remote {
 
-	public void registrarAsignatura(VOAsignatura a) throws AsignaturasException, RemoteException;
+	public void registrarAsignatura(VOAsignatura a) throws RemoteException,AsignaturasException;
 
 	public void registrarAlumno(VOAlumnoCompleto vo) throws RemoteException, AlumnosException;
 
 	public void modificarAlumno(VOAlumnoCompleto a) throws RemoteException, AlumnosException;
 
-	public ArrayList<VOAsignatura> listarAsignaturas() throws AsignaturasException, RemoteException;
+	public ArrayList<VOAsignatura> listarAsignaturas() throws RemoteException;
 	
-	public ArrayList<VOAlumno> listarAlumnosApellido(String apellido) throws AlumnosException, RemoteException;
+	public ArrayList<VOAlumno> listarAlumnosApellido(String apellido) throws RemoteException;
 	
-	public void registrarResultado(String ci, int nota, String codigo, int anio) throws AlumnosException, RemoteException;
+	public void registrarResultado(String ci, int nota, String codigo, int anio) throws RemoteException, AlumnosException;
 	
 	public VOAlumno listarDatosAlumno(String ci) throws RemoteException, AlumnosException;
 
@@ -40,8 +40,6 @@ public interface IFachada extends Remote {
 
 	public ArrayList<VOInscripcion> listarEscolaridad(String ci, boolean esCompleta) throws RemoteException;
 
-	public ArrayList<VOEgresado> listarEgresados(boolean esCompleto) throws AlumnosException, RemoteException;
+	public ArrayList<VOEgresado> listarEgresados(boolean esCompleto) throws RemoteException;
 
-	//TODO: Borrar
-	public int suma(int a, int b) throws RemoteException;
 }
