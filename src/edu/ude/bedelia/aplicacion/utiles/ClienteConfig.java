@@ -8,11 +8,9 @@ import edu.ude.bedelia.persistencia.utiles.Constantes;
 public class ClienteConfig extends Configuracion {
 
 	private static ClienteConfig instance;
-	private static long timeStamp;
 
 	private ClienteConfig() {
 		super();
-
 		try {
 			properties.load(new FileInputStream(Constantes.Cliente.RUTA_CONFIG));
 			ip = properties.getProperty(Constantes.Cliente.CLAVE_IP, Constantes.Cliente.IP_POR_DEFECTO);
@@ -27,23 +25,12 @@ public class ClienteConfig extends Configuracion {
 
 	public static synchronized ClienteConfig getInstance() {
 
-		if (null == instance || seActualizoArchivo(Constantes.Cliente.RUTA_CONFIG)) {
+		if (null == instance) {
 			instance = new ClienteConfig();
 		}
 
 		return instance;
 
-	}
-
-	private static boolean seActualizoArchivo(String path) {
-		boolean seActualizo = false;
-		final long ultimaModificacion = ultimaModificacion(path);
-
-		if (timeStamp != ultimaModificacion) {
-			timeStamp = ultimaModificacion;
-			seActualizo = true;
-		}
-		return seActualizo;
 	}
 
 }

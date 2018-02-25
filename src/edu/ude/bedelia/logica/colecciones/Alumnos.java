@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 import edu.ude.bedelia.logica.entidades.Alumno;
-import edu.ude.bedelia.logica.excepciones.AlumnosException;
-import edu.ude.bedelia.logica.utiles.Mensajes;
 import edu.ude.bedelia.logica.vo.VOAlumno;
 import edu.ude.bedelia.logica.vo.VOEgresado;
 
@@ -17,7 +15,7 @@ public class Alumnos extends DiccionarioTreeMap<String, Alumno> {
 		super();
 	}
 
-	//Genera una lista de alumnos por apellido.
+	// Genera una lista de alumnos por apellido.
 	public ArrayList<VOAlumno> listarAlumnosApellido(String apellido) {
 		Iterator<Alumno> it = this.getIterator();
 		ArrayList<VOAlumno> resultado = new ArrayList<VOAlumno>();
@@ -36,19 +34,19 @@ public class Alumnos extends DiccionarioTreeMap<String, Alumno> {
 	public VOAlumno listarDatosAlumno(String ci) {
 		return this.find(ci).toVO(true);
 	}
-	
+
 	public ArrayList<VOEgresado> listarEgresados(boolean esCompleto) {
 		Iterator<Alumno> it = this.getIterator();
 		ArrayList<VOEgresado> resultado = new ArrayList<VOEgresado>();
 		Alumno current;
-		
-		while(it.hasNext()) {
+
+		while (it.hasNext()) {
 			current = it.next();
-			if(current.esEgresado()) {				
+			if (current.esEgresado()) {
 				resultado.add(current.toVOEgresado(esCompleto));
-			}		
+			}
 		}
-		
+
 		return resultado;
 	}
 }

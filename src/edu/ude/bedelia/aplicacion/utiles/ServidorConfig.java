@@ -8,7 +8,6 @@ import edu.ude.bedelia.persistencia.utiles.Constantes;
 public class ServidorConfig extends Configuracion {
 
 	private static ServidorConfig instance;
-	private static long timeStamp;
 
 	private ServidorConfig() {
 		super();
@@ -27,23 +26,12 @@ public class ServidorConfig extends Configuracion {
 
 	public static synchronized ServidorConfig getInstance() {
 
-		if (null == instance || seActualizoArchivo(Constantes.Servidor.RUTA_CONFIG)) {
+		if (null == instance) {
 			instance = new ServidorConfig();
 		}
 
 		return instance;
 
-	}
-
-	private static boolean seActualizoArchivo(String path) {
-		boolean seActualizo = false;
-		final long ultimaModificacion = ultimaModificacion(path);
-
-		if (timeStamp != ultimaModificacion) {
-			timeStamp = ultimaModificacion;
-			seActualizo = true;
-		}
-		return seActualizo;
 	}
 
 }

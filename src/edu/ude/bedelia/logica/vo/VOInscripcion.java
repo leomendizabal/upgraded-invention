@@ -44,9 +44,10 @@ public class VOInscripcion {
 	public VOAsignatura getAsignatura() {
 		return asignatura;
 	}
-	
+
 	public String toString() {
-		return "Numero: " + this.numero + " Ano: " + this.anio + " Monto base: " + this.montoBase + " Calificacion: " + this.calificacion ;
+		return "Numero: " + this.numero + " Ano: " + this.anio + " Monto base: " + this.montoBase + " Calificacion: "
+				+ this.calificacion;
 	}
 
 }

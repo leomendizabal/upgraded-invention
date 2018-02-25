@@ -21,7 +21,7 @@ public class Respaldo<T1, T2> implements IRespaldo<VOGenerico<T1, T2>> {
 	public Respaldo() throws FileNotFoundException, IOException {
 		super();
 		p.load(new FileInputStream(Constantes.Respaldo.RUTA_CONFIG));
-		this.ruta = p.getProperty(Constantes.Respaldo.CLAVE_RUTA_RESPALDO,Constantes.Respaldo.RUTA_POR_DEFECTO);
+		this.ruta = p.getProperty(Constantes.Respaldo.CLAVE_RUTA_RESPALDO, Constantes.Respaldo.RUTA_POR_DEFECTO);
 	}
 
 	public String getRuta() {
@@ -30,8 +30,8 @@ public class Respaldo<T1, T2> implements IRespaldo<VOGenerico<T1, T2>> {
 
 	@Override
 	public void respaldar(String nombreArchivo, VOGenerico<T1, T2> objeto) throws PersistenciaException {
-		FileOutputStream archivoLocal = null; 
-		ObjectOutputStream buffer = null; 
+		FileOutputStream archivoLocal = null;
+		ObjectOutputStream buffer = null;
 		try {
 			archivoLocal = new FileOutputStream(nombreArchivo);
 			buffer = new ObjectOutputStream(archivoLocal);
@@ -43,11 +43,11 @@ public class Respaldo<T1, T2> implements IRespaldo<VOGenerico<T1, T2>> {
 			throw new PersistenciaException(Constantes.Mensajes.MSG_ERROR_PERSISTENCIA);
 		} finally {
 			Optional<FileOutputStream> chequeoFile = Optional.of(archivoLocal);
-			if(chequeoFile.isPresent()) {
+			if (chequeoFile.isPresent()) {
 				archivoLocal = null;
 			}
 			Optional<ObjectOutputStream> chequeoBuffer = Optional.of(buffer);
-			if(chequeoBuffer.isPresent()) {
+			if (chequeoBuffer.isPresent()) {
 				buffer = null;
 			}
 		}

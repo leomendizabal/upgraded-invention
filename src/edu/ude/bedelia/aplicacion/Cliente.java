@@ -5,7 +5,6 @@ import java.util.ArrayList;
 
 import edu.ude.bedelia.aplicacion.utiles.ClienteConfig;
 import edu.ude.bedelia.aplicacion.utiles.UrlBuilder;
-import edu.ude.bedelia.logica.entidades.Alumno;
 import edu.ude.bedelia.logica.fachada.IFachada;
 import edu.ude.bedelia.logica.vo.VOAlumno;
 
@@ -24,7 +23,6 @@ public class Cliente {
 			System.out.println("URL ==> " + url);
 			IFachada cuenta = (IFachada) Naming.lookup(url);
 
-			
 			ArrayList<VOAlumno> resultado = cuenta.listarAlumnosApellido("Gordan");
 			System.out.println("Alumno: " + resultado.get(0).toString());
 		} catch (Exception e) {

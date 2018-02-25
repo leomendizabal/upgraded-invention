@@ -27,7 +27,7 @@ public final class Constantes {
 	}
 
 	public final class Cliente {
-		
+
 		public final static String RUTA_CONFIG = "config/client_config.properties";
 		public final static String CLAVE_IP = "ipServidor";
 		public final static String CLAVE_PUERTO = "puertoServidor";

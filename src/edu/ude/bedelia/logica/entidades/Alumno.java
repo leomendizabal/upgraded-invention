@@ -2,7 +2,6 @@ package edu.ude.bedelia.logica.entidades;
 
 import java.io.Serializable;
 import java.util.Iterator;
-import java.util.Optional;
 
 import edu.ude.bedelia.logica.colecciones.Inscripciones;
 import edu.ude.bedelia.logica.utiles.Constantes;
@@ -87,7 +86,6 @@ public class Alumno implements Comparable<Alumno>, Serializable {
 		this.email = email;
 	}
 
-	
 	public void setInscripciones(Inscripciones inscripciones) {
 		this.inscripciones = inscripciones;
 	}
@@ -220,7 +218,7 @@ public class Alumno implements Comparable<Alumno>, Serializable {
 			return new VOEgresado(this);
 		}
 	}
-	
+
 	private Float promedioMateria(float valor) {
 		return valor / Constantes.CANTIDAD_MATERIAS * 100;
 	}

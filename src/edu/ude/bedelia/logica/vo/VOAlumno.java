@@ -41,7 +41,7 @@ public class VOAlumno implements Serializable {
 	public TipoAlumno getTipo() {
 		return tipo;
 	}
-	
+
 	public String toString() {
 		return "Ci: " + this.cedula + " nombre: " + this.nombre;
 	}

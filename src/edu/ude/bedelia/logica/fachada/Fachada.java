@@ -4,8 +4,6 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
-import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;
-
 import edu.ude.bedelia.logica.colecciones.Alumnos;
 import edu.ude.bedelia.logica.colecciones.Asignaturas;
 import edu.ude.bedelia.logica.colecciones.Inscripciones;
@@ -16,11 +14,9 @@ import edu.ude.bedelia.logica.entidades.Inscripcion;
 import edu.ude.bedelia.logica.excepciones.AlumnosException;
 import edu.ude.bedelia.logica.excepciones.AsignaturasException;
 import edu.ude.bedelia.logica.excepciones.InscripcionesException;
+import edu.ude.bedelia.logica.excepciones.SistemaException;
 import edu.ude.bedelia.logica.utiles.Helper;
 import edu.ude.bedelia.logica.utiles.Mensajes;
-import edu.ude.bedelia.logica.vo.TipoAlumno;
-import edu.ude.bedelia.logica.utiles.Mensajes;
-import edu.ude.bedelia.logica.excepciones.SistemaException;
 import edu.ude.bedelia.logica.utiles.Monitor;
 import edu.ude.bedelia.logica.vo.VOAlumno;
 import edu.ude.bedelia.logica.vo.VOAlumnoCompleto;
@@ -60,8 +56,8 @@ public class Fachada extends UnicastRemoteObject implements IFachada {
 
 	@Override
 	public void registrarAsignatura(VOAsignatura a) throws RemoteException, AsignaturasException {
-		monitor.comienzoEscritura();		
-		if (asignaturas.pertenece(a.getCodigo())) {				
+		monitor.comienzoEscritura();
+		if (asignaturas.pertenece(a.getCodigo())) {
 			monitor.terminoEscritura();
 			throw new AsignaturasException(Mensajes.MSG_YA_EXISTE_ASIGNATURA);
 		} else {
@@ -89,7 +85,7 @@ public class Fachada extends UnicastRemoteObject implements IFachada {
 		}
 		monitor.terminoEscritura();
 	}
-	
+
 	@Override
 	public void modificarAlumno(VOAlumnoCompleto a) throws RemoteException, AlumnosException {
 
@@ -169,7 +165,7 @@ public class Fachada extends UnicastRemoteObject implements IFachada {
 					}
 				} else {
 					System.out.println("pso");
-					alumno.registrarInscripcion(anio, montoBase, asig);					
+					alumno.registrarInscripcion(anio, montoBase, asig);
 				}
 			} else {
 				monitor.terminoEscritura();
@@ -192,8 +188,8 @@ public class Fachada extends UnicastRemoteObject implements IFachada {
 		if (alumnos.member(ci)) {
 			Alumno alu = alumnos.find(ci);
 			monto = alu.calcularMontoCobrado(anio);
-			
-			if(alu instanceof Becado) {
+
+			if (alu instanceof Becado) {
 				monto = ((Becado) alu).calcularMontoCobrado(anio);
 			}
 		} else {
@@ -221,19 +217,20 @@ public class Fachada extends UnicastRemoteObject implements IFachada {
 
 	// TODO:Falta implemetar
 	@Override
-	public ArrayList<VOInscripcion> listarEscolaridad(String ci, boolean esCompleta) throws AlumnosException, RemoteException {
-		
+	public ArrayList<VOInscripcion> listarEscolaridad(String ci, boolean esCompleta)
+			throws AlumnosException, RemoteException {
+
 		monitor.comienzoLectura();
 		if (alumnos.member(ci)) {
 			ArrayList<VOInscripcion> escolaridad = new ArrayList<VOInscripcion>();
 			Alumno a = alumnos.find(ci);
 			Inscripciones inscripciones = a.getInscripciones();
-			
-			for(Inscripcion i: inscripciones) {
-				if(esCompleta) {
+
+			for (Inscripcion i : inscripciones) {
+				if (esCompleta) {
 					escolaridad.add(i.toVO(true));
 				} else {
-					if(i.getCalificacion() != 0) {
+					if (i.getCalificacion() != 0) {
 						escolaridad.add(i.toVO(true));
 					}
 				}
@@ -243,7 +240,7 @@ public class Fachada extends UnicastRemoteObject implements IFachada {
 		} else {
 			monitor.terminoLectura();
 			throw new AlumnosException(Mensajes.MSG_ALUMNO_NO_EXISTE);
-		}		
+		}
 	}
 
 	public ArrayList<VOEgresado> listarEgresados(boolean esCompleto) {
@@ -261,9 +258,9 @@ public class Fachada extends UnicastRemoteObject implements IFachada {
 			Alumno a = alumnos.find(ci);
 			if (a.esInscripto(codigo, anio)) {
 				if (Helper.calificacionEsValida(nota)) {
-					    a.registrarCalificacion(codigo, nota);
-				}else {
-					    throw new AlumnosException(Mensajes.MSG_CALIF_INVALIDA);
+					a.registrarCalificacion(codigo, nota);
+				} else {
+					throw new AlumnosException(Mensajes.MSG_CALIF_INVALIDA);
 				}
 			} else {
 				monitor.terminoEscritura();
@@ -275,12 +272,12 @@ public class Fachada extends UnicastRemoteObject implements IFachada {
 		}
 		monitor.terminoEscritura();
 	}
-	
+
 	public void mockearDatos() throws RemoteException {
 		this.alumnos = DataClass.ALUMNOS;
 		this.asignaturas = DataClass.ASIGNATURA;
 	}
-	
+
 	public void levantarRespaldo() throws RemoteException {
 		if (fachadaPersistencia.existeRespaldo()) {
 			try {
@@ -296,5 +293,5 @@ public class Fachada extends UnicastRemoteObject implements IFachada {
 			this.asignaturas = new Asignaturas(0);
 		}
 	}
-	
+
 }

@@ -32,7 +32,7 @@ public class VOAsignatura {
 	public String getDescripcion() {
 		return descripcion;
 	}
-	
+
 	public String toString() {
 		return "Codigo: " + this.codigo + " Nombre: " + this.nombre + " Nombre: " + this.descripcion;
 	}

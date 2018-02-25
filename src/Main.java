@@ -8,8 +8,6 @@ import edu.ude.bedelia.logica.colecciones.Alumnos;
 import edu.ude.bedelia.logica.colecciones.Asignaturas;
 import edu.ude.bedelia.logica.entidades.Alumno;
 import edu.ude.bedelia.logica.entidades.Asignatura;
-import edu.ude.bedelia.logica.excepciones.AlumnosException;
-import edu.ude.bedelia.logica.excepciones.AsignaturasException;
 import edu.ude.bedelia.logica.utiles.Constantes;
 import edu.ude.bedelia.logica.vo.VOAlumno;
 import edu.ude.bedelia.logica.vo.VOAsignatura;
@@ -36,13 +34,12 @@ public class Main {
 			as.insert(new Asignatura(key, "Materia", "Descripcion"));
 		}
 
-			for (VOAsignatura asig : as.listarAsignaturas()) {
-				System.out.println(String.format(" clave %s", asig.getCodigo()));
-			}
-			
+		for (VOAsignatura asig : as.listarAsignaturas()) {
+			System.out.println(String.format(" clave %s", asig.getCodigo()));
+		}
+
 		ArrayList<VOAlumno> alumnosApellidos = diccionario.listarAlumnosApellido("Mendi");
-			System.out.println(String.format("cantidad de alumnos: %s", alumnosApellidos.size()));
-	
+		System.out.println(String.format("cantidad de alumnos: %s", alumnosApellidos.size()));
 
 		Iterator<Alumno> iter = diccionario.values().iterator();
 		while (iter.hasNext()) {

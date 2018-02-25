@@ -40,9 +40,4 @@ public abstract class Configuracion {
 		return properties;
 	}
 
-	protected static long ultimaModificacion(final String nombreArch) {
-		File filePropertie = new File(nombreArch);
-		return filePropertie.lastModified();
-	}
-
 }

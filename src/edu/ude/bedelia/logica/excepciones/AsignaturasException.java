@@ -2,7 +2,6 @@ package edu.ude.bedelia.logica.excepciones;
 
 public class AsignaturasException extends Exception {
 
-	
 	/**
 	 * 
 	 */
@@ -11,6 +10,5 @@ public class AsignaturasException extends Exception {
 	public AsignaturasException(String msg) {
 		super(msg);
 	}
-
 
 }

@@ -5,7 +5,7 @@ import java.util.Iterator;
 import java.util.Set;
 
 public interface IDiccionario<K, T> {
-	
+
 	public boolean member(K clave);
 
 	public T find(String clave);

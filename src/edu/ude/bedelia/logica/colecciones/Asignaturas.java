@@ -2,8 +2,6 @@ package edu.ude.bedelia.logica.colecciones;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.Optional;
-import java.util.function.Predicate;
 
 import edu.ude.bedelia.logica.entidades.Asignatura;
 import edu.ude.bedelia.logica.excepciones.AsignaturasException;
@@ -71,14 +69,14 @@ public class Asignaturas extends SecuenciaArrayList<Asignatura> {
 			final Asignatura asignaturaActual = secuencia.get(indice);
 			if (asignaturaActual.getCodigo().equals(codigo)) {
 				existe = true;
-			}else {
+			} else {
 				indice += 1;
 			}
 		}
 		if (existe) {
 			return secuencia.get(indice);
 		} else {
-			throw new AsignaturasException(Mensajes.mensaje(Mensajes.MSG_ASIGNATURA_NO_EXISTE,codigo));
+			throw new AsignaturasException(Mensajes.mensaje(Mensajes.MSG_ASIGNATURA_NO_EXISTE, codigo));
 		}
 	}
 

@@ -4,7 +4,6 @@ import edu.ude.bedelia.logica.vo.VOBecadoCompleto;
 
 public class Becado extends Alumno {
 
-	
 	/**
 	 * 
 	 */
@@ -18,7 +17,7 @@ public class Becado extends Alumno {
 		this.porcentaje = porcentaje;
 		this.descripcion = descripcion;
 	}
-	
+
 	public Becado(VOBecadoCompleto vo) {
 		super(vo);
 		this.porcentaje = vo.getPorcentaje();
@@ -49,7 +48,7 @@ public class Becado extends Alumno {
 	private float aplicarPocentaje(float monto) {
 		return (monto * this.porcentaje) / 100;
 	}
-	
+
 	public String toString() {
 		return (super.toString() + "\n Porcentaje:" + this.porcentaje + "\n Raz�n de beca:" + this.descripcion);
 	}
