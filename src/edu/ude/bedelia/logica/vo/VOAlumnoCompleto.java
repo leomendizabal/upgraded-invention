@@ -41,4 +41,8 @@ public class VOAlumnoCompleto extends VOAlumno {
 	public float getMonto() {
 		return monto;
 	}
+	
+	public String toString() {
+		return super.toString() + " Domicilio: " + this.domicilio + " Telefono: " + this.telefono + " Email: " + this.email + " Monto: "+this.monto;
+	}
 }

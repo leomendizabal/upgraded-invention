@@ -38,8 +38,11 @@ public interface IFachada extends Remote {
 
 	public void respaldarDatos() throws RemoteException, SistemaException, PersistenciaException;
 
-	public ArrayList<VOInscripcion> listarEscolaridad(String ci, boolean esCompleta) throws RemoteException;
+	public ArrayList<VOInscripcion> listarEscolaridad(String ci, boolean esCompleta) throws AlumnosException, RemoteException;
 
 	public ArrayList<VOEgresado> listarEgresados(boolean esCompleto) throws RemoteException;
 
+	public void mockearDatos() throws RemoteException;
+	
+	public void levantarRespaldo() throws RemoteException;
 }
