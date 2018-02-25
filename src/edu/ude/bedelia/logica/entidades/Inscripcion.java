@@ -89,5 +89,14 @@ public class Inscripcion implements Serializable {
 			return new VOInscripcionCompleta(this);
 		}
 	}
+	
+	public boolean calificacionEsValida(int calif) {
+		boolean esValida=false;
+		if (calif>=0 && calif<=12) {
+			esValida=true;
+		}
+		
+		return esValida;
+	}
 
 }
