@@ -16,6 +16,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import edu.ude.bedelia.presentacion.panel.JPanelListado;
+import edu.ude.bedelia.presentacion.panel.JPanelListadoAlumnos;
 import edu.ude.bedelia.presentacion.panel.JPanelRegistroAlumno;
 import edu.ude.bedelia.presentacion.panel.JPanelRegistroAsignatura;
 
@@ -24,7 +25,8 @@ public class JFramePrincipal extends JFrame implements ActionListener {
 	private JPanel contentPane;
 	private JPanel jPanelRegistrarAsignatura = new JPanelRegistroAsignatura();
 	private JPanel jPanelRegistrarAlumno = new JPanelRegistroAlumno();
-	private JPanel jPanelListado = new JPanelListado();
+	//private JPanel jPanelListado = new JPanelListado();
+	private JPanelListado listadoAlumnos = new JPanelListadoAlumnos();
 	private JMenuBar menuBar = new JMenuBar();
 	
 	JPanel visiblePanel = new JPanel(); // is the default, but showing it set
@@ -75,7 +77,7 @@ public class JFramePrincipal extends JFrame implements ActionListener {
 		// custom panel
 		jPanelRegistrarAlumno.setPreferredSize(new Dimension(visiblePanel.getWidth(), visiblePanel.getHeight()));
 		jPanelRegistrarAsignatura.setPreferredSize(new Dimension(visiblePanel.getWidth(), visiblePanel.getHeight()));
-		jPanelListado.setPreferredSize(new Dimension(visiblePanel.getWidth(), visiblePanel.getHeight()));
+		listadoAlumnos.setPreferredSize(new Dimension(visiblePanel.getWidth(), visiblePanel.getHeight()));
 		// visiblePanel.removeAll();
 		// visiblePanel.add(childPanel3, gbc);
 		// visiblePanel.revalidate();
@@ -85,7 +87,7 @@ public class JFramePrincipal extends JFrame implements ActionListener {
 		visiblePanel.setLayout(new CardLayout(0, 0));
 		visiblePanel.add(jPanelRegistrarAlumno, "TAG1");
 		visiblePanel.add(jPanelRegistrarAsignatura, "TAG2");
-		visiblePanel.add(jPanelListado, "TAG3");
+		visiblePanel.add(listadoAlumnos, "TAG3");
 
 		setSize(717, 563);
 		setResizable(false);

@@ -31,59 +31,18 @@ public class JPanelListado extends JPanel {
 		table = new JTable();
 		//cargarTabla(table);
 		
-		//obtengo la info para llenar la tabla de asignaturas
-		ArrayList<VOAsignatura> sourceAsignaturas = new ArrayList<VOAsignatura>();
-		Iterator<Asignatura> it = DataClass.ASIGNATURA.iterator();
-		while(it.hasNext()) {
-			VOAsignatura a = it.next().toVO();
-			sourceAsignaturas.add(a);
-		}
-		//fin obtener info para llenar tabla
-		
-		//obtengo la info para llenar la tabla de alumnos
-		ArrayList<VOAlumno> sourceAlumnos = new ArrayList<VOAlumno>();
-		Iterator<Alumno> iter = DataClass.ALUMNOS.getIterator();
-		while(iter.hasNext()) {
-			VOAlumno a = iter.next().toVO(false);
-			sourceAlumnos.add(a);
-		}
-		//fin obtener info para llenar tabla
-				
-		cargarTablaGenerica(table, sourceAsignaturas);
-		
 		table.getTableHeader().setReorderingAllowed(false);
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
 
-		JScrollPane scrollPane = new JScrollPane(table);
-		add(scrollPane, BorderLayout.CENTER);
+		//JScrollPane scrollPane = new JScrollPane(table);
+		//add(scrollPane, BorderLayout.CENTER);
 
-	}
-
-	public void cargarTabla(JTable tabla) {
-		DefaultTableModel modeloTabla = new DefaultTableModel();
-		tabla.setModel(modeloTabla);
-
-		modeloTabla.addColumn("Codigo");
-		modeloTabla.addColumn("Nombre");
-		modeloTabla.addColumn("Descrpcion");
-
-		Object[] columna = new Object[3];
-
-		Iterator<Asignatura> it = DataClass.ASIGNATURA.iterator();
-		while (it.hasNext()) {
-			Asignatura item = it.next();
-			columna[0] = item.getCodigo();
-			columna[1] = item.getNombre();
-			columna[2] = item.getDescripcion();
-
-			modeloTabla.addRow(columna);
-		}
 	}
 	
 	//precondicion: el modelo no puede estar vacio
-	public <T> void cargarTablaGenerica(JTable tabla, ArrayList<T> modelo) {
+	public <T> JTable cargarTablaGenerica(ArrayList<T> modelo) {
 		DefaultTableModel modeloTabla = new DefaultTableModel();
-		tabla.setModel(modeloTabla);
+		table.setModel(modeloTabla);
 		
 		//guardo el primer objeto de la coleccion
 		T object = modelo.get(0);									
@@ -131,5 +90,6 @@ public class JPanelListado extends JPanel {
 			modeloTabla.addRow(fila);
 		}
 		
+		return table;
 	}
 }
