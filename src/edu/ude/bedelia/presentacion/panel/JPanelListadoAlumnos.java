@@ -11,6 +11,7 @@ import edu.ude.bedelia.logica.entidades.Alumno;
 import edu.ude.bedelia.logica.entidades.Asignatura;
 import edu.ude.bedelia.logica.vo.VOAlumno;
 import edu.ude.bedelia.logica.vo.VOAsignatura;
+import edu.ude.bedelia.presentacion.controladores.ControladorListadoAlumnos;
 import edu.ude.bedelia.test.DataClass;
 
 import javax.swing.JButton;
@@ -19,6 +20,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
+import javax.swing.JLabel;
 
 public class JPanelListadoAlumnos extends JPanelListado {
 	private JPanel panel;
@@ -30,6 +32,8 @@ public class JPanelListadoAlumnos extends JPanelListado {
 	private JTextField txtInfo;
 	private JButton btnNewButton;
 	private boolean listarEgresado = true; 
+	private ControladorListadoAlumnos controlador;
+	private JLabel msg;
 	
 	private void agregarComponentes() {
 		panel = new JPanel();
@@ -70,6 +74,10 @@ public class JPanelListadoAlumnos extends JPanelListado {
 		btnNewButton = new JButton("Buscar");
 		btnNewButton.setBounds(11, 155, 132, 29);
 		panel.add(btnNewButton);
+		
+		msg = new JLabel("");
+		msg.setBounds(15, 225, 600, 20);
+		msg.setVisible(false);
 	}
 	
 	private void registrarEventListeners() {
@@ -93,23 +101,28 @@ public class JPanelListadoAlumnos extends JPanelListado {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//obtengo la info para llenar la tabla de asignaturas
-				ArrayList<VOAsignatura> sourceAsignaturas = new ArrayList<VOAsignatura>();
+				/*ArrayList<VOAsignatura> sourceAsignaturas = new ArrayList<VOAsignatura>();
 				Iterator<Asignatura> it = DataClass.ASIGNATURA.iterator();
 				while(it.hasNext()) {
 					VOAsignatura a = it.next().toVO();
 					sourceAsignaturas.add(a);
-				}
+				}*/
 				//fin obtener info para llenar tabla
 				
 				//obtengo la info para llenar la tabla de alumnos
-				ArrayList<VOAlumno> sourceAlumnos = new ArrayList<VOAlumno>();
-				Iterator<Alumno> iter = DataClass.ALUMNOS.getIterator();
-				while(iter.hasNext()) {
-					VOAlumno a = iter.next().toVO(false);
-					sourceAlumnos.add(a);
-				}
-				tableContainer.setViewportView(cargarTablaGenerica(sourceAlumnos));
-				panel.add(tableContainer);
+				String apellido = txtInfo.getText();
+				ArrayList<VOAlumno> sourceAlumnos = controlador.getAlumnosApellido(apellido);
+				if(sourceAlumnos.size() > 0) {
+					tableContainer.setViewportView(cargarTablaGenerica(sourceAlumnos));
+					panel.add(tableContainer);
+					msg.setVisible(false);
+					tableContainer.setVisible(true);	
+				} else {					
+					msg.setText("No existen alumnos con ese apellido");
+					panel.add(msg);
+					msg.setVisible(true);
+					tableContainer.setVisible(false);					
+				}				
 			}
 		});
 	}
@@ -118,5 +131,6 @@ public class JPanelListadoAlumnos extends JPanelListado {
 		super();
 		agregarComponentes();
 		registrarEventListeners();
+		controlador = new ControladorListadoAlumnos(this);
 	}
 }
