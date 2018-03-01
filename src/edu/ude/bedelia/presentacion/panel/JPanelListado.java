@@ -49,7 +49,7 @@ public class JPanelListado extends JPanel {
 		}
 		//fin obtener info para llenar tabla
 				
-		cargarTablaGenerica(table, sourceAlumnos);
+		cargarTablaGenerica(table, sourceAsignaturas);
 		
 		table.getTableHeader().setReorderingAllowed(false);
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
@@ -97,7 +97,9 @@ public class JPanelListado extends JPanel {
 		for (Field field : fields) {
 		    field.setAccessible(true);
 		    String name = field.getName();
-		    modeloTabla.addColumn(name);
+		    if(!name.equals("serialVersionUID")) {
+		    	modeloTabla.addColumn(name);
+		    }
 		}
 		
 		//este objeto representa una entrada en la tabla
@@ -111,17 +113,19 @@ public class JPanelListado extends JPanel {
 			//para cada atributo del elemento
 			for(Field f: fields) {
 				String propertyName = f.getName();
-				String methodName = "get" + propertyName.substring(0, 1).toUpperCase() + propertyName.substring(1, propertyName.length());				
-				Class itemClass = item.getClass();				
+				if(!propertyName.equals("serialVersionUID")) {
+					String methodName = "get" + propertyName.substring(0, 1).toUpperCase() + propertyName.substring(1, propertyName.length());				
+					Class itemClass = item.getClass();				
 
-				try {
-					Method method = itemClass.getMethod(methodName, null);					
-					fila[i] = method.invoke(item, null);					
-					i++;
-				} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+					try {
+						Method method = itemClass.getMethod(methodName, null);					
+						fila[i] = method.invoke(item, null);					
+						i++;
+					} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}				
 			}
 			
 			modeloTabla.addRow(fila);
