@@ -19,12 +19,16 @@ import edu.ude.bedelia.presentacion.panel.JPanelListado;
 import edu.ude.bedelia.presentacion.panel.JPanelListadoAlumnos;
 import edu.ude.bedelia.presentacion.panel.JPanelRegistroAlumno;
 import edu.ude.bedelia.presentacion.panel.JPanelRegistroAsignatura;
+import edu.ude.bedelia.presentacion.panel.JPanelInscribirAsignatura;
+import edu.ude.bedelia.presentacion.panel.JpanelMontoRecaudado;
 
 public class JFramePrincipal extends JFrame implements ActionListener {
 
 	private JPanel contentPane;
 	private JPanel jPanelRegistrarAsignatura = new JPanelRegistroAsignatura();
+	private JPanel jPanelInscribirAsignatura = new JPanelInscribirAsignatura();
 	private JPanel jPanelRegistrarAlumno = new JPanelRegistroAlumno();
+	private JPanel jPanelMontoRecaudado = new JpanelMontoRecaudado();
 	//private JPanel jPanelListado = new JPanelListado();
 	private JPanelListado listadoAlumnos = new JPanelListadoAlumnos();
 	private JMenuBar menuBar = new JMenuBar();
@@ -78,6 +82,8 @@ public class JFramePrincipal extends JFrame implements ActionListener {
 		jPanelRegistrarAlumno.setPreferredSize(new Dimension(visiblePanel.getWidth(), visiblePanel.getHeight()));
 		jPanelRegistrarAsignatura.setPreferredSize(new Dimension(visiblePanel.getWidth(), visiblePanel.getHeight()));
 		listadoAlumnos.setPreferredSize(new Dimension(visiblePanel.getWidth(), visiblePanel.getHeight()));
+		jPanelInscribirAsignatura.setPreferredSize(new Dimension(visiblePanel.getWidth(), visiblePanel.getHeight()));
+		jPanelMontoRecaudado.setPreferredSize(new Dimension(visiblePanel.getWidth(), visiblePanel.getHeight()));
 		// visiblePanel.removeAll();
 		// visiblePanel.add(childPanel3, gbc);
 		// visiblePanel.revalidate();
@@ -88,6 +94,8 @@ public class JFramePrincipal extends JFrame implements ActionListener {
 		visiblePanel.add(jPanelRegistrarAlumno, "TAG1");
 		visiblePanel.add(jPanelRegistrarAsignatura, "TAG2");
 		visiblePanel.add(listadoAlumnos, "TAG3");
+		visiblePanel.add(jPanelInscribirAsignatura, "TAG4");
+		visiblePanel.add(jPanelMontoRecaudado, "TAG5");
 
 		setSize(717, 563);
 		setResizable(false);
@@ -148,6 +156,16 @@ public class JFramePrincipal extends JFrame implements ActionListener {
 			}
 		});
 		
+		menuItemInscribirAsignatura.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				CardLayout cardLayout = (CardLayout) visiblePanel.getLayout();
+				cardLayout.show(visiblePanel, "TAG4");
+			}
+		});
+		
+		
 		topicoAsignaturas.add(menuItemRegistrarAsignatura);
 		topicoAsignaturas.add(menuItemInscribirAsignatura);
 		topicoAsignaturas.add(menuItemListarAsignatura);
@@ -160,13 +178,34 @@ public class JFramePrincipal extends JFrame implements ActionListener {
 		
 		JMenuItem menuItemMontoRecaudadoInscripcion = new JMenuItem("Monto recaudado");
 		topicoInscripciones.add(menuItemMontoRecaudadoInscripcion);
+		
+		
+		menuItemMontoRecaudadoInscripcion.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				CardLayout cardLayout = (CardLayout) visiblePanel.getLayout();
+				cardLayout.show(visiblePanel, "TAG5");
+			}
+		});
 	}
+	
+	
+	private void configurarMenuRespaldo() {
+		JMenu topicoRespaldo = new JMenu("Datos");
+		menuBar.add(topicoRespaldo);
+		
+		JMenuItem menuItemMontoRecaudadoInscripcion = new JMenuItem("Respaldar");
+		topicoRespaldo.add(menuItemMontoRecaudadoInscripcion);
+	}
+	
 	
 	private void initMenuBar() {
 		
 		this.configurarMenuAlumnos();
 		this.configurarMenuAsignaturas();
 		this.configurarMenuInscripciones();
+		this.configurarMenuRespaldo();
 
 		contentPane.add(menuBar, BorderLayout.NORTH);
 	}
