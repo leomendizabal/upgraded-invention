@@ -44,6 +44,7 @@ public class Fachada extends UnicastRemoteObject implements IFachada {
 		this.fachadaPersistencia = FachadaPersistencia.getInstance();
 		monitor = new Monitor();
 		this.levantarRespaldo();
+		this.mockearDatos();
 	}
 
 	public static Fachada getInstancia() throws RemoteException {
@@ -116,6 +117,7 @@ public class Fachada extends UnicastRemoteObject implements IFachada {
 	public ArrayList<VOAlumno> listarAlumnosApellido(String apellido) throws RemoteException {
 		monitor.comienzoLectura();
 		ArrayList<VOAlumno> listado = alumnos.listarAlumnosApellido(apellido);
+		
 		monitor.terminoLectura();
 		return listado;
 	}
@@ -156,7 +158,7 @@ public class Fachada extends UnicastRemoteObject implements IFachada {
 							throw new InscripcionesException(Mensajes.MSG_ALUMNO_YA_ESTA_INSCRIPTO_ASIGANTURA);
 						} else {
 							if (alumno.getInscripciones().anioLectivoMayorIgualUltimaInscripcion()) {
-								alumno.registrarInscripcion(anio, montoBase, asig);
+								alumno.registrarInscripcion(anio, montoBase, asig);								
 							} else {
 								monitor.terminoEscritura();
 								throw new InscripcionesException(Mensajes.MSG_ANO_NO_COINCIDE_CON_ACTUAL);
@@ -164,7 +166,6 @@ public class Fachada extends UnicastRemoteObject implements IFachada {
 						}
 					}
 				} else {
-					System.out.println("pso");
 					alumno.registrarInscripcion(anio, montoBase, asig);
 				}
 			} else {
@@ -176,8 +177,6 @@ public class Fachada extends UnicastRemoteObject implements IFachada {
 			throw new AlumnosException(Mensajes.MSG_ALUMNO_NO_EXISTE);
 		}
 		monitor.terminoEscritura();
-		System.out.println("fin");
-
 	}
 
 	@Override
@@ -256,7 +255,7 @@ public class Fachada extends UnicastRemoteObject implements IFachada {
 		monitor.comienzoEscritura();
 		if (alumnos.member(ci)) {
 			Alumno a = alumnos.find(ci);
-			if (a.esInscripto(codigo, anio)) {
+			if (a.esInscripto(codigo, anio) && !a.asignaturaCalificada(codigo, anio)) {
 				if (Helper.calificacionEsValida(nota)) {
 					a.registrarCalificacion(codigo, nota);
 				} else {
@@ -274,7 +273,7 @@ public class Fachada extends UnicastRemoteObject implements IFachada {
 	}
 
 	public void mockearDatos() throws RemoteException {
-		this.alumnos = DataClass.ALUMNOS;
+		//this.alumnos = DataClass.ALUMNOS;
 		this.asignaturas = DataClass.ASIGNATURA;
 	}
 

@@ -27,5 +27,8 @@ public class VOEgresadoCompleto extends VOEgresado {
 	public int getPromedioAprobaciones() {
 		return promedioAprobaciones;
 	}
-
+    public String toString () {
+    	
+    	return super.toString() + " Promedio total: " + this.promedioTotal + " Promedio aprobaciones: " + this.promedioAprobaciones + "%";
+    }
 }

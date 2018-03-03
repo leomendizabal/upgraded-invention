@@ -1,8 +1,10 @@
 package edu.ude.bedelia.logica.vo;
 
+import java.io.Serializable;
+
 import edu.ude.bedelia.logica.entidades.Inscripcion;
 
-public class VOInscripcion {
+public class VOInscripcion implements Serializable {
 
 	private Integer numero;
 	private int anio;

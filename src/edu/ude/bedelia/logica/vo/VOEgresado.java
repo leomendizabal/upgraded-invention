@@ -32,4 +32,8 @@ public class VOEgresado {
 		return apellido;
 	}
 
+    public String toString () {
+    	
+    	return " Cedula: " + this.cedula + " Nombre: " + this.nombre + " Apellido:" + this.apellido;
+    }
 }

@@ -63,14 +63,11 @@ public class Inscripciones extends SecuenciaArrayList<Inscripcion> {
 	}
 
 	public boolean anioLectivoMayorIgualUltimaInscripcion() {
-		boolean mayorIgual = false;
+		boolean mayorIgual = true;
 		int cantidad = secuencia.size();
-		if (!(cantidad > 0)) {
+		if (cantidad > 0) {
 			Inscripcion ins = secuencia.get(cantidad - 1);
-			if (ins.esAnioMayorIgualActual()) {
-				mayorIgual = true;
-			}
-
+			mayorIgual = ins.esAnioMayorIgualActual();
 		}
 
 		return mayorIgual;

@@ -105,7 +105,7 @@ public class Alumno implements Comparable<Alumno>, Serializable {
 
 		while (iterador.hasNext() && !estaAprobada) {
 			inscripcion = iterador.next();
-			if (inscripcion.getAsignatura().getCodigo() == codigo) {
+			if (inscripcion.getAsignatura().getCodigo().equals(codigo)) {
 				estaAprobada = inscripcion.getCalificacion() >= Constantes.NOTA_MINIMA_APROBACION;
 			}
 		}
@@ -120,7 +120,7 @@ public class Alumno implements Comparable<Alumno>, Serializable {
 
 		while (iterador.hasNext() && !estaInscripto) {
 			inscripcion = iterador.next();
-			if (inscripcion.getAsignatura().getCodigo() == codigo) {
+			if (inscripcion.getAsignatura().getCodigo().equals(codigo)) {
 				estaInscripto = inscripcion.getAnio() == anio;
 			}
 		}
@@ -141,7 +141,7 @@ public class Alumno implements Comparable<Alumno>, Serializable {
 
 		while (iterador.hasNext() && !esMateria) {
 			inscripcion = iterador.next();
-			if (inscripcion.getAsignatura().getCodigo() == codigo) {
+			if (inscripcion.getAsignatura().getCodigo().equals(codigo)) {
 				esMateria = true;
 				inscripcion.setCalificacion(calificacion);
 			}
@@ -209,8 +209,8 @@ public class Alumno implements Comparable<Alumno>, Serializable {
 			totalCursadas += 1;
 		}
 
-		notaPromedio = promedioMateria(totalNotas);
-		promedioAprobaciones = promedioMateria(totalCursadas).intValue();
+		notaPromedio = totalNotas / totalCursadas;
+		promedioAprobaciones = Constantes.CANTIDAD_MATERIAS / totalCursadas * 100;
 
 		if (esCompleto) {
 			return new VOEgresadoCompleto(this, notaPromedio, promedioAprobaciones);
@@ -218,9 +218,22 @@ public class Alumno implements Comparable<Alumno>, Serializable {
 			return new VOEgresado(this);
 		}
 	}
-
-	private Float promedioMateria(float valor) {
-		return valor / Constantes.CANTIDAD_MATERIAS * 100;
+	
+	public boolean asignaturaCalificada(String codigoAsignatura, int anio) {
+		Iterator<Inscripcion> iter = this.inscripciones.iterator();
+		Inscripcion i;
+		boolean estaInscripto = false;
+		boolean estaCalificada = false;
+		
+		while (iter.hasNext() && !estaInscripto) {
+			i = iter.next();
+			if (i.getAsignatura().getCodigo().equals(codigoAsignatura)) {
+				estaInscripto = i.getAnio() == anio;
+				estaCalificada = i.getCalificacion() != 0;
+			}
+		}
+		
+		return estaCalificada;
 	}
 
 }
