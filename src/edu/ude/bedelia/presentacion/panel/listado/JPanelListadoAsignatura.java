@@ -1,5 +1,6 @@
 package edu.ude.bedelia.presentacion.panel.listado;
 
+import java.awt.BorderLayout;
 import java.awt.Graphics;
 
 import javax.swing.table.AbstractTableModel;
@@ -19,6 +20,10 @@ public class JPanelListadoAsignatura extends JPanelTablaGenerico implements ICar
 	 */
 	public JPanelListadoAsignatura() {
 		super();
+		contentPanel.remove(jPanelFiltro);
+		contentPanel.revalidate();
+		contentPanel.repaint();
+
 		ControlladorListadoAsignatura.getInstancia(this).listar();
 	}
 	

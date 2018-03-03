@@ -6,7 +6,7 @@ import edu.ude.bedelia.logica.excepciones.AsignaturasException;
 import edu.ude.bedelia.logica.vo.VOAsignatura;
 import edu.ude.bedelia.presentacion.panel.listener.IMensaje;
 
-public class ControlladorAsignaturas extends Controllador implements Controllador.IRegistrar{
+public class ControlladorAsignaturas extends Controllador implements Controllador.IRegistrar {
 
 	private static ControlladorAsignaturas instancia;
 	private IMensaje listener;
@@ -35,7 +35,5 @@ public class ControlladorAsignaturas extends Controllador implements Controllado
 		}
 
 	}
-
-
 
 }

@@ -20,5 +20,9 @@ public abstract class Controllador {
 	public interface IListar {
 		public void listar(String... argumentos);
 	}
+	
+	public interface IModificar {
+		public void modificar(String... argumentos);
+	}
 
 }

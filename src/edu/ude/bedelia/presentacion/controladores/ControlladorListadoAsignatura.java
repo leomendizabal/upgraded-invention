@@ -31,6 +31,8 @@ public class ControlladorListadoAsignatura extends Controllador implements Contr
 			if (fachada != null) {
 				List<VOAsignatura> resultado = fachada.listarAsignaturas();
 				listener.cargarTabla(new AsignaturaModel(resultado, VOAsignatura.attr));
+			} else {
+				listener.mostrarError("Error", "tema de conexion");
 			}
 		} catch (RemoteException e) {
 			// TODO colocar error amigables
