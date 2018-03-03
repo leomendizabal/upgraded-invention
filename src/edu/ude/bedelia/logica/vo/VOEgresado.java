@@ -39,4 +39,8 @@ public class VOEgresado implements Serializable {
 		return apellido;
 	}
 
+    public String toString () {
+    	
+    	return " Cedula: " + this.cedula + " Nombre: " + this.nombre + " Apellido:" + this.apellido;
+    }
 }

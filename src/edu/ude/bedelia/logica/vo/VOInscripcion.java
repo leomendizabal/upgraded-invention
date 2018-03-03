@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 import edu.ude.bedelia.logica.entidades.Inscripcion;
 
-public class VOInscripcion implements Serializable{
+public class VOInscripcion implements Serializable {
 
 	/**
 	 * 

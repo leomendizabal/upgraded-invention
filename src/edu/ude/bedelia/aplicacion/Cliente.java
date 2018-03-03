@@ -21,10 +21,10 @@ public class Cliente {
 
 			String url = UrlBuilder.buildUrl(ip, Integer.parseInt(puerto), objeto);
 			System.out.println("URL ==> " + url);
-			IFachada cuenta = (IFachada) Naming.lookup(url);
+			IFachada fachada = (IFachada) Naming.lookup(url);
 
-			ArrayList<VOAlumno> resultado = cuenta.listarAlumnosApellido("Gordan");
-			System.out.println("Alumno: " + resultado.get(0).toString());
+			TestMain.correrPruebas(fachada);
+			
 		} catch (Exception e) {
 			System.err.println(e.getMessage());
 		}

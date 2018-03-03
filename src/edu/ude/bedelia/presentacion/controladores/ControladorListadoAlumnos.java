@@ -38,6 +38,7 @@ public class ControladorListadoAlumnos {
 		
 		try {
 			resultado = fachada.listarAlumnosApellido(apellido);
+			System.out.println("resultado: "+resultado.size());
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
