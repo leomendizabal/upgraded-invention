@@ -17,6 +17,7 @@ import javax.swing.border.EmptyBorder;
 
 import edu.ude.bedelia.presentacion.panel.JPanelListado;
 import edu.ude.bedelia.presentacion.panel.JPanelListadoAlumnos;
+import edu.ude.bedelia.presentacion.panel.JPanelListadoAsignatura;
 import edu.ude.bedelia.presentacion.panel.JPanelRegistroAlumno;
 import edu.ude.bedelia.presentacion.panel.JPanelRegistroAsignatura;
 
@@ -25,27 +26,11 @@ public class JFramePrincipal extends JFrame implements ActionListener {
 	private JPanel contentPane;
 	private JPanel jPanelRegistrarAsignatura = new JPanelRegistroAsignatura();
 	private JPanel jPanelRegistrarAlumno = new JPanelRegistroAlumno();
-	//private JPanel jPanelListado = new JPanelListado();
 	private JPanelListado listadoAlumnos = new JPanelListadoAlumnos();
+	private JPanelListadoAsignatura listadoAsignatura = new JPanelListadoAsignatura();
 	private JMenuBar menuBar = new JMenuBar();
-	
-	JPanel visiblePanel = new JPanel(); // is the default, but showing it set
 
-	/**
-	 * Launch the application.
-	 */
-	// public static void main(String[] args) {
-	// EventQueue.invokeLater(new Runnable() {
-	// public void run() {
-	// try {
-	// FrmPrincipal frame = new FrmPrincipal();
-	// frame.setVisible(true);
-	// } catch (Exception e) {
-	// e.printStackTrace();
-	// }
-	// }
-	// });
-	// }
+	JPanel visiblePanel = new JPanel(); // is the default, but showing it set
 
 	/**
 	 * Create the frame.
@@ -78,16 +63,13 @@ public class JFramePrincipal extends JFrame implements ActionListener {
 		jPanelRegistrarAlumno.setPreferredSize(new Dimension(visiblePanel.getWidth(), visiblePanel.getHeight()));
 		jPanelRegistrarAsignatura.setPreferredSize(new Dimension(visiblePanel.getWidth(), visiblePanel.getHeight()));
 		listadoAlumnos.setPreferredSize(new Dimension(visiblePanel.getWidth(), visiblePanel.getHeight()));
-		// visiblePanel.removeAll();
-		// visiblePanel.add(childPanel3, gbc);
-		// visiblePanel.revalidate();
-		// visiblePanel.repaint();
-
+		listadoAsignatura.setPreferredSize(new Dimension(visiblePanel.getWidth(), visiblePanel.getHeight()));
 		getContentPane().add(visiblePanel);
 		visiblePanel.setLayout(new CardLayout(0, 0));
 		visiblePanel.add(jPanelRegistrarAlumno, "TAG1");
 		visiblePanel.add(jPanelRegistrarAsignatura, "TAG2");
 		visiblePanel.add(listadoAlumnos, "TAG3");
+		visiblePanel.add(listadoAsignatura, "TAG4");
 
 		setSize(717, 563);
 		setResizable(false);
@@ -95,16 +77,16 @@ public class JFramePrincipal extends JFrame implements ActionListener {
 		setVisible(true);
 
 	}
-	
+
 	private void configurarMenuAlumnos() {
 		JMenu topicoAlumnos = new JMenu("Alumnos");
 		menuBar.add(topicoAlumnos);
-		
+
 		JMenuItem menuItemInscribirAlumno = new JMenuItem("Inscribir");
 		JMenuItem menuItemModificarAlumno = new JMenuItem("Modificar");
-		JMenuItem menuItemListarAlumnos = new JMenuItem("Listar");		
+		JMenuItem menuItemListarAlumnos = new JMenuItem("Listar");
 		JMenuItem menuItemEscolaridadAlumnos = new JMenuItem("Escolaridad");
-		
+
 		menuItemInscribirAlumno.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -114,7 +96,7 @@ public class JFramePrincipal extends JFrame implements ActionListener {
 
 			}
 		});
-		
+
 		menuItemListarAlumnos.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -123,13 +105,13 @@ public class JFramePrincipal extends JFrame implements ActionListener {
 				cardLayout.show(visiblePanel, "TAG3");
 			}
 		});
-		
+
 		topicoAlumnos.add(menuItemInscribirAlumno);
-		topicoAlumnos.add(menuItemModificarAlumno);		
+		topicoAlumnos.add(menuItemModificarAlumno);
 		topicoAlumnos.add(menuItemListarAlumnos);
 		topicoAlumnos.add(menuItemEscolaridadAlumnos);
 	}
-	
+
 	private void configurarMenuAsignaturas() {
 		JMenu topicoAsignaturas = new JMenu("Asignaturas");
 		menuBar.add(topicoAsignaturas);
@@ -138,7 +120,7 @@ public class JFramePrincipal extends JFrame implements ActionListener {
 		JMenuItem menuItemInscribirAsignatura = new JMenuItem("Inscribir");
 		JMenuItem menuItemListarAsignatura = new JMenuItem("Listar");
 		JMenuItem menuItemRegistrarResAsignatura = new JMenuItem("Registrar resultado");
-		
+
 		menuItemRegistrarAsignatura.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -147,23 +129,32 @@ public class JFramePrincipal extends JFrame implements ActionListener {
 				cardLayout.show(visiblePanel, "TAG2");
 			}
 		});
-		
+
+		menuItemListarAsignatura.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				CardLayout cardLayout = (CardLayout) visiblePanel.getLayout();
+				cardLayout.show(visiblePanel, "TAG4");
+			}
+		});
+
 		topicoAsignaturas.add(menuItemRegistrarAsignatura);
 		topicoAsignaturas.add(menuItemInscribirAsignatura);
 		topicoAsignaturas.add(menuItemListarAsignatura);
 		topicoAsignaturas.add(menuItemRegistrarResAsignatura);
 	}
-	
+
 	private void configurarMenuInscripciones() {
 		JMenu topicoInscripciones = new JMenu("Inscripciones");
 		menuBar.add(topicoInscripciones);
-		
+
 		JMenuItem menuItemMontoRecaudadoInscripcion = new JMenuItem("Monto recaudado");
 		topicoInscripciones.add(menuItemMontoRecaudadoInscripcion);
 	}
-	
+
 	private void initMenuBar() {
-		
+
 		this.configurarMenuAlumnos();
 		this.configurarMenuAsignaturas();
 		this.configurarMenuInscripciones();

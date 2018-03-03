@@ -4,13 +4,13 @@ import java.io.Serializable;
 
 import edu.ude.bedelia.logica.entidades.Inscripcion;
 
-public class VOInscripcion implements Serializable{
+public class VOInscripcion implements Serializable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	private Integer numero;
 	private int anio;
 	private float montoBase;

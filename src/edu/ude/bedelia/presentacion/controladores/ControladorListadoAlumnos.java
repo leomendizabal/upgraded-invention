@@ -13,7 +13,7 @@ import edu.ude.bedelia.presentacion.panel.JPanelListadoAlumnos;
 public class ControladorListadoAlumnos {
 	private IFachada fachada;
 	private JPanelListadoAlumnos panel;
-	
+
 	public ControladorListadoAlumnos(JPanelListadoAlumnos v) {
 		panel = v;
 		try {
@@ -32,19 +32,18 @@ public class ControladorListadoAlumnos {
 			System.err.println(e.getMessage());
 		}
 	}
-	
+
 	public ArrayList<VOAlumno> getAlumnosApellido(String apellido) {
 		ArrayList<VOAlumno> resultado = new ArrayList<VOAlumno>();
-		
+
 		try {
 			resultado = fachada.listarAlumnosApellido(apellido);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}		
-		
+		}
+
 		return resultado;
 	}
-	
-	
+
 }

@@ -8,16 +8,22 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
-public class JPanelSplash extends JPanel {
+public class JPanelImage extends JPanel {
 
 	private BufferedImage image;
 
 	/**
 	 * Create the panel.
 	 */
-	public JPanelSplash() {
+
+	public JPanelImage() {
+		this("resource/image/cheff.jpg");
+	}
+
+	public JPanelImage(String imageUrl) {
 		try {
-			image = ImageIO.read(new File("resource/image/cheff.jpg"));
+			// TODO: Quitar url harcode
+			image = ImageIO.read(new File(imageUrl));
 		} catch (IOException ex) {
 			// handle exception...
 		}

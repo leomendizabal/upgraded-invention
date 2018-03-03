@@ -1,7 +1,8 @@
 package edu.ude.bedelia.logica.vo;
 
-import edu.ude.bedelia.logica.entidades.Asignatura;
 import java.io.Serializable;
+
+import edu.ude.bedelia.logica.entidades.Asignatura;
 
 public class VOAsignatura implements Serializable {
 
@@ -9,7 +10,7 @@ public class VOAsignatura implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	private String codigo;
 	private String nombre;
 	private String descripcion;

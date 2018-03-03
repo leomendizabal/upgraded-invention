@@ -1,44 +1,86 @@
 package edu.ude.bedelia.presentacion.panel;
 
-import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
-public class JPanelRegistroAsignatura extends JPanel {
-	private JTextField textField;
+import edu.ude.bedelia.presentacion.controladores.ControlladorAsignaturas;
+
+public class JPanelRegistroAsignatura extends JPanelBase implements ActionListener {
+
+	private static final long serialVersionUID = 1L;
+	private JTextField textFieldNombre;
+	private JTextArea textAreaDescripcion;
+	private JButton btnRegistrar;
+	private JTextField textFieldId;
+	private final ControlladorAsignaturas controlladorAsignaturas;
 
 	/**
 	 * Create the panel.
 	 */
 	public JPanelRegistroAsignatura() {
+		super();
 		setLayout(null);
+		initView();
+		controlladorAsignaturas = ControlladorAsignaturas.getInstancia(this);
+	}
 
+	private void initView() {
 		JPanel panel = new JPanel();
-		panel.setLayout(null);
-		panel.setBounds(10, 11, 483, 267);
+
+		panel.setBounds(10, 11, 428, 277);
 		add(panel);
+		panel.setLayout(null);
 
-		textField = new JTextField();
-		textField.setColumns(10);
-		textField.setBounds(109, 25, 253, 20);
-		panel.add(textField);
+		JLabel lblNombreAsignatura = new JLabel("Nombre");
+		lblNombreAsignatura.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblNombreAsignatura.setBounds(12, 68, 132, 23);
+		panel.add(lblNombreAsignatura);
 
-		JLabel label = new JLabel("Nombre");
-		label.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		label.setBounds(10, 28, 89, 14);
-		panel.add(label);
+		textFieldNombre = new JTextField();
+		textFieldNombre.setBounds(162, 68, 214, 24);
+		panel.add(textFieldNombre);
+		textFieldNombre.setColumns(10);
 
-		JLabel lblDescripcion = new JLabel("Descripcion");
-		lblDescripcion.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblDescripcion.setBounds(10, 61, 89, 14);
-		panel.add(lblDescripcion);
+		JLabel lblDescripcionAsignatura = new JLabel("Decripcion");
+		lblDescripcionAsignatura.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblDescripcionAsignatura.setBounds(12, 116, 132, 23);
+		panel.add(lblDescripcionAsignatura);
 
-		JTextArea textArea = new JTextArea();
-		textArea.setBounds(109, 71, 253, 119);
-		panel.add(textArea);
+		textAreaDescripcion = new JTextArea();
+		textAreaDescripcion.setBounds(162, 116, 214, 91);
+		panel.add(textAreaDescripcion);
+
+		btnRegistrar = new JButton("Registrar");
+		btnRegistrar.setBounds(264, 219, 105, 25);
+		btnRegistrar.addActionListener(this);
+		panel.add(btnRegistrar);
+
+		textFieldId = new JTextField();
+		textFieldId.setColumns(10);
+		textFieldId.setBounds(162, 32, 214, 24);
+		panel.add(textFieldId);
+
+		JLabel lblId = new JLabel("Codigo");
+		lblId.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblId.setBounds(12, 32, 132, 23);
+		panel.add(lblId);
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		final String codigo = textFieldId.getText();
+		final String nombre = textFieldNombre.getText();
+		final String descripcion = textAreaDescripcion.getText();
+
+		controlladorAsignaturas.registrar(codigo, nombre, descripcion);
 
 	}
 }
