@@ -15,14 +15,18 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import edu.ude.bedelia.presentacion.panel.JPanelListado;
-import edu.ude.bedelia.presentacion.panel.JPanelListadoAlumnos;
-import edu.ude.bedelia.presentacion.panel.JPanelListadoAsignatura;
-import edu.ude.bedelia.presentacion.panel.JPanelRegistroAlumno;
-import edu.ude.bedelia.presentacion.panel.JPanelRegistroAsignatura;
+import edu.ude.bedelia.presentacion.panel.listado.JPanelListado;
+import edu.ude.bedelia.presentacion.panel.listado.JPanelListadoAlumnos;
+import edu.ude.bedelia.presentacion.panel.listado.JPanelListadoAsignatura;
+import edu.ude.bedelia.presentacion.panel.registro.JPanelRegistroAlumno;
+import edu.ude.bedelia.presentacion.panel.registro.JPanelRegistroAsignatura;
 
 public class JFramePrincipal extends JFrame implements ActionListener {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JPanel jPanelRegistrarAsignatura = new JPanelRegistroAsignatura();
 	private JPanel jPanelRegistrarAlumno = new JPanelRegistroAlumno();
@@ -37,6 +41,7 @@ public class JFramePrincipal extends JFrame implements ActionListener {
 	 */
 	public JFramePrincipal() {
 		// conten panel
+		super();
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -46,7 +51,7 @@ public class JFramePrincipal extends JFrame implements ActionListener {
 
 		initMenuBar();
 		// constraint
-		GridBagConstraints gbc = new GridBagConstraints();
+	/*	GridBagConstraints gbc = new GridBagConstraints();
 		gbc.anchor = GridBagConstraints.FIRST_LINE_START;
 		gbc.fill = GridBagConstraints.VERTICAL;
 		gbc.gridx = 0;
@@ -56,10 +61,9 @@ public class JFramePrincipal extends JFrame implements ActionListener {
 
 		gbc.gridy = 0;
 		gbc.fill = GridBagConstraints.BOTH;
-
+*/
 		visiblePanel.setBorder(BorderFactory.createTitledBorder("Contendor"));
-
-		// custom panel
+	   // custom panel
 		jPanelRegistrarAlumno.setPreferredSize(new Dimension(visiblePanel.getWidth(), visiblePanel.getHeight()));
 		jPanelRegistrarAsignatura.setPreferredSize(new Dimension(visiblePanel.getWidth(), visiblePanel.getHeight()));
 		listadoAlumnos.setPreferredSize(new Dimension(visiblePanel.getWidth(), visiblePanel.getHeight()));

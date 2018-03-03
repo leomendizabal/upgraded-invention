@@ -1,4 +1,4 @@
-package edu.ude.bedelia.presentacion.panel;
+package edu.ude.bedelia.presentacion.panel.listado;
 
 import java.awt.BorderLayout;
 import java.lang.reflect.Field;
@@ -7,10 +7,11 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-public class JPanelListado extends JPanelBase {
+public class JPanelListado extends JPanel {
 
 	protected JTable table;
 

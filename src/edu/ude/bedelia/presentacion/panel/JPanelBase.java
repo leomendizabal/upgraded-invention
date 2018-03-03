@@ -4,6 +4,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import edu.ude.bedelia.presentacion.panel.listener.IMensaje;
+import javax.swing.BoxLayout;
+import java.awt.BorderLayout;
 
 public class JPanelBase extends JPanel implements IMensaje {
 
@@ -11,6 +13,7 @@ public class JPanelBase extends JPanel implements IMensaje {
 	 * Create the panel.
 	 */
 	public JPanelBase() {
+		setLayout(new BorderLayout(0, 0));
 
 	}
 

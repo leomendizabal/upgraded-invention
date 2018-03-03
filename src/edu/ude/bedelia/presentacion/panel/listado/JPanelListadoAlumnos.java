@@ -1,4 +1,4 @@
-package edu.ude.bedelia.presentacion.panel;
+package edu.ude.bedelia.presentacion.panel.listado;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

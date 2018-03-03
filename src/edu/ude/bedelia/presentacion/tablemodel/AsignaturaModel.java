@@ -22,16 +22,12 @@ public class AsignaturaModel extends TableModelGenerico<VOAsignatura> {
 		Object value = null;
 		VOAsignatura asignatura = getRow(rowIndex);
 		switch (columnIndex) {
-		case 0:
-			value = asignatura.getCodigo();
-			break;
-		case 1:
-			value = asignatura.getNombre(); // Nombre
-			break;
-		case 2:
-			value = asignatura.getDescripcion();
-			break;
-
+			case 0:
+				return asignatura.getCodigo();
+			case 1:
+				return asignatura.getNombre(); // Nombre
+			case 2:
+				return asignatura.getDescripcion();
 		}
 		return value;
 	}

@@ -8,7 +8,7 @@ import edu.ude.bedelia.aplicacion.utiles.ClienteConfig;
 import edu.ude.bedelia.aplicacion.utiles.UrlBuilder;
 import edu.ude.bedelia.logica.fachada.IFachada;
 import edu.ude.bedelia.logica.vo.VOAlumno;
-import edu.ude.bedelia.presentacion.panel.JPanelListadoAlumnos;
+import edu.ude.bedelia.presentacion.panel.listado.JPanelListadoAlumnos;
 
 public class ControladorListadoAlumnos {
 	private IFachada fachada;
