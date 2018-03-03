@@ -1,8 +1,10 @@
 package edu.ude.bedelia.logica.vo;
 
+import java.io.Serializable;
+
 import edu.ude.bedelia.logica.entidades.Asignatura;
 
-public class VOAsignatura {
+public class VOAsignatura implements Serializable {
 
 	private String codigo;
 	private String nombre;

@@ -1,8 +1,10 @@
 package edu.ude.bedelia.logica.vo;
 
+import java.io.Serializable;
+
 import edu.ude.bedelia.logica.entidades.Alumno;
 
-public class VOEgresado {
+public class VOEgresado implements Serializable {
 
 	private String cedula;
 	private String nombre;
