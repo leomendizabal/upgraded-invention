@@ -220,5 +220,5 @@ public class JFramePrincipal extends JFrame implements ActionListener {
 		}
 
 	}
->>>>>>> refs/remotes/origin/mi_presentacion
+
 }
