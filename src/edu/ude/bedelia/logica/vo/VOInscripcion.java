@@ -10,7 +10,7 @@ public class VOInscripcion implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	private Integer numero;
 	private int anio;
 	private float montoBase;

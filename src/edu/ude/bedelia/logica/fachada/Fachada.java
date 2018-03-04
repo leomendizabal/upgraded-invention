@@ -45,6 +45,7 @@ public class Fachada extends UnicastRemoteObject implements IFachada {
 		monitor = new Monitor();
 		this.levantarRespaldo();
 		this.mockearDatos();
+
 	}
 
 	public static Fachada getInstancia() throws RemoteException {
