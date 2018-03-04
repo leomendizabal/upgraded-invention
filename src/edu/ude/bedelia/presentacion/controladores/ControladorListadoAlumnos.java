@@ -8,12 +8,12 @@ import edu.ude.bedelia.aplicacion.utiles.ClienteConfig;
 import edu.ude.bedelia.aplicacion.utiles.UrlBuilder;
 import edu.ude.bedelia.logica.fachada.IFachada;
 import edu.ude.bedelia.logica.vo.VOAlumno;
-import edu.ude.bedelia.presentacion.panel.JPanelListadoAlumnos;
+import edu.ude.bedelia.presentacion.panel.listado.JPanelListadoAlumnos;
 
 public class ControladorListadoAlumnos {
 	private IFachada fachada;
 	private JPanelListadoAlumnos panel;
-	
+
 	public ControladorListadoAlumnos(JPanelListadoAlumnos v) {
 		panel = v;
 		try {
@@ -32,20 +32,19 @@ public class ControladorListadoAlumnos {
 			System.err.println(e.getMessage());
 		}
 	}
-	
+
 	public ArrayList<VOAlumno> getAlumnosApellido(String apellido) {
 		ArrayList<VOAlumno> resultado = new ArrayList<VOAlumno>();
-		
+
 		try {
 			resultado = fachada.listarAlumnosApellido(apellido);
 			System.out.println("resultado: "+resultado.size());
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}		
-		
+		}
+
 		return resultado;
 	}
-	
-	
+
 }
