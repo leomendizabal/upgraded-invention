@@ -23,20 +23,23 @@ public class JPanelTablaConFiltro extends JPanelBase {
 	 */
 	private static final long serialVersionUID = 1L;
 	protected JTable table;
-	private JTextField textFieldTexto;
+	protected JTextField textFieldTexto;
 	protected JPanel jPanelFiltro;
 	protected JPanel contentPanel;
-	protected JRadioButton rdbtnCompleto ;
-	protected JRadioButton rdbtnParcial ;
+	protected JRadioButton rdbtnCompleto;
+	protected JRadioButton rdbtnParcial;
 	protected JLabel lblTipoReferencia;
 	protected JLabel lblTextoReferencia;
+	protected JButton btnFiltrar;
+	protected JLabel lblMensaje;
+
 	/**
 	 * Create the panel.
 	 */
 	public JPanelTablaConFiltro() {
 		super();
 		setLayout(null);
-        contentPanel = new JPanel();
+		contentPanel = new JPanel();
 		contentPanel.setBounds(12, 12, 636, 545);
 		add(contentPanel);
 		contentPanel.setLayout(null);
@@ -60,36 +63,36 @@ public class JPanelTablaConFiltro extends JPanelBase {
 		lblTipoReferencia.setBounds(58, 58, 70, 20);
 		jPanelFiltro.add(lblTipoReferencia);
 
-		JButton btnFiltrar = new JButton("Filtrar");
+		btnFiltrar = new JButton("Filtrar");
 		btnFiltrar.setBounds(363, 56, 117, 25);
 		jPanelFiltro.add(btnFiltrar);
-		
-		JRadioButton rdbtnCompleto = new JRadioButton("Completo");
+
+		rdbtnCompleto = new JRadioButton("Completo");
 		rdbtnCompleto.setSelected(true);
 		rdbtnCompleto.setBounds(146, 54, 92, 23);
 		jPanelFiltro.add(rdbtnCompleto);
-		
+
 		rdbtnParcial = new JRadioButton("Parcial");
 		rdbtnParcial.setBounds(256, 57, 80, 23);
 		jPanelFiltro.add(rdbtnParcial);
+
 		ButtonGroup buttonGroup = new ButtonGroup();
 		buttonGroup.add(rdbtnCompleto);
 		buttonGroup.add(rdbtnParcial);
-		
+
 		JPanel jPanelContenedor = new JPanel();
 		jPanelContenedor.setBorder(new TitledBorder(null, "Tabla", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		jPanelContenedor.setBounds(10, 119, 614, 414);
 		contentPanel.add(jPanelContenedor);
 		jPanelContenedor.setLayout(null);
-		
-		JLabel lblNewLabel = new JLabel("New label");
-		lblNewLabel.setVerticalAlignment(SwingConstants.BOTTOM);
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(12, 100, 590, 30);
-		jPanelContenedor.add(lblNewLabel);
+
+		lblMensaje = new JLabel("New label");
+		lblMensaje.setVerticalAlignment(SwingConstants.BOTTOM);
+		lblMensaje.setHorizontalAlignment(SwingConstants.CENTER);
+		lblMensaje.setBounds(12, 100, 590, 30);
+		jPanelContenedor.add(lblMensaje);
 
 		table = new JTable(new DefaultTableModel());
-
 		JScrollPane scrollPane = new JScrollPane(table);
 		scrollPane.setBounds(12, 12, 590, 390);
 		jPanelContenedor.add(scrollPane);

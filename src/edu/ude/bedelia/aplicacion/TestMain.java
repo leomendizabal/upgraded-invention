@@ -136,7 +136,7 @@ public class TestMain {
 			for (VOEgresado e : egresados) {
 				System.out.println(e.toString());
 			} 
-
+			bedelia.respaldarDatos();
 		} catch (Exception e) {
 			System.out.print("Excepcion " + e.getMessage());
 		}

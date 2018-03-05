@@ -18,12 +18,7 @@ public final class DataClass {
 
 	public final static Alumnos ALUMNOS = new Alumnos() {
 		{
-			insert(leo.getCedula(), leo);
-			insert(santi.getCedula(), santi);
-			insert(rodri.getCedula(), rodri);
-			insert(elviejo.getCedula(), elviejo);
-		}
-	};
+			insert(leo.getCedula(),leo);insert(santi.getCedula(),santi);insert(rodri.getCedula(),rodri);insert(elviejo.getCedula(),elviejo);}};
 
 	public final static Asignatura cocina1 = new Asignatura("C1", "Cocina 1", "Descripcion");
 	public final static Asignatura panaderia1 = new Asignatura("PYP1", "Panadería y Pastelería I (gastronomía)",
@@ -43,13 +38,11 @@ public final class DataClass {
 
 	public final static Asignaturas ASIGNATURA = new Asignaturas() {
 		{
-			// insert(cocina1);
-			/*
-			 * insert(panaderia1); 
-			 * insert(frances);
-			 *  insert(seguridadHigiene);
-			 * insert(admMarkGast1);
-			 */
+			/*insert(cocina1);
+			 insert(panaderia1); */
+			 insert(frances);
+			   insert(seguridadHigiene);
+			 insert(admMarkGast1);
 			insert(enologia);
 			insert(cocteleria);
 			insert(organizacionEvento);

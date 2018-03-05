@@ -6,19 +6,19 @@ import edu.ude.bedelia.logica.excepciones.AsignaturasException;
 import edu.ude.bedelia.logica.vo.VOAsignatura;
 import edu.ude.bedelia.presentacion.panel.listener.IMensaje;
 
-public class ControlladorAsignaturas extends Controllador implements Controllador.IRegistrar {
+public class ControladorAsignaturas extends Controlador implements Controlador.IRegistrar {
 
-	private static ControlladorAsignaturas instancia;
+	private static ControladorAsignaturas instancia;
 	private IMensaje listener;
 
-	protected ControlladorAsignaturas(IMensaje listener) {
+	protected ControladorAsignaturas(IMensaje listener) {
 		super();
 		this.listener = listener;
 	}
 
-	public static ControlladorAsignaturas getInstancia(IMensaje listener) {
+	public static ControladorAsignaturas getInstancia(IMensaje listener) {
 		if (instancia == null) {
-			instancia = new ControlladorAsignaturas(listener);
+			instancia = new ControladorAsignaturas(listener);
 		}
 
 		return instancia;

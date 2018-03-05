@@ -10,7 +10,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-import edu.ude.bedelia.presentacion.controladores.ControlladorAsignaturas;
+import edu.ude.bedelia.presentacion.controladores.ControladorAsignaturas;
 import edu.ude.bedelia.presentacion.panel.JPanelBase;
 import java.awt.BorderLayout;
 
@@ -21,7 +21,7 @@ public class JPanelRegistroAsignatura extends JPanelBase implements ActionListen
 	private JTextArea textAreaDescripcion;
 	private JButton btnRegistrar;
 	private JTextField textFieldId;
-	private final ControlladorAsignaturas controlladorAsignaturas;
+	private final ControladorAsignaturas controlladorAsignaturas;
 
 	/**
 	 * Create the panel.
@@ -29,7 +29,7 @@ public class JPanelRegistroAsignatura extends JPanelBase implements ActionListen
 	public JPanelRegistroAsignatura() {
 		super();
 		initView();
-		controlladorAsignaturas = ControlladorAsignaturas.getInstancia(this);
+		controlladorAsignaturas = ControladorAsignaturas.getInstancia(this);
 	}
     // TODO: eliminar valore harcode
 	private void initView() {

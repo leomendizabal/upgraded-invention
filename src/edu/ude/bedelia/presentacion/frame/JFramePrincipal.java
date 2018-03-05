@@ -17,6 +17,7 @@ import javax.swing.border.EmptyBorder;
 
 import edu.ude.bedelia.presentacion.panel.JPanelInscribirAsignatura;
 import edu.ude.bedelia.presentacion.panel.JpanelMontoRecaudado;
+import edu.ude.bedelia.presentacion.panel.listado.JPanelListadoEgresado;
 import edu.ude.bedelia.presentacion.panel.registro.JPanelRegistroAlumno;
 import edu.ude.bedelia.presentacion.panel.registro.JPanelRegistroAsignatura;
 
@@ -31,6 +32,7 @@ public class JFramePrincipal extends JFrame implements ActionListener {
 	private JPanel jPanelRegistrarAlumno = new JPanelRegistroAlumno();
 	private JPanel jPanelInscribirAsignatura = new JPanelInscribirAsignatura();
 	private JPanel jPanelMontoRecaudado = new JpanelMontoRecaudado();
+	private JPanel jPanelListadoEgresado =   new JPanelListadoEgresado();
 	private JMenuBar menuBar = new JMenuBar();
 
 	JPanel visiblePanel = new JPanel(); // is the default, but showing it set
@@ -51,18 +53,20 @@ public class JFramePrincipal extends JFrame implements ActionListener {
 		initMenuBar();
 
 		visiblePanel.setBorder(BorderFactory.createTitledBorder("Contendor"));
-	   // custom panel
+		// custom panel
 		jPanelRegistrarAlumno.setPreferredSize(new Dimension(visiblePanel.getWidth(), visiblePanel.getHeight()));
 		jPanelRegistrarAsignatura.setPreferredSize(new Dimension(visiblePanel.getWidth(), visiblePanel.getHeight()));
 		jPanelInscribirAsignatura.setPreferredSize(new Dimension(visiblePanel.getWidth(), visiblePanel.getHeight()));
 		jPanelMontoRecaudado.setPreferredSize(new Dimension(visiblePanel.getWidth(), visiblePanel.getHeight()));
-		
+
 		getContentPane().add(visiblePanel);
+		//TODO: ver tags
 		visiblePanel.setLayout(new CardLayout(0, 0));
 		visiblePanel.add(jPanelRegistrarAlumno, "TAG1");
 		visiblePanel.add(jPanelRegistrarAsignatura, "TAG2");
-	   	visiblePanel.add(jPanelInscribirAsignatura, "TAG5");
+		visiblePanel.add(jPanelInscribirAsignatura, "TAG5");
 		visiblePanel.add(jPanelMontoRecaudado, "TAG6");
+		visiblePanel.add(jPanelListadoEgresado, "TAG7");
 
 		setSize(717, 563);
 		setResizable(false);
@@ -77,8 +81,9 @@ public class JFramePrincipal extends JFrame implements ActionListener {
 
 		JMenuItem menuItemInscribirAlumno = new JMenuItem("Inscribir");
 		JMenuItem menuItemModificarAlumno = new JMenuItem("Modificar");
-		JMenuItem menuItemListarAlumnos = new JMenuItem("Listar");
+		JMenuItem menuItemListarAlumnos = new JMenuItem("Listar por apellido");
 		JMenuItem menuItemEscolaridadAlumnos = new JMenuItem("Escolaridad");
+		JMenuItem menuItemListarEgresados = new JMenuItem("Listar egresados");
 
 		menuItemInscribirAlumno.addActionListener(new ActionListener() {
 			@Override
@@ -98,10 +103,20 @@ public class JFramePrincipal extends JFrame implements ActionListener {
 				cardLayout.show(visiblePanel, "TAG3");
 			}
 		});
+		
+		menuItemListarEgresados.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				CardLayout cardLayout = (CardLayout) visiblePanel.getLayout();
+				cardLayout.show(visiblePanel, "TAG7");
+			}
+		});
 
 		topicoAlumnos.add(menuItemInscribirAlumno);
 		topicoAlumnos.add(menuItemModificarAlumno);
 		topicoAlumnos.add(menuItemListarAlumnos);
+		topicoAlumnos.add(menuItemListarEgresados);
 		topicoAlumnos.add(menuItemEscolaridadAlumnos);
 	}
 
@@ -131,7 +146,7 @@ public class JFramePrincipal extends JFrame implements ActionListener {
 				cardLayout.show(visiblePanel, "TAG4");
 			}
 		});
-		
+
 		menuItemInscribirAsignatura.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -140,7 +155,6 @@ public class JFramePrincipal extends JFrame implements ActionListener {
 				cardLayout.show(visiblePanel, "TAG5");
 			}
 		});
-		
 
 		topicoAsignaturas.add(menuItemRegistrarAsignatura);
 		topicoAsignaturas.add(menuItemInscribirAsignatura);
@@ -162,17 +176,16 @@ public class JFramePrincipal extends JFrame implements ActionListener {
 				cardLayout.show(visiblePanel, "TAG5");
 			}
 		});
-		
+
 	}
-	
+
 	private void configurarMenuRespaldo() {
 		JMenu topicoRespaldo = new JMenu("Datos");
 		menuBar.add(topicoRespaldo);
-		
+
 		JMenuItem menuItemMontoRecaudadoInscripcion = new JMenuItem("Respaldar");
 		topicoRespaldo.add(menuItemMontoRecaudadoInscripcion);
 	}
-	
 
 	private void initMenuBar() {
 

@@ -7,19 +7,19 @@ import edu.ude.bedelia.logica.vo.VOAsignatura;
 import edu.ude.bedelia.presentacion.panel.listener.ICargarTabla;
 import edu.ude.bedelia.presentacion.tablemodel.AsignaturaModel;
 
-public class ControlladorListadoAsignatura extends Controllador implements Controllador.IListar {
+public class ControladorListadoAsignatura extends Controlador implements Controlador.IListar<String> {
 
-	private static ControlladorListadoAsignatura instancia;
+	private static ControladorListadoAsignatura instancia;
 	private ICargarTabla listener;
 
-	protected ControlladorListadoAsignatura(ICargarTabla listener) {
+	protected ControladorListadoAsignatura(ICargarTabla listener) {
 		super();
 		this.listener = listener;
 	}
 
-	public static ControlladorListadoAsignatura getInstancia(ICargarTabla listener) {
+	public static ControladorListadoAsignatura getInstancia(ICargarTabla listener) {
 		if (instancia == null) {
-			instancia = new ControlladorListadoAsignatura(listener);
+			instancia = new ControladorListadoAsignatura(listener);
 		}
 
 		return instancia;
