@@ -17,9 +17,6 @@ import javax.swing.border.EmptyBorder;
 
 import edu.ude.bedelia.presentacion.panel.JPanelInscribirAsignatura;
 import edu.ude.bedelia.presentacion.panel.JpanelMontoRecaudado;
-import edu.ude.bedelia.presentacion.panel.listado.JPanelListado;
-import edu.ude.bedelia.presentacion.panel.listado.JPanelListadoAlumnos;
-import edu.ude.bedelia.presentacion.panel.listado.JPanelListadoAsignatura;
 import edu.ude.bedelia.presentacion.panel.registro.JPanelRegistroAlumno;
 import edu.ude.bedelia.presentacion.panel.registro.JPanelRegistroAsignatura;
 
@@ -32,8 +29,6 @@ public class JFramePrincipal extends JFrame implements ActionListener {
 	private JPanel contentPane;
 	private JPanel jPanelRegistrarAsignatura = new JPanelRegistroAsignatura();
 	private JPanel jPanelRegistrarAlumno = new JPanelRegistroAlumno();
-	private JPanelListado listadoAlumnos = new JPanelListadoAlumnos();
-	private JPanelListadoAsignatura listadoAsignatura = new JPanelListadoAsignatura();
 	private JPanel jPanelInscribirAsignatura = new JPanelInscribirAsignatura();
 	private JPanel jPanelMontoRecaudado = new JpanelMontoRecaudado();
 	private JMenuBar menuBar = new JMenuBar();
@@ -54,24 +49,11 @@ public class JFramePrincipal extends JFrame implements ActionListener {
 		setContentPane(contentPane);
 
 		initMenuBar();
-		// constraint
-	/*	GridBagConstraints gbc = new GridBagConstraints();
-		gbc.anchor = GridBagConstraints.FIRST_LINE_START;
-		gbc.fill = GridBagConstraints.VERTICAL;
-		gbc.gridx = 0;
-		gbc.gridy = 0;
-		gbc.weightx = 1.0;
-		gbc.weighty = 0.3;
 
-		gbc.gridy = 0;
-		gbc.fill = GridBagConstraints.BOTH;
-*/
 		visiblePanel.setBorder(BorderFactory.createTitledBorder("Contendor"));
 	   // custom panel
 		jPanelRegistrarAlumno.setPreferredSize(new Dimension(visiblePanel.getWidth(), visiblePanel.getHeight()));
 		jPanelRegistrarAsignatura.setPreferredSize(new Dimension(visiblePanel.getWidth(), visiblePanel.getHeight()));
-		listadoAlumnos.setPreferredSize(new Dimension(visiblePanel.getWidth(), visiblePanel.getHeight()));
-		listadoAsignatura.setPreferredSize(new Dimension(visiblePanel.getWidth(), visiblePanel.getHeight()));
 		jPanelInscribirAsignatura.setPreferredSize(new Dimension(visiblePanel.getWidth(), visiblePanel.getHeight()));
 		jPanelMontoRecaudado.setPreferredSize(new Dimension(visiblePanel.getWidth(), visiblePanel.getHeight()));
 		
@@ -79,9 +61,7 @@ public class JFramePrincipal extends JFrame implements ActionListener {
 		visiblePanel.setLayout(new CardLayout(0, 0));
 		visiblePanel.add(jPanelRegistrarAlumno, "TAG1");
 		visiblePanel.add(jPanelRegistrarAsignatura, "TAG2");
-		visiblePanel.add(listadoAlumnos, "TAG3");
-		visiblePanel.add(listadoAsignatura, "TAG4");
-		visiblePanel.add(jPanelInscribirAsignatura, "TAG5");
+	   	visiblePanel.add(jPanelInscribirAsignatura, "TAG5");
 		visiblePanel.add(jPanelMontoRecaudado, "TAG6");
 
 		setSize(717, 563);
@@ -209,13 +189,6 @@ public class JFramePrincipal extends JFrame implements ActionListener {
 		if (obj instanceof JMenuItem) {
 			JMenuItem menu = (JMenuItem) e.getSource();
 			System.out.println(menu.toString());
-			// switch (menu.getName()) {
-			// case "":
-			// break;
-			// default:
-			// break;
-			// }
-
 		}
 
 	}

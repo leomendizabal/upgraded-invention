@@ -1,6 +1,6 @@
 package edu.ude.bedelia.presentacion.panel.listado;
 
-public class JPanelEscolaridad extends JPanelTablaGenerico {
+public class JPanelEscolaridad extends JPanelTablaConFiltro {
 
 	/**
 	 * 
