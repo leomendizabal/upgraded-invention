@@ -14,7 +14,7 @@ public abstract class Controlador {
 	}
 
 	public interface IRegistrar {
-		public void registrar(String... argumentos);
+		public void registrar(boolean extra, String... argumentos);
 	}
 
 	public interface IListar<T> {
@@ -24,6 +24,10 @@ public abstract class Controlador {
 
 	public interface IModificar {
 		public void modificar(String... argumentos);
+	}
+
+	public interface IBuscar {
+		public void buscar(boolean extra, String... argumentos);
 	}
 
 }

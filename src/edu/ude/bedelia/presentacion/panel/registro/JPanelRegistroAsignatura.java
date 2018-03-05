@@ -31,7 +31,8 @@ public class JPanelRegistroAsignatura extends JPanelBase implements ActionListen
 		initView();
 		controlladorAsignaturas = ControladorAsignaturas.getInstancia(this);
 	}
-    // TODO: eliminar valore harcode
+
+	// TODO: eliminar valore harcode
 	private void initView() {
 		setLayout(new BorderLayout(0, 0));
 		JPanel panel = new JPanel();
@@ -80,7 +81,7 @@ public class JPanelRegistroAsignatura extends JPanelBase implements ActionListen
 		final String nombre = textFieldNombre.getText();
 		final String descripcion = textAreaDescripcion.getText();
 
-		controlladorAsignaturas.registrar(codigo, nombre, descripcion);
+		controlladorAsignaturas.registrar(false, codigo, nombre, descripcion);
 
 	}
 }

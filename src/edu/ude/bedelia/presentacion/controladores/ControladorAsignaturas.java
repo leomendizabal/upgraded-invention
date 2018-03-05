@@ -25,7 +25,7 @@ public class ControladorAsignaturas extends Controlador implements Controlador.I
 	}
 
 	@Override
-	public void registrar(String... argumentos) {
+	public void registrar(boolean extra, String... argumentos) {
 		try {
 			fachada.registrarAsignatura(new VOAsignatura(argumentos[0], argumentos[1], argumentos[2]));
 			listener.mostrarConfirmacion("Registro", "Se ingreso correctamente");

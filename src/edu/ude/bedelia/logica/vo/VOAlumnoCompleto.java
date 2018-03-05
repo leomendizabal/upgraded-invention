@@ -9,6 +9,12 @@ public class VOAlumnoCompleto extends VOAlumno {
 	private String email;
 	private float monto;
 
+	
+	public VOAlumnoCompleto(String cedula, String nombre, String apellido, TipoAlumno tipo, String domicilio,
+			String telefono, String email) {
+		this(cedula,nombre,apellido,tipo,domicilio,telefono,email,0);
+	}
+	
 	public VOAlumnoCompleto(String cedula, String nombre, String apellido, TipoAlumno tipo, String domicilio,
 			String telefono, String email, float monto) {
 		super(cedula, nombre, apellido, tipo);

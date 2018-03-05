@@ -18,7 +18,8 @@ import javax.swing.border.EmptyBorder;
 import edu.ude.bedelia.presentacion.panel.JPanelInscribirAsignatura;
 import edu.ude.bedelia.presentacion.panel.JpanelMontoRecaudado;
 import edu.ude.bedelia.presentacion.panel.listado.JPanelListadoEgresado;
-import edu.ude.bedelia.presentacion.panel.registro.JPanelRegistroAlumno;
+import edu.ude.bedelia.presentacion.panel.registro.JPanelAlumno;
+import edu.ude.bedelia.presentacion.panel.registro.JPanelRegistrarAlumno;
 import edu.ude.bedelia.presentacion.panel.registro.JPanelRegistroAsignatura;
 
 public class JFramePrincipal extends JFrame implements ActionListener {
@@ -29,7 +30,7 @@ public class JFramePrincipal extends JFrame implements ActionListener {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JPanel jPanelRegistrarAsignatura = new JPanelRegistroAsignatura();
-	private JPanel jPanelRegistrarAlumno = new JPanelRegistroAlumno();
+	private JPanel jPanelRegistrarAlumno = new JPanelRegistrarAlumno();
 	private JPanel jPanelInscribirAsignatura = new JPanelInscribirAsignatura();
 	private JPanel jPanelMontoRecaudado = new JpanelMontoRecaudado();
 	private JPanel jPanelListadoEgresado =   new JPanelListadoEgresado();
