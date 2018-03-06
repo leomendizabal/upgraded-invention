@@ -228,7 +228,7 @@ public class JFramePrincipal extends JFrame implements ActionListener {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				CardLayout cardLayout = (CardLayout) visiblePanel.getLayout();
-				cardLayout.show(visiblePanel, "TAG5");
+				cardLayout.show(visiblePanel, "TAG6");
 			}
 		});
 
