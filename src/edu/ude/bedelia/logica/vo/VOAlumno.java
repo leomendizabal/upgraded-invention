@@ -12,8 +12,7 @@ public class VOAlumno implements Serializable {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
-
+	private static final long serialVersionUID = -666855245620732443L;
 	private String cedula;
 	private String nombre;
 	private String apellido;
