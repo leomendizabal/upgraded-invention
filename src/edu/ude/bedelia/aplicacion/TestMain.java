@@ -102,7 +102,7 @@ public class TestMain {
 			System.out.println("-> Monto recaudado: " + montoRecaudado);
 
 			System.out.println("******* Requerimiento 10 ********");
-			// bedelia.respaldarDatos();
+		    
 			System.out.println("Para respaldar datos DESCOMENTE la linea 99 del archivo TestMain y vuelva a ejecutar");
 			System.out.println("NOTA: Si respalda los datos, para volver a ejecutar debe eliminar previamente el archivo config/respaldo.dat");
 
@@ -137,6 +137,7 @@ public class TestMain {
 				System.out.println(e.toString());
 			} 
 			bedelia.respaldarDatos();
+			
 		} catch (Exception e) {
 			System.out.print("Excepcion " + e.getMessage());
 		}

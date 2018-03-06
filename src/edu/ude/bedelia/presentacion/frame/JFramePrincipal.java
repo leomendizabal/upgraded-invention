@@ -26,6 +26,7 @@ import edu.ude.bedelia.presentacion.panel.listado.JPanelListadoEgresado;
 import edu.ude.bedelia.presentacion.panel.registro.JPanelInscribirAsignatura;
 import edu.ude.bedelia.presentacion.panel.registro.JPanelModificarAlumno;
 import edu.ude.bedelia.presentacion.panel.registro.JPanelRegistrarAlumno;
+import edu.ude.bedelia.presentacion.panel.registro.JPanelRegistrarNota;
 import edu.ude.bedelia.presentacion.panel.registro.JPanelRegistroAsignatura;
 
 public class JFramePrincipal extends JFrame implements ActionListener {
@@ -37,6 +38,7 @@ public class JFramePrincipal extends JFrame implements ActionListener {
 	private JPanel contentPane;
 	private JPanel jPanelRegistrarAsignatura = new JPanelRegistroAsignatura();
 	private JPanel jPanelRegistrarAlumno = new JPanelRegistrarAlumno();
+	private JPanel jPanelRegistrarNota = new JPanelRegistrarNota();
 	private JPanel jPanelInscribirAsignatura = new JPanelInscribirAsignatura();
 	private JPanel jPanelMontoRecaudado = new JpanelMontoRecaudado();
 	private JPanel jPanelListadoEgresado =   new JPanelListadoEgresado();
@@ -67,6 +69,7 @@ public class JFramePrincipal extends JFrame implements ActionListener {
 		visiblePanel.setBorder(BorderFactory.createTitledBorder("Contendor"));
 		// custom panel
 		jPanelRegistrarAlumno.setPreferredSize(new Dimension(visiblePanel.getWidth(), visiblePanel.getHeight()));
+		jPanelRegistrarNota.setPreferredSize(new Dimension(visiblePanel.getWidth(), visiblePanel.getHeight()));
 		jPanelRegistrarAsignatura.setPreferredSize(new Dimension(visiblePanel.getWidth(), visiblePanel.getHeight()));
 		jPanelInscribirAsignatura.setPreferredSize(new Dimension(visiblePanel.getWidth(), visiblePanel.getHeight()));
 		jPanelMontoRecaudado.setPreferredSize(new Dimension(visiblePanel.getWidth(), visiblePanel.getHeight()));
@@ -87,6 +90,8 @@ public class JFramePrincipal extends JFrame implements ActionListener {
 		visiblePanel.add(jPanelEscolaridad, "TAG10");
 
 		visiblePanel.add(JPanelListadoApellido, "TAG9");
+
+		visiblePanel.add(jPanelRegistrarNota, "TAG11");
 
 		setSize(717, 563);
 		setResizable(false);
@@ -197,6 +202,15 @@ public class JFramePrincipal extends JFrame implements ActionListener {
 			}
 		});
 
+		menuItemRegistrarResAsignatura.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				CardLayout cardLayout = (CardLayout) visiblePanel.getLayout();
+				cardLayout.show(visiblePanel, "TAG11");
+			}
+		});
+		
 		topicoAsignaturas.add(menuItemRegistrarAsignatura);
 		topicoAsignaturas.add(menuItemInscribirAsignatura);
 		topicoAsignaturas.add(menuItemListarAsignatura);
