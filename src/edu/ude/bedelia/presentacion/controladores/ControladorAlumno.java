@@ -27,7 +27,6 @@ public class ControladorAlumno extends Controlador implements Controlador.IRegis
 
 	@Override
 	public void registrar(boolean extra, String... argumentos) {
-		//TODO: si tamos bien pasar a MAP<String,String>
 		try {
 		VOAlumnoCompleto voAlumno = null;
 		if (extra) {

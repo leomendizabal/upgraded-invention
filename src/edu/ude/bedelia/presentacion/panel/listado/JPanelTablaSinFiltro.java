@@ -10,23 +10,24 @@ public class JPanelTablaSinFiltro extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private JTable table;
+	protected JTable table;
 
 	/**
 	 * Create the panel.
 	 */
 	public JPanelTablaSinFiltro() {
-		setLayout(new BorderLayout(0, 0));
-		
-		JPanel panel = new JPanel();
-		add(panel,BorderLayout.CENTER);
-		panel.setLayout(new BorderLayout(0, 0));
+		setLayout(null);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		panel.add(scrollPane);
+		scrollPane.setBounds(10, 128, 450, 300);
+		add(scrollPane);
+		
+		JPanel panel = new JPanel();
+		scrollPane.setColumnHeaderView(panel);
+		panel.setLayout(new BorderLayout(0, 0));
 		
 		table = new JTable();
-		panel.add(table, BorderLayout.CENTER);
+		panel.add(table, BorderLayout.SOUTH);
 
 	}
 

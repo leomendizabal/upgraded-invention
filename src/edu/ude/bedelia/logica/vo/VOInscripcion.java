@@ -1,10 +1,12 @@
 package edu.ude.bedelia.logica.vo;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import edu.ude.bedelia.logica.entidades.Inscripcion;
 
-public class VOInscripcion implements Serializable {
+public class VOInscripcion implements Serializable, Comparable<VOInscripcion> {
 
 	/**
 	 * 
@@ -16,6 +18,18 @@ public class VOInscripcion implements Serializable {
 	private float montoBase;
 	private int calificacion;
 	private VOAsignatura asignatura;
+
+	public final static List<String> attrs = new ArrayList<String>() {
+
+		private static final long serialVersionUID = 1L;
+
+		{
+			add("número de inscripción");
+			add("asignatura");
+			add("año lectivo");
+			add("calificación");
+		}
+	};
 
 	public VOInscripcion(Integer numero, int anio, float montoBase, int calificacion) {
 		this.numero = numero;
@@ -55,6 +69,17 @@ public class VOInscripcion implements Serializable {
 	public String toString() {
 		return "Numero: " + this.numero + " Ano: " + this.anio + " Monto base: " + this.montoBase + " Calificacion: "
 				+ this.calificacion;
+	}
+
+	public List<String> getAttr() {
+
+		return attrs;
+	}
+
+	@Override
+	public int compareTo(VOInscripcion o) {
+		// TODO Auto-generated method stub
+		return numero.compareTo(o.numero);
 	}
 
 }
