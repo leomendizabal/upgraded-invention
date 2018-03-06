@@ -44,7 +44,7 @@ public class Fachada extends UnicastRemoteObject implements IFachada {
 		this.fachadaPersistencia = FachadaPersistencia.getInstance();
 		monitor = new Monitor();
 		this.levantarRespaldo();
-		this.mockearDatos();
+		//this.mockearDatos();
 	}
 
 	public static Fachada getInstancia() throws RemoteException {
@@ -224,7 +224,7 @@ public class Fachada extends UnicastRemoteObject implements IFachada {
 			ArrayList<VOInscripcion> escolaridad = new ArrayList<VOInscripcion>();
 			Alumno a = alumnos.find(ci);
 			Inscripciones inscripciones = a.getInscripciones();
-
+			
 			for (Inscripcion i : inscripciones) {
 				if (esCompleta) {
 					escolaridad.add(i.toVO(true));
@@ -255,9 +255,19 @@ public class Fachada extends UnicastRemoteObject implements IFachada {
 		monitor.comienzoEscritura();
 		if (alumnos.member(ci)) {
 			Alumno a = alumnos.find(ci);
-			if (a.esInscripto(codigo, anio) && !a.asignaturaCalificada(codigo, anio)) {
+			Inscripciones inscripciones = a.getInscripciones();
+			Inscripcion i = inscripciones.get(Integer.valueOf(codigo)-1);
+			boolean esInscripto = false;
+			String codigoAsignatura = "";
+			
+			if(String.valueOf(i.getNumero()).equals(codigo)) {
+				codigoAsignatura = i.getAsignatura().getCodigo();
+				esInscripto = a.esInscripto(codigoAsignatura, anio);
+			}
+			
+			if (esInscripto && !a.asignaturaCalificada(codigo, anio)) {
 				if (Helper.calificacionEsValida(nota)) {
-					a.registrarCalificacion(codigo, nota);
+					a.registrarCalificacion(codigoAsignatura, nota);
 				} else {
 					throw new AlumnosException(Mensajes.MSG_CALIF_INVALIDA);
 				}

@@ -4,6 +4,10 @@ import edu.ude.bedelia.logica.entidades.Inscripcion;
 
 public class VOInscripcionCompleta extends VOInscripcion {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private float montoBase;
 
 	public VOInscripcionCompleta(Integer numero, int anio, float montoBase, int calificacion) {
