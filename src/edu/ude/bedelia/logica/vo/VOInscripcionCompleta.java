@@ -7,6 +7,10 @@ import edu.ude.bedelia.logica.entidades.Inscripcion;
 
 public class VOInscripcionCompleta extends VOInscripcion {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private float montoBase;
 	public final static List<String> attrsCompleto = new ArrayList<String>() {
 

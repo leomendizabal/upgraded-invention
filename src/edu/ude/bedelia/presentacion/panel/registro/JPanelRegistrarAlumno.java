@@ -20,6 +20,7 @@ public class JPanelRegistrarAlumno extends JPanelAlumno implements ActionListene
 		super();
 		controladorAlumno = ControladorAlumno.getInstance(this);
 		modoRegistrar(true);
+		modoBecado(false);
 		setActionListenerGuardar(this);
 	}
 

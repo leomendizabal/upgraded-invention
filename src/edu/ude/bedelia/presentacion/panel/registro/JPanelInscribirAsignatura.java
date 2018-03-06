@@ -1,4 +1,4 @@
-package edu.ude.bedelia.presentacion.panel;
+package edu.ude.bedelia.presentacion.panel.registro;
 
 import java.awt.Font;
 

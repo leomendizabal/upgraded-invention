@@ -1,6 +1,7 @@
 package edu.ude.bedelia.presentacion.panel.listado;
 
 import java.awt.Dimension;
+import java.awt.event.ActionListener;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -97,5 +98,15 @@ public class JPanelTablaConFiltro extends JPanelBase {
 		scrollPane.setBounds(12, 12, 590, 390);
 		jPanelContenedor.add(scrollPane);
 
+	}
+
+	protected void ocultarModo() {
+		rdbtnCompleto.setVisible(false);
+		rdbtnParcial.setVisible(false);
+		lblTipoReferencia.setVisible(false);
+	}
+	
+	protected void setActionListenerBtnFiltro(ActionListener listener) {
+		btnFiltrar.addActionListener(listener);
 	}
 }

@@ -1,15 +1,30 @@
 package edu.ude.bedelia.logica.vo;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import edu.ude.bedelia.logica.entidades.Alumno;
 
 public class VOAlumnoCompleto extends VOAlumno {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8382306334842343985L;
 	private String domicilio;
 	private String telefono;
 	private String email;
 	private float monto;
-
 	
+	public final static  List<String> attrCompleto = new ArrayList<String>() {
+		private static final long serialVersionUID = 1L;
+		{
+			addAll(attr);
+			add("Domicilio");
+			add("Cedula");
+			add("Tipo");
+		}
+	};	
 	public VOAlumnoCompleto(String cedula, String nombre, String apellido, TipoAlumno tipo, String domicilio,
 			String telefono, String email) {
 		this(cedula,nombre,apellido,tipo,domicilio,telefono,email,0);
@@ -46,6 +61,19 @@ public class VOAlumnoCompleto extends VOAlumno {
 
 	public float getMonto() {
 		return monto;
+	}
+	
+
+	public void setDomicilio(String domicilio) {
+		this.domicilio = domicilio;
+	}
+
+	public void setTelefono(String telefono) {
+		this.telefono = telefono;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String toString() {

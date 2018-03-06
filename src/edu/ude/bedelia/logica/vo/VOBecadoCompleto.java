@@ -4,7 +4,11 @@ import edu.ude.bedelia.logica.entidades.Alumno;
 
 public class VOBecadoCompleto extends VOAlumnoCompleto {
 
-	private static final long serialVersionUID = 1L;
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2376862426936443L;
 	private float porcentaje;
 	private String descripcion;
 
@@ -30,6 +34,10 @@ public class VOBecadoCompleto extends VOAlumnoCompleto {
 
 	public float getPorcentaje() {
 		return porcentaje;
+	}
+	
+	public String getStrPorcentaje() {
+		return String.valueOf(porcentaje);
 	}
 
 	public String getDescripcion() {

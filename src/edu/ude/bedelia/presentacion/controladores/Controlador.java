@@ -27,7 +27,7 @@ public abstract class Controlador {
 	}
 
 	public interface IBuscar {
-		public void buscar(boolean extra, String... argumentos);
+		public void buscar(String... argumentos);
 	}
 
 }

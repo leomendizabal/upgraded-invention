@@ -93,38 +93,38 @@ public class JPanelAlumno extends JPanelBase {
 		panel.add(lblApellido);
 
 		btnGuardar = new JButton("Guardar");
-		btnGuardar.setBounds(347, 404, 115, 29);
+		btnGuardar.setBounds(335, 386, 115, 29);
 		panel.add(btnGuardar);
 
 		chckbxEsBecado = new JCheckBox("Es becado");
-		chckbxEsBecado.setBounds(197, 263, 139, 29);
+		chckbxEsBecado.setBounds(202, 222, 139, 29);
 		panel.add(chckbxEsBecado);
 
 		lblDescripcion = new JLabel("Descripci\u00F3n");
-		lblDescripcion.setBounds(98, 297, 84, 20);
+		lblDescripcion.setBounds(98, 288, 84, 20);
 		panel.add(lblDescripcion);
 
 		txtDescripcion = new JTextArea();
-		txtDescripcion.setBounds(209, 300, 253, 62);
+		txtDescripcion.setBounds(197, 291, 253, 62);
 		panel.add(txtDescripcion);
 
 		btnBuscar = new JButton("Buscar");
-		btnBuscar.setBounds(467, 23, 115, 29);
+		btnBuscar.setBounds(473, 27, 84, 20);
 		panel.add(btnBuscar);
 
 		lblEmail = new JLabel("Email");
 		lblEmail.setFont(new Font("Dialog", Font.PLAIN, 14));
-		lblEmail.setBounds(98, 185, 89, 14);
+		lblEmail.setBounds(98, 196, 89, 14);
 		panel.add(lblEmail);
 
 		lblTelefono = new JLabel("Telefono");
 		lblTelefono.setFont(new Font("Dialog", Font.PLAIN, 14));
-		lblTelefono.setBounds(98, 127, 89, 14);
+		lblTelefono.setBounds(98, 120, 89, 23);
 		panel.add(lblTelefono);
 
 		textFieldEmail = new JTextField();
 		textFieldEmail.setColumns(10);
-		textFieldEmail.setBounds(197, 181, 253, 20);
+		textFieldEmail.setBounds(197, 194, 253, 20);
 		panel.add(textFieldEmail);
 
 		textFieldTelefono = new JTextField();
@@ -139,17 +139,17 @@ public class JPanelAlumno extends JPanelBase {
 
 		textFieldDireccion = new JTextField();
 		textFieldDireccion.setColumns(10);
-		textFieldDireccion.setBounds(197, 153, 253, 20);
+		textFieldDireccion.setBounds(197, 155, 253, 20);
 		panel.add(textFieldDireccion);
 
 		textFieldDescuento = new JTextField();
 		textFieldDescuento.setColumns(10);
-		textFieldDescuento.setBounds(197, 213, 253, 20);
+		textFieldDescuento.setBounds(197, 259, 253, 20);
 		panel.add(textFieldDescuento);
 
 		lblDescuento = new JLabel("Descuento");
 		lblDescuento.setFont(new Font("Dialog", Font.PLAIN, 14));
-		lblDescuento.setBounds(93, 215, 89, 14);
+		lblDescuento.setBounds(98, 262, 89, 14);
 		panel.add(lblDescuento);
 
 		registrarEventListeners();
@@ -166,12 +166,28 @@ public class JPanelAlumno extends JPanelBase {
 		txtDescripcion.setEnabled(!esActivo);
 		btnGuardar.setEnabled(!esActivo);
 	}
+	
+	protected void habilitarModificacion(boolean esActivo) {
+		//bloqueados
+		textFieldNombre.setEnabled(!esActivo);
+		textFieldApellido.setEnabled(!esActivo);
+		chckbxEsBecado.setEnabled(!esActivo);
+		textFieldDescuento.setEnabled(!esActivo);
+		txtDescripcion.setEnabled(!esActivo);
+
+		// activos
+		textFieldEmail.setEnabled(esActivo);
+		textFieldTelefono.setEnabled(esActivo);
+		textFieldDireccion.setEnabled(esActivo);
+		btnGuardar.setEnabled(esActivo);
+	}
 
 	protected void modoRegistrar(boolean esVisible) {
 		btnBuscar.setVisible(!esVisible);
 	}
 
 	protected void modoBecado(boolean esBecado) {
+		lblDescuento.setVisible(esBecado);
 		textFieldDescuento.setVisible(esBecado);
 		lblDescripcion.setVisible(esBecado);
 		txtDescripcion.setVisible(esBecado);
@@ -188,11 +204,11 @@ public class JPanelAlumno extends JPanelBase {
 
 	protected void setActionListenerBuscar(ActionListener listener) {
 		btnBuscar.addActionListener(listener);
-		
+
 	}
-	
+
 	protected void setActionListenerGuardar(ActionListener listener) {
 		btnGuardar.addActionListener(listener);
-		
+
 	}
 }
