@@ -5,6 +5,9 @@ import java.awt.Font;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import edu.ude.bedelia.presentacion.controladores.ControladorInscripcion;
+
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -13,18 +16,22 @@ import javax.swing.JComboBox;
 import javax.swing.JTextArea;
 import javax.swing.DefaultComboBoxModel;
 
-public class JPanelInscribirAsignatura extends JPanel {
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JButton btnGuardar;
-	private JTextField textField_3;
+public class JPanelInscribirAsignatura extends JPanelBase{
+	
+	private static final long serialVersionUID = 1L;
+	private final ControladorInscripcion controladorInscripcion;
+	private JTextField textcedula;
+	private JTextField textcodigo;
+	private JTextField textFieldanio;
+	private JButton btnInscribir;
+	private JTextField textFieldmonto;
 	
 	private void registrarEventListeners() {
 		
-		btnGuardar.addActionListener(new ActionListener() {
+		btnInscribir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
+				controladorInscripcion.registrar(false,textcedula.getText(),textcodigo.getText(),textcodigo.getText(),textFieldmonto.getText() );
 				
 				
 			}
@@ -34,6 +41,9 @@ public class JPanelInscribirAsignatura extends JPanel {
 	 * Create the panel.
 	 */
 	public JPanelInscribirAsignatura() {
+		
+		super();
+		controladorInscripcion = ControladorInscripcion.getInstance(this);
 		setLayout(null);
 
 		JPanel panel = new JPanel();
@@ -41,20 +51,20 @@ public class JPanelInscribirAsignatura extends JPanel {
 		add(panel);
 		panel.setLayout(null);
 
-		textField = new JTextField();
-		textField.setBounds(109, 25, 253, 20);
-		panel.add(textField);
-		textField.setColumns(10);
+		textcedula = new JTextField();
+		textcedula.setBounds(109, 25, 253, 20);
+		panel.add(textcedula);
+		textcedula.setColumns(10);
 
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(109, 58, 253, 20);
-		panel.add(textField_1);
+		textcodigo = new JTextField();
+		textcodigo.setColumns(10);
+		textcodigo.setBounds(109, 58, 253, 20);
+		panel.add(textcodigo);
 
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		textField_2.setBounds(109, 89, 253, 20);
-		panel.add(textField_2);
+		textFieldanio = new JTextField();
+		textFieldanio.setColumns(10);
+		textFieldanio.setBounds(109, 89, 253, 20);
+		panel.add(textFieldanio);
 
 		JLabel lblNombre = new JLabel("Cedula");
 		lblNombre.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -71,14 +81,14 @@ public class JPanelInscribirAsignatura extends JPanel {
 		lblCodigo.setBounds(10, 61, 89, 14);
 		panel.add(lblCodigo);
 		
-		btnGuardar = new JButton("Inscribir");
-		btnGuardar.setBounds(180, 186, 115, 29);
-		panel.add(btnGuardar);
+		btnInscribir = new JButton("Inscribir");
+		btnInscribir.setBounds(180, 186, 115, 29);
+		panel.add(btnInscribir);
 		
-		textField_3 = new JTextField();
-		textField_3.setColumns(10);
-		textField_3.setBounds(109, 120, 253, 20);
-		panel.add(textField_3);
+		textFieldmonto = new JTextField();
+		textFieldmonto.setColumns(10);
+		textFieldmonto.setBounds(109, 120, 253, 20);
+		panel.add(textFieldmonto);
 		
 		JLabel lblMontoBase = new JLabel("Monto base");
 		lblMontoBase.setFont(new Font("Tahoma", Font.PLAIN, 14));
