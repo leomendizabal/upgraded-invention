@@ -2,6 +2,7 @@ package edu.ude.bedelia.presentacion.frame;
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.event.ActionEvent;
@@ -16,7 +17,11 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import edu.ude.bedelia.presentacion.panel.JpanelMontoRecaudado;
+<<<<<<< HEAD
 import edu.ude.bedelia.presentacion.panel.listado.JPanelEscolaridad;
+=======
+import edu.ude.bedelia.presentacion.panel.listado.JPanelListadoApellido;
+>>>>>>> 8d4bcca3a1177b5ac03554acdc9942b7cf547dd7
 import edu.ude.bedelia.presentacion.panel.listado.JPanelListadoEgresado;
 import edu.ude.bedelia.presentacion.panel.registro.JPanelAlumno;
 import edu.ude.bedelia.presentacion.panel.registro.JPanelInscribirAsignatura;
@@ -29,16 +34,20 @@ public class JFramePrincipal extends JFrame implements ActionListener {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;	
 	private JPanel contentPane;
 	private JPanel jPanelRegistrarAsignatura = new JPanelRegistroAsignatura();
 	private JPanel jPanelRegistrarAlumno = new JPanelRegistrarAlumno();
 	private JPanel jPanelInscribirAsignatura = new JPanelInscribirAsignatura();
 	private JPanel jPanelMontoRecaudado = new JpanelMontoRecaudado();
 	private JPanel jPanelListadoEgresado =   new JPanelListadoEgresado();
+<<<<<<< HEAD
 	private JPanel jPanelModificarAlumno =   new JPanelModificarAlumno();
 	private JPanel jPanelEscolaridad =   new JPanelEscolaridad();
 	
+=======
+	private JPanel JPanelListadoApellido = new JPanelListadoApellido();
+>>>>>>> 8d4bcca3a1177b5ac03554acdc9942b7cf547dd7
 	private JMenuBar menuBar = new JMenuBar();
 
 	JPanel visiblePanel = new JPanel(); // is the default, but showing it set
@@ -75,10 +84,15 @@ public class JFramePrincipal extends JFrame implements ActionListener {
 		visiblePanel.add(jPanelInscribirAsignatura, "TAG5");
 		visiblePanel.add(jPanelMontoRecaudado, "TAG6");
 		visiblePanel.add(jPanelListadoEgresado, "TAG7");
+<<<<<<< HEAD
 		visiblePanel.add(jPanelModificarAlumno, "TAG8");
 		visiblePanel.add(jPanelEscolaridad, "TAG10");
 
 
+=======
+		visiblePanel.add(JPanelListadoApellido, "TAG8");
+		
+>>>>>>> 8d4bcca3a1177b5ac03554acdc9942b7cf547dd7
 		setSize(717, 563);
 		setResizable(false);
 		setLocationRelativeTo(null);
@@ -111,7 +125,7 @@ public class JFramePrincipal extends JFrame implements ActionListener {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				CardLayout cardLayout = (CardLayout) visiblePanel.getLayout();
-				cardLayout.show(visiblePanel, "TAG3");
+				cardLayout.show(visiblePanel, "TAG8");
 			}
 		});
 		

@@ -1,6 +1,8 @@
 package edu.ude.bedelia.logica.vo;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import edu.ude.bedelia.logica.entidades.Alumno;
 import edu.ude.bedelia.logica.entidades.Becado;
@@ -30,6 +32,16 @@ public class VOAlumno implements Serializable {
 		this.tipo = a instanceof Becado ? TipoAlumno.BECADO : TipoAlumno.COMUN;
 	}
 
+	public final static  List<String> attr = new ArrayList<String>() {
+		private static final long serialVersionUID = 1L;
+		{
+			add("Apellido");
+			add("Nombre");
+			add("Cedula");
+			add("Tipo");
+		}
+	};
+	
 	public String getCedula() {
 		return cedula;
 	}
