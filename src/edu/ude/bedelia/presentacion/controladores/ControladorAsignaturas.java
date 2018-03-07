@@ -1,27 +1,37 @@
 package edu.ude.bedelia.presentacion.controladores;
 
 import java.rmi.RemoteException;
+import java.util.List;
 
 import edu.ude.bedelia.logica.excepciones.AsignaturasException;
 import edu.ude.bedelia.logica.vo.VOAsignatura;
+import edu.ude.bedelia.presentacion.panel.listener.ICargarTabla;
 import edu.ude.bedelia.presentacion.panel.listener.IMensaje;
+import edu.ude.bedelia.presentacion.tablemodel.AsignaturaModel;
 
-public class ControladorAsignaturas extends Controlador implements Controlador.IRegistrar {
+public class ControladorAsignaturas extends Controlador implements Controlador.IRegistrar, Controlador.IListar<String> {
 
 	private static ControladorAsignaturas instancia;
 	private IMensaje listener;
-
-	protected ControladorAsignaturas(IMensaje listener) {
+	private ICargarTabla cargar;
+	
+	protected ControladorAsignaturas() {
 		super();
+	}
+
+	public static ControladorAsignaturas getInstancia() {
+		if (instancia == null) {
+			instancia = new ControladorAsignaturas();
+		}
+		return instancia;
+	}
+
+	public void setListener(IMensaje listener) {
 		this.listener = listener;
 	}
 
-	public static ControladorAsignaturas getInstancia(IMensaje listener) {
-		if (instancia == null) {
-			instancia = new ControladorAsignaturas(listener);
-		}
-
-		return instancia;
+	public void setCargar(ICargarTabla cargar) {
+		this.cargar = cargar;
 	}
 
 	@Override
@@ -34,6 +44,20 @@ public class ControladorAsignaturas extends Controlador implements Controlador.I
 			listener.mostrarError("Error", e.getMessage());
 		}
 
+	}
+
+	@Override
+	public void listar(String... argumentos) {
+		// TODO Auto-generated method stub
+		try {
+			List<VOAsignatura> resultado = fachada.listarAsignaturas();
+			cargar.cargarTabla(new AsignaturaModel(resultado,VOAsignatura.attr));
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			cargar.mostrarError("Listar asignaturas", e.getMessage());
+		}
+		
 	}
 
 }

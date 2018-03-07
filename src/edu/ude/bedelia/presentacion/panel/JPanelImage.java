@@ -8,9 +8,16 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
+import edu.ude.bedelia.presentacion.panel.registro.JPanelRegistrarAlumno;
+
 public class JPanelImage extends JPanel {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private BufferedImage image;
+	public final static String TAG = JPanelImage.class.getSimpleName();
 
 	/**
 	 * Create the panel.
@@ -22,10 +29,10 @@ public class JPanelImage extends JPanel {
 
 	public JPanelImage(String imageUrl) {
 		try {
-			// TODO: Quitar url harcode
 			image = ImageIO.read(new File(imageUrl));
 		} catch (IOException ex) {
 			// handle exception...
+			ex.printStackTrace();
 		}
 	}
 

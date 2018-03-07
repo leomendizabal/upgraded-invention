@@ -24,7 +24,7 @@ public class VOInscripcionCompleta extends VOInscripcion {
 			add("monto base");
 		}
 	};
-	
+
 	public VOInscripcionCompleta(Integer numero, int anio, float montoBase, int calificacion) {
 		super(numero, anio, montoBase, calificacion);
 		this.montoBase = montoBase;
@@ -39,6 +39,4 @@ public class VOInscripcionCompleta extends VOInscripcion {
 		return montoBase;
 	}
 
-	
-	
 }

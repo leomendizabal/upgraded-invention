@@ -1,48 +1,42 @@
 package edu.ude.bedelia.presentacion.panel;
 
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.JCheckBox;
-import javax.swing.JComboBox;
-import javax.swing.JTextArea;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.JTextPane;
-import edu.ude.bedelia.presentacion.controladores.ControladorAlumno;
+
 import edu.ude.bedelia.presentacion.controladores.ControladorInscripcion;
-import edu.ude.bedelia.presentacion.panel.listener.IMensaje;
 import edu.ude.bedelia.presentacion.panel.listener.IMostrarMonto;
 
-public class JpanelMontoRecaudado extends JPanelBase implements IMostrarMonto  {
-	
+public class JPanelMontoRecaudado extends JPanelBase implements IMostrarMonto {
+
 	private static final long serialVersionUID = 1L;
+	public final static String TAG = JPanelMontoRecaudado.class.getSimpleName();
 	private final ControladorInscripcion controladorInscripcion;
 	private JTextField textCed;
 	private JTextField textAno;
 	private JButton btnCalcular;
 	private JLabel lblMontoRecuadado;
-	
-	
+
 	private void registrarEventListeners() {
-		
+
 		btnCalcular.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				controladorInscripcion.mostrar(JpanelMontoRecaudado.this,textAno.getText(),textCed.getText());
-				
-				
+				controladorInscripcion.mostrar(JPanelMontoRecaudado.this, textAno.getText(), textCed.getText());
+
 			}
 		});
 	}
+
 	/**
 	 * Create the panel.
 	 */
-	public JpanelMontoRecaudado() {
-		
+	public JPanelMontoRecaudado() {
+
 		super();
 		controladorInscripcion = ControladorInscripcion.getInstance(this);
 		setLayout(null);
@@ -71,25 +65,24 @@ public class JpanelMontoRecaudado extends JPanelBase implements IMostrarMonto  {
 		lblApellido.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblApellido.setBounds(10, 57, 89, 19);
 		panel.add(lblApellido);
-		
+
 		btnCalcular = new JButton("Calcular");
 		btnCalcular.setBounds(183, 98, 115, 29);
 		panel.add(btnCalcular);
-		
-	    lblMontoRecuadado = new JLabel("");
+
+		lblMontoRecuadado = new JLabel("");
 		lblMontoRecuadado.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblMontoRecuadado.setBounds(183, 148, 115, 19);
 		panel.add(lblMontoRecuadado);
-		
+
 		registrarEventListeners();
 	}
+
 	@Override
 	public void mostrar(String monto) {
 		// TODO Auto-generated method stub
 		lblMontoRecuadado.setText(monto);
-		
+
 	}
-	
-	
-	
+
 }

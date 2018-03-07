@@ -20,14 +20,14 @@ public class AsignaturaModel extends TableModelGenerico<VOAsignatura> {
 	public Object getValueAt(int rowIndex, int columnIndex) {
 		// TODO Auto-generated method stub
 		Object value = null;
-		VOAsignatura asignatura = getRow(rowIndex);
+		VOAsignatura asignatura = getFila(rowIndex);
 		switch (columnIndex) {
-			case 0:
-				return asignatura.getCodigo();
-			case 1:
-				return asignatura.getNombre(); // Nombre
-			case 2:
-				return asignatura.getDescripcion();
+		case 0:
+			return asignatura.getCodigo();
+		case 1:
+			return asignatura.getNombre(); // Nombre
+		case 2:
+			return asignatura.getDescripcion();
 		}
 		return value;
 	}

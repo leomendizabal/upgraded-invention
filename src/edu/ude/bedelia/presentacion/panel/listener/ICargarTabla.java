@@ -5,6 +5,6 @@ import javax.swing.table.AbstractTableModel;
 public interface ICargarTabla extends IMensaje {
 
 	public void cargarTabla(AbstractTableModel model);
-	
-	public void tablaVacia( ) ;
+
+	public void tablaVacia();
 }

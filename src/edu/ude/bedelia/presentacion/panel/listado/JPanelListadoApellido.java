@@ -9,27 +9,27 @@ import edu.ude.bedelia.presentacion.controladores.ControladorListarApellido;
 import edu.ude.bedelia.presentacion.panel.listener.ICargarTabla;
 
 public class JPanelListadoApellido extends JPanelTablaConFiltro implements ICargarTabla, ActionListener {
-	
+
 	/**
 	 * 
 	 */
+	public final static String TAG = JPanelListadoApellido.class.getSimpleName();
 	private static final long serialVersionUID = 1L;
 	private final ControladorListarApellido controlador;
-	
+
 	public JPanelListadoApellido() {
 		super();
 		lblMensaje.setText("");
 		controlador = ControladorListarApellido.getInstance(this);
 		configurarVista();
-		setActionListener();		
+		setActionListener();
 	}
 
 	private void configurarVista() {
-		this.rdbtnCompleto.setVisible(false);
-		this.rdbtnParcial.setVisible(false);
-		this.lblTipoReferencia.setVisible(false);
+		setTextoReferenciaFiltro("Apellido");
+		ocultarModoFiltro();
 	}
-	
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		controlador.listar(textFieldTexto.getText());
@@ -46,9 +46,9 @@ public class JPanelListadoApellido extends JPanelTablaConFiltro implements ICarg
 	public void tablaVacia() {
 		this.lblMensaje.setText("No hay datos para mostrar");
 		this.lblMensaje.setVisible(true);
-		this.table.setVisible(false);		
+		this.table.setVisible(false);
 	}
-	
+
 	private void setActionListener() {
 		btnFiltrar.addActionListener(this);
 	}

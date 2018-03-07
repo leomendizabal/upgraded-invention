@@ -11,15 +11,15 @@ abstract class TableModelGenerico<T> extends AbstractTableModel {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	protected List<T> modelData;
-	protected List<String> columnNames;
-	protected Class[] columnClasses;
-	protected Boolean[] isColumnEditable;
-	private Class<Object> rowClass = Object.class;
-	private boolean isModelEditable = false;
+	protected List<T> datos;
+	protected List<String> columnas;
+	protected Class[] clasesColumnas;
+	protected Boolean[] esColumnaEditable;
+	private Class<Object> clasesFila = Object.class;
+	private boolean esModeloEditable = false;
 
 	protected TableModelGenerico(Class<?> rowClass) {
-		setRowClass(rowClass);
+		setClaseFila(rowClass);
 	}
 
 	protected TableModelGenerico(List<String> columnNames) {
@@ -27,56 +27,56 @@ abstract class TableModelGenerico<T> extends AbstractTableModel {
 	}
 
 	protected TableModelGenerico(List<T> modelData, List<String> columnNames) {
-		setDataAndColumnNames(modelData, columnNames);
+		setDatosColumnas(modelData, columnNames);
 	}
 
 	protected TableModelGenerico(List<T> modelData, List<String> columnNames, Class<?> rowClass) {
-		setDataAndColumnNames(modelData, columnNames);
-		setRowClass(rowClass);
+		setDatosColumnas(modelData, columnNames);
+		setClaseFila(rowClass);
 	}
 
-	protected void setDataAndColumnNames(List<T> modelData, List<String> columnNames) {
-		this.modelData = modelData;
-		this.columnNames = columnNames;
-		columnClasses = new Class[getColumnCount()];
-		isColumnEditable = new Boolean[getColumnCount()];
+	protected void setDatosColumnas(List<T> modelData, List<String> columnNames) {
+		this.datos = modelData;
+		this.columnas = columnNames;
+		clasesColumnas = new Class[getColumnCount()];
+		esColumnaEditable = new Boolean[getColumnCount()];
 		fireTableStructureChanged();
 	}
 
-	protected void setRowClass(Class rowClass) {
-		this.rowClass = rowClass;
+	protected void setClaseFila(Class filaClass) {
+		this.clasesFila = filaClass;
 	}
 
 	public int getColumnCount() {
-		return columnNames.size();
+		return columnas.size();
 	}
 
 	public String getColumnName(int column) {
 		Object columnName = null;
 
-		if (column < columnNames.size()) {
-			columnName = columnNames.get(column);
+		if (column < columnas.size()) {
+			columnName = columnas.get(column);
 		}
 
 		return (columnName == null) ? super.getColumnName(column) : columnName.toString();
 	}
 
 	public int getRowCount() {
-		return modelData.size();
+		return datos.size();
 	}
 
 	public void addRow(T rowData) {
-		insertRow(getRowCount(), rowData);
+		insertFila(getRowCount(), rowData);
 	}
 
-	public T getRow(int row) {
-		return modelData.get(row);
+	public T getFila(int row) {
+		return datos.get(row);
 	}
 
-	@SuppressWarnings("unchecked")
+	/*@SuppressWarnings("unchecked")
 	public T[] getRowsAsArray(int... rows) {
 		List<T> rowData = getRowsAsList(rows);
-		T[] array = (T[]) Array.newInstance(rowClass, rowData.size());
+		T[] array = (T[]) Array.newInstance(clasesFila, rowData.size());
 		return (T[]) rowData.toArray(array);
 	}
 
@@ -84,59 +84,59 @@ abstract class TableModelGenerico<T> extends AbstractTableModel {
 		ArrayList<T> rowData = new ArrayList<T>(rows.length);
 
 		for (int i = 0; i < rows.length; i++) {
-			rowData.add(getRow(rows[i]));
+			rowData.add(getFila(rows[i]));
 		}
 
 		return rowData;
+	}*/
+
+	public void insertFila(int fila, T datoFila) {
+		datos.add(fila, datoFila);
+		fireTableRowsInserted(fila, fila);
 	}
 
-	public void insertRow(int row, T rowData) {
-		modelData.add(row, rowData);
-		fireTableRowsInserted(row, row);
-	}
-
-	public void insertRows(int row, List<T> rowList) {
-		modelData.addAll(row, rowList);
+	public void insertFilas(int row, List<T> rowList) {
+		datos.addAll(row, rowList);
 		fireTableRowsInserted(row, row + rowList.size() - 1);
 	}
 
-	public void insertRows(int row, T[] rowArray) {
+	public void insertFilas(int row, T[] rowArray) {
 		List<T> rowList = new ArrayList<T>(rowArray.length);
 
 		for (int i = 0; i < rowArray.length; i++) {
 			rowList.add(rowArray[i]);
 		}
 
-		insertRows(row, rowList);
+		insertFilas(row, rowList);
 	}
 
-	public void removeRowRange(int start, int end) {
-		modelData.subList(start, end + 1).clear();
+/*	public void removeRowRange(int start, int end) {
+		datos.subList(start, end + 1).clear();
 		fireTableRowsDeleted(start, end);
 	}
 
 	public void removeRows(int... rows) {
 		for (int i = rows.length - 1; i >= 0; i--) {
 			int row = rows[i];
-			modelData.remove(row);
+			datos.remove(row);
 			fireTableRowsDeleted(row, row);
 		}
-	}
+	}*/
 
-	public void setColumnClass(int column, Class columnClass) {
-		columnClasses[column] = columnClass;
+	public void setClaseColumna(int column, Class columnClass) {
+		clasesColumnas[column] = columnClass;
 		fireTableRowsUpdated(0, getRowCount() - 1);
 	}
 
-	public void setColumnEditable(int column, boolean isEditable) {
-		isColumnEditable[column] = isEditable ? Boolean.TRUE : Boolean.FALSE;
+	public void setColumnaEditable(int column, boolean isEditable) {
+		esColumnaEditable[column] = isEditable ? Boolean.TRUE : Boolean.FALSE;
 	}
 
 	public void setModelEditable(boolean isModelEditable) {
-		this.isModelEditable = isModelEditable;
+		this.esModeloEditable = isModelEditable;
 	}
 
-	public static String formatColumnName(String columnName) {
+	/*public static String formatColumnName(String columnName) {
 		if (columnName.length() < 3)
 			return columnName;
 
@@ -155,5 +155,5 @@ abstract class TableModelGenerico<T> extends AbstractTableModel {
 		}
 
 		return buffer.toString().replaceAll("_", " ");
-	}
+	}*/
 }

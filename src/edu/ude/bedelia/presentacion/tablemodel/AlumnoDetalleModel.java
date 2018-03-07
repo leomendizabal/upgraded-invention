@@ -9,14 +9,14 @@ public class AlumnoDetalleModel extends TableModelGenerico<VOAlumnoCompleto> {
 
 	private static final long serialVersionUID = 1L;
 
-	protected AlumnoDetalleModel(List<VOAlumnoCompleto> modelData, List<String> columnNames) {
+	public AlumnoDetalleModel(List<VOAlumnoCompleto> modelData, List<String> columnNames) {
 		super(modelData, columnNames);
 		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public Object getValueAt(int rowIndex, int columnIndex) {
-		VOAlumnoCompleto alumno = getRow(rowIndex);
+		VOAlumnoCompleto alumno = getFila(rowIndex);
 		Object value = null;
 
 		switch (columnIndex) {

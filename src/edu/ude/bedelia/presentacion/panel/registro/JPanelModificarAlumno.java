@@ -5,33 +5,32 @@ import java.awt.event.ActionListener;
 import java.util.Map;
 
 import edu.ude.bedelia.presentacion.UIConstantes;
-import edu.ude.bedelia.presentacion.controladores.ControladorAlumno;
 import edu.ude.bedelia.presentacion.controladores.ControlladorModificarAlumno;
 import edu.ude.bedelia.presentacion.panel.listener.IModificarDatos;
 
 public class JPanelModificarAlumno extends JPanelAlumno implements IModificarDatos {
 
 	private static final long serialVersionUID = 1L;
-	
+	public final static String TAG = JPanelModificarAlumno.class.getSimpleName();
 	private final ControlladorModificarAlumno controlador;
-	
+
 	private final ActionListener actionListenerBuscar = new ActionListener() {
-		
+
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
 			controlador.buscar(textFieldCedula.getText());
-			
+
 		}
 	};
-	
+
 	private final ActionListener actionListenerModificar = new ActionListener() {
-		
+
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
-			controlador.modificar(textFieldDireccion.getText(),textFieldEmail.getText(),textFieldTelefono.getText());
-			
+			controlador.modificar(textFieldDireccion.getText(), textFieldEmail.getText(), textFieldTelefono.getText());
+
 		}
 	};
 
@@ -46,7 +45,6 @@ public class JPanelModificarAlumno extends JPanelAlumno implements IModificarDat
 		setActionListenerBuscar(actionListenerBuscar);
 		setActionListenerGuardar(actionListenerModificar);
 	}
-
 
 	@Override
 	public void mostrarDatos(boolean esBecado, Map<String, String> atributos) {
@@ -63,7 +61,7 @@ public class JPanelModificarAlumno extends JPanelAlumno implements IModificarDat
 		textFieldTelefono.setText(atributos.get(UIConstantes.ParametrosAlumno.CLAVE_TELEFONO));
 		textFieldEmail.setText(atributos.get(UIConstantes.ParametrosAlumno.CLAVE_EMAIL));
 		habilitarModificacion(true);
-		
+
 	}
 
 }

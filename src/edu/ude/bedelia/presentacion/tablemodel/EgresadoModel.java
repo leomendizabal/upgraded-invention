@@ -18,7 +18,7 @@ public class EgresadoModel extends TableModelGenerico<VOEgresado> {
 	public Object getValueAt(int rowIndex, int columnIndex) {
 		// TODO Auto-generated method stub
 		Object objectoCelda = null;
-		VOEgresado valor = getRow(rowIndex);
+		VOEgresado valor = getFila(rowIndex);
 		if (valor instanceof VOEgresadoCompleto) {
 			VOEgresadoCompleto completo = (VOEgresadoCompleto) valor;
 			switch (columnIndex) {

@@ -1,12 +1,10 @@
 package edu.ude.bedelia.aplicacion;
 
 import java.rmi.Naming;
-import java.util.ArrayList;
 
 import edu.ude.bedelia.aplicacion.utiles.ClienteConfig;
 import edu.ude.bedelia.aplicacion.utiles.UrlBuilder;
 import edu.ude.bedelia.logica.fachada.IFachada;
-import edu.ude.bedelia.logica.vo.VOAlumno;
 
 public class Cliente {
 
@@ -24,7 +22,7 @@ public class Cliente {
 			IFachada fachada = (IFachada) Naming.lookup(url);
 
 			TestMain.correrPruebas(fachada);
-			
+
 		} catch (Exception e) {
 			System.err.println(e.getMessage());
 		}

@@ -2,9 +2,7 @@ package edu.ude.bedelia.presentacion.frame;
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
-import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.GridBagConstraints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -13,39 +11,46 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import edu.ude.bedelia.presentacion.panel.JpanelMontoRecaudado;
-
+import edu.ude.bedelia.presentacion.Mensajes;
+import edu.ude.bedelia.presentacion.controladores.ControladorRegistrarResultado;
+import edu.ude.bedelia.presentacion.controladores.ControladorRespaldar;
+import edu.ude.bedelia.presentacion.panel.JPanelImage;
+import edu.ude.bedelia.presentacion.panel.JPanelMontoRecaudado;
+import edu.ude.bedelia.presentacion.panel.listado.JPanelDetalleAlumno;
 import edu.ude.bedelia.presentacion.panel.listado.JPanelEscolaridad;
-
 import edu.ude.bedelia.presentacion.panel.listado.JPanelListadoApellido;
-
+import edu.ude.bedelia.presentacion.panel.listado.JPanelListadoAsinatura;
 import edu.ude.bedelia.presentacion.panel.listado.JPanelListadoEgresado;
+import edu.ude.bedelia.presentacion.panel.listener.IMensaje;
 import edu.ude.bedelia.presentacion.panel.registro.JPanelInscribirAsignatura;
 import edu.ude.bedelia.presentacion.panel.registro.JPanelModificarAlumno;
 import edu.ude.bedelia.presentacion.panel.registro.JPanelRegistrarAlumno;
 import edu.ude.bedelia.presentacion.panel.registro.JPanelRegistrarNota;
 import edu.ude.bedelia.presentacion.panel.registro.JPanelRegistroAsignatura;
 
-public class JFramePrincipal extends JFrame implements ActionListener {
+public class JFramePrincipal extends JFrame implements IMensaje {
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;	
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JPanel jPanelRegistrarAsignatura = new JPanelRegistroAsignatura();
 	private JPanel jPanelRegistrarAlumno = new JPanelRegistrarAlumno();
 	private JPanel jPanelRegistrarNota = new JPanelRegistrarNota();
 	private JPanel jPanelInscribirAsignatura = new JPanelInscribirAsignatura();
-	private JPanel jPanelMontoRecaudado = new JpanelMontoRecaudado();
-	private JPanel jPanelListadoEgresado =   new JPanelListadoEgresado();
-	private JPanel jPanelModificarAlumno =   new JPanelModificarAlumno();
-	private JPanel jPanelEscolaridad =   new JPanelEscolaridad();
-
-	private JPanel JPanelListadoApellido = new JPanelListadoApellido();
+	private JPanel jPanelMontoRecaudado = new JPanelMontoRecaudado();
+	private JPanel jPanelListadoEgresado = new JPanelListadoEgresado();
+	private JPanel jPanelModificarAlumno = new JPanelModificarAlumno();
+	private JPanel jPanelEscolaridad = new JPanelEscolaridad();
+	private JPanel jPanelListadoAsinatura = new JPanelListadoAsinatura();
+	private JPanel jPanelListadoApellido = new JPanelListadoApellido();
+	private JPanel jPanelDetalleAlumno= new JPanelDetalleAlumno();
+	private JPanel jPanelInicio = new JPanelImage("resource/image/pagina_inicio.jpeg");
 
 	private JMenuBar menuBar = new JMenuBar();
 
@@ -66,6 +71,18 @@ public class JFramePrincipal extends JFrame implements ActionListener {
 
 		initMenuBar();
 
+		initContenedor();
+
+		agregarPaneles();
+
+		setSize(717, 563);
+		setResizable(false);
+		setLocationRelativeTo(null);
+		setVisible(true);
+
+	}
+
+	private void initContenedor() {
 		visiblePanel.setBorder(BorderFactory.createTitledBorder("Contendor"));
 		// custom panel
 		jPanelRegistrarAlumno.setPreferredSize(new Dimension(visiblePanel.getWidth(), visiblePanel.getHeight()));
@@ -75,37 +92,36 @@ public class JFramePrincipal extends JFrame implements ActionListener {
 		jPanelMontoRecaudado.setPreferredSize(new Dimension(visiblePanel.getWidth(), visiblePanel.getHeight()));
 		jPanelModificarAlumno.setPreferredSize(new Dimension(visiblePanel.getWidth(), visiblePanel.getHeight()));
 		jPanelEscolaridad.setPreferredSize(new Dimension(visiblePanel.getWidth(), visiblePanel.getHeight()));
-		
+		jPanelInicio.setPreferredSize(new Dimension(visiblePanel.getWidth(), visiblePanel.getHeight()));
+		jPanelDetalleAlumno.setPreferredSize(new Dimension(visiblePanel.getWidth(), visiblePanel.getHeight()));
 		getContentPane().add(visiblePanel);
-	
+	}
 
-		//TODO: ver tags
+	private void agregarPaneles() {
 		visiblePanel.setLayout(new CardLayout(0, 0));
-		visiblePanel.add(jPanelRegistrarAlumno, "TAG1");
-		visiblePanel.add(jPanelRegistrarAsignatura, "TAG2");
-		visiblePanel.add(jPanelInscribirAsignatura, "TAG5");
-		visiblePanel.add(jPanelMontoRecaudado, "TAG6");
-		visiblePanel.add(jPanelListadoEgresado, "TAG7");
-		visiblePanel.add(jPanelModificarAlumno, "TAG8");
-		visiblePanel.add(jPanelEscolaridad, "TAG10");
 
-		visiblePanel.add(JPanelListadoApellido, "TAG9");
-
-		visiblePanel.add(jPanelRegistrarNota, "TAG11");
-
-		setSize(717, 563);
-		setResizable(false);
-		setLocationRelativeTo(null);
-		setVisible(true);
-
+		visiblePanel.add(jPanelInicio, JPanelImage.TAG);
+		visiblePanel.add(jPanelRegistrarAlumno, JPanelRegistrarAlumno.TAG);
+		visiblePanel.add(jPanelRegistrarAsignatura, JPanelRegistroAsignatura.TAG);
+		visiblePanel.add(jPanelInscribirAsignatura, JPanelInscribirAsignatura.TAG);
+		visiblePanel.add(jPanelMontoRecaudado, JPanelMontoRecaudado.TAG);
+		visiblePanel.add(jPanelListadoEgresado, JPanelListadoEgresado.TAG);
+		visiblePanel.add(jPanelModificarAlumno, JPanelModificarAlumno.TAG);
+		visiblePanel.add(jPanelEscolaridad, JPanelEscolaridad.TAG);
+		visiblePanel.add(jPanelListadoApellido, JPanelListadoApellido.TAG);
+		visiblePanel.add(jPanelRegistrarNota, JPanelRegistrarNota.TAG);
+		visiblePanel.add(jPanelListadoAsinatura, JPanelListadoAsinatura.TAG);
+		visiblePanel.add(jPanelDetalleAlumno, JPanelDetalleAlumno.TAG);
+		
 	}
 
 	private void configurarMenuAlumnos() {
 		JMenu topicoAlumnos = new JMenu("Alumnos");
 		menuBar.add(topicoAlumnos);
 
-		JMenuItem menuItemInscribirAlumno = new JMenuItem("Inscribir");
+		JMenuItem menuItemInscribirAlumno = new JMenuItem("Registrar");
 		JMenuItem menuItemModificarAlumno = new JMenuItem("Modificar");
+		JMenuItem menuItemDetalleAlumno = new JMenuItem("Detalle por alumno");
 		JMenuItem menuItemListarAlumnos = new JMenuItem("Listar por apellido");
 		JMenuItem menuItemEscolaridadAlumnos = new JMenuItem("Escolaridad");
 		JMenuItem menuItemListarEgresados = new JMenuItem("Listar egresados");
@@ -114,8 +130,7 @@ public class JFramePrincipal extends JFrame implements ActionListener {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				CardLayout cardLayout = (CardLayout) visiblePanel.getLayout();
-				cardLayout.show(visiblePanel, "TAG1");
+				mostrarPanel(JPanelRegistrarAlumno.TAG);
 
 			}
 		});
@@ -124,46 +139,58 @@ public class JFramePrincipal extends JFrame implements ActionListener {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				CardLayout cardLayout = (CardLayout) visiblePanel.getLayout();
-				cardLayout.show(visiblePanel, "TAG8");
+				mostrarPanel(JPanelListadoApellido.TAG);
 			}
 		});
-		
+
 		menuItemListarEgresados.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				CardLayout cardLayout = (CardLayout) visiblePanel.getLayout();
-				cardLayout.show(visiblePanel, "TAG7");
+				mostrarPanel(JPanelListadoEgresado.TAG);
 			}
 		});
-		
+
 		menuItemModificarAlumno.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				CardLayout cardLayout = (CardLayout) visiblePanel.getLayout();
-				cardLayout.show(visiblePanel, "TAG8");
-				
+				mostrarPanel(JPanelModificarAlumno.TAG);
+
+			}
+		});
+
+		menuItemEscolaridadAlumnos.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				mostrarPanel(JPanelEscolaridad.TAG);
 			}
 		});
 		
-		menuItemEscolaridadAlumnos.addActionListener(new ActionListener() {
+		menuItemDetalleAlumno.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				CardLayout cardLayout = (CardLayout) visiblePanel.getLayout();
-				cardLayout.show(visiblePanel, "TAG10");
+				mostrarPanel(JPanelDetalleAlumno.TAG);
 			}
 		});
 
 		topicoAlumnos.add(menuItemInscribirAlumno);
 		topicoAlumnos.add(menuItemModificarAlumno);
+		topicoAlumnos.add(menuItemDetalleAlumno);
 		topicoAlumnos.add(menuItemListarAlumnos);
 		topicoAlumnos.add(menuItemListarEgresados);
 		topicoAlumnos.add(menuItemEscolaridadAlumnos);
+		
+	}
+
+	private void mostrarPanel(final String tag) {
+		CardLayout cardLayout = (CardLayout) visiblePanel.getLayout();
+		cardLayout.show(visiblePanel, tag);
 	}
 
 	private void configurarMenuAsignaturas() {
@@ -179,8 +206,7 @@ public class JFramePrincipal extends JFrame implements ActionListener {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				CardLayout cardLayout = (CardLayout) visiblePanel.getLayout();
-				cardLayout.show(visiblePanel, "TAG2");
+				mostrarPanel(JPanelRegistroAsignatura.TAG);
 			}
 		});
 
@@ -188,8 +214,7 @@ public class JFramePrincipal extends JFrame implements ActionListener {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				CardLayout cardLayout = (CardLayout) visiblePanel.getLayout();
-				cardLayout.show(visiblePanel, "TAG4");
+				mostrarPanel(JPanelListadoAsinatura.TAG);
 			}
 		});
 
@@ -197,8 +222,7 @@ public class JFramePrincipal extends JFrame implements ActionListener {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				CardLayout cardLayout = (CardLayout) visiblePanel.getLayout();
-				cardLayout.show(visiblePanel, "TAG5");
+				mostrarPanel(JPanelInscribirAsignatura.TAG);
 			}
 		});
 
@@ -206,11 +230,10 @@ public class JFramePrincipal extends JFrame implements ActionListener {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				CardLayout cardLayout = (CardLayout) visiblePanel.getLayout();
-				cardLayout.show(visiblePanel, "TAG11");
+				mostrarPanel(JPanelRegistrarNota.TAG);
 			}
 		});
-		
+
 		topicoAsignaturas.add(menuItemRegistrarAsignatura);
 		topicoAsignaturas.add(menuItemInscribirAsignatura);
 		topicoAsignaturas.add(menuItemListarAsignatura);
@@ -227,8 +250,7 @@ public class JFramePrincipal extends JFrame implements ActionListener {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				CardLayout cardLayout = (CardLayout) visiblePanel.getLayout();
-				cardLayout.show(visiblePanel, "TAG6");
+				mostrarPanel(JPanelMontoRecaudado.TAG);
 			}
 		});
 
@@ -239,6 +261,15 @@ public class JFramePrincipal extends JFrame implements ActionListener {
 		menuBar.add(topicoRespaldo);
 
 		JMenuItem menuItemMontoRecaudadoInscripcion = new JMenuItem("Respaldar");
+		menuItemMontoRecaudadoInscripcion.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				ControladorRespaldar.getInstance(JFramePrincipal.this).respaldar();
+				;
+
+			}
+		});
 		topicoRespaldo.add(menuItemMontoRecaudadoInscripcion);
 	}
 
@@ -252,12 +283,17 @@ public class JFramePrincipal extends JFrame implements ActionListener {
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent e) {
-		Object obj = e.getSource();
-		if (obj instanceof JMenuItem) {
-			JMenuItem menu = (JMenuItem) e.getSource();
-			System.out.println(menu.toString());
-		}
+	public void mostrarConfirmacion(String titulo, String mensaje) {
+		// TODO Auto-generated method stub
+		Mensajes.mostrarMensaje(this, titulo, mensaje, JOptionPane.INFORMATION_MESSAGE);
 
 	}
+
+	@Override
+	public void mostrarError(String titulo, String mensaje) {
+		// TODO Auto-generated method stub
+		Mensajes.mostrarMensaje(this, titulo, mensaje, JOptionPane.ERROR_MESSAGE);
+
+	}
+
 }

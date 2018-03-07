@@ -13,6 +13,7 @@ public class JPanelEscolaridad extends JPanelTablaConFiltro implements ICargarTa
 	/**
 	 * 
 	 */
+	public final static String TAG = JPanelEscolaridad.class.getSimpleName();
 	private static final long serialVersionUID = 1L;
 	private final ControladorEscolaridad controlador;
 
@@ -22,22 +23,23 @@ public class JPanelEscolaridad extends JPanelTablaConFiltro implements ICargarTa
 	public JPanelEscolaridad() {
 		super();
 		controlador = ControladorEscolaridad.getInstance(this);
-		btnFiltrar.addActionListener(this);
+		setTextoReferenciaFiltro("Cedula");
+		setTextoReferenciaModo("Modo");
+		setActionListenerBtnFiltro(this);
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		controlador.listar(textFieldTexto.getText(),String.valueOf(rdbtnCompleto.isSelected()));
-		
+		controlador.listar(textFieldTexto.getText(), String.valueOf(rdbtnCompleto.isSelected()));
+
 	}
 
 	@Override
 	public void cargarTabla(AbstractTableModel model) {
 		// TODO Auto-generated method stub
 		table.setModel(model);
-		
-		
+
 	}
 
 	@Override
@@ -46,6 +48,6 @@ public class JPanelEscolaridad extends JPanelTablaConFiltro implements ICargarTa
 		table.setVisible(false);
 		lblMensaje.setVisible(true);
 		lblMensaje.setText("No hay datos para mostrar");
-		
+
 	}
 }

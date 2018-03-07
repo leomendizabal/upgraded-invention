@@ -1,47 +1,46 @@
 package edu.ude.bedelia.presentacion.panel.registro;
 
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import edu.ude.bedelia.presentacion.controladores.ControladorInscripcion;
+import edu.ude.bedelia.presentacion.panel.JPanelBase;
 
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.JCheckBox;
-import javax.swing.JComboBox;
-import javax.swing.JTextArea;
-import javax.swing.DefaultComboBoxModel;
+public class JPanelInscribirAsignatura extends JPanelBase {
 
-public class JPanelInscribirAsignatura extends JPanelBase{
-	
 	private static final long serialVersionUID = 1L;
+	public final static String TAG = JPanelInscribirAsignatura.class.getSimpleName();
+	
 	private final ControladorInscripcion controladorInscripcion;
 	private JTextField textcedula;
 	private JTextField textcodigo;
 	private JTextField textFieldanio;
 	private JButton btnInscribir;
 	private JTextField textFieldmonto;
-	
+
 	private void registrarEventListeners() {
-		
+
 		btnInscribir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				controladorInscripcion.registrar(false,textcedula.getText(),textcodigo.getText(),textcodigo.getText(),textFieldmonto.getText() );
-				
-				
+
+				controladorInscripcion.registrar(false, textcedula.getText(), textcodigo.getText(),
+						textcodigo.getText(), textFieldmonto.getText());
+
 			}
 		});
 	}
+
 	/**
 	 * Create the panel.
 	 */
 	public JPanelInscribirAsignatura() {
-		
+
 		super();
 		controladorInscripcion = ControladorInscripcion.getInstance(this);
 		setLayout(null);
@@ -80,21 +79,21 @@ public class JPanelInscribirAsignatura extends JPanelBase{
 		lblCodigo.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblCodigo.setBounds(10, 61, 89, 14);
 		panel.add(lblCodigo);
-		
+
 		btnInscribir = new JButton("Inscribir");
 		btnInscribir.setBounds(180, 186, 115, 29);
 		panel.add(btnInscribir);
-		
+
 		textFieldmonto = new JTextField();
 		textFieldmonto.setColumns(10);
 		textFieldmonto.setBounds(109, 120, 253, 20);
 		panel.add(textFieldmonto);
-		
+
 		JLabel lblMontoBase = new JLabel("Monto base");
 		lblMontoBase.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblMontoBase.setBounds(10, 121, 89, 19);
 		panel.add(lblMontoBase);
-		
+
 		registrarEventListeners();
 	}
 }

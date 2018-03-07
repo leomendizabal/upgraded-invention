@@ -1,17 +1,12 @@
 package edu.ude.bedelia.presentacion.controladores;
 
 import java.rmi.RemoteException;
-import java.util.HashMap;
-import java.util.Map;
 
 import edu.ude.bedelia.logica.excepciones.AlumnosException;
 import edu.ude.bedelia.logica.vo.TipoAlumno;
-import edu.ude.bedelia.logica.vo.VOAlumno;
 import edu.ude.bedelia.logica.vo.VOAlumnoCompleto;
 import edu.ude.bedelia.logica.vo.VOBecadoCompleto;
-import edu.ude.bedelia.presentacion.UIConstantes;
 import edu.ude.bedelia.presentacion.panel.listener.IMensaje;
-import edu.ude.bedelia.presentacion.panel.listener.IModificarDatos;
 
 public class ControladorAlumno extends Controlador implements Controlador.IRegistrar {
 
@@ -49,7 +44,5 @@ public class ControladorAlumno extends Controlador implements Controlador.IRegis
 			listener.mostrarError("Error", e.getMessage());
 		}
 	}
-
-	
 
 }

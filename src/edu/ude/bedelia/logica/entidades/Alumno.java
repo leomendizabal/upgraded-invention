@@ -218,13 +218,13 @@ public class Alumno implements Comparable<Alumno>, Serializable {
 			return new VOEgresado(this);
 		}
 	}
-	
+
 	public boolean asignaturaCalificada(String codigoAsignatura, int anio) {
 		Iterator<Inscripcion> iter = this.inscripciones.iterator();
 		Inscripcion i;
 		boolean estaInscripto = false;
 		boolean estaCalificada = false;
-		
+
 		while (iter.hasNext() && !estaInscripto) {
 			i = iter.next();
 			if (i.getAsignatura().getCodigo().equals(codigoAsignatura)) {
@@ -232,7 +232,7 @@ public class Alumno implements Comparable<Alumno>, Serializable {
 				estaCalificada = i.getCalificacion() != 0;
 			}
 		}
-		
+
 		return estaCalificada;
 	}
 

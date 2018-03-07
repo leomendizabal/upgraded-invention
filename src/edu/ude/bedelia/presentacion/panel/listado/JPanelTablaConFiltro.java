@@ -100,12 +100,26 @@ public class JPanelTablaConFiltro extends JPanelBase {
 
 	}
 
-	protected void ocultarModo() {
+	protected void ocultarModoFiltro() {
 		rdbtnCompleto.setVisible(false);
 		rdbtnParcial.setVisible(false);
 		lblTipoReferencia.setVisible(false);
 	}
-	
+
+	protected void ocultarTextoFiltro() {
+		this.textFieldTexto.setVisible(false);
+		this.lblTextoReferencia.setVisible(false);
+		this.lblMensaje.setVisible(false);
+	}
+
+	protected void setTextoReferenciaFiltro(final String texto) {
+		lblTextoReferencia.setText(texto);
+	}
+
+	protected void setTextoReferenciaModo(final String texto) {
+		lblTipoReferencia.setText(texto);
+	}
+
 	protected void setActionListenerBtnFiltro(ActionListener listener) {
 		btnFiltrar.addActionListener(listener);
 	}

@@ -4,18 +4,14 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
-import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import edu.ude.bedelia.presentacion.panel.JPanelBase;
-
-import java.awt.BorderLayout;
 
 public class JPanelAlumno extends JPanelBase {
 	/**
@@ -166,9 +162,9 @@ public class JPanelAlumno extends JPanelBase {
 		txtDescripcion.setEnabled(!esActivo);
 		btnGuardar.setEnabled(!esActivo);
 	}
-	
+
 	protected void habilitarModificacion(boolean esActivo) {
-		//bloqueados
+		// bloqueados
 		textFieldNombre.setEnabled(!esActivo);
 		textFieldApellido.setEnabled(!esActivo);
 		chckbxEsBecado.setEnabled(!esActivo);

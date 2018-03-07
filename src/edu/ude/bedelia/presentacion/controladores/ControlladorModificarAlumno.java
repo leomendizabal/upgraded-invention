@@ -64,17 +64,17 @@ public class ControlladorModificarAlumno extends Controlador implements Controla
 	public void modificar(String... argumentos) {
 		// TODO Auto-generated method stub
 		if (instanciaAlumno != null) {
-				instanciaAlumno.setDomicilio(argumentos[0]);
-				instanciaAlumno.setEmail(argumentos[1]);
-				instanciaAlumno.setTelefono(argumentos[2]);
-				try {
-					fachada.modificarAlumno(instanciaAlumno);
-					listener.mostrarConfirmacion("Modificiar", "Se ha modificado correctamente");
-				} catch (RemoteException | AlumnosException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-					listener.mostrarError("Modificar", e.getMessage());
-				}
+			instanciaAlumno.setDomicilio(argumentos[0]);
+			instanciaAlumno.setEmail(argumentos[1]);
+			instanciaAlumno.setTelefono(argumentos[2]);
+			try {
+				fachada.modificarAlumno(instanciaAlumno);
+				listener.mostrarConfirmacion("Modificiar", "Se ha modificado correctamente");
+			} catch (RemoteException | AlumnosException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				listener.mostrarError("Modificar", e.getMessage());
+			}
 		} else {
 			listener.mostrarError("Modificar", "debe validar si el alumno existe");
 		}

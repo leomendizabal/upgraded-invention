@@ -11,6 +11,7 @@ public class JPanelRegistrarAlumno extends JPanelAlumno implements ActionListene
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	public final static String TAG = JPanelRegistrarAlumno.class.getSimpleName();
 	private final ControladorAlumno controladorAlumno;
 
 	/**
@@ -28,14 +29,16 @@ public class JPanelRegistrarAlumno extends JPanelAlumno implements ActionListene
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		boolean esBecado = chckbxEsBecado.isSelected();
-		if(esBecado) {
-			controladorAlumno.registrar(esBecado, textFieldCedula.getText(),textFieldNombre.getText(),textFieldApellido.getText(),
-					textFieldDireccion.getText(),textFieldTelefono.getText(),textFieldEmail.getText(),textFieldDescuento.getText(),txtDescripcion.getText());
-		
+		if (esBecado) {
+			controladorAlumno.registrar(esBecado, textFieldCedula.getText(), textFieldNombre.getText(),
+					textFieldApellido.getText(), textFieldDireccion.getText(), textFieldTelefono.getText(),
+					textFieldEmail.getText(), textFieldDescuento.getText(), txtDescripcion.getText());
+
 		} else {
-			controladorAlumno.registrar(esBecado, textFieldCedula.getText(),textFieldNombre.getText(),textFieldApellido.getText(),
-					textFieldDireccion.getText(),textFieldTelefono.getText(),textFieldEmail.getText());
-			
+			controladorAlumno.registrar(esBecado, textFieldCedula.getText(), textFieldNombre.getText(),
+					textFieldApellido.getText(), textFieldDireccion.getText(), textFieldTelefono.getText(),
+					textFieldEmail.getText());
+
 		}
 	}
 

@@ -8,11 +8,11 @@ import edu.ude.bedelia.logica.entidades.Alumno;
 public class VOEgresadoCompleto extends VOEgresado {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	private float promedioTotal;
 	private int promedioAprobaciones;
 
-	public final static  List<String> attrCompleto = new ArrayList<String>() {
+	public final static List<String> attrCompleto = new ArrayList<String>() {
 		private static final long serialVersionUID = 1L;
 		{
 			add("Apellido");
@@ -22,8 +22,7 @@ public class VOEgresadoCompleto extends VOEgresado {
 			add("Promedio Aprobaciones");
 		}
 	};
-	
-	
+
 	public VOEgresadoCompleto(String cedula, String nombre, String apellido, float promedioTotal,
 			int promedioAprobaciones) {
 		super(cedula, nombre, apellido);
@@ -44,9 +43,11 @@ public class VOEgresadoCompleto extends VOEgresado {
 	public int getPromedioAprobaciones() {
 		return promedioAprobaciones;
 	}
-    public String toString () {
-    	
-    	return super.toString() + " Promedio total: " + this.promedioTotal + " Promedio aprobaciones: " + this.promedioAprobaciones + "%";
-    }
-    
+
+	public String toString() {
+
+		return super.toString() + " Promedio total: " + this.promedioTotal + " Promedio aprobaciones: "
+				+ this.promedioAprobaciones + "%";
+	}
+
 }

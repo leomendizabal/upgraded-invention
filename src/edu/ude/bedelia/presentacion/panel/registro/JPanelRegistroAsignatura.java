@@ -1,5 +1,6 @@
 package edu.ude.bedelia.presentacion.panel.registro;
 
+import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -12,11 +13,11 @@ import javax.swing.SwingConstants;
 
 import edu.ude.bedelia.presentacion.controladores.ControladorAsignaturas;
 import edu.ude.bedelia.presentacion.panel.JPanelBase;
-import java.awt.BorderLayout;
 
 public class JPanelRegistroAsignatura extends JPanelBase implements ActionListener {
 
 	private static final long serialVersionUID = 1L;
+	public final static String TAG = JPanelRegistroAsignatura.class.getSimpleName();
 	private JTextField textFieldNombre;
 	private JTextArea textAreaDescripcion;
 	private JButton btnRegistrar;
@@ -28,12 +29,13 @@ public class JPanelRegistroAsignatura extends JPanelBase implements ActionListen
 	 */
 	public JPanelRegistroAsignatura() {
 		super();
-		initView();
-		controlladorAsignaturas = ControladorAsignaturas.getInstancia(this);
+		configurarVista();
+		controlladorAsignaturas = ControladorAsignaturas.getInstancia();
+		controlladorAsignaturas.setListener(this);
 	}
 
 	// TODO: eliminar valore harcode
-	private void initView() {
+	private void configurarVista() {
 		setLayout(new BorderLayout(0, 0));
 		JPanel panel = new JPanel();
 		add(panel, BorderLayout.CENTER);

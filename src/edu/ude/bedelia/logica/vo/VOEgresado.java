@@ -17,7 +17,7 @@ public class VOEgresado implements Serializable {
 	private String nombre;
 	private String apellido;
 
-	public final static  List<String> attr = new ArrayList<String>() {
+	public final static List<String> attr = new ArrayList<String>() {
 		private static final long serialVersionUID = 1L;
 		{
 			add("Apellido");
@@ -25,7 +25,7 @@ public class VOEgresado implements Serializable {
 			add("Cedula");
 		}
 	};
-	
+
 	public VOEgresado(String cedula, String nombre, String apellido) {
 		this.cedula = cedula;
 		this.nombre = nombre;
@@ -50,9 +50,9 @@ public class VOEgresado implements Serializable {
 		return apellido;
 	}
 
-    public String toString () {
-    	
-    	return " Cedula: " + this.cedula + " Nombre: " + this.nombre + " Apellido:" + this.apellido;
-    }
-    
+	public String toString() {
+
+		return " Cedula: " + this.cedula + " Nombre: " + this.nombre + " Apellido:" + this.apellido;
+	}
+
 }

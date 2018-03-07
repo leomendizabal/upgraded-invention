@@ -25,14 +25,18 @@ public abstract class Controlador {
 	public interface IModificar {
 		public void modificar(String... argumentos);
 	}
-	
-	public interface IMostrar<T>{
-		public void mostrar( T listener, String... argumentos);
-		
+
+	public interface IMostrar<T> {
+		public void mostrar(T listener, String... argumentos);
+
 	}
 
 	public interface IBuscar {
 		public void buscar(String... argumentos);
+	}
+	
+	public interface IRespaldar{
+		public void respaldar(String... argumentos);
 	}
 
 }

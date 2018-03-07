@@ -117,7 +117,7 @@ public class Fachada extends UnicastRemoteObject implements IFachada {
 	public ArrayList<VOAlumno> listarAlumnosApellido(String apellido) throws RemoteException {
 		monitor.comienzoLectura();
 		ArrayList<VOAlumno> listado = alumnos.listarAlumnosApellido(apellido);
-		
+
 		monitor.terminoLectura();
 		return listado;
 	}
@@ -158,7 +158,7 @@ public class Fachada extends UnicastRemoteObject implements IFachada {
 							throw new InscripcionesException(Mensajes.MSG_ALUMNO_YA_ESTA_INSCRIPTO_ASIGANTURA);
 						} else {
 							if (alumno.getInscripciones().anioLectivoMayorIgualUltimaInscripcion()) {
-								alumno.registrarInscripcion(anio, montoBase, asig);								
+								alumno.registrarInscripcion(anio, montoBase, asig);
 							} else {
 								monitor.terminoEscritura();
 								throw new InscripcionesException(Mensajes.MSG_ANO_NO_COINCIDE_CON_ACTUAL);
@@ -224,7 +224,7 @@ public class Fachada extends UnicastRemoteObject implements IFachada {
 			ArrayList<VOInscripcion> escolaridad = new ArrayList<VOInscripcion>();
 			Alumno a = alumnos.find(ci);
 			Inscripciones inscripciones = a.getInscripciones();
-			
+
 			for (Inscripcion i : inscripciones) {
 				if (esCompleta) {
 					escolaridad.add(i.toVO(true));
@@ -256,15 +256,15 @@ public class Fachada extends UnicastRemoteObject implements IFachada {
 		if (alumnos.member(ci)) {
 			Alumno a = alumnos.find(ci);
 			Inscripciones inscripciones = a.getInscripciones();
-			Inscripcion i = inscripciones.get(Integer.valueOf(codigo)-1);
+			Inscripcion i = inscripciones.get(Integer.valueOf(codigo) - 1);
 			boolean esInscripto = false;
 			String codigoAsignatura = "";
-			
-			if(String.valueOf(i.getNumero()).equals(codigo)) {
+
+			if (String.valueOf(i.getNumero()).equals(codigo)) {
 				codigoAsignatura = i.getAsignatura().getCodigo();
 				esInscripto = a.esInscripto(codigoAsignatura, anio);
 			}
-			
+
 			if (esInscripto && !a.asignaturaCalificada(codigo, anio)) {
 				if (Helper.calificacionEsValida(nota)) {
 					a.registrarCalificacion(codigoAsignatura, nota);

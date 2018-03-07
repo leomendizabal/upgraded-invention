@@ -1,16 +1,24 @@
 package edu.ude.bedelia.logica.vo;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import edu.ude.bedelia.logica.entidades.Alumno;
 
 public class VOBecadoCompleto extends VOAlumnoCompleto {
 
-
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -2376862426936443L;
 	private float porcentaje;
 	private String descripcion;
+
+	public final static List<String> attrBecadoCompleto = new ArrayList<String>() {
+		private static final long serialVersionUID = 1L;
+		{
+			addAll(0,attrAlumnoCompleto);
+			add("Porcentaje");
+			add("Descripcion");
+		}
+	};
 
 	public VOBecadoCompleto(String cedula, String nombre, String apellido, TipoAlumno tipo, String domicilio,
 			String telefono, String email, float monto, float porcentaje, String descripcion) {
@@ -35,7 +43,7 @@ public class VOBecadoCompleto extends VOAlumnoCompleto {
 	public float getPorcentaje() {
 		return porcentaje;
 	}
-	
+
 	public String getStrPorcentaje() {
 		return String.valueOf(porcentaje);
 	}

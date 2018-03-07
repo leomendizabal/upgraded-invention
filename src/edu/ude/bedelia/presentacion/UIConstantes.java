@@ -12,4 +12,5 @@ public final class UIConstantes {
 		public final static String CLAVE_PORCENTAJE = "clave_porcentaje";
 		public final static String CLAVE_DESCRIPCION = "clave_descripcion";
 	}
+
 }

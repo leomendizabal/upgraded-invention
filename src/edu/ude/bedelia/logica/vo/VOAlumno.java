@@ -32,16 +32,16 @@ public class VOAlumno implements Serializable {
 		this.tipo = a instanceof Becado ? TipoAlumno.BECADO : TipoAlumno.COMUN;
 	}
 
-	public final static  List<String> attr = new ArrayList<String>() {
+	public final static List<String> attrAlumno = new ArrayList<String>() {
 		private static final long serialVersionUID = 1L;
 		{
-			add("Apellido");
-			add("Nombre");
 			add("Cedula");
+			add("Nombre");
+			add("Apellido");
 			add("Tipo");
 		}
 	};
-	
+
 	public String getCedula() {
 		return cedula;
 	}

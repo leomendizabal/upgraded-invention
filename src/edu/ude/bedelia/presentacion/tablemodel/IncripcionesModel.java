@@ -23,7 +23,7 @@ public class IncripcionesModel extends TableModelGenerico<VOInscripcion> {
 	public Object getValueAt(int rowIndex, int columnIndex) {
 		// TODO Auto-generated method stub
 		Object value = null;
-		VOInscripcion inscripcion = getRow(rowIndex);
+		VOInscripcion inscripcion = getFila(rowIndex);
 
 		switch (columnIndex) {
 		case 0:

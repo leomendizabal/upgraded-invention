@@ -12,6 +12,7 @@ public class JPanelListadoEgresado extends JPanelTablaConFiltro implements ICarg
 
 	private static final long serialVersionUID = 1L;
 	private final ControladorEgresado controlador;
+	public final static String TAG = JPanelListadoEgresado.class.getSimpleName();
 
 	/**
 	 * Create the panel.
@@ -24,9 +25,8 @@ public class JPanelListadoEgresado extends JPanelTablaConFiltro implements ICarg
 	}
 
 	private void configurarVista() {
-		this.textFieldTexto.setVisible(false);
-		this.lblTextoReferencia.setVisible(false);
-		this.lblMensaje.setVisible(false);
+		ocultarTextoFiltro();
+		setTextoReferenciaModo("Modo");
 	}
 
 	private void setActionListener() {
