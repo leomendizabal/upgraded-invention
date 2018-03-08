@@ -1,6 +1,5 @@
 package edu.ude.bedelia.presentacion.tablemodel;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -73,22 +72,19 @@ abstract class TableModelGenerico<T> extends AbstractTableModel {
 		return datos.get(row);
 	}
 
-	/*@SuppressWarnings("unchecked")
-	public T[] getRowsAsArray(int... rows) {
-		List<T> rowData = getRowsAsList(rows);
-		T[] array = (T[]) Array.newInstance(clasesFila, rowData.size());
-		return (T[]) rowData.toArray(array);
-	}
-
-	public List<T> getRowsAsList(int... rows) {
-		ArrayList<T> rowData = new ArrayList<T>(rows.length);
-
-		for (int i = 0; i < rows.length; i++) {
-			rowData.add(getFila(rows[i]));
-		}
-
-		return rowData;
-	}*/
+	/*
+	 * @SuppressWarnings("unchecked") public T[] getRowsAsArray(int... rows) {
+	 * List<T> rowData = getRowsAsList(rows); T[] array = (T[])
+	 * Array.newInstance(clasesFila, rowData.size()); return (T[])
+	 * rowData.toArray(array); }
+	 * 
+	 * public List<T> getRowsAsList(int... rows) { ArrayList<T> rowData = new
+	 * ArrayList<T>(rows.length);
+	 * 
+	 * for (int i = 0; i < rows.length; i++) { rowData.add(getFila(rows[i])); }
+	 * 
+	 * return rowData; }
+	 */
 
 	public void insertFila(int fila, T datoFila) {
 		datos.add(fila, datoFila);
@@ -110,18 +106,14 @@ abstract class TableModelGenerico<T> extends AbstractTableModel {
 		insertFilas(row, rowList);
 	}
 
-/*	public void removeRowRange(int start, int end) {
-		datos.subList(start, end + 1).clear();
-		fireTableRowsDeleted(start, end);
-	}
-
-	public void removeRows(int... rows) {
-		for (int i = rows.length - 1; i >= 0; i--) {
-			int row = rows[i];
-			datos.remove(row);
-			fireTableRowsDeleted(row, row);
-		}
-	}*/
+	/*
+	 * public void removeRowRange(int start, int end) { datos.subList(start, end +
+	 * 1).clear(); fireTableRowsDeleted(start, end); }
+	 * 
+	 * public void removeRows(int... rows) { for (int i = rows.length - 1; i >= 0;
+	 * i--) { int row = rows[i]; datos.remove(row); fireTableRowsDeleted(row, row);
+	 * } }
+	 */
 
 	public void setClaseColumna(int column, Class columnClass) {
 		clasesColumnas[column] = columnClass;
@@ -136,24 +128,21 @@ abstract class TableModelGenerico<T> extends AbstractTableModel {
 		this.esModeloEditable = isModelEditable;
 	}
 
-	/*public static String formatColumnName(String columnName) {
-		if (columnName.length() < 3)
-			return columnName;
-
-		StringBuffer buffer = new StringBuffer(columnName);
-		boolean isPreviousLowerCase = false;
-
-		for (int i = 1; i < buffer.length(); i++) {
-			boolean isCurrentUpperCase = Character.isUpperCase(buffer.charAt(i));
-
-			if (isCurrentUpperCase && isPreviousLowerCase) {
-				buffer.insert(i, " ");
-				i++;
-			}
-
-			isPreviousLowerCase = !isCurrentUpperCase;
-		}
-
-		return buffer.toString().replaceAll("_", " ");
-	}*/
+	/*
+	 * public static String formatColumnName(String columnName) { if
+	 * (columnName.length() < 3) return columnName;
+	 * 
+	 * StringBuffer buffer = new StringBuffer(columnName); boolean
+	 * isPreviousLowerCase = false;
+	 * 
+	 * for (int i = 1; i < buffer.length(); i++) { boolean isCurrentUpperCase =
+	 * Character.isUpperCase(buffer.charAt(i));
+	 * 
+	 * if (isCurrentUpperCase && isPreviousLowerCase) { buffer.insert(i, " "); i++;
+	 * }
+	 * 
+	 * isPreviousLowerCase = !isCurrentUpperCase; }
+	 * 
+	 * return buffer.toString().replaceAll("_", " "); }
+	 */
 }

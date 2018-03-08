@@ -14,7 +14,7 @@ public class VOBecadoCompleto extends VOAlumnoCompleto {
 	public final static List<String> attrBecadoCompleto = new ArrayList<String>() {
 		private static final long serialVersionUID = 1L;
 		{
-			addAll(0,attrAlumnoCompleto);
+			addAll(0, attrAlumnoCompleto);
 			add("Porcentaje");
 			add("Descripcion");
 		}

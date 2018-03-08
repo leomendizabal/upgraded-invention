@@ -22,7 +22,6 @@ public final class UIConstantes {
 		public final static String ERROR_REGISTRAR_ASIGNATURA = "No se puede registrar asignatura";
 		public final static String ERROR_CONEXION = "No se puedo conectar";
 		public final static String ERROR_CAMPO = "Los campos no pueden estar vacios";
-		
 
 	}
 
@@ -34,14 +33,13 @@ public final class UIConstantes {
 		public final static String CONF_REGISTRAR_INSCRIPCION = "La inscripcion fue registrada correctamente";
 		public final static String CONF_REGISTRAR_RESULTADO = "La nota fue ingresada correctamente";
 		public final static String CONF_RESPALDO = "Se han respaldado los datos";
-		
 
 	}
-	
+
 	public final class MensajeTitulo {
 
-		public final static String TITULO_REGISTRAR= "Registrar";
-		public final static String TITULO_REGISTRAR_RESULTADO= "Registrar resultado";
+		public final static String TITULO_REGISTRAR = "Registrar";
+		public final static String TITULO_REGISTRAR_RESULTADO = "Registrar resultado";
 		public final static String TITULO_REGISTRAR_ASIGNATURA = "Registrar asignatura";
 		public final static String TITULO_REGISTRAR_INSCRIPCION = "Registrar inscripcion";
 		public final static String TITULO_REGISTRAR_ALUMNO = "Registrar alumno";

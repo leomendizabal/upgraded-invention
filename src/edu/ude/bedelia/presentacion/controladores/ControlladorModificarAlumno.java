@@ -39,32 +39,32 @@ public class ControlladorModificarAlumno extends Controlador implements Controla
 			if (Helper.isEmpty(argumentos)) {
 				listener.mostrarError(MensajeTitulo.TITULO_ERROR, MensajesError.ERROR_CAMPO);
 			} else {
-			final Map<String, String> mapeo = new HashMap<String, String>();
-			VOAlumno alumno = fachada.listarDatosAlumno(argumentos[0]);
-			if (alumno instanceof VOAlumnoCompleto) {
-				VOAlumnoCompleto alumnoCompleto = (VOAlumnoCompleto) alumno;
-				instanciaAlumno = alumnoCompleto;
-				boolean esBecado = alumnoCompleto instanceof VOBecadoCompleto;
-				if (esBecado) {
-					VOBecadoCompleto becado = (VOBecadoCompleto) alumnoCompleto;
-					mapeo.put(UIConstantes.ParametrosAlumno.CLAVE_PORCENTAJE, becado.getStrPorcentaje());
-					mapeo.put(UIConstantes.ParametrosAlumno.CLAVE_DESCRIPCION, becado.getDescripcion());
+				final Map<String, String> mapeo = new HashMap<String, String>();
+				VOAlumno alumno = fachada.listarDatosAlumno(argumentos[0]);
+				if (alumno instanceof VOAlumnoCompleto) {
+					VOAlumnoCompleto alumnoCompleto = (VOAlumnoCompleto) alumno;
+					instanciaAlumno = alumnoCompleto;
+					boolean esBecado = alumnoCompleto instanceof VOBecadoCompleto;
+					if (esBecado) {
+						VOBecadoCompleto becado = (VOBecadoCompleto) alumnoCompleto;
+						mapeo.put(UIConstantes.ParametrosAlumno.CLAVE_PORCENTAJE, becado.getStrPorcentaje());
+						mapeo.put(UIConstantes.ParametrosAlumno.CLAVE_DESCRIPCION, becado.getDescripcion());
+					}
+					mapeo.put(UIConstantes.ParametrosAlumno.CLAVE_NOMBRE, alumnoCompleto.getNombre());
+					mapeo.put(UIConstantes.ParametrosAlumno.CLAVE_APELLIDO, alumnoCompleto.getApellido());
+					mapeo.put(UIConstantes.ParametrosAlumno.CLAVE_DIRECCION, alumnoCompleto.getDomicilio());
+					mapeo.put(UIConstantes.ParametrosAlumno.CLAVE_TELEFONO, alumnoCompleto.getTelefono());
+					mapeo.put(UIConstantes.ParametrosAlumno.CLAVE_EMAIL, alumnoCompleto.getEmail());
+					((IModificarDatos) listener).mostrarDatos(esBecado, mapeo);
+				} else {
+					listener.mostrarError(MensajeTitulo.TITULO_BUSCAR, MensajesError.ERROR_DATOS_ALUMNO);
 				}
-				mapeo.put(UIConstantes.ParametrosAlumno.CLAVE_NOMBRE, alumnoCompleto.getNombre());
-				mapeo.put(UIConstantes.ParametrosAlumno.CLAVE_APELLIDO, alumnoCompleto.getApellido());
-				mapeo.put(UIConstantes.ParametrosAlumno.CLAVE_DIRECCION, alumnoCompleto.getDomicilio());
-				mapeo.put(UIConstantes.ParametrosAlumno.CLAVE_TELEFONO, alumnoCompleto.getTelefono());
-				mapeo.put(UIConstantes.ParametrosAlumno.CLAVE_EMAIL, alumnoCompleto.getEmail());
-				((IModificarDatos) listener).mostrarDatos(esBecado, mapeo);
-			} else {
-				listener.mostrarError(MensajeTitulo.TITULO_BUSCAR, MensajesError.ERROR_DATOS_ALUMNO);
-			}
 			}
 		} catch (AlumnosException e) {
 			e.printStackTrace();
 			listener.mostrarError(MensajeTitulo.TITULO_BUSCAR, e.getMessage());
 		} catch (RemoteException r) {
-			listener.mostrarError(MensajeTitulo.TITULO_ERROR,MensajesError.ERROR_CONEXION);
+			listener.mostrarError(MensajeTitulo.TITULO_ERROR, MensajesError.ERROR_CONEXION);
 		}
 
 	}
@@ -74,25 +74,26 @@ public class ControlladorModificarAlumno extends Controlador implements Controla
 		// TODO Auto-generated method stub
 		if (Helper.isEmpty(argumentos)) {
 			listener.mostrarError(MensajeTitulo.TITULO_ERROR, MensajesError.ERROR_CAMPO);
-		}else {
-		if (instanciaAlumno != null) {
-			instanciaAlumno.setDomicilio(argumentos[0]);
-			instanciaAlumno.setEmail(argumentos[1]);
-			instanciaAlumno.setTelefono(argumentos[2]);
-			try {
-				fachada.modificarAlumno(instanciaAlumno);
-				listener.mostrarConfirmacion(MensajeTitulo.TITULO_MODIFICAR, MensajesConfirmacion.CONF_MODIFICAR_ALUMNO);
-			} catch (AlumnosException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				listener.mostrarError(MensajeTitulo.TITULO_MODIFICAR, e.getMessage());
-			} catch (RemoteException r) {
-				listener.mostrarError(MensajeTitulo.TITULO_ERROR,MensajesError.ERROR_CONEXION);
-			}
 		} else {
-			listener.mostrarError(MensajeTitulo.TITULO_MODIFICAR, MensajesError.ERROR_VALIDAR_ALUMNO);
-		}
+			if (instanciaAlumno != null) {
+				instanciaAlumno.setDomicilio(argumentos[0]);
+				instanciaAlumno.setEmail(argumentos[1]);
+				instanciaAlumno.setTelefono(argumentos[2]);
+				try {
+					fachada.modificarAlumno(instanciaAlumno);
+					listener.mostrarConfirmacion(MensajeTitulo.TITULO_MODIFICAR,
+							MensajesConfirmacion.CONF_MODIFICAR_ALUMNO);
+				} catch (AlumnosException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+					listener.mostrarError(MensajeTitulo.TITULO_MODIFICAR, e.getMessage());
+				} catch (RemoteException r) {
+					listener.mostrarError(MensajeTitulo.TITULO_ERROR, MensajesError.ERROR_CONEXION);
+				}
+			} else {
+				listener.mostrarError(MensajeTitulo.TITULO_MODIFICAR, MensajesError.ERROR_VALIDAR_ALUMNO);
+			}
 
-	 }
+		}
 	}
 }

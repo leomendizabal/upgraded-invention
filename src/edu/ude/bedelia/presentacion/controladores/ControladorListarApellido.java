@@ -34,18 +34,18 @@ public class ControladorListarApellido extends Controlador implements Controlado
 			if (Helper.isEmpty(argumentos)) {
 				listener.mostrarError(MensajeTitulo.TITULO_ERROR, MensajesError.ERROR_CAMPO);
 			} else {
-			resultado = fachada.listarAlumnosApellido(argumentos[0]);
-			if (resultado.isEmpty()) {
-				this.listener.tablaVacia();
-			} else {
-				List<String> columnas = VOAlumno.attrAlumno;
+				resultado = fachada.listarAlumnosApellido(argumentos[0]);
+				if (resultado.isEmpty()) {
+					this.listener.tablaVacia();
+				} else {
+					List<String> columnas = VOAlumno.attrAlumno;
 
-				this.listener.cargarTabla(new AlumnoModel(resultado, columnas));
-			}
+					this.listener.cargarTabla(new AlumnoModel(resultado, columnas));
+				}
 			}
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
-			listener.mostrarError(MensajeTitulo.TITULO_LISTAR,MensajesError.ERROR_CONEXION);
+			listener.mostrarError(MensajeTitulo.TITULO_LISTAR, MensajesError.ERROR_CONEXION);
 		}
 	}
 }

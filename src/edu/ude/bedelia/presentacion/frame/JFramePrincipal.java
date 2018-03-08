@@ -6,7 +6,6 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -16,7 +15,6 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import edu.ude.bedelia.presentacion.Mensajes;
-import edu.ude.bedelia.presentacion.controladores.ControladorRegistrarResultado;
 import edu.ude.bedelia.presentacion.controladores.ControladorRespaldar;
 import edu.ude.bedelia.presentacion.panel.JPanelImage;
 import edu.ude.bedelia.presentacion.panel.JPanelMontoRecaudado;
@@ -49,7 +47,7 @@ public class JFramePrincipal extends JFrame implements IMensaje {
 	private JPanel jPanelEscolaridad = new JPanelEscolaridad();
 	private JPanel jPanelListadoAsinatura = new JPanelListadoAsinatura();
 	private JPanel jPanelListadoApellido = new JPanelListadoApellido();
-	private JPanel jPanelDetalleAlumno= new JPanelDetalleAlumno();
+	private JPanel jPanelDetalleAlumno = new JPanelDetalleAlumno();
 	private JPanel jPanelInicio = new JPanelImage();
 
 	private JMenuBar menuBar = new JMenuBar();
@@ -111,7 +109,7 @@ public class JFramePrincipal extends JFrame implements IMensaje {
 		visiblePanel.add(jPanelRegistrarNota, JPanelRegistrarNota.TAG);
 		visiblePanel.add(jPanelListadoAsinatura, JPanelListadoAsinatura.TAG);
 		visiblePanel.add(jPanelDetalleAlumno, JPanelDetalleAlumno.TAG);
-		
+
 	}
 
 	private void configurarMenuAlumnos() {
@@ -129,7 +127,7 @@ public class JFramePrincipal extends JFrame implements IMensaje {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				mostrarPanel(JPanelRegistrarAlumno.TAG,JPanelRegistrarAlumno.TITULO);
+				mostrarPanel(JPanelRegistrarAlumno.TAG, JPanelRegistrarAlumno.TITULO);
 
 			}
 		});
@@ -138,7 +136,7 @@ public class JFramePrincipal extends JFrame implements IMensaje {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				mostrarPanel(JPanelListadoApellido.TAG,JPanelListadoApellido.TITULO);
+				mostrarPanel(JPanelListadoApellido.TAG, JPanelListadoApellido.TITULO);
 			}
 		});
 
@@ -146,7 +144,7 @@ public class JFramePrincipal extends JFrame implements IMensaje {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				mostrarPanel(JPanelListadoEgresado.TAG,JPanelListadoEgresado.TITULO);
+				mostrarPanel(JPanelListadoEgresado.TAG, JPanelListadoEgresado.TITULO);
 			}
 		});
 
@@ -168,9 +166,9 @@ public class JFramePrincipal extends JFrame implements IMensaje {
 				mostrarPanel(JPanelEscolaridad.TAG, JPanelEscolaridad.TITULO);
 			}
 		});
-		
+
 		menuItemDetalleAlumno.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
@@ -184,7 +182,7 @@ public class JFramePrincipal extends JFrame implements IMensaje {
 		topicoAlumnos.add(menuItemListarAlumnos);
 		topicoAlumnos.add(menuItemListarEgresados);
 		topicoAlumnos.add(menuItemEscolaridadAlumnos);
-		
+
 	}
 
 	private void mostrarPanel(final String tag, final String titulo) {
@@ -206,7 +204,7 @@ public class JFramePrincipal extends JFrame implements IMensaje {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				mostrarPanel(JPanelRegistroAsignatura.TAG,JPanelRegistroAsignatura.TITULAR);
+				mostrarPanel(JPanelRegistroAsignatura.TAG, JPanelRegistroAsignatura.TITULAR);
 			}
 		});
 
@@ -222,7 +220,7 @@ public class JFramePrincipal extends JFrame implements IMensaje {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				mostrarPanel(JPanelInscribirAsignatura.TAG,JPanelInscribirAsignatura.TITULO);
+				mostrarPanel(JPanelInscribirAsignatura.TAG, JPanelInscribirAsignatura.TITULO);
 			}
 		});
 
@@ -230,7 +228,7 @@ public class JFramePrincipal extends JFrame implements IMensaje {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				mostrarPanel(JPanelRegistrarNota.TAG,JPanelRegistrarNota.TITULO);
+				mostrarPanel(JPanelRegistrarNota.TAG, JPanelRegistrarNota.TITULO);
 			}
 		});
 
@@ -250,7 +248,7 @@ public class JFramePrincipal extends JFrame implements IMensaje {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				mostrarPanel(JPanelMontoRecaudado.TAG,JPanelMontoRecaudado.TITULO);
+				mostrarPanel(JPanelMontoRecaudado.TAG, JPanelMontoRecaudado.TITULO);
 			}
 		});
 

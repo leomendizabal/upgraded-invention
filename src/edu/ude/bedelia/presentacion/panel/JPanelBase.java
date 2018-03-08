@@ -21,7 +21,7 @@ public class JPanelBase extends JPanel implements IMensaje {
 	@Override
 	public void mostrarConfirmacion(String titulo, String mensaje) {
 		// TODO Auto-generated method stub
-		Mensajes.mostrarMensaje(this,titulo, mensaje, JOptionPane.INFORMATION_MESSAGE);
+		Mensajes.mostrarMensaje(this, titulo, mensaje, JOptionPane.INFORMATION_MESSAGE);
 
 	}
 
@@ -32,8 +32,9 @@ public class JPanelBase extends JPanel implements IMensaje {
 
 	}
 
-	/*private void mostrarMensaje(String titulo, String mensaje, int tipo) {
-		JOptionPane.showMessageDialog(this, titulo, mensaje, tipo);
-	}*/
+	/*
+	 * private void mostrarMensaje(String titulo, String mensaje, int tipo) {
+	 * JOptionPane.showMessageDialog(this, titulo, mensaje, tipo); }
+	 */
 
 }

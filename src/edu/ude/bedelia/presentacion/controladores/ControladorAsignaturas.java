@@ -18,7 +18,7 @@ public class ControladorAsignaturas extends Controlador implements Controlador.I
 	private static ControladorAsignaturas instancia;
 	private IMensaje listener;
 	private ICargarTabla cargar;
-	
+
 	protected ControladorAsignaturas() {
 		super();
 	}
@@ -43,14 +43,15 @@ public class ControladorAsignaturas extends Controlador implements Controlador.I
 		try {
 			if (Helper.isEmpty(argumentos)) {
 				listener.mostrarError(MensajeTitulo.TITULO_ERROR, MensajesError.ERROR_CAMPO);
-			}else {
-			fachada.registrarAsignatura(new VOAsignatura(argumentos[0], argumentos[1], argumentos[2]));
-			listener.mostrarConfirmacion(MensajesConfirmacion.CONF_REGISTRAR_ASIGNATURA, MensajesConfirmacion.CONF_REGISTRAR_ASIGNATURA);
+			} else {
+				fachada.registrarAsignatura(new VOAsignatura(argumentos[0], argumentos[1], argumentos[2]));
+				listener.mostrarConfirmacion(MensajesConfirmacion.CONF_REGISTRAR_ASIGNATURA,
+						MensajesConfirmacion.CONF_REGISTRAR_ASIGNATURA);
 			}
 		} catch (RemoteException r) {
-			
-			listener.mostrarError(MensajeTitulo.TITULO_ERROR,MensajesError.ERROR_CONEXION);
-		} catch(AsignaturasException e) {
+
+			listener.mostrarError(MensajeTitulo.TITULO_ERROR, MensajesError.ERROR_CONEXION);
+		} catch (AsignaturasException e) {
 			listener.mostrarError(MensajeTitulo.TITULO_ERROR, MensajesError.ERROR_REGISTRAR_ASIGNATURA);
 		}
 
@@ -61,13 +62,13 @@ public class ControladorAsignaturas extends Controlador implements Controlador.I
 		// TODO Auto-generated method stub
 		try {
 			List<VOAsignatura> resultado = fachada.listarAsignaturas();
-			cargar.cargarTabla(new AsignaturaModel(resultado,VOAsignatura.attr));
+			cargar.cargarTabla(new AsignaturaModel(resultado, VOAsignatura.attr));
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			cargar.mostrarError(MensajeTitulo.TITULO_LISTAR_ASIGNATURAS, MensajesError.ERROR_CONEXION);
 		}
-		
+
 	}
 
 }

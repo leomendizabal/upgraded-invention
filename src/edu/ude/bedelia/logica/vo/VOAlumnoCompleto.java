@@ -19,7 +19,7 @@ public class VOAlumnoCompleto extends VOAlumno {
 	public final static List<String> attrAlumnoCompleto = new ArrayList<String>() {
 		private static final long serialVersionUID = 1L;
 		{
-			addAll(0,attrAlumno);
+			addAll(0, attrAlumno);
 			add("Domicilio");
 			add("Telefono");
 			add("Email");

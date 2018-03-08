@@ -7,7 +7,6 @@ import javax.swing.table.AbstractTableModel;
 
 import edu.ude.bedelia.presentacion.controladores.ControladorDetalleAlumno;
 import edu.ude.bedelia.presentacion.panel.listener.ICargarTabla;
-import edu.ude.bedelia.presentacion.panel.registro.JPanelRegistroAsignatura;
 
 public class JPanelDetalleAlumno extends JPanelTablaConFiltro implements ICargarTabla, ActionListener {
 

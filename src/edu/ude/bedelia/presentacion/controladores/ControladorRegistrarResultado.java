@@ -29,9 +29,10 @@ public class ControladorRegistrarResultado extends Controlador implements Contro
 			if (Helper.isEmpty(argumento)) {
 				listener.mostrarError(MensajeTitulo.TITULO_ERROR, MensajesError.ERROR_CAMPO);
 			} else {
-			fachada.registrarResultado(argumento[0], Integer.valueOf(argumento[1]), argumento[2],
-					Integer.valueOf(argumento[3]));
-			listener.mostrarConfirmacion(MensajeTitulo.TITULO_REGISTRAR_RESULTADO, MensajesConfirmacion.CONF_REGISTRAR_RESULTADO);
+				fachada.registrarResultado(argumento[0], Integer.valueOf(argumento[1]), argumento[2],
+						Integer.valueOf(argumento[3]));
+				listener.mostrarConfirmacion(MensajeTitulo.TITULO_REGISTRAR_RESULTADO,
+						MensajesConfirmacion.CONF_REGISTRAR_RESULTADO);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

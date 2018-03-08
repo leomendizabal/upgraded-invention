@@ -8,11 +8,11 @@ import java.util.List;
 import edu.ude.bedelia.logica.excepciones.AlumnosException;
 import edu.ude.bedelia.logica.vo.VOInscripcion;
 import edu.ude.bedelia.logica.vo.VOInscripcionCompleta;
-import edu.ude.bedelia.presentacion.panel.listener.ICargarTabla;
-import edu.ude.bedelia.presentacion.tablemodel.IncripcionesModel;
 import edu.ude.bedelia.presentacion.Helper;
 import edu.ude.bedelia.presentacion.UIConstantes.MensajeTitulo;
 import edu.ude.bedelia.presentacion.UIConstantes.MensajesError;
+import edu.ude.bedelia.presentacion.panel.listener.ICargarTabla;
+import edu.ude.bedelia.presentacion.tablemodel.IncripcionesModel;
 
 public class ControladorEscolaridad extends Controlador implements Controlador.IListar<String> {
 
@@ -36,27 +36,27 @@ public class ControladorEscolaridad extends Controlador implements Controlador.I
 		try {
 			if (Helper.isEmpty(argumentos)) {
 				listener.mostrarError(MensajeTitulo.TITULO_ERROR, MensajesError.ERROR_CAMPO);
-			}else {
-			boolean esCompleto = new Boolean(argumentos[0]);
-			List<VOInscripcion> resultado = fachada.listarEscolaridad(argumentos[0], esCompleto);
-			if (resultado.isEmpty()) {
-				listener.tablaVacia();
 			} else {
-				List<String> columanas = new ArrayList<>();
-				if (esCompleto) {
-					columanas = VOInscripcionCompleta.attrsCompleto;
+				boolean esCompleto = new Boolean(argumentos[0]);
+				List<VOInscripcion> resultado = fachada.listarEscolaridad(argumentos[0], esCompleto);
+				if (resultado.isEmpty()) {
+					listener.tablaVacia();
 				} else {
-					columanas = VOInscripcion.attrs;
+					List<String> columanas = new ArrayList<>();
+					if (esCompleto) {
+						columanas = VOInscripcionCompleta.attrsCompleto;
+					} else {
+						columanas = VOInscripcion.attrs;
+					}
+					Collections.sort(resultado);
+					listener.cargarTabla(new IncripcionesModel(resultado, columanas));
 				}
-				Collections.sort(resultado);
-				listener.cargarTabla(new IncripcionesModel(resultado, columanas));
 			}
-		  }
 		} catch (RemoteException r) {
 			// TODO Auto-generated catch block
 			r.printStackTrace();
-			listener.mostrarError(MensajeTitulo.TITULO_LISTAR,MensajesError.ERROR_CONEXION);
-		} catch ( AlumnosException e){
+			listener.mostrarError(MensajeTitulo.TITULO_LISTAR, MensajesError.ERROR_CONEXION);
+		} catch (AlumnosException e) {
 			listener.mostrarError(MensajeTitulo.TITULO_LISTAR, e.getMessage());
 		}
 

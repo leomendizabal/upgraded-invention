@@ -8,8 +8,6 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
-import edu.ude.bedelia.presentacion.panel.registro.JPanelRegistrarAlumno;
-
 public class JPanelImage extends JPanel {
 
 	/**

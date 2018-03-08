@@ -3,17 +3,14 @@ package edu.ude.bedelia.presentacion.controladores;
 import java.rmi.RemoteException;
 
 import edu.ude.bedelia.logica.excepciones.AlumnosException;
-import edu.ude.bedelia.logica.utiles.Mensajes;
 import edu.ude.bedelia.logica.vo.TipoAlumno;
-import edu.ude.bedelia.logica.vo.VOAlumno;
 import edu.ude.bedelia.logica.vo.VOAlumnoCompleto;
 import edu.ude.bedelia.logica.vo.VOBecadoCompleto;
-import edu.ude.bedelia.presentacion.panel.listener.IMensaje;
 import edu.ude.bedelia.presentacion.Helper;
-import edu.ude.bedelia.presentacion.UIConstantes;
 import edu.ude.bedelia.presentacion.UIConstantes.MensajeTitulo;
 import edu.ude.bedelia.presentacion.UIConstantes.MensajesConfirmacion;
 import edu.ude.bedelia.presentacion.UIConstantes.MensajesError;
+import edu.ude.bedelia.presentacion.panel.listener.IMensaje;
 
 public class ControladorAlumno extends Controlador implements Controlador.IRegistrar {
 
@@ -47,9 +44,10 @@ public class ControladorAlumno extends Controlador implements Controlador.IRegis
 							argumentos[3], argumentos[4], argumentos[5]);
 				}
 				fachada.registrarAlumno(voAlumno);
-				listener.mostrarConfirmacion(MensajeTitulo.TITULO_REGISTRAR, MensajesConfirmacion.CONF_REGISTRAR_ALUMNO);
+				listener.mostrarConfirmacion(MensajeTitulo.TITULO_REGISTRAR,
+						MensajesConfirmacion.CONF_REGISTRAR_ALUMNO);
 			}
-			
+
 		} catch (AlumnosException e) {
 			// TODO Auto-generated catch block
 			System.out.println(e.getMessage());

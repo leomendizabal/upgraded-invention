@@ -34,17 +34,17 @@ public class ControladorEgresado extends Controlador implements Controlador.ILis
 		try {
 			if (Helper.isEmpty(argumentos)) {
 				listener.mostrarError(MensajeTitulo.TITULO_ERROR, MensajesError.ERROR_CAMPO);
-			}else {
-			List<VOEgresado> resultado = fachada.listarEgresados(argumentos[0]);
-			if (resultado.isEmpty()) {
-				listener.tablaVacia();
 			} else {
-				List<String> columnas = VOEgresado.attr;
-				if (resultado.get(0) instanceof VOEgresadoCompleto) {
-					columnas = VOEgresadoCompleto.attrCompleto;
+				List<VOEgresado> resultado = fachada.listarEgresados(argumentos[0]);
+				if (resultado.isEmpty()) {
+					listener.tablaVacia();
+				} else {
+					List<String> columnas = VOEgresado.attr;
+					if (resultado.get(0) instanceof VOEgresadoCompleto) {
+						columnas = VOEgresadoCompleto.attrCompleto;
+					}
+					listener.cargarTabla(new EgresadoModel(resultado, columnas));
 				}
-				listener.cargarTabla(new EgresadoModel(resultado, columnas));
-			}
 			}
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block

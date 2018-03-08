@@ -31,7 +31,7 @@ public class ControladorRespaldar extends Controlador implements Controlador.IRe
 		// TODO Auto-generated method stub
 		try {
 			fachada.respaldarDatos();
-			listener.mostrarConfirmacion(MensajeTitulo.TITULO_RESPALDAR,MensajesConfirmacion.CONF_RESPALDO);
+			listener.mostrarConfirmacion(MensajeTitulo.TITULO_RESPALDAR, MensajesConfirmacion.CONF_RESPALDO);
 		} catch (SistemaException | PersistenciaException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -39,7 +39,7 @@ public class ControladorRespaldar extends Controlador implements Controlador.IRe
 		} catch (RemoteException r) {
 			listener.mostrarError(MensajeTitulo.TITULO_ERROR, MensajesError.ERROR_CONEXION);
 		}
-		
+
 	}
 
 }

@@ -1,5 +1,9 @@
 package edu.ude.bedelia.presentacion.panel.registro;
 
+import java.awt.Component;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -8,21 +12,17 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
 import edu.ude.bedelia.presentacion.controladores.ControladorRegistrarResultado;
 import edu.ude.bedelia.presentacion.panel.JPanelBase;
-import java.awt.Component;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
-import javax.swing.SwingConstants;
 
 public class JPanelRegistrarNota extends JPanelBase implements ActionListener {
 
 	private static final long serialVersionUID = 1L;
 	public final static String TAG = JPanelRegistrarNota.class.getSimpleName();
 	public final static String TITULO = "Registrar nota";
-	
+
 	private final ControladorRegistrarResultado controlador;
 
 	protected JTextField textFieldCedula;
@@ -127,8 +127,6 @@ public class JPanelRegistrarNota extends JPanelBase implements ActionListener {
 		gbc_cmbNota.gridy = 3;
 		add(cmbNota, gbc_cmbNota);
 
-		
-
 		btnGuardar = new JButton("Guardar");
 		btnGuardar.setHorizontalAlignment(SwingConstants.RIGHT);
 		btnGuardar.setVerticalAlignment(SwingConstants.BOTTOM);
@@ -139,7 +137,7 @@ public class JPanelRegistrarNota extends JPanelBase implements ActionListener {
 		gbc_btnGuardar.gridx = 3;
 		gbc_btnGuardar.gridy = 3;
 		add(btnGuardar, gbc_btnGuardar);
-		
+
 		setActionListenerGuardar(this);
 	}
 

@@ -34,8 +34,8 @@ public abstract class Controlador {
 	public interface IBuscar {
 		public void buscar(String... argumentos);
 	}
-	
-	public interface IRespaldar{
+
+	public interface IRespaldar {
 		public void respaldar(String... argumentos);
 	}
 
