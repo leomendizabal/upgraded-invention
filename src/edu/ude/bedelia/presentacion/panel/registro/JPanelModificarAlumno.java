@@ -12,6 +12,7 @@ public class JPanelModificarAlumno extends JPanelAlumno implements IModificarDat
 
 	private static final long serialVersionUID = 1L;
 	public final static String TAG = JPanelModificarAlumno.class.getSimpleName();
+	public final static String TITULO = "Modificar alumno";
 	private final ControlladorModificarAlumno controlador;
 
 	private final ActionListener actionListenerBuscar = new ActionListener() {

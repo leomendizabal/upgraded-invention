@@ -12,6 +12,7 @@ public class JPanelListadoAsinatura extends JPanelTablaSinFiltro implements ICar
 
 	private static final long serialVersionUID = 1L;
 	public final static String TAG = JPanelListadoAsinatura.class.getName();
+	public final static String TITULO = "Listado de asignatura";
 	private final ControladorAsignaturas controlador;
 
 	/**

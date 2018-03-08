@@ -13,6 +13,7 @@ public class JPanelListadoEgresado extends JPanelTablaConFiltro implements ICarg
 	private static final long serialVersionUID = 1L;
 	private final ControladorEgresado controlador;
 	public final static String TAG = JPanelListadoEgresado.class.getSimpleName();
+	public final static String TITULO = "Listado de Egresados";
 
 	/**
 	 * Create the panel.

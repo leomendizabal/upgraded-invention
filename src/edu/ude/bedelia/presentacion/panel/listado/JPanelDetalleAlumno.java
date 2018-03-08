@@ -13,6 +13,7 @@ public class JPanelDetalleAlumno extends JPanelTablaConFiltro implements ICargar
 
 	private static final long serialVersionUID = 1L;
 	public final static String TAG = JPanelDetalleAlumno.class.getSimpleName();
+	public final static String TITULO = "Datos del alumno";
 	private final ControladorDetalleAlumno controlador;
 
 	/**

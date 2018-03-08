@@ -10,10 +10,9 @@ import edu.ude.bedelia.presentacion.panel.listener.ICargarTabla;
 
 public class JPanelListadoApellido extends JPanelTablaConFiltro implements ICargarTabla, ActionListener {
 
-	/**
-	 * 
-	 */
+	
 	public final static String TAG = JPanelListadoApellido.class.getSimpleName();
+	public final static String TITULO = "Listado de alumno por apellido";
 	private static final long serialVersionUID = 1L;
 	private final ControladorListarApellido controlador;
 

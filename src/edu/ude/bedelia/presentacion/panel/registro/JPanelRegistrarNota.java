@@ -21,6 +21,8 @@ public class JPanelRegistrarNota extends JPanelBase implements ActionListener {
 
 	private static final long serialVersionUID = 1L;
 	public final static String TAG = JPanelRegistrarNota.class.getSimpleName();
+	public final static String TITULO = "Registrar nota";
+	
 	private final ControladorRegistrarResultado controlador;
 
 	protected JTextField textFieldCedula;

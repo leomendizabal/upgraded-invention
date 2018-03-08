@@ -16,7 +16,8 @@ public class JPanelInscribirAsignatura extends JPanelBase {
 
 	private static final long serialVersionUID = 1L;
 	public final static String TAG = JPanelInscribirAsignatura.class.getSimpleName();
-	
+	public final static String TITULO = "Inscripcion a asignatura";
+			
 	private final ControladorInscripcion controladorInscripcion;
 	private JTextField textcedula;
 	private JTextField textcodigo;

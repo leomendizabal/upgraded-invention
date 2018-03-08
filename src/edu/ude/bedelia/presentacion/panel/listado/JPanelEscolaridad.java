@@ -14,6 +14,7 @@ public class JPanelEscolaridad extends JPanelTablaConFiltro implements ICargarTa
 	 * 
 	 */
 	public final static String TAG = JPanelEscolaridad.class.getSimpleName();
+	public final static String TITULO = "Escolaridad";
 	private static final long serialVersionUID = 1L;
 	private final ControladorEscolaridad controlador;
 

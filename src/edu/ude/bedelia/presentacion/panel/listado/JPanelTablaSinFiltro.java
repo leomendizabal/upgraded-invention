@@ -34,10 +34,10 @@ public class JPanelTablaSinFiltro extends JPanelBase {
 
 		JPanel panel = new JPanel();
 		scrollPane.setColumnHeaderView(panel);
-		panel.setLayout(new BorderLayout(0, 0));
+		panel.setLayout(new BorderLayout(12, 0));
 
 		table = new JTable();
-		panel.add(table, BorderLayout.SOUTH);
+		panel.add(table, BorderLayout.CENTER);
 
 	}
 	

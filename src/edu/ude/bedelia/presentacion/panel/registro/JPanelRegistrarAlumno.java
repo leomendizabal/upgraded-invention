@@ -12,6 +12,8 @@ public class JPanelRegistrarAlumno extends JPanelAlumno implements ActionListene
 	 */
 	private static final long serialVersionUID = 1L;
 	public final static String TAG = JPanelRegistrarAlumno.class.getSimpleName();
+	public final static String TITULO = "Registro de alumno";
+	
 	private final ControladorAlumno controladorAlumno;
 
 	/**

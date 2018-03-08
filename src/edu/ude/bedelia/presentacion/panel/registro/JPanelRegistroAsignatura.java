@@ -18,6 +18,7 @@ public class JPanelRegistroAsignatura extends JPanelBase implements ActionListen
 
 	private static final long serialVersionUID = 1L;
 	public final static String TAG = JPanelRegistroAsignatura.class.getSimpleName();
+	public final static String TITULAR = "Registro de asignatura";
 	private JTextField textFieldNombre;
 	private JTextArea textAreaDescripcion;
 	private JButton btnRegistrar;

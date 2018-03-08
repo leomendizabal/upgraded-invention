@@ -16,6 +16,7 @@ public class JPanelMontoRecaudado extends JPanelBase implements IMostrarMonto {
 
 	private static final long serialVersionUID = 1L;
 	public final static String TAG = JPanelMontoRecaudado.class.getSimpleName();
+	public final static String TITULO = "Monto recaudado";
 	private final ControladorInscripcion controladorInscripcion;
 	private JTextField textCed;
 	private JTextField textAno;
@@ -27,7 +28,6 @@ public class JPanelMontoRecaudado extends JPanelBase implements IMostrarMonto {
 		btnCalcular.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				controladorInscripcion.mostrar(JPanelMontoRecaudado.this, textAno.getText(), textCed.getText());
-
 			}
 		});
 	}
