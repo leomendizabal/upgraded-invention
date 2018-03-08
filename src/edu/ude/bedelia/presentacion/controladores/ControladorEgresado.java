@@ -5,6 +5,8 @@ import java.util.List;
 
 import edu.ude.bedelia.logica.vo.VOEgresado;
 import edu.ude.bedelia.logica.vo.VOEgresadoCompleto;
+import edu.ude.bedelia.presentacion.Helper;
+import edu.ude.bedelia.presentacion.UIConstantes.MensajeTitulo;
 import edu.ude.bedelia.presentacion.UIConstantes.MensajesError;
 import edu.ude.bedelia.presentacion.panel.listener.ICargarTabla;
 import edu.ude.bedelia.presentacion.tablemodel.EgresadoModel;
@@ -30,6 +32,9 @@ public class ControladorEgresado extends Controlador implements Controlador.ILis
 	public void listar(Boolean... argumentos) {
 		// TODO Auto-generated method stub
 		try {
+			if (Helper.isEmpty(argumentos)) {
+				listener.mostrarError(MensajeTitulo.TITULO_ERROR, MensajesError.ERROR_CAMPO);
+			}else {
 			List<VOEgresado> resultado = fachada.listarEgresados(argumentos[0]);
 			if (resultado.isEmpty()) {
 				listener.tablaVacia();
@@ -40,11 +45,11 @@ public class ControladorEgresado extends Controlador implements Controlador.ILis
 				}
 				listener.cargarTabla(new EgresadoModel(resultado, columnas));
 			}
-
+			}
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			System.out.println(e.getMessage());
-			listener.mostrarError("Error", MensajesError.ERROR_CONEXION);
+			listener.mostrarError(MensajeTitulo.TITULO_ERROR, MensajesError.ERROR_CONEXION);
 
 		}
 

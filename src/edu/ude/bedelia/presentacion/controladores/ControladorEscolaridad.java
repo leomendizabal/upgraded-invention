@@ -10,6 +10,8 @@ import edu.ude.bedelia.logica.vo.VOInscripcion;
 import edu.ude.bedelia.logica.vo.VOInscripcionCompleta;
 import edu.ude.bedelia.presentacion.panel.listener.ICargarTabla;
 import edu.ude.bedelia.presentacion.tablemodel.IncripcionesModel;
+import edu.ude.bedelia.presentacion.Helper;
+import edu.ude.bedelia.presentacion.UIConstantes.MensajeTitulo;
 import edu.ude.bedelia.presentacion.UIConstantes.MensajesError;
 
 public class ControladorEscolaridad extends Controlador implements Controlador.IListar<String> {
@@ -32,6 +34,9 @@ public class ControladorEscolaridad extends Controlador implements Controlador.I
 	@Override
 	public void listar(String... argumentos) {
 		try {
+			if (Helper.isEmpty(argumentos)) {
+				listener.mostrarError(MensajeTitulo.TITULO_ERROR, MensajesError.ERROR_CAMPO);
+			}else {
 			boolean esCompleto = new Boolean(argumentos[0]);
 			List<VOInscripcion> resultado = fachada.listarEscolaridad(argumentos[0], esCompleto);
 			if (resultado.isEmpty()) {
@@ -46,12 +51,13 @@ public class ControladorEscolaridad extends Controlador implements Controlador.I
 				Collections.sort(resultado);
 				listener.cargarTabla(new IncripcionesModel(resultado, columanas));
 			}
+		  }
 		} catch (RemoteException r) {
 			// TODO Auto-generated catch block
 			r.printStackTrace();
-			listener.mostrarError("listar",MensajesError.ERROR_CONEXION);
+			listener.mostrarError(MensajeTitulo.TITULO_LISTAR,MensajesError.ERROR_CONEXION);
 		} catch ( AlumnosException e){
-			listener.mostrarError("listar", e.getMessage());
+			listener.mostrarError(MensajeTitulo.TITULO_LISTAR, e.getMessage());
 		}
 
 	}

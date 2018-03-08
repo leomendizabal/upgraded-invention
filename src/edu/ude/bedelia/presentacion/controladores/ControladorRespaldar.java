@@ -4,6 +4,8 @@ import java.rmi.RemoteException;
 
 import edu.ude.bedelia.logica.excepciones.SistemaException;
 import edu.ude.bedelia.persistencia.excepciones.PersistenciaException;
+import edu.ude.bedelia.presentacion.UIConstantes.MensajeTitulo;
+import edu.ude.bedelia.presentacion.UIConstantes.MensajesConfirmacion;
 import edu.ude.bedelia.presentacion.UIConstantes.MensajesError;
 import edu.ude.bedelia.presentacion.panel.listener.IMensaje;
 
@@ -29,13 +31,13 @@ public class ControladorRespaldar extends Controlador implements Controlador.IRe
 		// TODO Auto-generated method stub
 		try {
 			fachada.respaldarDatos();
-			listener.mostrarConfirmacion("Respaldar", "se han respaldado los datos");
+			listener.mostrarConfirmacion(MensajeTitulo.TITULO_RESPALDAR,MensajesConfirmacion.CONF_RESPALDO);
 		} catch (SistemaException | PersistenciaException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			listener.mostrarError("Error", e.getMessage());
+			listener.mostrarError(MensajeTitulo.TITULO_ERROR, e.getMessage());
 		} catch (RemoteException r) {
-			listener.mostrarError("Error", MensajesError.ERROR_CONEXION);
+			listener.mostrarError(MensajeTitulo.TITULO_ERROR, MensajesError.ERROR_CONEXION);
 		}
 		
 	}
