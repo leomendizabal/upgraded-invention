@@ -1,5 +1,9 @@
 package edu.ude.bedelia.presentacion.controladores;
 
+import edu.ude.bedelia.presentacion.Helper;
+import edu.ude.bedelia.presentacion.UIConstantes.MensajeTitulo;
+import edu.ude.bedelia.presentacion.UIConstantes.MensajesConfirmacion;
+import edu.ude.bedelia.presentacion.UIConstantes.MensajesError;
 import edu.ude.bedelia.presentacion.panel.listener.IMensaje;
 
 public class ControladorRegistrarResultado extends Controlador implements Controlador.IRegistrar {
@@ -22,12 +26,16 @@ public class ControladorRegistrarResultado extends Controlador implements Contro
 	@Override
 	public void registrar(boolean extra, String... argumento) {
 		try {
+			if (Helper.isEmpty(argumento)) {
+				listener.mostrarError(MensajeTitulo.TITULO_ERROR, MensajesError.ERROR_CAMPO);
+			} else {
 			fachada.registrarResultado(argumento[0], Integer.valueOf(argumento[1]), argumento[2],
 					Integer.valueOf(argumento[3]));
-			listener.mostrarConfirmacion("Registro", "La nota fue ingresada correctamente");
+			listener.mostrarConfirmacion(MensajeTitulo.TITULO_REGISTRAR_RESULTADO, MensajesConfirmacion.CONF_REGISTRAR_RESULTADO);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			listener.mostrarError("Error", e.getMessage());
+			listener.mostrarError(MensajeTitulo.TITULO_ERROR, e.getMessage());
 		}
 	}
 

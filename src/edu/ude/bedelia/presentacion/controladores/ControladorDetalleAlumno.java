@@ -8,6 +8,9 @@ import edu.ude.bedelia.logica.excepciones.AlumnosException;
 import edu.ude.bedelia.logica.vo.VOAlumno;
 import edu.ude.bedelia.logica.vo.VOAlumnoCompleto;
 import edu.ude.bedelia.logica.vo.VOBecadoCompleto;
+import edu.ude.bedelia.presentacion.Helper;
+import edu.ude.bedelia.presentacion.UIConstantes.MensajeTitulo;
+import edu.ude.bedelia.presentacion.UIConstantes.MensajesError;
 import edu.ude.bedelia.presentacion.panel.listener.ICargarTabla;
 import edu.ude.bedelia.presentacion.tablemodel.AlumnoDetalleModel;
 import edu.ude.bedelia.presentacion.tablemodel.AlumnoModel;
@@ -25,6 +28,9 @@ public class ControladorDetalleAlumno extends ControladorAlumno implements Contr
 	@Override
 	public void listar(String... argumentos) {
 		try {
+			if (Helper.isEmpty(argumentos)) {
+				listener.mostrarError(MensajeTitulo.TITULO_ERROR, MensajesError.ERROR_CAMPO);
+			}else {
 			VOAlumno alumno = fachada.listarDatosAlumno(argumentos[0]);
 			final List<VOAlumnoCompleto> resultado = new ArrayList<>(1);
 			final List<String> columnas = new ArrayList<>();
@@ -38,10 +44,14 @@ public class ControladorDetalleAlumno extends ControladorAlumno implements Contr
 				}
 			}
 			listener.cargarTabla(new AlumnoDetalleModel(resultado, columnas));
-		} catch (RemoteException | AlumnosException e) {
+			}
+		} catch (RemoteException r ) {
 			// TODO Auto-generated catch block
-			listener.mostrarError("Detalle del Alumno", e.getMessage());
+			listener.mostrarError(MensajesError.ERROR_DETALLE_ALUMNO, MensajesError.ERROR_CONEXION);
 
+		}catch (AlumnosException a) {
+			
+			listener.mostrarError(MensajesError.ERROR_DETALLE_ALUMNO,a.getMessage() );
 		}
 
 	}

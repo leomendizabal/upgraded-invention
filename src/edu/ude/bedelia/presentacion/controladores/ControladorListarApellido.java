@@ -4,6 +4,9 @@ import java.rmi.RemoteException;
 import java.util.List;
 
 import edu.ude.bedelia.logica.vo.VOAlumno;
+import edu.ude.bedelia.presentacion.Helper;
+import edu.ude.bedelia.presentacion.UIConstantes.MensajeTitulo;
+import edu.ude.bedelia.presentacion.UIConstantes.MensajesError;
 import edu.ude.bedelia.presentacion.panel.listener.ICargarTabla;
 import edu.ude.bedelia.presentacion.tablemodel.AlumnoModel;
 
@@ -28,6 +31,9 @@ public class ControladorListarApellido extends Controlador implements Controlado
 	public void listar(String... argumentos) {
 		List<VOAlumno> resultado;
 		try {
+			if (Helper.isEmpty(argumentos)) {
+				listener.mostrarError(MensajeTitulo.TITULO_ERROR, MensajesError.ERROR_CAMPO);
+			} else {
 			resultado = fachada.listarAlumnosApellido(argumentos[0]);
 			if (resultado.isEmpty()) {
 				this.listener.tablaVacia();
@@ -36,9 +42,10 @@ public class ControladorListarApellido extends Controlador implements Controlado
 
 				this.listener.cargarTabla(new AlumnoModel(resultado, columnas));
 			}
+			}
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			listener.mostrarError(MensajeTitulo.TITULO_LISTAR,MensajesError.ERROR_CONEXION);
 		}
 	}
 }
