@@ -4,6 +4,7 @@ import java.rmi.RemoteException;
 import java.util.List;
 
 import edu.ude.bedelia.logica.vo.VOAsignatura;
+import edu.ude.bedelia.presentacion.UIConstantes.MensajesError;
 import edu.ude.bedelia.presentacion.panel.listener.ICargarTabla;
 import edu.ude.bedelia.presentacion.tablemodel.AsignaturaModel;
 
@@ -36,7 +37,7 @@ public class ControladorListadoAsignatura extends Controlador implements Control
 			}
 		} catch (RemoteException e) {
 			// TODO colocar error amigables
-			listener.mostrarError("Error", e.getMessage());
+			listener.mostrarError("Error", MensajesError.ERROR_CONEXION);
 		}
 
 	}

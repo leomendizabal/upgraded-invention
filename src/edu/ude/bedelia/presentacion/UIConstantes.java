@@ -13,4 +13,13 @@ public final class UIConstantes {
 		public final static String CLAVE_DESCRIPCION = "clave_descripcion";
 	}
 
+	public final class MensajesError {
+		
+		public final static String ERROR_REGISTRAR_ALUMNO = "No se puede registrar alumno";
+		public final static String ERROR_REGISTRAR_ASIGNATURA = "No se puede registrar asignatura";
+		public final static String ERROR_CONEXION = "No se puedo conectar";
+		
+		
+		
+	}
 }

@@ -5,6 +5,7 @@ import java.util.List;
 
 import edu.ude.bedelia.logica.vo.VOEgresado;
 import edu.ude.bedelia.logica.vo.VOEgresadoCompleto;
+import edu.ude.bedelia.presentacion.UIConstantes.MensajesError;
 import edu.ude.bedelia.presentacion.panel.listener.ICargarTabla;
 import edu.ude.bedelia.presentacion.tablemodel.EgresadoModel;
 
@@ -43,7 +44,7 @@ public class ControladorEgresado extends Controlador implements Controlador.ILis
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			System.out.println(e.getMessage());
-			listener.mostrarError("Egresados", "Error al obtener los egresados");
+			listener.mostrarError("Error", MensajesError.ERROR_CONEXION);
 
 		}
 

@@ -10,6 +10,7 @@ import edu.ude.bedelia.logica.vo.VOInscripcion;
 import edu.ude.bedelia.logica.vo.VOInscripcionCompleta;
 import edu.ude.bedelia.presentacion.panel.listener.ICargarTabla;
 import edu.ude.bedelia.presentacion.tablemodel.IncripcionesModel;
+import edu.ude.bedelia.presentacion.UIConstantes.MensajesError;
 
 public class ControladorEscolaridad extends Controlador implements Controlador.IListar<String> {
 
@@ -45,9 +46,11 @@ public class ControladorEscolaridad extends Controlador implements Controlador.I
 				Collections.sort(resultado);
 				listener.cargarTabla(new IncripcionesModel(resultado, columanas));
 			}
-		} catch (RemoteException | AlumnosException e) {
+		} catch (RemoteException r) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			r.printStackTrace();
+			listener.mostrarError("listar",MensajesError.ERROR_CONEXION);
+		} catch ( AlumnosException e){
 			listener.mostrarError("listar", e.getMessage());
 		}
 

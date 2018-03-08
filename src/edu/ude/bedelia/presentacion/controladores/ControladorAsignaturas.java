@@ -5,6 +5,7 @@ import java.util.List;
 
 import edu.ude.bedelia.logica.excepciones.AsignaturasException;
 import edu.ude.bedelia.logica.vo.VOAsignatura;
+import edu.ude.bedelia.presentacion.UIConstantes.MensajesError;
 import edu.ude.bedelia.presentacion.panel.listener.ICargarTabla;
 import edu.ude.bedelia.presentacion.panel.listener.IMensaje;
 import edu.ude.bedelia.presentacion.tablemodel.AsignaturaModel;
@@ -39,9 +40,11 @@ public class ControladorAsignaturas extends Controlador implements Controlador.I
 		try {
 			fachada.registrarAsignatura(new VOAsignatura(argumentos[0], argumentos[1], argumentos[2]));
 			listener.mostrarConfirmacion("Registro", "Se ingreso correctamente");
-		} catch (RemoteException | AsignaturasException e) {
-			// TODO colocar error amigables
-			listener.mostrarError("Error", e.getMessage());
+		} catch (RemoteException r) {
+			
+			listener.mostrarError("Error",MensajesError.ERROR_CONEXION);
+		} catch(AsignaturasException e) {
+			listener.mostrarError("Error", MensajesError.ERROR_REGISTRAR_ASIGNATURA);
 		}
 
 	}
@@ -55,7 +58,7 @@ public class ControladorAsignaturas extends Controlador implements Controlador.I
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			cargar.mostrarError("Listar asignaturas", e.getMessage());
+			cargar.mostrarError("Listar asignaturas", MensajesError.ERROR_CONEXION);
 		}
 		
 	}

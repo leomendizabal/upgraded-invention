@@ -9,6 +9,7 @@ import edu.ude.bedelia.logica.vo.VOAlumno;
 import edu.ude.bedelia.logica.vo.VOAlumnoCompleto;
 import edu.ude.bedelia.logica.vo.VOBecadoCompleto;
 import edu.ude.bedelia.presentacion.UIConstantes;
+import edu.ude.bedelia.presentacion.UIConstantes.MensajesError;
 import edu.ude.bedelia.presentacion.panel.listener.IModificarDatos;
 
 public class ControlladorModificarAlumno extends Controlador implements Controlador.IBuscar, Controlador.IModificar {
@@ -53,9 +54,11 @@ public class ControlladorModificarAlumno extends Controlador implements Controla
 				listener.mostrarError("Buscar", "error los datos del alumno no estan completos");
 			}
 
-		} catch (RemoteException | AlumnosException e) {
+		} catch (AlumnosException e) {
 			e.printStackTrace();
 			listener.mostrarError("Buscar", e.getMessage());
+		} catch (RemoteException r) {
+			listener.mostrarError("Error",MensajesError.ERROR_CONEXION);
 		}
 
 	}
