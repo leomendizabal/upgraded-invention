@@ -38,7 +38,7 @@ public class ControladorEscolaridad extends Controlador implements Controlador.I
 			if (Helper.isEmpty(argumentos)) {
 				listener.mostrarError(MensajeTitulo.TITULO_ERROR, MensajesError.ERROR_CAMPO);
 			} else {
-				boolean esCompleto = new Boolean(argumentos[0]);
+				boolean esCompleto = new Boolean(argumentos[1]);
 				List<VOInscripcion> resultado = fachada.listarEscolaridad(argumentos[0], esCompleto);
 				if (resultado.isEmpty()) {
 					listener.tablaVacia();

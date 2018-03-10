@@ -159,11 +159,11 @@ public class Fachada extends UnicastRemoteObject implements IFachada {
 						monitor.terminoEscritura();
 						throw new InscripcionesException(Mensajes.MSG_ALUMNO_YA_APROBO_ASIGNATURA);
 					} else {
-						if (inscripciones.inscriptoEnAnioLectivo(codigo)) {
+						if (inscripciones.inscriptoEnAnioLectivo(codigo,anio)) {
 							monitor.terminoEscritura();
 							throw new InscripcionesException(Mensajes.MSG_ALUMNO_YA_ESTA_INSCRIPTO_ASIGANTURA);
 						} else {
-							if (alumno.getInscripciones().anioLectivoMayorIgualUltimaInscripcion()) {
+							if (alumno.getInscripciones().anioLectivoMayorIgualUltimaInscripcion(anio)) {
 								alumno.registrarInscripcion(anio, montoBase, asig);
 							} else {
 								monitor.terminoEscritura();

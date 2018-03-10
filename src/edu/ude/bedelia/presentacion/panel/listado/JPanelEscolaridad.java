@@ -53,4 +53,11 @@ public class JPanelEscolaridad extends JPanelTablaConFiltro implements ICargarTa
 		mostrarMensajeTabla(UIConstantes.MensajesError.ERROR_NO_SE_CARGARON_DATOS);
 
 	}
+
+	@Override
+	public void mostrarError(String titulo, String mensaje) {
+		// TODO Auto-generated method stub
+		super.mostrarError(titulo, mensaje);
+		tablaVacia();
+	}
 }

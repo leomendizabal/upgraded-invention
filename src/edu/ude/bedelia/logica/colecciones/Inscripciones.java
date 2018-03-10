@@ -45,7 +45,7 @@ public class Inscripciones extends SecuenciaArrayList<Inscripcion> {
 		return aprobada;
 	}
 
-	public boolean inscriptoEnAnioLectivo(String cod) {
+	public boolean inscriptoEnAnioLectivo(String cod,int anio) {
 		Inscripcion ins;
 		Asignatura asi;
 		boolean esta = false;
@@ -53,7 +53,7 @@ public class Inscripciones extends SecuenciaArrayList<Inscripcion> {
 		while ((indice < cantidad) && (!esta)) {
 			ins = secuencia.get(indice);
 			asi = ins.getAsignatura();
-			if (cod.equals(asi.getCodigo()) && ins.esActual()) {
+			if (cod.equals(asi.getCodigo()) && (anio == ins.getAnio())) {
 				esta = true;
 			} else {
 				indice++;
@@ -62,12 +62,12 @@ public class Inscripciones extends SecuenciaArrayList<Inscripcion> {
 		return esta;
 	}
 
-	public boolean anioLectivoMayorIgualUltimaInscripcion() {
+	public boolean anioLectivoMayorIgualUltimaInscripcion(int anio) {
 		boolean mayorIgual = true;
 		int cantidad = secuencia.size();
 		if (cantidad > 0) {
 			Inscripcion ins = secuencia.get(cantidad - 1);
-			mayorIgual = ins.esAnioMayorIgualActual();
+			mayorIgual = anio >= ins.getAnio();
 		}
 
 		return mayorIgual;
