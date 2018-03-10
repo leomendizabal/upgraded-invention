@@ -24,6 +24,7 @@ public class JPanelInscribirAsignatura extends JPanelBase {
 	private JTextField textFieldanio;
 	private JButton btnInscribir;
 	private JTextField textFieldmonto;
+	private JPanel panel;
 
 	private void registrarEventListeners() {
 
@@ -46,9 +47,9 @@ public class JPanelInscribirAsignatura extends JPanelBase {
 		controladorInscripcion = ControladorInscripcion.getInstance(this);
 		setLayout(null);
 
-		JPanel panel = new JPanel();
+	    panel = new JPanel();
 		panel.setBounds(15, 16, 435, 298);
-		add(panel);
+		
 		panel.setLayout(null);
 
 		textcedula = new JTextField();
@@ -94,7 +95,23 @@ public class JPanelInscribirAsignatura extends JPanelBase {
 		lblMontoBase.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblMontoBase.setBounds(10, 121, 89, 19);
 		panel.add(lblMontoBase);
-
+		add(panel);
 		registrarEventListeners();
 	}
+
+	@Override
+	public void mostrarConfirmacion(String titulo, String mensaje) {
+		// TODO Auto-generated method stub
+		super.mostrarConfirmacion(titulo, mensaje);
+		inicializar();
+		//limpiarTextField(this.panel);
+	}
+
+	@Override
+	protected void inicializar() {
+		// TODO Auto-generated method stub
+		limpiarTextField(this.panel);
+	}
+	
+	
 }

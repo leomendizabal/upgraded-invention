@@ -22,8 +22,7 @@ public class JPanelRegistrarAlumno extends JPanelAlumno implements ActionListene
 	public JPanelRegistrarAlumno() {
 		super();
 		controladorAlumno = ControladorRegistrarAlumno.getInstance(this);
-		modoRegistrar(true);
-		modoBecado(false);
+		inicializar();
 		setActionListenerGuardar(this);
 	}
 
@@ -48,7 +47,18 @@ public class JPanelRegistrarAlumno extends JPanelAlumno implements ActionListene
 	public void mostrarConfirmacion(String titulo, String mensaje) {
 		// TODO Auto-generated method stub
 		super.mostrarConfirmacion(titulo, mensaje);
-		limpiarFormulario();
+		inicializar();
 	}
+
+	@Override
+	protected void inicializar() {
+		// TODO Auto-generated method stub
+		super.inicializar();
+		modoRegistrar(true);
+		modoBecado(false);
+		
+	}
+	
+	
 
 }

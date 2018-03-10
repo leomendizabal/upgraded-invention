@@ -16,7 +16,7 @@ import edu.ude.bedelia.presentacion.Mensajes;
 import edu.ude.bedelia.presentacion.UIConstantes;
 import edu.ude.bedelia.presentacion.panel.listener.IMensaje;
 
-public class JPanelBase extends JPanel implements IMensaje {
+public abstract class JPanelBase extends JPanel implements IMensaje {
 
 	/**
 	 * Create the panel.
@@ -41,8 +41,11 @@ public class JPanelBase extends JPanel implements IMensaje {
 	}
 
 	protected void limpiarTextField(JPanel jpanel) {
+		System.out.println(jpanel.getComponents().length);
 		for (Component componente : jpanel.getComponents()) {
-			System.out.println(componente.getClass().getName());
+			if(componente instanceof JPanel) {
+				limpiarTextField((JPanel)componente);
+			}
 			if (componente instanceof JTextField || componente instanceof JTextArea) {
 
 				((JTextComponent) componente).setText(UIConstantes.STRING_VACIO);
@@ -64,5 +67,7 @@ public class JPanelBase extends JPanel implements IMensaje {
 			columnModel.getColumn(column).setPreferredWidth(width);
 		}
 	}
+	
+	protected abstract void inicializar();
 
 }

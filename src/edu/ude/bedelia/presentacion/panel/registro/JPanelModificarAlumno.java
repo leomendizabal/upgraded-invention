@@ -41,7 +41,7 @@ public class JPanelModificarAlumno extends JPanelAlumno implements IModificarDat
 	public JPanelModificarAlumno() {
 		super();
 		controlador = ControlladorModificarAlumno.getInstance(this);
-		modoModificar(true);
+		inicializar();
 		setActionListenerBuscar(actionListenerBuscar);
 		setActionListenerGuardar(actionListenerModificar);
 	}
@@ -69,8 +69,16 @@ public class JPanelModificarAlumno extends JPanelAlumno implements IModificarDat
 	public void mostrarConfirmacion(String titulo, String mensaje) {
 		// TODO Auto-generated method stub
 		super.mostrarConfirmacion(titulo, mensaje);
-		limpiarFormulario();
+		inicializar();
+	}
+
+	@Override
+	protected void inicializar() {
+		// TODO Auto-generated method stub
+		super.inicializar();
 		modoModificar(true);
 	}
+	
+	
 
 }

@@ -212,4 +212,10 @@ public class JPanelAlumno extends JPanelBase {
 	protected void limpiarFormulario() {
 		limpiarTextField(panel);
 	}
+
+	@Override
+	protected void inicializar() {
+		limpiarFormulario();
+		
+	}
 }

@@ -59,4 +59,10 @@ public class JPanelTablaSinFiltro extends JPanelBase {
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 	}
 
+	@Override
+	protected void inicializar() {
+		// TODO Auto-generated method stub
+		limpiarTextField(this);
+	}
+
 }

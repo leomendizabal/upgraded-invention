@@ -148,4 +148,10 @@ public class JPanelTablaConFiltro extends JPanelBase {
 		rdbtnCompleto.setSelected(true);
 		limpiarTextField(jPanelFiltro);
 	}
+
+	@Override
+	protected void inicializar() {
+		// TODO Auto-generated method stub
+		limpiarTextField(jPanelFiltro);
+	}
 }

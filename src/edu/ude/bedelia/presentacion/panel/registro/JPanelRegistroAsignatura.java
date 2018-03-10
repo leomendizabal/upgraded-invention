@@ -24,6 +24,7 @@ public class JPanelRegistroAsignatura extends JPanelBase implements ActionListen
 	private JButton btnRegistrar;
 	private JTextField textFieldId;
 	private final ControladorAsignaturas controlladorAsignaturas;
+	private JPanel panel;
 
 	/**
 	 * Create the panel.
@@ -37,7 +38,7 @@ public class JPanelRegistroAsignatura extends JPanelBase implements ActionListen
 
 	private void configurarVista() {
 		setLayout(new BorderLayout(0, 0));
-		JPanel panel = new JPanel();
+		panel = new JPanel();
 		add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 
@@ -86,7 +87,16 @@ public class JPanelRegistroAsignatura extends JPanelBase implements ActionListen
 	public void mostrarConfirmacion(String titulo, String mensaje) {
 		// TODO Auto-generated method stub
 		super.mostrarConfirmacion(titulo, mensaje);
-		limpiarTextField(this);
+		inicializar();
+		
+	}
+
+	@Override
+	protected void inicializar() {
+		// TODO Auto-generated method stub
+		limpiarTextField(this.panel);
+		
+		
 	}
 
 }

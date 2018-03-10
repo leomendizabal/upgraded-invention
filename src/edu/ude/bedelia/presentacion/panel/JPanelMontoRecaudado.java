@@ -86,4 +86,10 @@ public class JPanelMontoRecaudado extends JPanelBase implements IMostrarMonto {
 
 	}
 
+	@Override
+	protected void inicializar() {
+		// TODO Auto-generated method stub
+		limpiarTextField(this);
+	}
+
 }
