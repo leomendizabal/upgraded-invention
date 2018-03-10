@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.table.AbstractTableModel;
 
+import edu.ude.bedelia.presentacion.UIConstantes;
 import edu.ude.bedelia.presentacion.controladores.ControladorListarApellido;
 import edu.ude.bedelia.presentacion.panel.listener.ICargarTabla;
 
@@ -12,19 +13,20 @@ public class JPanelListadoApellido extends JPanelTablaConFiltro implements ICarg
 
 	public final static String TAG = JPanelListadoApellido.class.getSimpleName();
 	public final static String TITULO = "Listado de alumno por apellido";
+	private final static String TEXTO_REFERENCIA_FILTRO = "Apellidoo";
 	private static final long serialVersionUID = 1L;
 	private final ControladorListarApellido controlador;
 
 	public JPanelListadoApellido() {
 		super();
-		lblMensaje.setText("");
 		controlador = ControladorListarApellido.getInstance(this);
 		configurarVista();
-		setActionListener();
+		setActionListenerBtnFiltro(this);
 	}
 
 	private void configurarVista() {
-		setTextoReferenciaFiltro("Apellido");
+		setTextoReferenciaFiltro(TEXTO_REFERENCIA_FILTRO);
+		ocultarMensaje();
 		ocultarModoFiltro();
 	}
 
@@ -35,19 +37,12 @@ public class JPanelListadoApellido extends JPanelTablaConFiltro implements ICarg
 
 	@Override
 	public void cargarTabla(AbstractTableModel model) {
-		this.table.setModel(model);
-		this.lblMensaje.setVisible(false);
-		this.table.setVisible(true);
+		setModel(model);
 	}
 
 	@Override
 	public void tablaVacia() {
-		this.lblMensaje.setText("No hay datos para mostrar");
-		this.lblMensaje.setVisible(true);
-		this.table.setVisible(false);
+		mostrarMensajeTabla(UIConstantes.MensajesError.ERROR_NO_SE_CARGARON_DATOS);
 	}
 
-	private void setActionListener() {
-		btnFiltrar.addActionListener(this);
-	}
 }

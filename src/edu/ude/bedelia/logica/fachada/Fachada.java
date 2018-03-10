@@ -4,6 +4,7 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
+import edu.ude.bedelia.aplicacion.utiles.ServidorConfig;
 import edu.ude.bedelia.logica.colecciones.Alumnos;
 import edu.ude.bedelia.logica.colecciones.Asignaturas;
 import edu.ude.bedelia.logica.colecciones.Inscripciones;
@@ -37,14 +38,19 @@ public class Fachada extends UnicastRemoteObject implements IFachada {
 	private Asignaturas asignaturas;
 	private static Fachada instancia;
 	private final FachadaPersistencia fachadaPersistencia;
-
+	private final ServidorConfig servidorConfig;
 	private Monitor monitor;
 
 	private Fachada() throws RemoteException {
 		this.fachadaPersistencia = FachadaPersistencia.getInstance();
-		monitor = new Monitor();
-		this.levantarRespaldo();
-		this.mockearDatos();
+		this.monitor = new Monitor();
+		this.servidorConfig = ServidorConfig.getInstance();
+		if (servidorConfig.mockear()) {
+			this.mockearDatos();
+		} else {
+			this.levantarRespaldo();
+		}
+
 	}
 
 	public static Fachada getInstancia() throws RemoteException {

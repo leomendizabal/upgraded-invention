@@ -13,6 +13,7 @@ import edu.ude.bedelia.presentacion.tablemodel.EgresadoModel;
 
 public class ControladorEgresado extends Controlador implements Controlador.IListar<Boolean> {
 
+	private static final String TAG = ControladorEgresado.class.getSimpleName().concat("  %s");
 	private ICargarTabla listener;
 	private static ControladorEgresado instancia = null;
 
@@ -48,7 +49,7 @@ public class ControladorEgresado extends Controlador implements Controlador.ILis
 			}
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
-			System.out.println(e.getMessage());
+			System.err.println(String.format(TAG, e.getMessage()));
 			listener.mostrarError(MensajeTitulo.TITULO_ERROR, MensajesError.ERROR_CONEXION);
 
 		}

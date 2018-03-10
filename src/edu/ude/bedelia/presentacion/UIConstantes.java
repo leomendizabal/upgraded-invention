@@ -2,16 +2,10 @@ package edu.ude.bedelia.presentacion;
 
 public final class UIConstantes {
 
-	public final class ParametrosAlumno {
-		public final static String CLAVE_CEDULA = "clave_cedula";
-		public final static String CLAVE_NOMBRE = "clave_nombre";
-		public final static String CLAVE_APELLIDO = "clave_apellido";
-		public final static String CLAVE_DIRECCION = "clave_direccion";
-		public final static String CLAVE_EMAIL = "clave_email";
-		public final static String CLAVE_TELEFONO = "clave_telefono";
-		public final static String CLAVE_PORCENTAJE = "clave_porcentaje";
-		public final static String CLAVE_DESCRIPCION = "clave_descripcion";
-	}
+	public static final String STRING_VACIO = "";
+	public static final String[] notas = new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" };
+
+	public static final String MONTO_RECAUDADO_TEMPLE = "El monto recaudado es: %s";
 
 	public final class MensajesError {
 
@@ -22,6 +16,8 @@ public final class UIConstantes {
 		public final static String ERROR_REGISTRAR_ASIGNATURA = "No se puede registrar asignatura";
 		public final static String ERROR_CONEXION = "No se puedo conectar";
 		public final static String ERROR_CAMPO = "Los campos no pueden estar vacios";
+		public final static String ERROR_FORMATO_PARAMETRO = "Por favor verifique los datos ingresados";
+		public final static String ERROR_NO_SE_CARGARON_DATOS = "No hay datos para mostrar";
 
 	}
 

@@ -35,7 +35,6 @@ public class JPanelRegistroAsignatura extends JPanelBase implements ActionListen
 		controlladorAsignaturas.setListener(this);
 	}
 
-	// TODO: eliminar valore harcode
 	private void configurarVista() {
 		setLayout(new BorderLayout(0, 0));
 		JPanel panel = new JPanel();
@@ -79,12 +78,15 @@ public class JPanelRegistroAsignatura extends JPanelBase implements ActionListen
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		final String codigo = textFieldId.getText();
-		final String nombre = textFieldNombre.getText();
-		final String descripcion = textAreaDescripcion.getText();
-
-		controlladorAsignaturas.registrar(false, codigo, nombre, descripcion);
-
+		controlladorAsignaturas.registrar(false, textFieldId.getText(), textFieldNombre.getText(),
+				textAreaDescripcion.getText());
 	}
+
+	@Override
+	public void mostrarConfirmacion(String titulo, String mensaje) {
+		// TODO Auto-generated method stub
+		super.mostrarConfirmacion(titulo, mensaje);
+		limpiarTextField(this);
+	}
+
 }

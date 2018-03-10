@@ -14,6 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import edu.ude.bedelia.presentacion.UIConstantes;
 import edu.ude.bedelia.presentacion.controladores.ControladorRegistrarResultado;
 import edu.ude.bedelia.presentacion.panel.JPanelBase;
 
@@ -116,8 +117,7 @@ public class JPanelRegistrarNota extends JPanelBase implements ActionListener {
 		add(lblNota, gbc_lblNota);
 
 		cmbNota = new JComboBox<String>();
-		cmbNota.setModel(new DefaultComboBoxModel<String>(
-				new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
+		cmbNota.setModel(new DefaultComboBoxModel<String>(UIConstantes.notas));
 		cmbNota.setBounds(103, 191, 100, 26);
 		GridBagConstraints gbc_cmbNota = new GridBagConstraints();
 		gbc_cmbNota.anchor = GridBagConstraints.NORTH;
@@ -150,4 +150,13 @@ public class JPanelRegistrarNota extends JPanelBase implements ActionListener {
 	protected void setActionListenerGuardar(ActionListener listener) {
 		btnGuardar.addActionListener(listener);
 	}
+
+	@Override
+	public void mostrarConfirmacion(String titulo, String mensaje) {
+		// TODO Auto-generated method stub
+		super.mostrarConfirmacion(titulo, mensaje);
+		limpiarTextField(this);
+
+	}
+
 }

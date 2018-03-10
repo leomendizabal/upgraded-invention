@@ -30,19 +30,19 @@ public class AlumnoDetalleModel extends TableModelGenerico<VOAlumnoCompleto> {
 			value = alumno.getApellido();
 			break;
 		case 3:
-			value = alumno.getDomicilio();
+			value = alumno.getTipo().name();
 			break;
 		case 4:
-			value = alumno.getTelefono();
+			value = alumno.getDomicilio();
 			break;
 		case 5:
-			value = alumno.getEmail();
+			value = alumno.getTelefono();
 			break;
 		case 6:
-			value = alumno.getMonto();
+			value = alumno.getEmail();
 			break;
 		case 7:
-			value = alumno.getTipo().name();
+			value = alumno.getTipo();
 			break;
 		}
 

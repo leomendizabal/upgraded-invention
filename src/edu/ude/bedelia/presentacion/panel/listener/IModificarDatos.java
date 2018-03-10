@@ -1,9 +1,9 @@
 package edu.ude.bedelia.presentacion.panel.listener;
 
-import java.util.Map;
+import edu.ude.bedelia.presentacion.vo.VOPresentacionAlumno;
 
 public interface IModificarDatos extends IMensaje {
 
-	public void mostrarDatos(boolean esBecado, final Map<String, String> atributos);
+	public void mostrarDatos(final VOPresentacionAlumno alumno);
 
 }

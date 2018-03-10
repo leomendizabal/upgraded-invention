@@ -11,6 +11,7 @@ import edu.ude.bedelia.presentacion.panel.listener.IMensaje;
 
 public class ControladorRespaldar extends Controlador implements Controlador.IRespaldar {
 
+	private static final String TAG = ControladorRespaldar.class.getSimpleName().concat("  %s");
 	private IMensaje listener;
 	private static ControladorRespaldar instancia = null;
 
@@ -33,10 +34,10 @@ public class ControladorRespaldar extends Controlador implements Controlador.IRe
 			fachada.respaldarDatos();
 			listener.mostrarConfirmacion(MensajeTitulo.TITULO_RESPALDAR, MensajesConfirmacion.CONF_RESPALDO);
 		} catch (SistemaException | PersistenciaException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.err.println(String.format(TAG, e.getMessage()));
 			listener.mostrarError(MensajeTitulo.TITULO_ERROR, e.getMessage());
 		} catch (RemoteException r) {
+			System.err.println(String.format(TAG, r.getMessage()));
 			listener.mostrarError(MensajeTitulo.TITULO_ERROR, MensajesError.ERROR_CONEXION);
 		}
 

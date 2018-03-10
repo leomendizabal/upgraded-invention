@@ -13,6 +13,7 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.TitledBorder;
+import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableModel;
 
 import edu.ude.bedelia.presentacion.panel.JPanelBase;
@@ -33,6 +34,7 @@ public class JPanelTablaConFiltro extends JPanelBase {
 	protected JLabel lblTextoReferencia;
 	protected JButton btnFiltrar;
 	protected JLabel lblMensaje;
+	private JScrollPane scrollPane;
 
 	/**
 	 * Create the panel.
@@ -94,7 +96,7 @@ public class JPanelTablaConFiltro extends JPanelBase {
 		jPanelContenedor.add(lblMensaje);
 
 		table = new JTable(new DefaultTableModel());
-		JScrollPane scrollPane = new JScrollPane(table);
+		scrollPane = new JScrollPane(table);
 		scrollPane.setBounds(12, 12, 590, 390);
 		jPanelContenedor.add(scrollPane);
 
@@ -122,5 +124,28 @@ public class JPanelTablaConFiltro extends JPanelBase {
 
 	protected void setActionListenerBtnFiltro(ActionListener listener) {
 		btnFiltrar.addActionListener(listener);
+	}
+
+	protected void mostrarMensajeTabla(String mensaje) {
+		scrollPane.setVisible(false);
+		lblMensaje.setVisible(true);
+		lblMensaje.setText(mensaje);
+	}
+
+	protected void setModel(AbstractTableModel model) {
+		table.setModel(model);
+		// resizeColumnWidth(table);
+		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+
+	}
+
+	protected void ocultarMensaje() {
+		scrollPane.setVisible(true);
+		lblMensaje.setVisible(false);
+	}
+
+	protected void limpiarFiltro() {
+		rdbtnCompleto.setSelected(true);
+		limpiarTextField(jPanelFiltro);
 	}
 }

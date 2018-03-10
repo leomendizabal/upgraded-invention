@@ -36,19 +36,19 @@ public class JFramePrincipal extends JFrame implements IMensaje {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private JPanel contentPane;
-	private JPanel jPanelRegistrarAsignatura = new JPanelRegistroAsignatura();
-	private JPanel jPanelRegistrarAlumno = new JPanelRegistrarAlumno();
-	private JPanel jPanelRegistrarNota = new JPanelRegistrarNota();
-	private JPanel jPanelInscribirAsignatura = new JPanelInscribirAsignatura();
-	private JPanel jPanelMontoRecaudado = new JPanelMontoRecaudado();
-	private JPanel jPanelListadoEgresado = new JPanelListadoEgresado();
-	private JPanel jPanelModificarAlumno = new JPanelModificarAlumno();
-	private JPanel jPanelEscolaridad = new JPanelEscolaridad();
-	private JPanel jPanelListadoAsinatura = new JPanelListadoAsinatura();
-	private JPanel jPanelListadoApellido = new JPanelListadoApellido();
-	private JPanel jPanelDetalleAlumno = new JPanelDetalleAlumno();
-	private JPanel jPanelInicio = new JPanelImage();
+	private final JPanel contentPane;
+	private final JPanel jPanelRegistrarAsignatura = new JPanelRegistroAsignatura();
+	private final JPanel jPanelRegistrarAlumno = new JPanelRegistrarAlumno();
+	private final JPanel jPanelRegistrarNota = new JPanelRegistrarNota();
+	private final JPanel jPanelInscribirAsignatura = new JPanelInscribirAsignatura();
+	private final JPanel jPanelMontoRecaudado = new JPanelMontoRecaudado();
+	private final JPanel jPanelListadoEgresado = new JPanelListadoEgresado();
+	private final JPanel jPanelModificarAlumno = new JPanelModificarAlumno();
+	private final JPanel jPanelEscolaridad = new JPanelEscolaridad();
+	private final JPanel jPanelListadoAsinatura = new JPanelListadoAsinatura();
+	private final JPanel jPanelListadoApellido = new JPanelListadoApellido();
+	private final JPanel jPanelDetalleAlumno = new JPanelDetalleAlumno();
+	private final JPanel jPanelInicio = new JPanelImage();
 
 	private JMenuBar menuBar = new JMenuBar();
 
@@ -60,7 +60,7 @@ public class JFramePrincipal extends JFrame implements IMensaje {
 	public JFramePrincipal() {
 		// conten panel
 		super();
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 800, 600);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -82,15 +82,18 @@ public class JFramePrincipal extends JFrame implements IMensaje {
 
 	private void initContenedor() {
 		// custom panel
+		jPanelRegistrarAsignatura.setPreferredSize(new Dimension(visiblePanel.getWidth(), visiblePanel.getHeight()));
 		jPanelRegistrarAlumno.setPreferredSize(new Dimension(visiblePanel.getWidth(), visiblePanel.getHeight()));
 		jPanelRegistrarNota.setPreferredSize(new Dimension(visiblePanel.getWidth(), visiblePanel.getHeight()));
-		jPanelRegistrarAsignatura.setPreferredSize(new Dimension(visiblePanel.getWidth(), visiblePanel.getHeight()));
 		jPanelInscribirAsignatura.setPreferredSize(new Dimension(visiblePanel.getWidth(), visiblePanel.getHeight()));
 		jPanelMontoRecaudado.setPreferredSize(new Dimension(visiblePanel.getWidth(), visiblePanel.getHeight()));
+		jPanelListadoEgresado.setPreferredSize(new Dimension(visiblePanel.getWidth(), visiblePanel.getHeight()));
 		jPanelModificarAlumno.setPreferredSize(new Dimension(visiblePanel.getWidth(), visiblePanel.getHeight()));
+		jPanelListadoAsinatura.setPreferredSize(new Dimension(visiblePanel.getWidth(), visiblePanel.getHeight()));
 		jPanelEscolaridad.setPreferredSize(new Dimension(visiblePanel.getWidth(), visiblePanel.getHeight()));
 		jPanelInicio.setPreferredSize(new Dimension(visiblePanel.getWidth(), visiblePanel.getHeight()));
 		jPanelDetalleAlumno.setPreferredSize(new Dimension(visiblePanel.getWidth(), visiblePanel.getHeight()));
+		jPanelListadoApellido.setPreferredSize(new Dimension(visiblePanel.getWidth(), visiblePanel.getHeight()));
 		getContentPane().add(visiblePanel);
 	}
 

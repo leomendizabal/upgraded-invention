@@ -15,6 +15,8 @@ import edu.ude.bedelia.presentacion.tablemodel.AsignaturaModel;
 
 public class ControladorAsignaturas extends Controlador implements Controlador.IRegistrar, Controlador.IListar<String> {
 
+	private static final String TAG = ControladorAsignaturas.class.getName().concat(" %s");
+
 	private static ControladorAsignaturas instancia;
 	private IMensaje listener;
 	private ICargarTabla cargar;
@@ -49,9 +51,10 @@ public class ControladorAsignaturas extends Controlador implements Controlador.I
 						MensajesConfirmacion.CONF_REGISTRAR_ASIGNATURA);
 			}
 		} catch (RemoteException r) {
-
+			System.err.println(String.format(TAG, r.getMessage()));
 			listener.mostrarError(MensajeTitulo.TITULO_ERROR, MensajesError.ERROR_CONEXION);
 		} catch (AsignaturasException e) {
+			System.err.println(String.format(TAG, e.getMessage()));
 			listener.mostrarError(MensajeTitulo.TITULO_ERROR, MensajesError.ERROR_REGISTRAR_ASIGNATURA);
 		}
 
@@ -64,8 +67,7 @@ public class ControladorAsignaturas extends Controlador implements Controlador.I
 			List<VOAsignatura> resultado = fachada.listarAsignaturas();
 			cargar.cargarTabla(new AsignaturaModel(resultado, VOAsignatura.attr));
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.err.println(String.format(TAG, e.getMessage()));
 			cargar.mostrarError(MensajeTitulo.TITULO_LISTAR_ASIGNATURAS, MensajesError.ERROR_CONEXION);
 		}
 

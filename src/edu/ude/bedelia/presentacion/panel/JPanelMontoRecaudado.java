@@ -9,6 +9,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import edu.ude.bedelia.presentacion.UIConstantes;
 import edu.ude.bedelia.presentacion.controladores.ControladorInscripcion;
 import edu.ude.bedelia.presentacion.panel.listener.IMostrarMonto;
 
@@ -67,12 +68,12 @@ public class JPanelMontoRecaudado extends JPanelBase implements IMostrarMonto {
 		panel.add(lblApellido);
 
 		btnCalcular = new JButton("Calcular");
-		btnCalcular.setBounds(183, 98, 115, 29);
+		btnCalcular.setBounds(262, 98, 115, 29);
 		panel.add(btnCalcular);
 
 		lblMontoRecuadado = new JLabel("");
 		lblMontoRecuadado.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblMontoRecuadado.setBounds(183, 148, 115, 19);
+		lblMontoRecuadado.setBounds(10, 157, 367, 38);
 		panel.add(lblMontoRecuadado);
 
 		registrarEventListeners();
@@ -81,7 +82,7 @@ public class JPanelMontoRecaudado extends JPanelBase implements IMostrarMonto {
 	@Override
 	public void mostrar(String monto) {
 		// TODO Auto-generated method stub
-		lblMontoRecuadado.setText(monto);
+		lblMontoRecuadado.setText(String.format(UIConstantes.MONTO_RECAUDADO_TEMPLE, monto));
 
 	}
 

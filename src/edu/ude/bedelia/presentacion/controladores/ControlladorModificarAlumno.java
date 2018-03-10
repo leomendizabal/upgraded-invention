@@ -7,13 +7,12 @@ import java.util.Map;
 import edu.ude.bedelia.logica.excepciones.AlumnosException;
 import edu.ude.bedelia.logica.vo.VOAlumno;
 import edu.ude.bedelia.logica.vo.VOAlumnoCompleto;
-import edu.ude.bedelia.logica.vo.VOBecadoCompleto;
 import edu.ude.bedelia.presentacion.Helper;
-import edu.ude.bedelia.presentacion.UIConstantes;
 import edu.ude.bedelia.presentacion.UIConstantes.MensajeTitulo;
 import edu.ude.bedelia.presentacion.UIConstantes.MensajesConfirmacion;
 import edu.ude.bedelia.presentacion.UIConstantes.MensajesError;
 import edu.ude.bedelia.presentacion.panel.listener.IModificarDatos;
+import edu.ude.bedelia.presentacion.vo.VOPresentacionAlumno;
 
 public class ControlladorModificarAlumno extends Controlador implements Controlador.IBuscar, Controlador.IModificar {
 
@@ -42,20 +41,8 @@ public class ControlladorModificarAlumno extends Controlador implements Controla
 				final Map<String, String> mapeo = new HashMap<String, String>();
 				VOAlumno alumno = fachada.listarDatosAlumno(argumentos[0]);
 				if (alumno instanceof VOAlumnoCompleto) {
-					VOAlumnoCompleto alumnoCompleto = (VOAlumnoCompleto) alumno;
-					instanciaAlumno = alumnoCompleto;
-					boolean esBecado = alumnoCompleto instanceof VOBecadoCompleto;
-					if (esBecado) {
-						VOBecadoCompleto becado = (VOBecadoCompleto) alumnoCompleto;
-						mapeo.put(UIConstantes.ParametrosAlumno.CLAVE_PORCENTAJE, becado.getStrPorcentaje());
-						mapeo.put(UIConstantes.ParametrosAlumno.CLAVE_DESCRIPCION, becado.getDescripcion());
-					}
-					mapeo.put(UIConstantes.ParametrosAlumno.CLAVE_NOMBRE, alumnoCompleto.getNombre());
-					mapeo.put(UIConstantes.ParametrosAlumno.CLAVE_APELLIDO, alumnoCompleto.getApellido());
-					mapeo.put(UIConstantes.ParametrosAlumno.CLAVE_DIRECCION, alumnoCompleto.getDomicilio());
-					mapeo.put(UIConstantes.ParametrosAlumno.CLAVE_TELEFONO, alumnoCompleto.getTelefono());
-					mapeo.put(UIConstantes.ParametrosAlumno.CLAVE_EMAIL, alumnoCompleto.getEmail());
-					((IModificarDatos) listener).mostrarDatos(esBecado, mapeo);
+					instanciaAlumno = (VOAlumnoCompleto) alumno;
+					listener.mostrarDatos(new VOPresentacionAlumno(instanciaAlumno));
 				} else {
 					listener.mostrarError(MensajeTitulo.TITULO_BUSCAR, MensajesError.ERROR_DATOS_ALUMNO);
 				}

@@ -23,7 +23,7 @@ public class Alumnos extends DiccionarioTreeMap<String, Alumno> {
 
 		while (it.hasNext()) {
 			current = it.next();
-			if (current.getApellido().toLowerCase().contains(apellido.toLowerCase())) {
+			if (current.getApellido().toLowerCase().startsWith(apellido.toLowerCase())) {
 				resultado.add(current.toVO(false));
 			}
 		}

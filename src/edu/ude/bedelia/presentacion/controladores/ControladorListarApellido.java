@@ -12,6 +12,7 @@ import edu.ude.bedelia.presentacion.tablemodel.AlumnoModel;
 
 public class ControladorListarApellido extends Controlador implements Controlador.IListar<String> {
 
+	private static final String TAG = ControladorListarApellido.class.getSimpleName().concat("  %s");
 	private ICargarTabla listener;
 	private static ControladorListarApellido instancia = null;
 
@@ -39,12 +40,11 @@ public class ControladorListarApellido extends Controlador implements Controlado
 					this.listener.tablaVacia();
 				} else {
 					List<String> columnas = VOAlumno.attrAlumno;
-
-					this.listener.cargarTabla(new AlumnoModel(resultado, columnas));
+					listener.cargarTabla(new AlumnoModel(resultado, columnas));
 				}
 			}
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
+			System.err.println(String.format(TAG, e.getMessage()));
 			listener.mostrarError(MensajeTitulo.TITULO_LISTAR, MensajesError.ERROR_CONEXION);
 		}
 	}

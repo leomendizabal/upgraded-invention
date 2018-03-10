@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
+import javax.swing.table.AbstractTableModel;
 
 import edu.ude.bedelia.presentacion.panel.JPanelBase;
 
@@ -50,6 +51,12 @@ public class JPanelTablaSinFiltro extends JPanelBase {
 	protected void ocultarMensaje() {
 		scrollPane.setVisible(true);
 		lblMensaje.setVisible(false);
+	}
+
+	protected void setModel(AbstractTableModel model) {
+		table.setModel(model);
+		resizeColumnWidth(table);
+		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 	}
 
 }

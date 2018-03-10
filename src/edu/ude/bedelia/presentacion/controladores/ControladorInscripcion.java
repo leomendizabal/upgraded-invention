@@ -15,6 +15,7 @@ import edu.ude.bedelia.presentacion.panel.listener.IMostrarMonto;
 public class ControladorInscripcion extends Controlador
 		implements Controlador.IMostrar<IMostrarMonto>, Controlador.IRegistrar {
 
+	private static final String TAG = ControladorInscripcion.class.getSimpleName().concat("  %s");
 	private IMensaje listener;
 	private static ControladorInscripcion instancia = null;
 
@@ -37,14 +38,18 @@ public class ControladorInscripcion extends Controlador
 			if (Helper.isEmpty(argumentos)) {
 				listener.mostrarError(MensajeTitulo.TITULO_ERROR, MensajesError.ERROR_CAMPO);
 			} else {
-				float resultado = fachada.montoRecaudadoPorAlumno(Integer.parseInt(argumentos[1]), argumentos[0]);
+				float resultado = fachada.montoRecaudadoPorAlumno(Integer.parseInt(argumentos[0]),
+						argumentos[1].trim());
 				listener.mostrar(String.valueOf(resultado));
 			}
-		} catch (NumberFormatException | AlumnosException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		} catch (NumberFormatException e) {
+			System.err.println(String.format(TAG, e.getMessage()));
+			listener.mostrarError(MensajeTitulo.TITULO_ERROR, MensajesError.ERROR_FORMATO_PARAMETRO);
+		} catch (AlumnosException e) {
+			System.err.println(String.format(TAG, e.getMessage()));
 			listener.mostrarError(MensajeTitulo.TITULO_ERROR, e.getMessage());
 		} catch (RemoteException r) {
+			System.err.println(String.format(TAG, r.getMessage()));
 			listener.mostrarError(MensajeTitulo.TITULO_ERROR, MensajesError.ERROR_CONEXION);
 		}
 
@@ -62,12 +67,16 @@ public class ControladorInscripcion extends Controlador
 				listener.mostrarConfirmacion(MensajeTitulo.TITULO_REGISTRAR_INSCRIPCION,
 						MensajesConfirmacion.CONF_REGISTRAR_INSCRIPCION);
 			}
-		} catch (AsignaturasException | NumberFormatException | AlumnosException | InscripcionesException e) {
-			// TODO colocar error amigables
+		} catch (AsignaturasException | AlumnosException | InscripcionesException e) {
+			System.err.println(String.format(TAG, e.getMessage()));
 			listener.mostrarError(MensajeTitulo.TITULO_ERROR, e.getMessage());
 		} catch (RemoteException r) {
+			System.err.println(String.format(TAG, r.getMessage()));
 			listener.mostrarError(MensajeTitulo.TITULO_ERROR, MensajesError.ERROR_CONEXION);
-
+		} catch (NumberFormatException e) {
+			e.printStackTrace();
+			System.err.println(String.format(TAG, e.getMessage()));
+			listener.mostrarError(MensajeTitulo.TITULO_ERROR, MensajesError.ERROR_FORMATO_PARAMETRO);
 		}
 
 	}

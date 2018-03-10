@@ -34,6 +34,7 @@ public class JPanelAlumno extends JPanelBase {
 	protected JTextField textFieldDireccion;
 	protected JTextField textFieldDescuento;
 	protected JLabel lblDescuento;
+	private JPanel panel;
 
 	private void registrarEventListeners() {
 
@@ -53,7 +54,7 @@ public class JPanelAlumno extends JPanelBase {
 		super();
 		setLayout(null);
 
-		JPanel panel = new JPanel();
+		panel = new JPanel();
 		panel.setBounds(0, 0, 594, 445);
 		add(panel);
 		panel.setLayout(null);
@@ -206,5 +207,9 @@ public class JPanelAlumno extends JPanelBase {
 	protected void setActionListenerGuardar(ActionListener listener) {
 		btnGuardar.addActionListener(listener);
 
+	}
+
+	protected void limpiarFormulario() {
+		limpiarTextField(panel);
 	}
 }

@@ -2,11 +2,10 @@ package edu.ude.bedelia.presentacion.panel.registro;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Map;
 
-import edu.ude.bedelia.presentacion.UIConstantes;
 import edu.ude.bedelia.presentacion.controladores.ControlladorModificarAlumno;
 import edu.ude.bedelia.presentacion.panel.listener.IModificarDatos;
+import edu.ude.bedelia.presentacion.vo.VOPresentacionAlumno;
 
 public class JPanelModificarAlumno extends JPanelAlumno implements IModificarDatos {
 
@@ -48,21 +47,30 @@ public class JPanelModificarAlumno extends JPanelAlumno implements IModificarDat
 	}
 
 	@Override
-	public void mostrarDatos(boolean esBecado, Map<String, String> atributos) {
+	public void mostrarDatos(final VOPresentacionAlumno alumno) {
+		boolean esBecado = alumno.esBecado();
 		// TODO Auto-generated method stub
 		modoBecado(esBecado);
 		if (esBecado) {
 			chckbxEsBecado.setSelected(esBecado);
-			txtDescripcion.setText(atributos.get(UIConstantes.ParametrosAlumno.CLAVE_DESCRIPCION));
-			textFieldDescuento.setText(atributos.get(UIConstantes.ParametrosAlumno.CLAVE_PORCENTAJE));
+			txtDescripcion.setText(alumno.getDescripcion());
+			textFieldDescuento.setText(alumno.getStrPorcentaje());
 		}
-		textFieldNombre.setText(atributos.get(UIConstantes.ParametrosAlumno.CLAVE_NOMBRE));
-		textFieldApellido.setText(atributos.get(UIConstantes.ParametrosAlumno.CLAVE_APELLIDO));
-		textFieldDireccion.setText(atributos.get(UIConstantes.ParametrosAlumno.CLAVE_DIRECCION));
-		textFieldTelefono.setText(atributos.get(UIConstantes.ParametrosAlumno.CLAVE_TELEFONO));
-		textFieldEmail.setText(atributos.get(UIConstantes.ParametrosAlumno.CLAVE_EMAIL));
+		textFieldNombre.setText(alumno.getNombre());
+		textFieldApellido.setText(alumno.getApellido());
+		textFieldDireccion.setText(alumno.getDomicilio());
+		textFieldTelefono.setText(alumno.getTelefono());
+		textFieldEmail.setText(alumno.getEmail());
 		habilitarModificacion(true);
 
+	}
+
+	@Override
+	public void mostrarConfirmacion(String titulo, String mensaje) {
+		// TODO Auto-generated method stub
+		super.mostrarConfirmacion(titulo, mensaje);
+		limpiarFormulario();
+		modoModificar(true);
 	}
 
 }

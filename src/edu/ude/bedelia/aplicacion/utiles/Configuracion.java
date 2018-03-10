@@ -2,13 +2,11 @@ package edu.ude.bedelia.aplicacion.utiles;
 
 import java.util.Properties;
 
-import edu.ude.bedelia.persistencia.utiles.Constantes;
-
 public abstract class Configuracion {
 
 	protected final Properties properties = new Properties();
-	protected String ip = Constantes.Servidor.IP_POR_DEFECTO;
-	protected String puerto = Constantes.Servidor.IP_POR_DEFECTO;
+	protected String ip = AppConstantes.Servidor.IP_POR_DEFECTO;
+	protected String puerto = AppConstantes.Servidor.IP_POR_DEFECTO;
 	protected String objeto;
 
 	public String getIp() {

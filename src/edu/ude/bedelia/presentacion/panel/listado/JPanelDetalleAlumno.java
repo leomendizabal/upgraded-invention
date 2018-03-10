@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.table.AbstractTableModel;
 
+import edu.ude.bedelia.presentacion.UIConstantes;
 import edu.ude.bedelia.presentacion.controladores.ControladorDetalleAlumno;
 import edu.ude.bedelia.presentacion.panel.listener.ICargarTabla;
 
@@ -13,6 +14,7 @@ public class JPanelDetalleAlumno extends JPanelTablaConFiltro implements ICargar
 	private static final long serialVersionUID = 1L;
 	public final static String TAG = JPanelDetalleAlumno.class.getSimpleName();
 	public final static String TITULO = "Datos del alumno";
+	private final static String TEXTO_REFERENCIA_FILTRO = "Cedula";
 	private final ControladorDetalleAlumno controlador;
 
 	/**
@@ -27,7 +29,8 @@ public class JPanelDetalleAlumno extends JPanelTablaConFiltro implements ICargar
 
 	private void configurarVista() {
 		ocultarModoFiltro();
-		setTextoReferenciaFiltro("Cedula");
+		ocultarMensaje();
+		setTextoReferenciaFiltro(TEXTO_REFERENCIA_FILTRO);
 	}
 
 	@Override
@@ -39,7 +42,8 @@ public class JPanelDetalleAlumno extends JPanelTablaConFiltro implements ICargar
 	@Override
 	public void cargarTabla(AbstractTableModel model) {
 		// TODO Auto-generated method stub
-		table.setModel(model);
+		setModel(model);
+		limpiarFiltro();
 
 	}
 
@@ -52,9 +56,7 @@ public class JPanelDetalleAlumno extends JPanelTablaConFiltro implements ICargar
 	@Override
 	public void tablaVacia() {
 		// TODO Auto-generated method stub
-		table.setVisible(false);
-		lblMensaje.setVisible(true);
-		lblMensaje.setText("No hay datos para mostrar");
+		mostrarMensajeTabla(UIConstantes.MensajesError.ERROR_NO_SE_CARGARON_DATOS);
 
 	}
 

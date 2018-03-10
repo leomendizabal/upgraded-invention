@@ -3,8 +3,6 @@ package edu.ude.bedelia.aplicacion.utiles;
 import java.io.FileInputStream;
 import java.io.IOException;
 
-import edu.ude.bedelia.persistencia.utiles.Constantes;
-
 public class ClienteConfig extends Configuracion {
 
 	private static ClienteConfig instance;
@@ -12,10 +10,12 @@ public class ClienteConfig extends Configuracion {
 	private ClienteConfig() {
 		super();
 		try {
-			properties.load(new FileInputStream(Constantes.Cliente.RUTA_CONFIG));
-			ip = properties.getProperty(Constantes.Cliente.CLAVE_IP, Constantes.Cliente.IP_POR_DEFECTO);
-			puerto = properties.getProperty(Constantes.Cliente.CLAVE_PUERTO, Constantes.Cliente.PUERTO_POR_DEFECTO);
-			objeto = properties.getProperty(Constantes.Cliente.CLAVE_OBJETO);
+			properties.load(new FileInputStream(AppConstantes.Cliente.RUTA_CONFIG));
+			ip = properties.getProperty(AppConstantes.Cliente.CLAVE_IP, AppConstantes.Cliente.IP_POR_DEFECTO);
+			puerto = properties.getProperty(AppConstantes.Cliente.CLAVE_PUERTO,
+					AppConstantes.Cliente.PUERTO_POR_DEFECTO);
+			objeto = properties.getProperty(AppConstantes.Cliente.CLAVE_OBJETO,
+					AppConstantes.Cliente.OBJETO_POR_DEFECTO);
 
 		} catch (IOException e) {
 			System.err.println(e.getMessage());

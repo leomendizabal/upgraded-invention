@@ -3,7 +3,7 @@ package edu.ude.bedelia.presentacion.panel.registro;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import edu.ude.bedelia.presentacion.controladores.ControladorAlumno;
+import edu.ude.bedelia.presentacion.controladores.ControladorRegistrarAlumno;
 
 public class JPanelRegistrarAlumno extends JPanelAlumno implements ActionListener {
 
@@ -14,14 +14,14 @@ public class JPanelRegistrarAlumno extends JPanelAlumno implements ActionListene
 	public final static String TAG = JPanelRegistrarAlumno.class.getSimpleName();
 	public final static String TITULO = "Registro de alumno";
 
-	private final ControladorAlumno controladorAlumno;
+	private final ControladorRegistrarAlumno controladorAlumno;
 
 	/**
 	 * Create the panel.
 	 */
 	public JPanelRegistrarAlumno() {
 		super();
-		controladorAlumno = ControladorAlumno.getInstance(this);
+		controladorAlumno = ControladorRegistrarAlumno.getInstance(this);
 		modoRegistrar(true);
 		modoBecado(false);
 		setActionListenerGuardar(this);
@@ -42,6 +42,13 @@ public class JPanelRegistrarAlumno extends JPanelAlumno implements ActionListene
 					textFieldEmail.getText());
 
 		}
+	}
+
+	@Override
+	public void mostrarConfirmacion(String titulo, String mensaje) {
+		// TODO Auto-generated method stub
+		super.mostrarConfirmacion(titulo, mensaje);
+		limpiarFormulario();
 	}
 
 }

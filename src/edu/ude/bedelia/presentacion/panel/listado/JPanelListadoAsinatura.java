@@ -5,6 +5,7 @@ import java.awt.event.ComponentListener;
 
 import javax.swing.table.AbstractTableModel;
 
+import edu.ude.bedelia.presentacion.UIConstantes;
 import edu.ude.bedelia.presentacion.controladores.ControladorAsignaturas;
 import edu.ude.bedelia.presentacion.panel.listener.ICargarTabla;
 
@@ -20,6 +21,7 @@ public class JPanelListadoAsinatura extends JPanelTablaSinFiltro implements ICar
 	 */
 	public JPanelListadoAsinatura() {
 		super();
+		ocultarMensaje();
 		addComponentListener(this);
 		controlador = ControladorAsignaturas.getInstancia();
 		controlador.setCargar(this);
@@ -29,8 +31,7 @@ public class JPanelListadoAsinatura extends JPanelTablaSinFiltro implements ICar
 	@Override
 	public void cargarTabla(AbstractTableModel model) {
 		// TODO Auto-generated method stub
-		ocultarMensaje();
-		table.setModel(model);
+		setModel(model);
 
 	}
 
@@ -38,12 +39,12 @@ public class JPanelListadoAsinatura extends JPanelTablaSinFiltro implements ICar
 	public void mostrarError(String titulo, String mensaje) {
 		// TODO Auto-generated method stub
 		super.mostrarError(titulo, mensaje);
-		mostrarMensaje("No se puedo obtener las asignaturas");
+		tablaVacia();
 	}
 
 	@Override
 	public void tablaVacia() {
-		mostrarMensaje("No hay asignaturas");
+		mostrarMensaje(UIConstantes.MensajesError.ERROR_NO_SE_CARGARON_DATOS);
 
 	}
 

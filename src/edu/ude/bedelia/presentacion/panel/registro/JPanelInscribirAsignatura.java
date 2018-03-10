@@ -31,7 +31,7 @@ public class JPanelInscribirAsignatura extends JPanelBase {
 			public void actionPerformed(ActionEvent e) {
 
 				controladorInscripcion.registrar(false, textcedula.getText(), textcodigo.getText(),
-						textcodigo.getText(), textFieldmonto.getText());
+						textFieldanio.getText(), textFieldmonto.getText());
 
 			}
 		});

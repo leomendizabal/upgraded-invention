@@ -16,6 +16,7 @@ import edu.ude.bedelia.presentacion.tablemodel.IncripcionesModel;
 
 public class ControladorEscolaridad extends Controlador implements Controlador.IListar<String> {
 
+	private static final String TAG = ControladorEscolaridad.class.getSimpleName().concat("  %s");
 	private ICargarTabla listener;
 	private static ControladorEscolaridad instancia = null;
 
@@ -53,10 +54,10 @@ public class ControladorEscolaridad extends Controlador implements Controlador.I
 				}
 			}
 		} catch (RemoteException r) {
-			// TODO Auto-generated catch block
-			r.printStackTrace();
+			System.err.println(String.format(TAG, r.getMessage()));
 			listener.mostrarError(MensajeTitulo.TITULO_LISTAR, MensajesError.ERROR_CONEXION);
 		} catch (AlumnosException e) {
+			System.err.println(String.format(TAG, e.getMessage()));
 			listener.mostrarError(MensajeTitulo.TITULO_LISTAR, e.getMessage());
 		}
 

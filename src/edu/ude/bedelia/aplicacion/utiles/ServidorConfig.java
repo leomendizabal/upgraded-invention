@@ -3,20 +3,22 @@ package edu.ude.bedelia.aplicacion.utiles;
 import java.io.FileInputStream;
 import java.io.IOException;
 
-import edu.ude.bedelia.persistencia.utiles.Constantes;
-
 public class ServidorConfig extends Configuracion {
 
 	private static ServidorConfig instance;
+	private String mockear;
 
 	private ServidorConfig() {
 		super();
 
 		try {
-			properties.load(new FileInputStream(Constantes.Servidor.RUTA_CONFIG));
-			ip = properties.getProperty(Constantes.Servidor.CLAVE_IP, Constantes.Servidor.IP_POR_DEFECTO);
-			puerto = properties.getProperty(Constantes.Servidor.CLAVE_PUERTO, Constantes.Servidor.PUERTO_POR_DEFECTO);
-			objeto = properties.getProperty(Constantes.Servidor.CLAVE_OBJETO);
+			properties.load(new FileInputStream(AppConstantes.Servidor.RUTA_CONFIG));
+			ip = properties.getProperty(AppConstantes.Servidor.CLAVE_IP, AppConstantes.Servidor.IP_POR_DEFECTO);
+			puerto = properties.getProperty(AppConstantes.Servidor.CLAVE_PUERTO,
+					AppConstantes.Servidor.PUERTO_POR_DEFECTO);
+			objeto = properties.getProperty(AppConstantes.Servidor.CLAVE_OBJETO,
+					AppConstantes.Servidor.OBJETO_POR_DEFECTO);
+			mockear = properties.getProperty(AppConstantes.Servidor.CLAVE_MOCK, AppConstantes.Servidor.MOCKEADO);
 			properties.clear();
 		} catch (IOException e) {
 			System.err.println(e.getMessage());
@@ -32,6 +34,10 @@ public class ServidorConfig extends Configuracion {
 
 		return instance;
 
+	}
+
+	public boolean mockear() {
+		return !mockear.equalsIgnoreCase(AppConstantes.Servidor.MOCKEADO);
 	}
 
 }

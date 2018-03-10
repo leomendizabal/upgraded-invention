@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.table.AbstractTableModel;
 
+import edu.ude.bedelia.presentacion.UIConstantes;
 import edu.ude.bedelia.presentacion.controladores.ControladorEgresado;
 import edu.ude.bedelia.presentacion.panel.listener.ICargarTabla;
 
@@ -14,6 +15,7 @@ public class JPanelListadoEgresado extends JPanelTablaConFiltro implements ICarg
 	private final ControladorEgresado controlador;
 	public final static String TAG = JPanelListadoEgresado.class.getSimpleName();
 	public final static String TITULO = "Listado de Egresados";
+	private final static String TEXTO_REFERENCIA_MODO = "Modo";
 
 	/**
 	 * Create the panel.
@@ -22,22 +24,18 @@ public class JPanelListadoEgresado extends JPanelTablaConFiltro implements ICarg
 		super();
 		controlador = ControladorEgresado.getInstance(this);
 		configurarVista();
-		setActionListener();
+		setActionListenerBtnFiltro(this);
 	}
 
 	private void configurarVista() {
 		ocultarTextoFiltro();
-		setTextoReferenciaModo("Modo");
-	}
-
-	private void setActionListener() {
-		btnFiltrar.addActionListener(this);
+		setTextoReferenciaModo(TEXTO_REFERENCIA_MODO);
 	}
 
 	@Override
 	public void cargarTabla(AbstractTableModel model) {
-		this.table.setModel(model);
-
+		setModel(model);
+		limpiarFiltro();
 	}
 
 	@Override
@@ -48,9 +46,7 @@ public class JPanelListadoEgresado extends JPanelTablaConFiltro implements ICarg
 
 	@Override
 	public void tablaVacia() {
-		// TODO ocultar la tabla y mostrar mensaje
-		this.lblMensaje.setText("No hay datos para mostrar");
-		this.lblMensaje.setVisible(true);
+		mostrarMensajeTabla(UIConstantes.MensajesError.ERROR_NO_SE_CARGARON_DATOS);
 
 	}
 
