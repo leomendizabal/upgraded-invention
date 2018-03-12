@@ -26,12 +26,12 @@ public class JFrameSplash {
 		window.setBounds(500, 0, 800, 781);
 		window.setVisible(true);
 		try {
-			Thread.sleep(5000);
+			Thread.sleep(2000);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
 		window.setVisible(false);
-		JFramePrincipal principal = new JFramePrincipal();
+		JFramePrincipal principal = JFramePrincipal.getInstancia();
 		principal.setVisible(true);
 		window.dispose();
 	}

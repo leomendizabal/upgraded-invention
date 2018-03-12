@@ -216,6 +216,6 @@ public class JPanelAlumno extends JPanelBase {
 	@Override
 	protected void inicializar() {
 		limpiarFormulario();
-		
+
 	}
 }

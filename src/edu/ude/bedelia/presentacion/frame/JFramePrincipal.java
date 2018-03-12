@@ -36,19 +36,20 @@ public class JFramePrincipal extends JFrame implements IMensaje {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	private static JFramePrincipal instancia = null;
 	private final JPanel contentPane;
-	private final JPanel jPanelRegistrarAsignatura = new JPanelRegistroAsignatura();
-	private final JPanel jPanelRegistrarAlumno = new JPanelRegistrarAlumno();
-	private final JPanel jPanelRegistrarNota = new JPanelRegistrarNota();
-	private final JPanel jPanelInscribirAsignatura = new JPanelInscribirAsignatura();
-	private final JPanel jPanelMontoRecaudado = new JPanelMontoRecaudado();
-	private final JPanel jPanelListadoEgresado = new JPanelListadoEgresado();
-	private final JPanel jPanelModificarAlumno = new JPanelModificarAlumno();
-	private final JPanel jPanelEscolaridad = new JPanelEscolaridad();
-	private final JPanel jPanelListadoAsinatura = new JPanelListadoAsinatura();
-	private final JPanel jPanelListadoApellido = new JPanelListadoApellido();
-	private final JPanel jPanelDetalleAlumno = new JPanelDetalleAlumno();
-	private final JPanel jPanelInicio = new JPanelImage();
+	private JPanel jPanelRegistrarAsignatura;
+	private JPanel jPanelRegistrarAlumno;
+	private JPanel jPanelRegistrarNota;
+	private JPanel jPanelInscribirAsignatura;
+	private JPanel jPanelMontoRecaudado;
+	private JPanel jPanelListadoEgresado;
+	private JPanel jPanelModificarAlumno;
+	private JPanel jPanelEscolaridad;
+	private JPanel jPanelListadoAsinatura;
+	private JPanel jPanelListadoApellido;
+	private JPanel jPanelDetalleAlumno;
+	private JPanel jPanelInicio;
 
 	private JMenuBar menuBar = new JMenuBar();
 
@@ -60,11 +61,11 @@ public class JFramePrincipal extends JFrame implements IMensaje {
 	public JFramePrincipal() {
 		// conten panel
 		super();
+		initJPanels();
 		setBounds(100, 100, 800, 600);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
-
 		setContentPane(contentPane);
 
 		initMenuBar();
@@ -78,6 +79,28 @@ public class JFramePrincipal extends JFrame implements IMensaje {
 		setLocationRelativeTo(null);
 		setVisible(true);
 
+	}
+
+	public static JFramePrincipal getInstancia() {
+		if (instancia == null) {
+			instancia = new JFramePrincipal();
+		}
+		return instancia;
+	}
+
+	private void initJPanels() {
+		jPanelRegistrarAsignatura = new JPanelRegistroAsignatura();
+		jPanelRegistrarAlumno = new JPanelRegistrarAlumno();
+		jPanelRegistrarNota = new JPanelRegistrarNota();
+		jPanelInscribirAsignatura = new JPanelInscribirAsignatura();
+		jPanelMontoRecaudado = new JPanelMontoRecaudado();
+		jPanelListadoEgresado = new JPanelListadoEgresado();
+		jPanelModificarAlumno = new JPanelModificarAlumno();
+		jPanelEscolaridad = new JPanelEscolaridad();
+		jPanelListadoAsinatura = new JPanelListadoAsinatura();
+		jPanelListadoApellido = new JPanelListadoApellido();
+		jPanelDetalleAlumno = new JPanelDetalleAlumno();
+		jPanelInicio = new JPanelImage();
 	}
 
 	private void initContenedor() {

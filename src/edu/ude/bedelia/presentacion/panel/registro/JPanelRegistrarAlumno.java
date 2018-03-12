@@ -56,9 +56,7 @@ public class JPanelRegistrarAlumno extends JPanelAlumno implements ActionListene
 		super.inicializar();
 		modoRegistrar(true);
 		modoBecado(false);
-		
+
 	}
-	
-	
 
 }

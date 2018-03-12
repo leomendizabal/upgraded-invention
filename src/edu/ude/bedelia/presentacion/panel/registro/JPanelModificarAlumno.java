@@ -78,8 +78,7 @@ public class JPanelModificarAlumno extends JPanelAlumno implements IModificarDat
 		super.inicializar();
 		modoModificar(true);
 	}
-	
-	
+
 	@Override
 	public void mostrarError(String titulo, String mensaje) {
 		// TODO Auto-generated method stub

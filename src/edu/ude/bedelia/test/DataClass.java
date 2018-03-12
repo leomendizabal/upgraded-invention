@@ -43,7 +43,7 @@ public final class DataClass {
 
 	public final static Asignaturas ASIGNATURA = new Asignaturas() {
 		{
-			
+
 			insert(cocina1);
 			insert(panaderia1);
 			insert(frances);

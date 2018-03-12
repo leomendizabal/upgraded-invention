@@ -45,7 +45,7 @@ public class Inscripciones extends SecuenciaArrayList<Inscripcion> {
 		return aprobada;
 	}
 
-	public boolean inscriptoEnAnioLectivo(String cod,int anio) {
+	public boolean inscriptoEnAnioLectivo(String cod, int anio) {
 		Inscripcion ins;
 		Asignatura asi;
 		boolean esta = false;

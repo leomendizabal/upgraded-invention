@@ -164,7 +164,7 @@ public class JPanelRegistrarNota extends JPanelBase implements ActionListener {
 		// TODO Auto-generated method stub
 		limpiarTextField(this);
 	}
-	
+
 	@Override
 	public void mostrarError(String titulo, String mensaje) {
 		// TODO Auto-generated method stub

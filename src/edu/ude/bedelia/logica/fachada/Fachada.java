@@ -258,7 +258,8 @@ public class Fachada extends UnicastRemoteObject implements IFachada {
 	}
 
 	@Override
-	public void registrarResultado(String ci, int nota, int codigo, int anio)  throws RemoteException, AlumnosException, InscripcionesException {
+	public void registrarResultado(String ci, int nota, int codigo, int anio)
+			throws RemoteException, AlumnosException, InscripcionesException {
 		monitor.comienzoEscritura();
 		if (alumnos.member(ci)) {
 			Alumno a = alumnos.find(ci);

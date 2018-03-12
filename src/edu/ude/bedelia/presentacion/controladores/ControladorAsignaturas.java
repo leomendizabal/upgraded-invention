@@ -65,9 +65,9 @@ public class ControladorAsignaturas extends Controlador implements Controlador.I
 		// TODO Auto-generated method stub
 		try {
 			List<VOAsignatura> resultado = fachada.listarAsignaturas();
-			if(resultado.isEmpty()) {
+			if (resultado.isEmpty()) {
 				cargar.tablaVacia();
-			}else {
+			} else {
 				cargar.cargarTabla(new AsignaturaModel(resultado, VOAsignatura.attr));
 			}
 

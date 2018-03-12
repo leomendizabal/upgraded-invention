@@ -1,7 +1,6 @@
 package edu.ude.bedelia.presentacion.panel.listado;
 
 import java.awt.event.ComponentEvent;
-import java.awt.event.ComponentListener;
 
 import javax.swing.table.AbstractTableModel;
 

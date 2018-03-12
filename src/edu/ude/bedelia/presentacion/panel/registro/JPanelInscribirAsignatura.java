@@ -47,9 +47,9 @@ public class JPanelInscribirAsignatura extends JPanelBase {
 		controladorInscripcion = ControladorInscripcion.getInstance(this);
 		setLayout(null);
 
-	    panel = new JPanel();
+		panel = new JPanel();
 		panel.setBounds(15, 16, 435, 298);
-		
+
 		panel.setLayout(null);
 
 		textcedula = new JTextField();
@@ -104,7 +104,7 @@ public class JPanelInscribirAsignatura extends JPanelBase {
 		// TODO Auto-generated method stub
 		super.mostrarConfirmacion(titulo, mensaje);
 		inicializar();
-		//limpiarTextField(this.panel);
+		// limpiarTextField(this.panel);
 	}
 
 	@Override
@@ -112,6 +112,5 @@ public class JPanelInscribirAsignatura extends JPanelBase {
 		// TODO Auto-generated method stub
 		limpiarTextField(this.panel);
 	}
-	
-	
+
 }
