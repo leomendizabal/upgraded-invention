@@ -28,7 +28,7 @@ public class TestMain {
 
 	public static void correrPruebas(IFachada bedelia) {
 		try {
-			int anio = Calendar.getInstance().get(Calendar.YEAR);
+			/*int anio = Calendar.getInstance().get(Calendar.YEAR);
 
 			Asignatura cocina = new Asignatura("CDOCOC12", "Cocina", "Cocina clasica");
 			Asignatura frances = new Asignatura("CDOCOC13", "Frances", "Idioma frances");
@@ -84,10 +84,10 @@ public class TestMain {
 
 			// Requerimiento 8
 			System.out.println("******* Requerimiento 8 ********");
-			bedelia.registrarResultado(alumno1.getCedula(), 12, cocina.getCodigo(), anio);
+			/*bedelia.registrarResultado(alumno1.getCedula(), 12, cocina.getCodigo(), anio);
 			bedelia.registrarResultado(alumno1.getCedula(), 10, frances.getCodigo(), anio);
 			bedelia.registrarResultado(becado.getCedula(), 7, cocina.getCodigo(), anio);
-			System.out.println("-> Resultado ingresado con exito");
+			System.out.println("-> Resultado ingresado con exito");*/
 
 			// Inscripciones inscripciones =
 			// bedelia.getAlumnoCI(alumno1.getCedula()).getInscripciones();
@@ -95,7 +95,7 @@ public class TestMain {
 			// System.out.println("Inscripcion: "+i.toString());
 			// }
 
-			System.out.println("******* Requerimiento 9 ********");
+			/*System.out.println("******* Requerimiento 9 ********");
 			float montoRecaudado = bedelia.montoRecaudadoPorAlumno(anio, becado.getCedula());
 			System.out.println("-> Monto recaudado: " + montoRecaudado);
 
@@ -118,15 +118,17 @@ public class TestMain {
 			for (VOInscripcion i : escolaridad) {
 				System.out.println("Inscripcion: numero " + i.getNumero() + " calificacion: " + i.getCalificacion());
 			}
-
+           */
 			System.out.println("******* Requerimiento 12 ********");
-
-			Alumno egresado = new Alumno("22222222", "Egresado", "ApellidoEgresado", "DomicilioEgresado", "55555555",
+			ArrayList<VOAsignatura> asignaturas = bedelia.listarAsignaturas();
+			Alumno egresado = new Alumno("22", "Egresado", "ApellidoEgresado", "DomicilioEgresado", "55555555",
 					"egresado@test.com");
 			bedelia.registrarAlumno((VOAlumnoCompleto) egresado.toVO(true));
+			int i = 0;
 			for (VOAsignatura asig : asignaturas) {
-				bedelia.inscribirAlumno(egresado.getCedula(), asig.getCodigo(), anio, 1000);
-				bedelia.registrarResultado(egresado.getCedula(), 7, asig.getCodigo(), anio);
+				bedelia.inscribirAlumno(egresado.getCedula(), asig.getCodigo(), 2018, 1000);
+				i++;
+				bedelia.registrarResultado(egresado.getCedula(), 7, i, 2018);
 
 			}
 

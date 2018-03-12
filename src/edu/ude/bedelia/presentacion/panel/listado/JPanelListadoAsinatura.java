@@ -9,7 +9,7 @@ import edu.ude.bedelia.presentacion.UIConstantes;
 import edu.ude.bedelia.presentacion.controladores.ControladorAsignaturas;
 import edu.ude.bedelia.presentacion.panel.listener.ICargarTabla;
 
-public class JPanelListadoAsinatura extends JPanelTablaSinFiltro implements ICargarTabla, ComponentListener {
+public class JPanelListadoAsinatura extends JPanelTablaSinFiltro implements ICargarTabla {
 
 	private static final long serialVersionUID = 1L;
 	public final static String TAG = JPanelListadoAsinatura.class.getName();
@@ -22,7 +22,6 @@ public class JPanelListadoAsinatura extends JPanelTablaSinFiltro implements ICar
 	public JPanelListadoAsinatura() {
 		super();
 		ocultarMensaje();
-		addComponentListener(this);
 		controlador = ControladorAsignaturas.getInstancia();
 		controlador.setCargar(this);
 
@@ -49,6 +48,20 @@ public class JPanelListadoAsinatura extends JPanelTablaSinFiltro implements ICar
 	}
 
 	@Override
+	public void componentShown(ComponentEvent e) {
+		// TODO Auto-generated method stub
+		super.componentShown(e);
+		controlador.listar();
+
+	}
+
+	@Override
+	public void componentHidden(ComponentEvent e) {
+		// TODO Auto-generated method stub
+		super.componentHidden(e);
+	}
+
+	@Override
 	public void componentResized(ComponentEvent e) {
 		// TODO Auto-generated method stub
 
@@ -57,30 +70,6 @@ public class JPanelListadoAsinatura extends JPanelTablaSinFiltro implements ICar
 	@Override
 	public void componentMoved(ComponentEvent e) {
 		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void componentShown(ComponentEvent e) {
-		// TODO Auto-generated method stub
-		System.out.println("Componente visible");
-		Runnable runnable = new Runnable() {
-
-			@Override
-			public void run() {
-				// TODO Auto-generated method stub
-				controlador.listar();
-
-			}
-		};
-		new Thread(runnable).start();
-
-	}
-
-	@Override
-	public void componentHidden(ComponentEvent e) {
-		// TODO Auto-generated method stub
-		System.out.println("Componente oculto");
 
 	}
 

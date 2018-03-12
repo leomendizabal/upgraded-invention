@@ -2,6 +2,8 @@ package edu.ude.bedelia.presentacion.panel.listado;
 
 import java.awt.Dimension;
 import java.awt.event.ActionListener;
+import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -18,7 +20,7 @@ import javax.swing.table.DefaultTableModel;
 
 import edu.ude.bedelia.presentacion.panel.JPanelBase;
 
-public class JPanelTablaConFiltro extends JPanelBase {
+public class JPanelTablaConFiltro extends JPanelBase  {
 
 	/**
 	 * 
@@ -134,9 +136,10 @@ public class JPanelTablaConFiltro extends JPanelBase {
 
 	protected void setModel(AbstractTableModel model) {
 		table.setModel(model);
-		// resizeColumnWidth(table);
-		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+		resizeColumnWidth(table);
+		//table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		ocultarMensaje();
+		inicializar();
 
 	}
 
@@ -153,6 +156,7 @@ public class JPanelTablaConFiltro extends JPanelBase {
 	@Override
 	protected void inicializar() {
 		// TODO Auto-generated method stub
-		limpiarTextField(jPanelFiltro);
+		limpiarFiltro();
 	}
+	
 }

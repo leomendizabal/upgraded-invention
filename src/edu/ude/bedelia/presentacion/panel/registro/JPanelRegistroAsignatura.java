@@ -88,15 +88,14 @@ public class JPanelRegistroAsignatura extends JPanelBase implements ActionListen
 		// TODO Auto-generated method stub
 		super.mostrarConfirmacion(titulo, mensaje);
 		inicializar();
-		
+
 	}
 
 	@Override
 	protected void inicializar() {
 		// TODO Auto-generated method stub
 		limpiarTextField(this.panel);
-		
-		
+
 	}
 
 }

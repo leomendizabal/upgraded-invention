@@ -27,8 +27,8 @@ public interface IFachada extends Remote {
 
 	public ArrayList<VOAlumno> listarAlumnosApellido(String apellido) throws RemoteException;
 
-	public void registrarResultado(String ci, int nota, String codigo, int anio)
-			throws RemoteException, AlumnosException;
+	public void registrarResultado(String ci, int nota, int codigo, int anio)
+			throws RemoteException, AlumnosException, InscripcionesException;
 
 	public VOAlumno listarDatosAlumno(String ci) throws RemoteException, AlumnosException;
 

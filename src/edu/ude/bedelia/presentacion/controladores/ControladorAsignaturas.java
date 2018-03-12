@@ -65,7 +65,12 @@ public class ControladorAsignaturas extends Controlador implements Controlador.I
 		// TODO Auto-generated method stub
 		try {
 			List<VOAsignatura> resultado = fachada.listarAsignaturas();
-			cargar.cargarTabla(new AsignaturaModel(resultado, VOAsignatura.attr));
+			if(resultado.isEmpty()) {
+				cargar.tablaVacia();
+			}else {
+				cargar.cargarTabla(new AsignaturaModel(resultado, VOAsignatura.attr));
+			}
+
 		} catch (RemoteException e) {
 			System.err.println(String.format(TAG, e.getMessage()));
 			cargar.mostrarError(MensajeTitulo.TITULO_LISTAR_ASIGNATURAS, MensajesError.ERROR_CONEXION);

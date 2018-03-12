@@ -1,6 +1,8 @@
 package edu.ude.bedelia.presentacion.panel.listado;
 
 import java.awt.BorderLayout;
+import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -11,7 +13,7 @@ import javax.swing.table.AbstractTableModel;
 
 import edu.ude.bedelia.presentacion.panel.JPanelBase;
 
-public class JPanelTablaSinFiltro extends JPanelBase {
+public class JPanelTablaSinFiltro extends JPanelBase  {
 	/**
 	 * 
 	 */
@@ -64,5 +66,8 @@ public class JPanelTablaSinFiltro extends JPanelBase {
 		// TODO Auto-generated method stub
 		limpiarTextField(this);
 	}
+
+	
+	
 
 }

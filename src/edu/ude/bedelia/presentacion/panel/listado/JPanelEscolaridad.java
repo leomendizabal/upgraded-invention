@@ -29,6 +29,7 @@ public class JPanelEscolaridad extends JPanelTablaConFiltro implements ICargarTa
 		controlador = ControladorEscolaridad.getInstance(this);
 		setTextoReferenciaFiltro(TEXTO_REFERENCIA_FILTRO);
 		setTextoReferenciaModo(TEXTO_REFERENCIA_MODO);
+		ocultarMensaje();
 		setActionListenerBtnFiltro(this);
 	}
 
@@ -43,15 +44,13 @@ public class JPanelEscolaridad extends JPanelTablaConFiltro implements ICargarTa
 	public void cargarTabla(AbstractTableModel model) {
 		// TODO Auto-generated method stub
 		setModel(model);
-		limpiarFiltro();
-
 	}
 
 	@Override
 	public void tablaVacia() {
 		// TODO Auto-generated method stub
 		mostrarMensajeTabla(UIConstantes.MensajesError.ERROR_NO_SE_CARGARON_DATOS);
-
+		
 	}
 
 	@Override

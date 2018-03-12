@@ -43,6 +43,7 @@ public class Sistema {
 			IFachada fachada = (IFachada) Naming.lookup(url);
 			setFachadaInstance(fachada);
 			new JFrameSplash().initPorDefecto();
+			
 		} catch (Exception e) {
 			System.err.println(e.getMessage());
 			// Error Pantalla
