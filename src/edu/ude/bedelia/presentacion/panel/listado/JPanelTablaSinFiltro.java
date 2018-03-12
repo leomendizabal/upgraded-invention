@@ -29,16 +29,12 @@ public class JPanelTablaSinFiltro extends JPanelBase {
 		lblMensaje = new JLabel("No hay contenido");
 		lblMensaje.setHorizontalAlignment(SwingConstants.CENTER);
 		add(lblMensaje, BorderLayout.NORTH);
-
-		scrollPane = new JScrollPane();
+		
+		table = new JTable();
+		scrollPane = new JScrollPane(table);
 		add(scrollPane);
 
-		JPanel panel = new JPanel();
-		scrollPane.setColumnHeaderView(panel);
-		panel.setLayout(new BorderLayout(12, 0));
-
-		table = new JTable();
-		panel.add(table, BorderLayout.CENTER);
+		
 
 	}
 
@@ -55,8 +51,8 @@ public class JPanelTablaSinFiltro extends JPanelBase {
 
 	protected void setModel(AbstractTableModel model) {
 		table.setModel(model);
-		resizeColumnWidth(table);
-		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+		//resizeColumnWidth(table);
+		table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
 	}
 
 	@Override

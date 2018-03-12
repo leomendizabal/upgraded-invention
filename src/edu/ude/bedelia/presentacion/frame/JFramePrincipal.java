@@ -36,7 +36,6 @@ public class JFramePrincipal extends JFrame implements IMensaje {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private static JFramePrincipal instancia = null;
 	private final JPanel contentPane;
 	private JPanel jPanelRegistrarAsignatura;
 	private JPanel jPanelRegistrarAlumno;
@@ -79,13 +78,6 @@ public class JFramePrincipal extends JFrame implements IMensaje {
 		setLocationRelativeTo(null);
 		setVisible(true);
 
-	}
-
-	public static JFramePrincipal getInstancia() {
-		if (instancia == null) {
-			instancia = new JFramePrincipal();
-		}
-		return instancia;
 	}
 
 	private void initJPanels() {

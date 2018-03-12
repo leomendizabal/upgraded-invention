@@ -31,7 +31,7 @@ public class JFrameSplash {
 			e.printStackTrace();
 		}
 		window.setVisible(false);
-		JFramePrincipal principal = JFramePrincipal.getInstancia();
+		JFramePrincipal principal = new JFramePrincipal();
 		principal.setVisible(true);
 		window.dispose();
 	}

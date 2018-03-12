@@ -134,8 +134,8 @@ public class JPanelTablaConFiltro extends JPanelBase {
 
 	protected void setModel(AbstractTableModel model) {
 		table.setModel(model);
-		resizeColumnWidth(table);
-		// table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+		//resizeColumnWidth(table);
+		table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
 		ocultarMensaje();
 		inicializar();
 
