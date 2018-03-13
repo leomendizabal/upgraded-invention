@@ -29,7 +29,6 @@ public class JPanelRegistrarNota extends JPanelBase implements ActionListener {
 	protected JTextField textFieldCedula;
 	protected JTextField textFieldNroIns;
 	protected JComboBox<String> cmbNota;
-	private JTextField textFieldAno;
 	JButton btnGuardar;
 
 	public JPanelRegistrarNota() {
@@ -41,18 +40,6 @@ public class JPanelRegistrarNota extends JPanelBase implements ActionListener {
 		gridBagLayout.columnWeights = new double[] { 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
 		gridBagLayout.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
 		setLayout(gridBagLayout);
-
-		JLabel lblAno = new JLabel("A\u00F1o");
-		lblAno.setHorizontalAlignment(SwingConstants.CENTER);
-		lblAno.setAlignmentY(Component.TOP_ALIGNMENT);
-		lblAno.setBounds(20, 194, 60, 26);
-		GridBagConstraints gbc_lblAno = new GridBagConstraints();
-		gbc_lblAno.anchor = GridBagConstraints.EAST;
-		gbc_lblAno.insets = new Insets(0, 0, 5, 5);
-		gbc_lblAno.fill = GridBagConstraints.VERTICAL;
-		gbc_lblAno.gridx = 0;
-		gbc_lblAno.gridy = 2;
-		add(lblAno, gbc_lblAno);
 
 		JLabel lblCedula = new JLabel("Cedula");
 		lblCedula.setBounds(20, 39, 60, 20);
@@ -95,18 +82,6 @@ public class JPanelRegistrarNota extends JPanelBase implements ActionListener {
 		add(textFieldNroIns, gbc_textFieldNroIns);
 		textFieldNroIns.setColumns(10);
 
-		textFieldAno = new JTextField();
-		textFieldAno.setAlignmentX(Component.LEFT_ALIGNMENT);
-		textFieldAno.setBounds(103, 137, 259, 26);
-		GridBagConstraints gbc_textFieldAno = new GridBagConstraints();
-		gbc_textFieldAno.fill = GridBagConstraints.BOTH;
-		gbc_textFieldAno.insets = new Insets(0, 0, 5, 0);
-		gbc_textFieldAno.gridwidth = 3;
-		gbc_textFieldAno.gridx = 1;
-		gbc_textFieldAno.gridy = 2;
-		add(textFieldAno, gbc_textFieldAno);
-		textFieldAno.setColumns(10);
-
 		JLabel lblNota = new JLabel("Nota");
 		lblNota.setBounds(20, 194, 60, 20);
 		GridBagConstraints gbc_lblNota = new GridBagConstraints();
@@ -144,7 +119,7 @@ public class JPanelRegistrarNota extends JPanelBase implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		controlador.registrar(false, textFieldCedula.getText(), (String) cmbNota.getSelectedItem(),
-				textFieldNroIns.getText(), textFieldAno.getText());
+				textFieldNroIns.getText());
 	}
 
 	protected void setActionListenerGuardar(ActionListener listener) {

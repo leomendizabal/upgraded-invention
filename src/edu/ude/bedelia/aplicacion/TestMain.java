@@ -121,7 +121,7 @@ public class TestMain {
 			for (VOAsignatura asig : asignaturas) {
 				bedelia.inscribirAlumno(egresado.getCedula(), asig.getCodigo(), 2018, 1000);
 				i++;
-				bedelia.registrarResultado(egresado.getCedula(), 7, i, 2018);
+				bedelia.registrarResultado(egresado.getCedula(), 7, i);
 
 			}
 

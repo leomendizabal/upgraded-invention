@@ -258,7 +258,7 @@ public class Fachada extends UnicastRemoteObject implements IFachada {
 	}
 
 	@Override
-	public void registrarResultado(String ci, int nota, int codigo, int anio)
+	public void registrarResultado(String ci, int nota, int codigo)
 			throws RemoteException, AlumnosException, InscripcionesException {
 		monitor.comienzoEscritura();
 		if (alumnos.member(ci)) {
@@ -268,17 +268,17 @@ public class Fachada extends UnicastRemoteObject implements IFachada {
 				Inscripcion i = inscripciones.get(codigo - 1);
 				if (codigo == i.getNumero()) {
 					String codigoAsignatura = i.getAsignatura().getCodigo();
-					boolean esInscripto = a.esInscripto(codigoAsignatura, anio);
-					if (esInscripto && !a.asignaturaCalificada(codigoAsignatura, anio)) {
+//					boolean esInscripto = a.esInscripto(codigoAsignatura, anio);
+//					if (esInscripto && !a.asignaturaCalificada(codigoAsignatura, anio)) {
 						if (Helper.calificacionEsValida(nota)) {
 							a.registrarCalificacion(codigoAsignatura, nota);
 						} else {
 							throw new AlumnosException(Mensajes.MSG_CALIF_INVALIDA);
 						}
-					} else {
-						monitor.terminoEscritura();
-						throw new AlumnosException(Mensajes.ALUMNO_NO_INSCRIPTO);
-					}
+//					} else {
+//						monitor.terminoEscritura();
+//						throw new AlumnosException(Mensajes.ALUMNO_NO_INSCRIPTO);
+//					}
 				} else {
 					// TODO: lanzar excepcion inscripcion
 					monitor.terminoEscritura();
