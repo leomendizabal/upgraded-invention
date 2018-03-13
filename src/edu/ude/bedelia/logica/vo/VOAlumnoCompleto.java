@@ -14,7 +14,6 @@ public class VOAlumnoCompleto extends VOAlumno {
 	private String domicilio;
 	private String telefono;
 	private String email;
-	private float monto;
 
 	public final static List<String> attrAlumnoCompleto = new ArrayList<String>() {
 		private static final long serialVersionUID = 1L;
@@ -23,22 +22,15 @@ public class VOAlumnoCompleto extends VOAlumno {
 			add("Domicilio");
 			add("Telefono");
 			add("Email");
-			add("Monto");
 		}
 	};
 
 	public VOAlumnoCompleto(String cedula, String nombre, String apellido, TipoAlumno tipo, String domicilio,
 			String telefono, String email) {
-		this(cedula, nombre, apellido, tipo, domicilio, telefono, email, 0);
-	}
-
-	public VOAlumnoCompleto(String cedula, String nombre, String apellido, TipoAlumno tipo, String domicilio,
-			String telefono, String email, float monto) {
 		super(cedula, nombre, apellido, tipo);
 		this.domicilio = domicilio;
 		this.telefono = telefono;
 		this.email = email;
-		this.monto = monto;
 	}
 
 	public VOAlumnoCompleto(Alumno a) {
@@ -46,7 +38,6 @@ public class VOAlumnoCompleto extends VOAlumno {
 		this.domicilio = a.getDomicilio();
 		this.telefono = a.getTelefono();
 		this.email = a.getEmail();
-		this.monto = 0; // TODO: corregir el monto
 	}
 
 	public String getDomicilio() {
@@ -59,10 +50,6 @@ public class VOAlumnoCompleto extends VOAlumno {
 
 	public String getEmail() {
 		return email;
-	}
-
-	public float getMonto() {
-		return monto;
 	}
 
 	public void setDomicilio(String domicilio) {
@@ -79,6 +66,6 @@ public class VOAlumnoCompleto extends VOAlumno {
 
 	public String toString() {
 		return super.toString() + " Domicilio: " + this.domicilio + " Telefono: " + this.telefono + " Email: "
-				+ this.email + " Monto: " + this.monto;
+				+ this.email ;
 	}
 }

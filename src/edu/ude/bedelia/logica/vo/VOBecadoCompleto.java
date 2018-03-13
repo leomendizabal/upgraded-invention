@@ -22,7 +22,7 @@ public class VOBecadoCompleto extends VOAlumnoCompleto {
 
 	public VOBecadoCompleto(String cedula, String nombre, String apellido, TipoAlumno tipo, String domicilio,
 			String telefono, String email, float monto, float porcentaje, String descripcion) {
-		super(cedula, nombre, apellido, tipo, domicilio, telefono, email, monto);
+		super(cedula, nombre, apellido, tipo, domicilio, telefono, email);
 		this.porcentaje = porcentaje;
 		this.descripcion = descripcion;
 	}
