@@ -12,7 +12,7 @@ public final class Mensajes {
 	public final static String MSG_ALUMNO_NO_EXISTE = "El alumno no existe en el sistema";
 	public final static String MSG_ALUMNO_YA_APROBO_ASIGNATURA = "El alumno ya aprob� la asignatura";
 	public final static String MSG_ALUMNO_YA_ESTA_INSCRIPTO_ASIGANTURA = "El alumno ya est� inscripto a esta asignatura";
-	public final static String MSG_ANO_NO_COINCIDE_CON_ACTUAL = "El a�o lectivo no coincide con el actual";
+	public final static String MSG_ANO_NO_COINCIDE_CON_ACTUAL = "El a�o lectivo debe ser mayor al de la ultima inscripcion";
 	public final static String MSG_NUMERO_INSCRIPCION_INCORRECTO = "El numero de inscripcion es incorrecto";
 	public final static String MSG_ASIGNATURA_NO_EXISTE = "La asignatura con el codigo %s no existe";
 
