@@ -52,7 +52,7 @@ public class ControladorRegistrarAlumno extends Controlador implements Controlad
 
 		} catch (AlumnosException e) {
 			System.err.println(String.format(TAG, e.getMessage()));
-			listener.mostrarError(MensajeTitulo.TITULO_REGISTRAR_ALUMNO, MensajesError.ERROR_REGISTRAR_ALUMNO);
+			listener.mostrarError(MensajeTitulo.TITULO_REGISTRAR_ALUMNO,e.getMessage());
 		} catch (RemoteException r) {
 			System.err.println(String.format(TAG, r.getMessage()));
 			listener.mostrarError(MensajeTitulo.TITULO_ERROR, MensajesError.ERROR_CONEXION);
