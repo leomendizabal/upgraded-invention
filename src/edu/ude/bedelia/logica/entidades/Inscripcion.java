@@ -72,18 +72,6 @@ public class Inscripcion implements Serializable {
 		return this.calificacion >= Constantes.NOTA_MINIMA_APROBACION;
 	}
 
-	public boolean esAnioMayorIgualActual() {
-		final Calendar calendar = Calendar.getInstance();
-		return this.anio >= calendar.get(Calendar.YEAR);
-
-	}
-
-	public boolean esActual() {
-		final Calendar calendar = Calendar.getInstance();
-		return this.anio == calendar.get(Calendar.YEAR);
-
-	}
-
 	public String toString() {
 
 		return ("\n Numero:" + this.numero + "\n A�o:" + this.anio + "\n Monto base:" + this.montoBase
